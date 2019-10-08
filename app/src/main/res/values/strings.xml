@@ -34,4 +34,5 @@
     <string name="problems">Problems</string>
     <string name="empty" translatable="false" />
     <string name="google_calendar_not_found">Sorry, but no Google Calendar found on this device</string>
+    <string name="feature_isn_t_available_yet">This feature isn’t available yet.</string>
 </resources>

@@ -38,4 +38,5 @@
     <string name="problems">Задачи</string>
 
     <string name="google_calendar_not_found">Извините, но на этом устройстве не найден Google Calendar</string>
+    <string name="feature_isn_t_available_yet">Эта функция еще не доступна.</string>
 </resources>
