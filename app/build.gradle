@@ -11,8 +11,8 @@ android {
         applicationId "com.bogdan.codeforceswatcher"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 15
-        versionName "1.2.4"
+        versionCode 16
+        versionName "1.2.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
