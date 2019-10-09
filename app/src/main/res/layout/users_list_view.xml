@@ -5,8 +5,8 @@
     android:id="@+id/cv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
     android:paddingTop="2dp"
     android:paddingBottom="2dp"
     card_view:cardUseCompatPadding="true">
