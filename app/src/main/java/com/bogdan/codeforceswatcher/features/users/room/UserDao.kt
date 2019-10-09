@@ -13,7 +13,7 @@ interface UserDao {
     fun getById(id: Long): User
 
     @Insert
-    fun insert(user: User)
+    fun insert(user: User): Long
 
     @Update
     fun update(user: User)
