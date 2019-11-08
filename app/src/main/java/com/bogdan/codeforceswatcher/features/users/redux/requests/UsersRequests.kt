@@ -10,6 +10,10 @@ import com.bogdan.codeforceswatcher.redux.Request
 import com.bogdan.codeforceswatcher.redux.actions.ToastAction
 import com.bogdan.codeforceswatcher.room.DatabaseClient
 import com.bogdan.codeforceswatcher.store
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.rekotlin.Action
 
 enum class Source(val isToastNeeded: Boolean) {
@@ -25,17 +29,22 @@ class UsersRequests {
         override fun execute() {
             val users: List<User> = DatabaseClient.userDao.getAll()
             getUsers(getHandles(users), true) { result ->
-                when (result) {
-                    is UsersRequestResult.Failure -> dispatchError(result.error)
-                    is UsersRequestResult.Success ->
-                        store.dispatch(
-                            Success(result.users, getDifferenceAndUpdate(users, result.users), source)
-                        )
-                }
+                println("getUsers: status : ${store.state.users.status}")
+                println("getUsers: result : $result")
+                //GlobalScope.launch(Dispatchers.Main) {
+                    when (result) {
+                        is UsersRequestResult.Failure -> dispatchError(result.error)
+                        is UsersRequestResult.Success ->
+                            store.dispatch(
+                                Success(result.users, getDifferenceAndUpdate(users, result.users), source)
+                            )
+                    }
+                //}
             }
         }
 
         private fun dispatchError(error: Error) {
+            println("dispatch : error")
             val noConnectionError = CwApp.app.resources.getString(R.string.no_connection)
             val fetchingUsersError = CwApp.app.resources.getString(R.string.failed_to_fetch_users)
 

@@ -9,20 +9,23 @@ import org.rekotlin.Action
 
 fun usersReducer(action: Action, state: AppState): UsersState {
     var newState = state.users
-
+    println("usersReducer is working")
     when (action) {
         is UsersRequests.FetchUsers -> {
+            println("reducer continue")
             newState = newState.copy(
                 status = UsersState.Status.PENDING
             )
         }
         is UsersRequests.FetchUsers.Success -> {
+            println("reducer success")
             newState = newState.copy(
                 status = UsersState.Status.IDLE,
                 users = action.users
             )
         }
         is UsersRequests.FetchUsers.Failure -> {
+            println("reducer failure stop")
             newState = newState.copy(
                 status = UsersState.Status.IDLE
             )

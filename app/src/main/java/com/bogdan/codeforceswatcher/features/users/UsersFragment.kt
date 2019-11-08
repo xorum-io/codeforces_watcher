@@ -52,6 +52,8 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
     override fun newState(state: UsersState) {
         swipeRefreshLayout.isRefreshing = (state.status == UsersState.Status.PENDING)
         usersAdapter.setItems(state.users.sort(state.sortType).map { UserItem.User(it) })
+        println("newState : ${state.users}")
+        println("status : ${state.status}")
         adjustSpinnerSortVisibility(state.users.isEmpty())
     }
 

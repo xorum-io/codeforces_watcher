@@ -21,7 +21,7 @@ val store = Store(
     reducer = ::appReducer,
     state = RoomController.fetchAppState(),
     middleware = listOf(
-        appMiddleware, notificationMiddleware, toastMiddleware
+        notificationMiddleware, toastMiddleware, appMiddleware
     )
 )
 
