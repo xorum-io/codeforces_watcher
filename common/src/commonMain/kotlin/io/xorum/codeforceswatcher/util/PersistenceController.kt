@@ -16,7 +16,7 @@ class PersistenceController : StoreSubscriber<AppState> {
         }
     }
 
-    override fun newState(state: AppState) {
+    override fun onNewState(state: AppState) {
         settings.writeSpinnerSortPosition(state.users.sortType.position)
         settings.writeProblemsIsFavourite(state.problems.isFavourite)
         settings.writeContestsFilters(state.contests.filters.map { it.toString() }.toSet())

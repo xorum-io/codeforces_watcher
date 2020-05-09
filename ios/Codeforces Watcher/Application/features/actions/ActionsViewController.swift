@@ -98,7 +98,7 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         }
     }
 
-    func doNewState(state: Any) {
+    func onNewState(state: Any) {
         let state = state as! ActionsState
         
         if (state.status == .idle) {

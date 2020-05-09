@@ -60,7 +60,7 @@ class AddUserActivity : AppCompatActivity(), OnClickListener, StoreSubscriber<Us
         imm?.hideSoftInputFromWindow(etHandle.windowToken, 0)
     }
 
-    override fun newState(state: UsersState) {
+    override fun onNewState(state: UsersState) {
         progressBar.visibility = when (state.addUserStatus) {
             UsersState.Status.IDLE -> INVISIBLE
             UsersState.Status.PENDING -> VISIBLE

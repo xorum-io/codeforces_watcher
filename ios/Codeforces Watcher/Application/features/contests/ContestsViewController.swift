@@ -195,7 +195,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         presentModal(webViewController)
     }
 
-    func doNewState(state: Any) {
+    func onNewState(state: Any) {
         let state = state as! ContestsState
 
         if (state.status == ContestsState.Status.idle) {

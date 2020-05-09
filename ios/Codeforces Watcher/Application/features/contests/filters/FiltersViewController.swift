@@ -67,7 +67,7 @@ class FiltersViewController: UIViewControllerWithCross, ReKampStoreSubscriber {
         tableView.edgesToSuperview()
     }
     
-    func doNewState(state: Any) {
+    func onNewState(state: Any) {
         let state = state as! ContestsState
         
         let filters = state.filters
