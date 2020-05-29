@@ -88,7 +88,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
         val timeEnd = getCalendarTime(contest.startTimeSeconds + contest.durationSeconds)
         val encodeName = URLEncoder.encode(contest.name)
         val calendarEventLink =
-                "${CALENDAR_LINK}?action=TEMPLATE&text=$encodeName&dates=$timeStart/$timeEnd&details=${CODEFORCES_LINK}"
+                "${CALENDAR_LINK}?action=TEMPLATE&text=$encodeName&dates=$timeStart/$timeEnd&details=${contest.link}"
         val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(calendarEventLink))
         try {
             context?.startActivity(intent)
@@ -109,6 +109,5 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
 
     companion object {
         private const val CALENDAR_LINK = "https://calendar.google.com/calendar/render"
-        private const val CODEFORCES_LINK = "http://codeforces.com/contests"
     }
 }
