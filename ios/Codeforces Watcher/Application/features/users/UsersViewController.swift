@@ -245,7 +245,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         tableView.reloadData()
     }
     
-    func doNewState(state: Any) {
+    func onNewState(state: Any) {
         let state = state as! UsersState
         
         if (state.status == .idle) {

@@ -136,7 +136,7 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
         tableView.reloadData()
     }
 
-    func doNewState(state: Any) {
+    func onNewState(state: Any) {
         let state = state as! ProblemsState
 
         problems = state.isFavourite ? state.problems.filter { $0.isFavourite } : state.problems

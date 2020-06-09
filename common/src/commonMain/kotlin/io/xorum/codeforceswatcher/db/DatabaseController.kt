@@ -34,7 +34,7 @@ class DatabaseController : StoreSubscriber<AppState> {
             )
     )
 
-    override fun newState(state: AppState) {
+    override fun onNewState(state: AppState) {
         if (DatabaseQueries.Contests.getAll() != state.contests.contests.sortedBy { it.id }) {
             DatabaseQueries.Contests.deleteAll()
             DatabaseQueries.Contests.insert(state.contests.contests)

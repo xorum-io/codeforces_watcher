@@ -49,7 +49,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
         store.unsubscribe(this)
     }
 
-    override fun newState(state: ContestsState) {
+    override fun onNewState(state: ContestsState) {
         swipeRefreshLayout.isRefreshing = (state.status == ContestsState.Status.PENDING)
         val showingContests = state.contests.filter { it.phase == "BEFORE" }.sortedBy(Contest::startTimeSeconds).filter { state.filters.contains(it.platform) }
         contestsAdapter.setItems(showingContests)

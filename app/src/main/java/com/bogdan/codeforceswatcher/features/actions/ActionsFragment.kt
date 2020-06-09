@@ -47,7 +47,7 @@ class ActionsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreS
                 }
             }
 
-    override fun newState(state: ActionsState) {
+    override fun onNewState(state: ActionsState) {
         if (state.status == ActionsState.Status.PENDING) {
             swipeRefreshLayout.isRefreshing = true
         } else {
