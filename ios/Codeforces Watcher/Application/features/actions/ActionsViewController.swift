@@ -107,7 +107,7 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             if (feedbackController.shouldShowFeedbackCell()) {
                 showFeedbackCardView()
                 feedbackCardView.callback = {
-                    self.doNewState(state: state)
+                    self.onNewState(state: state)
                 }
             } else if let pinnedPost = state.pinnedPost {
                 let shouldShowPinnedPost = SettingsKt.settings.readPinnedPostLink() != pinnedPost.link && tableView.tableHeaderView != pinnedPostView && !state.actions.isEmpty
