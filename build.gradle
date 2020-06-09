@@ -6,7 +6,7 @@ buildscript {
     ext.sqlDelight_version = '1.2.2'
     ext.ktor_version = '1.2.6'
     ext.klock_version = '1.8.4'
-    ext.reKamp_version = '1.0.0'
+    ext.reKamp_version = '1.0.3'
 
     repositories {
         google()
