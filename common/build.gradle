@@ -80,6 +80,14 @@ kotlin {
         }
     }
 
+    targets.all {
+        compilations.all {
+            kotlinOptions {
+                freeCompilerArgs += '-Xobjc-generics'
+            }
+        }
+    }
+
     cocoapods {
         summary = "Codeforces WatchR common module"
         homepage = "https://github.com/xorum-io/codeforces_watcher"
