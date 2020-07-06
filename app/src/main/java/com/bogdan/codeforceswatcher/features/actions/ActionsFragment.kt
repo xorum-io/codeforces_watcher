@@ -59,7 +59,7 @@ class ActionsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreS
             if (feedbackController.shouldShowFeedbackCell()) {
                 items.add(ActionItem.FeedbackItem(feedbackController.feedUIModel))
                 actionsAdapter.callback = {
-                    newState(state)
+                    onNewState(state)
                 }
             } else {
                 state.pinnedPost?.let {

@@ -64,12 +64,8 @@ kotlin {
     targets {
         def buildForDevice = project.findProperty("kotlin.native.cocoapods.target") == "ios_arm"
         if (buildForDevice) {
-            iosArm64("iOS64") {
-                compilations.main.extraOpts '-Xobjc-generics'
-            }
-            iosArm32("iOS32") {
-                compilations.main.extraOpts '-Xobjc-generics'
-            }
+            iosArm64("iOS64")
+            iosArm32("iOS32")
 
             sourceSets["iOS64Main"].dependsOn(sourceSets.iOSMain)
             sourceSets["iOS64Main"].dependencies { api "io.xorum:ReKamp-iosArm64:$reKamp_version" }
@@ -77,9 +73,7 @@ kotlin {
             sourceSets["iOS32Main"].dependsOn(sourceSets.iOSMain)
             sourceSets["iOS32Main"].dependencies { api "io.xorum:ReKamp-iosArm32:$reKamp_version" }
         } else {
-            iosX64('iosX') {
-                compilations.main.extraOpts '-Xobjc-generics'
-            }
+            iosX64('iosX')
 
             sourceSets["iosXMain"].dependsOn(sourceSets.iOSMain)
             sourceSets["iosXMain"].dependencies { api "io.xorum:ReKamp-iosX64:$reKamp_version" }

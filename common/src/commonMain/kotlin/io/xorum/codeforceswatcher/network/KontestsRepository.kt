@@ -11,9 +11,14 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.http.URLProtocol
 import io.xorum.codeforceswatcher.network.responses.ContestResponse
-import kotlinx.serialization.*
+import kotlinx.serialization.Decoder
+import kotlinx.serialization.Encoder
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerialDescriptor
+import kotlinx.serialization.UnstableDefault
+import kotlinx.serialization.builtins.list
 import kotlinx.serialization.internal.UnitDescriptor
-import kotlinx.serialization.json.Json.Companion.nonstrict
+import kotlinx.serialization.json.Json.Default.nonstrict
 
 private const val KONTESTS_API_LINK = "www.kontests.net/api/v1"
 

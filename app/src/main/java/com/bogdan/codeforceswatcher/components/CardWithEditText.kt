@@ -43,7 +43,7 @@ class AddUserBottomSheet : BottomSheetDialogFragment(), StoreSubscriber<UsersSta
         store.unsubscribe(this)
     }
 
-    override fun newState(state: UsersState) {
+    override fun onNewState(state: UsersState) {
         val addUserStatus = state.addUserStatus
 
         progressBar.visibility = when (addUserStatus) {
