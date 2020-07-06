@@ -3,9 +3,9 @@ buildscript {
     ext.kotlin_version = '1.3.72'
     ext.coroutines_version = '1.3.3'
     ext.serialization_version = '0.20.0'
-    ext.sqlDelight_version = '1.2.2'
+    ext.sqlDelight_version = '1.4.0'
     ext.ktor_version = '1.3.2'
-    ext.klock_version = '1.8.4'
+    ext.klock_version = '1.10.0'
     ext.reKamp_version = '1.0.4'
 
     repositories {
