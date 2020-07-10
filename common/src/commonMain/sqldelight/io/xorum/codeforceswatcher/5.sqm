@@ -1,0 +1,1 @@
+ALTER TABLE DbUser ADD COLUMN maxRank TEXT;
