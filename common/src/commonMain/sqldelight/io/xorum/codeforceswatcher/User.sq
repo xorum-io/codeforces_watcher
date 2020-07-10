@@ -1,5 +1,3 @@
-import kotlin.collections.List;
-
 CREATE TABLE DbUser (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     avatar TEXT NOT NULL,
@@ -9,7 +7,8 @@ CREATE TABLE DbUser (
     maxRating INTEGER,
     firstName TEXT,
     lastName TEXT,
-    ratingChanges TEXT NOT NULL
+    ratingChanges TEXT NOT NULL,
+    maxRank TEXT
 );
 
 getById:
@@ -19,10 +18,10 @@ getAll:
 SELECT * FROM DbUser;
 
 insert:
-INSERT OR REPLACE INTO DbUser(avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges) VALUES(?,?,?,?,?,?,?,?);
+INSERT OR REPLACE INTO DbUser(avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank) VALUES(?,?,?,?,?,?,?,?,?);
 
 update:
-INSERT OR REPLACE INTO DbUser(id, avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges) VALUES(?,?,?,?,?,?,?,?,?);
+INSERT OR REPLACE INTO DbUser(id, avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank) VALUES(?,?,?,?,?,?,?,?,?,?);
 
 getIndex:
 SELECT last_insert_rowid();
