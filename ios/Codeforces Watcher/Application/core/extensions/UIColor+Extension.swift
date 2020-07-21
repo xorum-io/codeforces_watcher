@@ -66,3 +66,66 @@ func colorTextByUserRank(text: String, rank: String?) -> NSMutableAttributedStri
 
     return attributedText
 }
+
+func ratingViewByUserRank(text: String, currentRank: String?, maxRank: String?) -> NSMutableAttributedString {
+    let attributedText = NSMutableAttributedString(string: text)
+    
+    let colorByCurrentUserRank = getColorByUserRank(rank: currentRank)
+    let colorByMaximumUserRank = getColorByUserRank(rank: maxRank)
+    
+    var colorStatus = 0
+    
+    for (index, character) in text.enumerated() {
+        if (character >= "0" && character <= "9") || character == "-" {
+            if colorStatus == 0 {
+                colorStatus = 1
+            }
+            if colorStatus == 2 {
+                attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: colorByMaximumUserRank, range: NSRange(location: index, length: 1))
+            }
+            else {
+                attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: colorByCurrentUserRank, range: NSRange(location: index, length: 1))
+            }
+        } else {
+            if colorStatus == 1 {
+                colorStatus = 2
+            }
+        }
+    }
+    
+    return attributedText
+}
+
+func contributionView(text: String) -> NSAttributedString {
+    var colorOfContribution = UIColor()
+    
+    let positionOfContribution = 14
+    
+    let indexOfText = text.index(text.startIndex, offsetBy: positionOfContribution)
+    
+    var textAfterUpdate: String
+    
+    if text[indexOfText] == "-" {
+        textAfterUpdate = text
+        
+        colorOfContribution = Palette.red
+    } else {
+        if text[indexOfText] == "0" {
+            textAfterUpdate = text
+            
+            colorOfContribution = Palette.gray
+        } else {
+            let prefixText = text[..<indexOfText]
+            let suffixText = text[indexOfText...]
+            textAfterUpdate = "\(prefixText)+\(suffixText)"
+            
+            colorOfContribution = Palette.brightGreen
+        }
+    }
+    
+    let attributedText = NSMutableAttributedString(string: textAfterUpdate).apply {
+        $0.addAttribute(NSAttributedString.Key.foregroundColor, value: colorOfContribution, range: NSRange(location: positionOfContribution, length: textAfterUpdate.count - positionOfContribution))
+    }
+
+    return attributedText
+}
