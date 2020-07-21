@@ -8,7 +8,8 @@ CREATE TABLE DbUser (
     firstName TEXT,
     lastName TEXT,
     ratingChanges TEXT NOT NULL,
-    maxRank TEXT
+    maxRank TEXT,
+    contribution INTEGER
 );
 
 getById:
@@ -18,10 +19,10 @@ getAll:
 SELECT * FROM DbUser;
 
 insert:
-INSERT OR REPLACE INTO DbUser(avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank) VALUES(?,?,?,?,?,?,?,?,?);
+INSERT OR REPLACE INTO DbUser(avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank, contribution) VALUES(?,?,?,?,?,?,?,?,?,?);
 
 update:
-INSERT OR REPLACE INTO DbUser(id, avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank) VALUES(?,?,?,?,?,?,?,?,?,?);
+INSERT OR REPLACE INTO DbUser(id, avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank, contribution) VALUES(?,?,?,?,?,?,?,?,?,?,?);
 
 getIndex:
 SELECT last_insert_rowid();

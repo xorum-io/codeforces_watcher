@@ -15,6 +15,7 @@ data class User(
         val handle: String,
         val rating: Int? = null,
         val maxRating: Int? = null,
+        val contribution: Long? = null,
         val firstName: String? = null,
         val lastName: String? = null,
         var ratingChanges: List<RatingChange> = listOf()
@@ -31,6 +32,7 @@ data class User(
                     handle = dbUser.handle,
                     rating = dbUser.rating?.toInt(),
                     maxRating = dbUser.maxRating?.toInt(),
+                    contribution = dbUser.contribution,
                     firstName = dbUser.firstName,
                     lastName = dbUser.lastName,
                     ratingChanges = serializer.parse(RatingChange.serializer().list, dbUser.ratingChanges)

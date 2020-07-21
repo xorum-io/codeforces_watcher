@@ -13,13 +13,24 @@ import Charts
 class UserViewController: UIViewControllerWithCross {
     
     private let userImage = CircleImageView()
-    private let rankLabel = BodyLabel()
-    private let nameLabel = BodyLabel()
-    private let currentRatingLabel = BodyLabel()
-    private let maxRatingLabel = BodyLabel()
+    private let rankLabel = BodyLabel().apply {
+        $0.font = Font.textBody
+    }
+    private let handleLabel = BodyLabel().apply {
+        $0.font = Font.textHeading
+    }
+    private let ratingLabel = BodyLabel().apply {
+        $0.textColor = Palette.darkGray
+        $0.font = Font.textSubheadingBig
+    }
+    private let contributionLabel = BodyLabel().apply {
+        $0.textColor = Palette.darkGray
+        $0.font = Font.textSubheadingBig
+    }
     private let ratingChangesLabel = HeadingLabel().apply {
-        $0.text = "Rating changes".localized
-        $0.textColor = Palette.gray
+        $0.text = "Rating Changes".localized
+        $0.textColor = Palette.black
+        $0.font = Font.textBody
     }
     private let lineChartView = LineChartView()
     
@@ -42,11 +53,11 @@ class UserViewController: UIViewControllerWithCross {
     }
     
     private func setupView() {
-        title = user.handle
+        title = "\(user.firstName ?? "") \(user.lastName ?? "None".localized)"
         view.backgroundColor = Palette.white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "removeIcon"), 
+            image: UIImage(named: "removeIcon"),
             style: .plain, 
             target: self, 
             action: #selector(removeTapped)
@@ -104,7 +115,7 @@ class UserViewController: UIViewControllerWithCross {
     }
     
     private func buildViewTree() {
-        [userImage, rankLabel, nameLabel, currentRatingLabel, maxRatingLabel, ratingChangesLabel, lineChartView].forEach(view.addSubview)
+        [userImage, handleLabel, rankLabel, ratingLabel, contributionLabel, ratingChangesLabel, lineChartView].forEach(view.addSubview)
     }
     
     private func setConstraints() {
@@ -116,22 +127,22 @@ class UserViewController: UIViewControllerWithCross {
         }
         
         rankLabel.run {
-            $0.leadingToTrailing(of: userImage, offset: 20)
-            $0.top(to: userImage, offset: 4)
+            $0.leadingToTrailing(of: userImage, offset: 16)
+            $0.top(to: userImage, offset: 0)
         }
         
-        nameLabel.run {
-            $0.topToBottom(of: rankLabel, offset: 2)
+        handleLabel.run {
+            $0.topToBottom(of: rankLabel, offset: 0)
             $0.leading(to: rankLabel)
         }
         
-        currentRatingLabel.run {
-            $0.topToBottom(of: nameLabel, offset: 2)
+        ratingLabel.run {
+            $0.topToBottom(of: handleLabel, offset: 11)
             $0.leading(to: rankLabel)
         }
         
-        maxRatingLabel.run {
-            $0.topToBottom(of: currentRatingLabel, offset: 2)
+        contributionLabel.run {
+            $0.topToBottom(of: ratingLabel, offset: 4)
             $0.leading(to: rankLabel)
         }
         
@@ -154,9 +165,9 @@ class UserViewController: UIViewControllerWithCross {
         
         let none = "None".localized
         
-        rankLabel.text = "Rank".localizedFormat(args: user.rank ?? none)
-        nameLabel.text = "Name".localizedFormat(args: user.firstName ?? "", user.lastName ?? none)
-        currentRatingLabel.text = "Current rating".localizedFormat(args: user.rating ?? none)
-        maxRatingLabel.text = "Max rating".localizedFormat(args: user.maxRating ?? none)
+        rankLabel.attributedText = colorTextByUserRank(text: user.rank?.capitalized ?? none, rank: user.rank)
+        handleLabel.attributedText = colorTextByUserRank(text: user.handle, rank: user.rank)
+        ratingLabel.attributedText = ratingViewByUserRank(text: "Rating".localizedFormat(args: user.rating ?? none, user.maxRating ?? none), currentRank: user.rank, maxRank: user.maxRank)
+        contributionLabel.attributedText = contributionView(text: "Contribution".localizedFormat(args: user.contribution ?? none))
     }
 }
