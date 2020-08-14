@@ -215,7 +215,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         blackView.isHidden = true
     }
     
-    private func sortUsers(_ sortType: UsersState.SortType) {
+    private func sortUsers(_ sortType: UsersState.SortType) {        
         var sortedUsers = users
         
         switch(sortType) {

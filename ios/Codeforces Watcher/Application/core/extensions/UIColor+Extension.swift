@@ -72,24 +72,24 @@ func ratingViewByUserRank(text: String, currentRank: String?, maxRank: String?) 
     
     let colorByCurrentUserRank = getColorByUserRank(rank: currentRank)
     let colorByMaximumUserRank = getColorByUserRank(rank: maxRank)
+
+    enum paintColor {
+        case withoutColor, currentColor, maximumColor
+    }
     
-    var colorStatus = 0
+    var colorStatus = paintColor.withoutColor
     
     for (index, character) in text.enumerated() {
         if (character >= "0" && character <= "9") || character == "-" {
-            if colorStatus == 0 {
-                colorStatus = 1
-            }
-            if colorStatus == 2 {
-                attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: colorByMaximumUserRank, range: NSRange(location: index, length: 1))
-            }
-            else {
+            colorStatus = (colorStatus == .withoutColor ? .currentColor : colorStatus)
+            if (colorStatus == .currentColor) {
                 attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: colorByCurrentUserRank, range: NSRange(location: index, length: 1))
             }
-        } else {
-            if colorStatus == 1 {
-                colorStatus = 2
+            if (colorStatus == .maximumColor) {
+                attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: colorByMaximumUserRank, range: NSRange(location: index, length: 1))
             }
+        } else {
+            colorStatus = (colorStatus == .currentColor ? .maximumColor : colorStatus)
         }
     }
     
