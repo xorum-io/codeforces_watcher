@@ -19,10 +19,12 @@ class UserViewController: UIViewControllerWithCross {
     private let handleLabel = BodyLabel().apply {
         $0.font = Font.textHeading
     }
+    private let ratingIcon = UIImageView(image: UIImage(named: "ratingIcon"))
     private let ratingLabel = BodyLabel().apply {
         $0.textColor = Palette.darkGray
         $0.font = Font.textSubheadingBig
     }
+    private let starIcon = UIImageView(image: UIImage(named: "starIcon"))
     private let contributionLabel = BodyLabel().apply {
         $0.textColor = Palette.darkGray
         $0.font = Font.textSubheadingBig
@@ -53,7 +55,9 @@ class UserViewController: UIViewControllerWithCross {
     }
     
     private func setupView() {
-        title = "\(user.firstName ?? "") \(user.lastName ?? "None".localized)"
+        let userName = "\(user.firstName ?? "") \(user.lastName ?? "")"
+        title = (userName != " " ? userName : user.handle)
+        
         view.backgroundColor = Palette.white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -133,7 +137,7 @@ class UserViewController: UIViewControllerWithCross {
     }
     
     private func buildViewTree() {
-        [userImage, handleLabel, rankLabel, ratingLabel, contributionLabel, ratingChangesLabel, lineChartView].forEach(view.addSubview)
+        [userImage, handleLabel, rankLabel, ratingIcon, ratingLabel, starIcon, contributionLabel, ratingChangesLabel, lineChartView].forEach(view.addSubview)
     }
     
     private func setConstraints() {
@@ -154,14 +158,28 @@ class UserViewController: UIViewControllerWithCross {
             $0.leading(to: rankLabel)
         }
         
+        ratingIcon.run {
+            $0.width(16)
+            $0.height(16)
+            $0.topToBottom(of: handleLabel, offset: 10)
+            $0.leading(to: rankLabel)
+        }
+  
         ratingLabel.run {
             $0.topToBottom(of: handleLabel, offset: 11)
+            $0.leftToRight(of: ratingIcon, offset: 4)
+        }
+        
+        starIcon.run {
+            $0.width(16)
+            $0.height(16)
+            $0.topToBottom(of: ratingIcon, offset: 1)
             $0.leading(to: rankLabel)
         }
         
         contributionLabel.run {
             $0.topToBottom(of: ratingLabel, offset: 4)
-            $0.leading(to: rankLabel)
+            $0.leftToRight(of: starIcon, offset: 4)
         }
         
         ratingChangesLabel.run {
