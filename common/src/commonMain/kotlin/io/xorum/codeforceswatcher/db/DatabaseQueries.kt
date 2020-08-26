@@ -19,10 +19,8 @@ internal object DatabaseQueries {
             val serializer = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
             val ratingChangesJson = serializer.stringify(RatingChange.serializer().list, user.ratingChanges)
             if (user.id == 0L) {
-//                database.userQueries.insert(user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank)
                 database.userQueries.insert(user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank, user.contribution)
             } else {
-//                database.userQueries.update(user.id, user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank)
                 database.userQueries.update(user.id, user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank, user.contribution)
             }
             return database.userQueries.getIndex().executeAsOne()
