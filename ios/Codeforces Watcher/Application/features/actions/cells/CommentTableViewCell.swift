@@ -116,6 +116,7 @@ class CommentTableViewCell: UITableViewCell {
         if var avatar = comment.commentatorAvatar {
             avatar = LinkValidatorKt.avatar(avatarLink: avatar)
             userImage.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
+            userImage.layer.borderColor = getColorByUserRank(rank: blogEntry.authorRank).cgColor
         }
     }
 }

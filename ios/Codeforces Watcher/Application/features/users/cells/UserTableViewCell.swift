@@ -88,6 +88,7 @@ class UserTableViewCell: UITableViewCell {
 
         let avatar = LinkValidatorKt.avatar(avatarLink: user.avatar)
         userImage.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
+        userImage.layer.borderColor = getColorByUserRank(rank: user.rank).cgColor
 
         handleLabel.attributedText = colorTextByUserRank(text: user.handle, rank: user.rank)
 

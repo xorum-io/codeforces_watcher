@@ -151,6 +151,7 @@ class UserViewController: UIViewControllerWithCross {
     private func bind() {
         let avatar = LinkValidatorKt.avatar(avatarLink: user.avatar)
         userImage.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
+        userImage.layer.borderColor = getColorByUserRank(rank: user.rank).cgColor
         
         let none = "None".localized
         
