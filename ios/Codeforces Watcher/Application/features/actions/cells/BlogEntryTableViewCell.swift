@@ -99,6 +99,7 @@ class BlogEntryTableViewCell: UITableViewCell {
         if var avatar = blogEntry.authorAvatar {
             avatar = LinkValidatorKt.avatar(avatarLink: avatar)
             userImage.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
+            userImage.layer.borderColor = getColorByUserRank(rank: blogEntry.authorRank).cgColor
         }
     }
 }
