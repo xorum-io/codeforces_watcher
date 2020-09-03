@@ -67,7 +67,7 @@ Download it now on Google Play - https://play.google.com/store/apps/details?id=c
     <string name="not_really">Not really</string>
     <string name="no_thanks">No, thanks</string>
 
-    <string name="chart_info">" = %1$s (%2$s) \n Place: %3$s \n %4$s \n %5$s "</string>
+    <string name="chart_info">" = %1$s (%2$s) \n Rank: %3$s \n %4$s \n %5$s "</string>
     <string name="contest_date_format">HH:mm MMM d, EEEE</string>
     <string name="user_date_format">MMM d, yyyy</string>
 </resources>

@@ -67,7 +67,7 @@
 "not_really" = "Not really";
 "no_thanks" = "No, thanks";
 
-"chart_info" = " = %@ (%@) \n Place: %@ \n %@ \n %@ ";
+"chart_info" = " = %@ (%@) \n Rank: %@ \n %@ \n %@ ";
 
 "contest_date_format" = "HH:mm MMM d, EEEE";
 "user_date_format" = "MMM d, yyyy";

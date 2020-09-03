@@ -1,1 +1,12 @@
-CREATE TABLE Problem (id INTEGER NOT NULL, name TEXT NOT NULL, 'enName' TEXT NOT NULL, 'ruName' TEXT NOT NULL, 'index' TEXT NOT NULL, 'contestId' INTEGER NOT NULL, contestName TEXT NOT NULL, contestTime INTEGER NOT NULL, isFavourite INTEGER DEFAULT 0 NOT NULL, PRIMARY KEY(id))
+CREATE TABLE Problem (
+    id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    'enName' TEXT NOT NULL,
+    'ruName' TEXT NOT NULL,
+    'index' TEXT NOT NULL,
+    'contestId' INTEGER NOT NULL,
+    contestName TEXT NOT NULL,
+    contestTime INTEGER NOT NULL,
+    isFavourite INTEGER DEFAULT 0 NOT NULL,
+    PRIMARY KEY(id)
+);
