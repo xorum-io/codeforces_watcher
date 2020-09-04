@@ -64,8 +64,7 @@ class UserViewController: UIViewControllerWithCross {
             preferredStyle: .alert
         )
         
-        let okButton = UIAlertAction(title: "OK".localized, style: .cancel) {
-            UIAlertAction in
+        let okButton = UIAlertAction(title: "OK".localized, style: .cancel) { _ in
             self.removeTapped()
         }
         let cancelButton = UIAlertAction(title: "Cancel".localized, style: .destructive)
