@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.AddUserBottomSheet
-import com.bogdan.codeforceswatcher.features.actions.ActionsFragment
+import com.bogdan.codeforceswatcher.features.news.NewsFragment
 import com.bogdan.codeforceswatcher.features.contests.ContestsFragment
 import com.bogdan.codeforceswatcher.features.contests.FiltersActivity
 import com.bogdan.codeforceswatcher.features.problems.ProblemsFragment
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 currentTabFragment as? ContestsFragment ?: ContestsFragment()
             }
             HomeTab.ACTIONS -> {
-                currentTabFragment as? ActionsFragment ?: ActionsFragment()
+                currentTabFragment as? NewsFragment ?: NewsFragment()
             }
             HomeTab.PROBLEMS -> {
                 currentTabFragment as? ProblemsFragment ?: ProblemsFragment()
@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity() {
 
         USERS(R.string.empty, R.id.navUsers),
         CONTESTS(R.string.contests, R.id.navContests),
-        ACTIONS(R.string.actions, R.id.navActions),
+        ACTIONS(R.string.news, R.id.navActions),
         PROBLEMS(R.string.problems, R.id.navProblems);
 
         companion object {

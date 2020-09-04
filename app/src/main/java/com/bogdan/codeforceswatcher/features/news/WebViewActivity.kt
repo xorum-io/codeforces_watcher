@@ -1,4 +1,4 @@
-package com.bogdan.codeforceswatcher.features.actions
+package com.bogdan.codeforceswatcher.features.news
 
 import android.annotation.SuppressLint
 import android.content.Context

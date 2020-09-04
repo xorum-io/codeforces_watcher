@@ -18,7 +18,7 @@
     <item
         android:id="@+id/navActions"
         android:icon="@drawable/ic_actions"
-        android:title="@string/actions" />
+        android:title="@string/news" />
 
     <item
         android:id="@+id/navProblems"

@@ -2,9 +2,9 @@ package io.xorum.codeforceswatcher.redux
 
 import com.squareup.sqldelight.db.SqlDriver
 import io.xorum.codeforceswatcher.db.DatabaseController
+import io.xorum.codeforceswatcher.network.BackendApiClient
 import io.xorum.codeforceswatcher.network.CodeforcesRepository
 import io.xorum.codeforceswatcher.network.KontestsRepository
-import io.xorum.codeforceswatcher.network.PinnedPostsApiClient
 import io.xorum.codeforceswatcher.redux.middlewares.appMiddleware
 import io.xorum.codeforceswatcher.redux.middlewares.notificationMiddleware
 import io.xorum.codeforceswatcher.redux.middlewares.toastMiddleware
@@ -19,7 +19,7 @@ val databaseController = DatabaseController()
 
 internal val codeforcesRepository = CodeforcesRepository()
 internal val kontestsRepository = KontestsRepository()
-internal val pinnedPostsApiClient = PinnedPostsApiClient()
+internal val backendApiClient = BackendApiClient()
 
 val store by lazy {
     Store(

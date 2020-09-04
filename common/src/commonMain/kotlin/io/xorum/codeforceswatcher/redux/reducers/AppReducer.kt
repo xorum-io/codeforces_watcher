@@ -1,6 +1,6 @@
 package io.xorum.codeforceswatcher.redux.reducers
 
-import io.xorum.codeforceswatcher.features.actions.redux.reducers.actionsReducer
+import io.xorum.codeforceswatcher.features.news.redux.reducers.newsReducer
 import io.xorum.codeforceswatcher.features.users.redux.reducers.usersReducer
 import io.xorum.codeforceswatcher.features.problems.redux.reducers.problemsReducer
 import io.xorum.codeforceswatcher.features.contests.redux.reducers.contestsReducer
@@ -12,7 +12,7 @@ fun appReducer(action: Action, state: AppState?): AppState {
     return AppState(
             contests = contestsReducer(action, state),
             users = usersReducer(action, state),
-            actions = actionsReducer(action, state),
+            news = newsReducer(action, state),
             problems = problemsReducer(action, state)
     )
 }

@@ -16,7 +16,7 @@ interface Settings {
 
     fun writeContestsFilters(filters: Set<String>)
 
-    fun writePinnedPostLink(pinnedPostLink: String)
+    fun writeLastPinnedPostLink(pinnedPostLink: String)
 
-    fun readPinnedPostLink(): String
+    fun readLastPinnedPostLink(): String
 }

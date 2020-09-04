@@ -39,15 +39,6 @@ internal class CodeforcesRepository {
         null
     }
 
-    suspend fun getActions(maxCount: Int = 100, lang: String) = try {
-        codeforcesApiClient.get<ActionsResponse>(path = "recentActions") {
-            parameter("maxCount", maxCount)
-            parameter("lang", lang)
-        }
-    } catch (t: Throwable) {
-        null
-    }
-
     suspend fun getCodeforcesContests() = try {
         codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list")
     } catch (t: Throwable) {

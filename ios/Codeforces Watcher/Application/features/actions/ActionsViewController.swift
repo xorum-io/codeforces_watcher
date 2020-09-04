@@ -176,7 +176,7 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     @objc private func refreshActions(_ sender: Any) {
         Analytics.logEvent("actions_list_refresh", parameters: [:])
         
-        store.dispatch(action: ActionsRequests.FetchActions(isInitializedByUser: true, language: "locale".localized))
-        store.dispatch(action: ActionsRequests.FetchPinnedPost())
+        store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: true, language: "locale".localized))
+        store.dispatch(action: NewsRequests.FetchPinnedPost())
     }
 }

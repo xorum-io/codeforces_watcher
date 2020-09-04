@@ -92,7 +92,7 @@ class PinnedPostCardView: UIView {
     }
     
     @objc func crossTapped() {
-        store.dispatch(action: ActionsRequests.RemovePinnedPost(link: pinnedPost.link))
+        store.dispatch(action: NewsRequests.RemovePinnedPost(link: pinnedPost.link))
         Analytics.logEvent("actions_pinned_post_closed", parameters: [:])
     }
     

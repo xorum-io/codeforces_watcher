@@ -24,7 +24,7 @@
 
     <string name="users">Users</string>
     <string name="contests">Contests</string>
-    <string name="actions">Actions</string>
+    <string name="news">News</string>
     <string name="problems">Problems</string>
 
     <string name="empty" translatable="false" />
