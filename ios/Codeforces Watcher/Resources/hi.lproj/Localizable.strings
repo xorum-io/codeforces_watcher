@@ -18,6 +18,7 @@
 "Can't add contest to Calendar without permission" = "बिना स्वीकृति के प्रतियोगिता को कैलेंडर में नहीं जोड़ सकते";
 
 "OK" = "ओके";
+"Cancel" = "रद्द करना";
 "No connection" = "ऑफ़लाइन";
 
 "Search for problems..." = "सवाल खोजे...";
@@ -41,6 +42,9 @@
 "No rating update" = "कोई रेटिंग परिवर्तन नहीं";
 "Done" = "Done";
 "Rating changes" = "रेटिंग में बदलाव";
+
+"Delete user" = "उपभोक्ता मिटायें";
+"Are you sure you want to delete %@?" = "क्या आप पक्का इसे हटाना चाहते हैं %@?";
 
 "None" = "कोई परिणाम नही";
 "Rank" = "रैंक: %@";

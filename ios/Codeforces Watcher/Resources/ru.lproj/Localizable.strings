@@ -18,6 +18,7 @@
 "Can't add contest to Calendar without permission" = "Невозможно добавить контест в календарь без разрешения";
 
 "OK" = "Oк";
+"Cancel" = "Отменить";
 "No connection" = "Нет соединения";
 
 "Search for problems..." = "Поиск задач…";
@@ -41,6 +42,9 @@
 "No rating update" = "Нет обновления рейтинга";
 "Done" = "Готово";
 "Rating changes" = "Изменения рейтинга";
+
+"Delete user" = "Удалить пользователя";
+"Are you sure you want to delete %@?" = "Вы уверены, что хотите удалить %@?";
 
 "None" = "Нет";
 "Rank" = "Ранг: %@";

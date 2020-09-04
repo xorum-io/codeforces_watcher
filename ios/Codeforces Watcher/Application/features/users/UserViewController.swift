@@ -59,16 +59,16 @@ class UserViewController: UIViewControllerWithCross {
     
     @objc func showDeleteUserAlert() {
         let alertController = UIAlertController(
-            title: "Delete user",
-            message: "Are you sure you want to delete \(user.handle)?",
+            title: "Delete user".localized,
+            message: "Are you sure you want to delete %@?".localizedFormat(args: user.handle),
             preferredStyle: .alert
         )
         
-        let okButton = UIAlertAction(title: "OK", style: .cancel) {
+        let okButton = UIAlertAction(title: "OK".localized, style: .cancel) {
             UIAlertAction in
             self.removeTapped()
         }
-        let cancelButton = UIAlertAction(title: "Cancel", style: .destructive)
+        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .destructive)
         
         alertController.addAction(okButton)
         alertController.addAction(cancelButton)

@@ -18,6 +18,7 @@
 "Can't add contest to Calendar without permission" = "Can't add contest to Calendar without permission";
 
 "OK" = "OK";
+"Cancel" = "Cancel";
 "No connection" = "No connection";
 
 "Search for problems..." = "Search for problems...";
@@ -41,6 +42,9 @@
 "No rating update" = "No rating update";
 "Done" = "Done";
 "Rating changes" = "Rating changes";
+
+"Delete user" = "Delete user";
+"Are you sure you want to delete %@?" = "Are you sure you want to delete %@?";
 
 "None" = "None";
 "Rank" = "Rank: %@";
