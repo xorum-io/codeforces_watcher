@@ -48,8 +48,8 @@ class UserViewController: UIViewControllerWithCross {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "removeIcon"), 
             style: .plain, 
-            target: self, 
-            action: #selector(removeTapped)
+            target: self,
+            action: #selector(showDeleteUserAlert)
         )
         
         buildViewTree()
@@ -57,7 +57,25 @@ class UserViewController: UIViewControllerWithCross {
         bind()
     }
     
-    @objc func removeTapped() {
+    @objc func showDeleteUserAlert() {
+        let alertController = UIAlertController(
+            title: "Delete user".localized,
+            message: "Are you sure you want to delete %@?".localizedFormat(args: user.handle),
+            preferredStyle: .alert
+        )
+        
+        let okButton = UIAlertAction(title: "OK".localized, style: .cancel) { _ in
+            self.removeTapped()
+        }
+        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .destructive)
+        
+        alertController.addAction(okButton)
+        alertController.addAction(cancelButton)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func removeTapped() {
         store.dispatch(action: UsersRequests.DeleteUser(user: user))
         dismiss(animated: true)
     }
