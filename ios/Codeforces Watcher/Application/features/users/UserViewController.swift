@@ -49,7 +49,7 @@ class UserViewController: UIViewControllerWithCross {
             image: UIImage(named: "removeIcon"), 
             style: .plain, 
             target: self,
-            action: #selector(showAlertToDeleteUser)
+            action: #selector(showDeleteUserAlert)
         )
         
         buildViewTree()
@@ -57,7 +57,7 @@ class UserViewController: UIViewControllerWithCross {
         bind()
     }
     
-    @objc func showAlertToDeleteUser() {
+    @objc func showDeleteUserAlert() {
         let alertController = UIAlertController(
             title: "Delete user",
             message: "Are you sure you want to delete \(user.handle)?",
