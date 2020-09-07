@@ -212,6 +212,6 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
 
     private func fetchContests() {
-        store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: true))
+        store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: true, language: "locale".localized))
     }
 }

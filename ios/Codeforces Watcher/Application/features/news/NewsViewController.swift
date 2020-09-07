@@ -1,5 +1,5 @@
 //
-//  ActionsViewController.swift
+//  NewsViewController.swift
 //  Codeforces Watcher
 //
 //  Created by Den Matyash on 12/31/19.
@@ -12,14 +12,11 @@ import WebKit
 import common
 import FirebaseAnalytics
 
-class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
+class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
 
     private let tableView = UITableView()
-    private let tableAdapter = ActionsTableViewAdapter()
+    private let tableAdapter = NewsTableViewAdapter()
     private let refreshControl = UIRefreshControl()
-    private let pinnedPostView = PinnedPostCardView()
-    
-    private var pinnedPost: PinnedPost!
     private let feedbackCardView = FeedbackCardView()
     
     override func viewDidLoad() {
@@ -34,9 +31,9 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
 
         store.subscribe(subscriber: self) { subscription in
             subscription.skipRepeats { oldState, newState in
-                return KotlinBoolean(bool: oldState.actions == newState.actions)
+                return KotlinBoolean(bool: oldState.news == newState.news)
             }.select { state in
-                return state.actions
+                return state.news
             }
         }
     }
@@ -52,7 +49,6 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
 
         buildViewTree()
         setConstraints()
-        setInteractions()
         setFabImage(named: "shareImage")
     }
 
@@ -63,13 +59,6 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     private func setConstraints() {
         tableView.edgesToSuperview()
     }
-    
-    private func setInteractions() {
-        pinnedPostView.run {
-            $0.isUserInteractionEnabled = true
-            $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pinnedPostTapped)))
-        }
-    }
 
     private func setupTableView() {
         tableView.run {
@@ -78,14 +67,14 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.separatorStyle = .none
         }
 
-        [CommentTableViewCell.self, BlogEntryTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
+        [CommentTableViewCell.self, BlogEntryTableViewCell.self, NoItemsTableViewCell.self, PinnedPostTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
-        tableAdapter.onActionClick = { (link, shareText) in
+        tableAdapter.onNewsClick = { link, shareText, openEventName, shareEventName in
             let webViewController = WebViewController().apply {
                 $0.link = link
                 $0.shareText = shareText
-                $0.openEventName = "action_opened"
-                $0.shareEventName = "action_share_comment"
+                $0.openEventName = openEventName
+                $0.shareEventName = shareEventName
             }
             self.presentModal(webViewController)
         }
@@ -99,7 +88,7 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
 
     func onNewState(state: Any) {
-        let state = state as! ActionsState
+        let state = state as! NewsState
         
         if (state.status == .idle) {
             refreshControl.endRefreshing()
@@ -109,20 +98,20 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
                 feedbackCardView.callback = {
                     self.onNewState(state: state)
                 }
-            } else if let pinnedPost = state.pinnedPost {
-                let shouldShowPinnedPost = SettingsKt.settings.readPinnedPostLink() != pinnedPost.link && tableView.tableHeaderView != pinnedPostView && !state.actions.isEmpty
-                
-                if (shouldShowPinnedPost) {
-                    self.pinnedPost = pinnedPost
-                    
-                    showPinnedPost()
-                }
             } else {
                 tableView.tableHeaderView = nil
             }
         }
         
-        tableAdapter.actions = state.actions
+        let news = state.news.filter { news in
+            if let news = news as? News.PinnedPost {
+                return SettingsKt.settings.readLastPinnedPostLink() != news.link
+            } else {
+                return true
+            }
+        }
+        
+        tableAdapter.news = news
 
         tableView.reloadData()
     }
@@ -141,20 +130,6 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         }
     }
     
-    private func showPinnedPost() {
-        pinnedPostView.bind(pinnedPost)
-        
-        tableView.run {
-            $0.tableHeaderView = pinnedPostView
-            $0.tableHeaderView?.widthToSuperview()
-        }
-
-        pinnedPostView.run {
-            $0.setNeedsLayout()
-            $0.layoutIfNeeded()
-        }
-    }
-    
     override func fabButtonTapped() {
         let activityController = UIActivityViewController(activityItems: ["share_cw_message".localized], applicationActivities: nil).apply {
             $0.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
@@ -163,20 +138,9 @@ class ActionsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         present(activityController, animated: true)
     }
 
-    @objc func pinnedPostTapped() {
-        let webViewController = WebViewController().apply {
-            $0.link = pinnedPost.link
-            $0.shareText = buildShareText(pinnedPost.title, pinnedPost.link)
-            $0.openEventName = "actions_pinned_post_opened"
-        }
-
-        presentModal(webViewController)
-    }
-
     @objc private func refreshActions(_ sender: Any) {
         Analytics.logEvent("actions_list_refresh", parameters: [:])
         
         store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: true, language: "locale".localized))
-        store.dispatch(action: NewsRequests.FetchPinnedPost())
     }
 }

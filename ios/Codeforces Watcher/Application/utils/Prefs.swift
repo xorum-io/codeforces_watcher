@@ -47,7 +47,7 @@ class Prefs: Settings {
         UserDefaults.standard.setValue(spinnerSortPosition, forKey: "spinnerSortPosition")
     }
 
-    func readPinnedPostLink() -> String {
+    func readLastPinnedPostLink() -> String {
         if let pinnedPostLink = (UserDefaults.standard.value(forKey: "pinnedPostLink")) as? String {
             return pinnedPostLink
         } else {
@@ -55,7 +55,7 @@ class Prefs: Settings {
         }
     }
 
-    func writePinnedPostLink(pinnedPostLink: String) {
+    func writeLastPinnedPostLink(pinnedPostLink: String) {
         UserDefaults.standard.setValue(pinnedPostLink, forKey: "pinnedPostLink")
     }
     

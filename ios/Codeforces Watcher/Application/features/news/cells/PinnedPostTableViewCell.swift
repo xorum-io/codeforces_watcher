@@ -1,16 +1,17 @@
 //
-//  PinnedPostCardView.swift
+//  PinnedPostTableViewCell.swift
 //  Codeforces Watcher
 //
-//  Created by Den Matyash on 4/13/20.
+//  Created by Den Matyash on 07.09.2020.
 //  Copyright © 2020 xorum.io. All rights reserved.
 //
 
-import UIKit
 import common
+import UIKit
 import FirebaseAnalytics
 
-class PinnedPostCardView: UIView {
+class PinnedPostTableViewCell: UITableViewCell {
+    
     private let cardView = CardView()
     private let infoImage = CircleImageView().apply {
         $0.image = UIImage(named: "infoIcon")?.withRenderingMode(.alwaysTemplate)
@@ -29,14 +30,14 @@ class PinnedPostCardView: UIView {
         $0.tintColor = Palette.gray
     }
     
-    private var pinnedPost: PinnedPost!
+    private var pinnedPost: News.PinnedPost!
     
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
@@ -96,8 +97,9 @@ class PinnedPostCardView: UIView {
         Analytics.logEvent("actions_pinned_post_closed", parameters: [:])
     }
     
-    func bind(_ pinnedPost: PinnedPost) {
+    func bind(_ pinnedPost: News.PinnedPost) {
         self.pinnedPost = pinnedPost
         headingLabel.text = pinnedPost.title
     }
 }
+

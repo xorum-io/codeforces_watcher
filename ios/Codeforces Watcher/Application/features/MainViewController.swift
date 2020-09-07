@@ -15,7 +15,7 @@ class MainViewController: UITabBarController {
         UsersViewController().apply(title: "Users", iconNamed: "usersIcon", isTitleVisible: false),
         ContestsViewController().apply(title: "Contests", iconNamed: "contestsIcon"),
         UIViewController(),
-        ActionsViewController().apply(title: "Actions", iconNamed: "actionsIcon"),
+        NewsViewController().apply(title: "News", iconNamed: "actionsIcon"),
         ProblemsViewController().apply(title: "Problems", iconNamed: "problemsIcon")
     ]
 
