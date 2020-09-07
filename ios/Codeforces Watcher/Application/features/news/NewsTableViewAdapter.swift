@@ -15,8 +15,8 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
     var onNewsClick: (
         _ link: String,
         _ shareText: String,
-        _ openEventName: String,
-        _ shareEventName: String?
+        _ onOpen: @escaping () -> (),
+        _ onShare: @escaping () -> ()
     ) -> () = { _, _, _, _ in }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,22 +61,32 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
             return
         }
         
-        var link = "", title = "", openEventName = "", shareEventName: String?
+        var link = "", title = "", onOpen: () -> (), onShare: () -> () = { }
         
         switch(news[indexPath.row]) {
         case let news as News.PinnedPost:
-            (link, title, openEventName) = (news.link, news.title, "actions_pinned_post_opened")
+            (link, title, onOpen) = (news.link, news.title, { analyticsControler.logPinnedPostOpened() })
         case let news as News.Comment:
-            (link, title, openEventName, shareEventName) = (news.link, news.title, "action_opened", "action_share_comment")
+            (link, title, onOpen, onShare) = (
+                news.link,
+                news.title,
+                { analyticsControler.logActionOpened() },
+                { analyticsControler.logShareComment() }
+            )
         case let news as News.Post:
-            (link, title, openEventName, shareEventName) = (news.link, news.title, "action_opened", "action_share_comment")
+            (link, title, onOpen, onShare) = (
+                news.link,
+                news.title,
+                { analyticsControler.logActionOpened() },
+                { analyticsControler.logShareComment() }
+            )
         default:
             return
         }
 
         let shareText = buildShareText(title.beautify(), link)
 
-        onNewsClick(link, shareText, openEventName, shareEventName)
+        onNewsClick(link, shareText, onOpen, onShare)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

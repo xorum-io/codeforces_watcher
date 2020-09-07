@@ -9,6 +9,7 @@ import io.xorum.codeforceswatcher.redux.middlewares.appMiddleware
 import io.xorum.codeforceswatcher.redux.middlewares.notificationMiddleware
 import io.xorum.codeforceswatcher.redux.middlewares.toastMiddleware
 import io.xorum.codeforceswatcher.redux.reducers.appReducer
+import io.xorum.codeforceswatcher.util.IAnalyticsController
 import io.xorum.codeforceswatcher.util.PersistenceController
 import tw.geothings.rekotlin.Store
 
@@ -16,6 +17,7 @@ lateinit var sqlDriver: SqlDriver
 
 val persistenceController = PersistenceController()
 val databaseController = DatabaseController()
+lateinit var analyticsController: IAnalyticsController
 
 internal val codeforcesRepository = CodeforcesRepository()
 internal val kontestsRepository = KontestsRepository()

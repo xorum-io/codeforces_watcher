@@ -94,7 +94,6 @@ class PinnedPostTableViewCell: UITableViewCell {
     
     @objc func crossTapped() {
         store.dispatch(action: NewsRequests.RemovePinnedPost(link: pinnedPost.link))
-        Analytics.logEvent("actions_pinned_post_closed", parameters: [:])
     }
     
     func bind(_ pinnedPost: News.PinnedPost) {
@@ -102,4 +101,3 @@ class PinnedPostTableViewCell: UITableViewCell {
         headingLabel.text = pinnedPost.title
     }
 }
-

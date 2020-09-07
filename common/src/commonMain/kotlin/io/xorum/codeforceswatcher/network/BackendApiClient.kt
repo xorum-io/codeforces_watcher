@@ -8,6 +8,7 @@ import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.xorum.codeforceswatcher.network.responses.NewsResponse
+import io.xorum.codeforceswatcher.redux.analyticsController
 import kotlinx.serialization.UnstableDefault
 
 internal class BackendApiClient {
@@ -19,6 +20,7 @@ internal class BackendApiClient {
             parameter("lang", lang)
         }
     } catch (t: Throwable) {
+        analyticsController.logFetchNewsFailure()
         println(t)
         null
     }

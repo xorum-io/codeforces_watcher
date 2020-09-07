@@ -50,6 +50,7 @@
 		63B343042449C31C00734CC5 /* UIViewControllerWithCross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B343032449C31C00734CC5 /* UIViewControllerWithCross.swift */; };
 		63B343072449E3BE00734CC5 /* ChartMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B343062449E3BE00734CC5 /* ChartMarker.swift */; };
 		63D5114325063CFA0031660B /* PinnedPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5114225063CFA0031660B /* PinnedPostTableViewCell.swift */; };
+		63D51145250651290031660B /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D51144250651290031660B /* AnalyticsController.swift */; };
 		63EAA0D0243EFF2500C234A8 /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA0CF243EFF2400C234A8 /* FilterItem.swift */; };
 		63EAA0D9244047DF00C234A8 /* Platform+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA0D8244047DF00C234A8 /* Platform+Extension.swift */; };
 		63EAA0DB244051F100C234A8 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA0DA244051F100C234A8 /* UsersViewController.swift */; };
@@ -142,6 +143,7 @@
 		63B343032449C31C00734CC5 /* UIViewControllerWithCross.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerWithCross.swift; sourceTree = "<group>"; };
 		63B343062449E3BE00734CC5 /* ChartMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMarker.swift; sourceTree = "<group>"; };
 		63D5114225063CFA0031660B /* PinnedPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedPostTableViewCell.swift; sourceTree = "<group>"; };
+		63D51144250651290031660B /* AnalyticsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsController.swift; sourceTree = "<group>"; };
 		63EAA0CF243EFF2400C234A8 /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
 		63EAA0D8244047DF00C234A8 /* Platform+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+Extension.swift"; sourceTree = "<group>"; };
 		63EAA0DA244051F100C234A8 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 			children = (
 				638C392524361AC100DB33A3 /* IOSToastHandler.swift */,
 				638C39272437277F00DB33A3 /* Prefs.swift */,
+				63D51144250651290031660B /* AnalyticsController.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -843,6 +846,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63D51145250651290031660B /* AnalyticsController.swift in Sources */,
 				63F02C002462E8F700B1CD2C /* FeedbackController.swift in Sources */,
 				63EAA0EE244476C100C234A8 /* HeadingLabel.swift in Sources */,
 				63EAA0FE24470BA000C234A8 /* AddUserCardView.swift in Sources */,

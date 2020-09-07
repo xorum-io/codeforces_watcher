@@ -14,7 +14,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.bogdan.codeforceswatcher.R
-import com.bogdan.codeforceswatcher.util.Analytics
+import io.xorum.codeforceswatcher.redux.analyticsController
 import kotlinx.android.synthetic.main.activity_web_page.*
 
 class WebViewActivity : AppCompatActivity() {
@@ -33,7 +33,7 @@ class WebViewActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         initViews()
-        Analytics.logActionOpened()
+        analyticsController.logActionOpened()
     }
 
     private fun initViews() {
@@ -51,7 +51,7 @@ class WebViewActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_share -> {
                 share()
-                Analytics.logShareComment()
+                analyticsController.logShareComment()
             }
         }
         return super.onOptionsItemSelected(item)

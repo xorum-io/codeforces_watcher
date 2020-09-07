@@ -22,15 +22,15 @@ class WebViewController: UIViewControllerWithCross, WKUIDelegate, WKNavigationDe
     var link: String!
     var shareText: String!
 
-    var openEventName: String?
-    var shareEventName: String?
+    var onOpen: () -> () = { }
+    var onShare: () -> () = { }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view = webView
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "shareImage"), style: .plain, target: self, action: #selector(shareTapped))
         openWebPage()
-        onLoadViewLogEvent()
+        onOpen()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,19 +59,7 @@ class WebViewController: UIViewControllerWithCross, WKUIDelegate, WKNavigationDe
 
         present(activityController, animated: true)
 
-        onShareViewLogEvent()
-    }
-
-    private func onLoadViewLogEvent() {
-        if let openEventName = openEventName {
-            Analytics.logEvent(openEventName, parameters: [:])
-        }
-    }
-
-    private func onShareViewLogEvent() {
-        if let shareEventName = shareEventName {
-            Analytics.logEvent(shareEventName, parameters: [:])
-        }
+        onShare()
     }
 
     private func openWebPage() {

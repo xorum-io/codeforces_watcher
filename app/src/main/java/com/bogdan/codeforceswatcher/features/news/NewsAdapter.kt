@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.features.news.models.NewsItem
-import com.bogdan.codeforceswatcher.util.Analytics
 import com.squareup.picasso.Picasso
 import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
+import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.view_blog_entry_item.view.*
 import kotlinx.android.synthetic.main.view_comment_item.view.*
@@ -119,11 +119,10 @@ class NewsAdapter(
             tvTitle.text = title
             onItemClickListener = {
                 itemClickListener(pinnedItem.link, pinnedItem.title)
-                Analytics.logPinnedPostOpened()
+                analyticsController.logPinnedPostOpened()
             }
             onCrossClickListener = {
                 store.dispatch(NewsRequests.RemovePinnedPost(pinnedItem.link))
-                Analytics.logPinnedPostClosed()
             }
         }
     }

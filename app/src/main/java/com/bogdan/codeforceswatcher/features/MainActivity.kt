@@ -21,10 +21,10 @@ import com.bogdan.codeforceswatcher.features.contests.ContestsFragment
 import com.bogdan.codeforceswatcher.features.contests.FiltersActivity
 import com.bogdan.codeforceswatcher.features.problems.ProblemsFragment
 import com.bogdan.codeforceswatcher.features.users.UsersFragment
-import com.bogdan.codeforceswatcher.util.Analytics
 import com.bogdan.codeforceswatcher.util.FeedbackController
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import io.xorum.codeforceswatcher.features.problems.redux.actions.ProblemsActions
+import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             showShareDialog()
-            Analytics.logShareApp()
+            analyticsController.logShareApp()
         }
         fab.setImageDrawable(getDrawable(R.drawable.ic_share))
     }
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.share)) { _, _ ->
                     share()
-                    Analytics.logAppShared()
+                    analyticsController.logAppShared()
                 }
                 .setNegativeButton(getString(R.string.cancel), null)
                 .create()

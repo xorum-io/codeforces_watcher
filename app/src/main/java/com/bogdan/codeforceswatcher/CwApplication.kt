@@ -5,6 +5,7 @@ import android.content.Intent
 import com.bogdan.codeforceswatcher.handlers.AndroidMessageHandler
 import com.bogdan.codeforceswatcher.handlers.AndroidNotificationHandler
 import com.bogdan.codeforceswatcher.receiver.StartAlarm
+import com.bogdan.codeforceswatcher.util.AnalyticsController
 import com.bogdan.codeforceswatcher.util.Prefs
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.squareup.sqldelight.android.AndroidSqliteDriver
@@ -31,6 +32,7 @@ class CwApp : Application() {
         initSettings()
         initToastHandler()
         initNotificationHandler()
+        initAnalyticsController()
 
         databaseController.onAppCreated()
         persistenceController.onAppCreated()
@@ -59,6 +61,10 @@ class CwApp : Application() {
 
     private fun initNotificationHandler() {
         notificationHandler = AndroidNotificationHandler()
+    }
+
+    private fun initAnalyticsController() {
+        analyticsController = AnalyticsController()
     }
 
     private fun fetchData() {

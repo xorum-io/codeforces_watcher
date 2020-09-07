@@ -13,6 +13,7 @@ import common
 let store = AppStoreKt.store
 
 let feedbackController = FeedbackController()
+let analyticsControler = AppStoreKt.analyticsController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initDatabase()
         initSettings()
         initToastHandler()
+        initAnalyticsController()
 
         AppStoreKt.databaseController.onAppCreated()
         AppStoreKt.persistenceController.onAppCreated()
@@ -46,6 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func initToastHandler() {
         ToastMiddlewareKt.toastHandlers.add(IOSToastHandler())
+    }
+    
+    private func initAnalyticsController() {
+        AppStoreKt.analyticsController = AnalyticsController()
     }
 
     private func fetchData() {

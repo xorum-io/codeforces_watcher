@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.features.news.WebViewActivity
-import com.bogdan.codeforceswatcher.util.Analytics
-import com.bogdan.codeforceswatcher.util.Refresh
 import io.xorum.codeforceswatcher.features.contests.models.Contest
 import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
+import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.RefreshScreen
 import kotlinx.android.synthetic.main.fragment_contests.*
 import tw.geothings.rekotlin.StoreSubscriber
 import java.net.URLEncoder
@@ -62,7 +62,6 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
 
     override fun onRefresh() {
         store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = true, language = Locale.getDefault().language))
-        Analytics.logRefreshingData(Refresh.CONTESTS)
     }
 
     override fun onCreateView(
@@ -99,7 +98,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
                     Toast.LENGTH_SHORT
             ).show()
         }
-        Analytics.logAddContestToCalendarEvent(contest.name, contest.platform)
+        analyticsController.logAddContestToCalendarEvent(contest.name, contest.platform)
     }
 
     private fun getCalendarTime(time: Long): String {

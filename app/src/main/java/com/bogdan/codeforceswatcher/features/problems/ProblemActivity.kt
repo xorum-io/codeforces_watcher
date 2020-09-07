@@ -15,7 +15,7 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.bogdan.codeforceswatcher.R
 import io.xorum.codeforceswatcher.features.problems.models.Problem
-import com.bogdan.codeforceswatcher.util.Analytics
+import io.xorum.codeforceswatcher.redux.analyticsController
 import kotlinx.android.synthetic.main.activity_web_page.*
 import io.xorum.codeforceswatcher.redux.store
 import java.lang.IllegalStateException
@@ -41,7 +41,7 @@ class ProblemActivity : AppCompatActivity() {
         initData()
         initViews()
 
-        Analytics.logProblemOpened()
+        analyticsController.logProblemOpened()
     }
 
     private fun initData() {
@@ -64,7 +64,7 @@ class ProblemActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_share -> {
                 share()
-                Analytics.logShareProblem()
+                analyticsController.logShareProblem()
             }
         }
         return super.onOptionsItemSelected(item)

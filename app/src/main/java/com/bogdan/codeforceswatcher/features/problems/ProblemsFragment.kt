@@ -11,10 +11,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
-import com.bogdan.codeforceswatcher.util.Analytics
-import com.bogdan.codeforceswatcher.util.Refresh
+import io.xorum.codeforceswatcher.redux.analyticsController
 import kotlinx.android.synthetic.main.fragment_problems.*
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.RefreshScreen
 import tw.geothings.rekotlin.StoreSubscriber
 
 class ProblemsFragment : Fragment(), StoreSubscriber<ProblemsState>, SwipeRefreshLayout.OnRefreshListener {
@@ -73,7 +73,6 @@ class ProblemsFragment : Fragment(), StoreSubscriber<ProblemsState>, SwipeRefres
 
     override fun onRefresh() {
         store.dispatch(ProblemsRequests.FetchProblems(true))
-        Analytics.logRefreshingData(Refresh.ACTIONS)
     }
 
     override fun onStart() {
