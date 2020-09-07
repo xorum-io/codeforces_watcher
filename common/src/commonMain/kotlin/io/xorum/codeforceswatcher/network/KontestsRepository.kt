@@ -29,6 +29,7 @@ internal class KontestsRepository {
     suspend fun getAllContests() = try {
         kontestsApiClient.get<List<ContestResponse>>(path = "all")
     } catch (t: Throwable) {
+        println(t)
         null
     }
 

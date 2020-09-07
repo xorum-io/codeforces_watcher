@@ -27,6 +27,7 @@ internal class CodeforcesRepository {
             parameter("lang", lang)
         }
     } catch (t: Throwable) {
+        println(t)
         null
     }
 
@@ -36,12 +37,16 @@ internal class CodeforcesRepository {
             parameter("lang", lang)
         }
     } catch (t: Throwable) {
+        println(t)
         null
     }
 
-    suspend fun getCodeforcesContests() = try {
-        codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list")
+    suspend fun getCodeforcesContests(lang: String) = try {
+        codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list") {
+            parameter("lang", lang)
+        }
     } catch (t: Throwable) {
+        println(t)
         null
     }
 
@@ -50,6 +55,7 @@ internal class CodeforcesRepository {
             parameter("lang", lang)
         }
     } catch (t: Throwable) {
+        println(t)
         null
     }
 
