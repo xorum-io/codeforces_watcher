@@ -16,7 +16,7 @@ sealed class NewsItem {
         val commentatorHandle: CharSequence = buildHandle(comment.author.handle, comment.author.rank)
         val title: String = comment.title.convertFromHtml()
         val content: String = comment.content.convertFromHtml()
-        val commentatorAvatar: String = avatar(comment.author.avatar)
+        val commentatorAvatar: String = comment.author.avatar
         val createdAt: Long = comment.createdAt
         val link = comment.link
 
@@ -34,7 +34,7 @@ sealed class NewsItem {
 
         val authorHandle: CharSequence = colorTextByUserRank(post.author.handle, post.author.rank)
         val blogTitle: String = post.title.convertFromHtml()
-        val authorAvatar: String = avatar(post.author.avatar)
+        val authorAvatar: String = post.author.avatar
         val createdAt: Long = post.createdAt
         val link = post.link
     }

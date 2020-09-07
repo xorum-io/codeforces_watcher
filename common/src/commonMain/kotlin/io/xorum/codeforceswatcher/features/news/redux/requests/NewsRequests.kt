@@ -15,10 +15,8 @@ class NewsRequests {
 
         override suspend fun execute() {
             val response = backendApiClient.getNews(lang = language.defineLang())
-            println(response)
             response?.news?.let { news ->
-                val pinnedPost = news.find { it is News.PinnedPost } as News.PinnedPost
-                store.dispatch((Success(news, pinnedPost)))
+                store.dispatch((Success(news)))
             } ?: dispatchFailure()
         }
 
@@ -27,7 +25,7 @@ class NewsRequests {
             store.dispatch(Failure(noConnectionError))
         }
 
-        data class Success(val news: List<News>, val pinnedPost: News.PinnedPost) : Action
+        data class Success(val news: List<News>) : Action
 
         data class Failure(override val message: Message) : ToastAction
     }

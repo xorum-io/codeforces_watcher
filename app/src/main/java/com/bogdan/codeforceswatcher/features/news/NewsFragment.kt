@@ -60,15 +60,13 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
                 newsAdapter.callback = {
                     onNewState(state)
                 }
-            } else {
-                val pinnedPost = state.pinnedPost
-
-                pinnedPost?.let {
-                    if (settings.readLastPinnedPostLink() != pinnedPost.link) items.add(NewsItem.PinnedItem(pinnedPost))
-                }
             }
 
-            val actionItems = buildNewsItems(state.news.filter { it !is News.PinnedPost })
+            val news = state.news.filter {
+                return@filter if (it is News.PinnedPost) settings.readLastPinnedPostLink() != it.link else true
+            }
+
+            val actionItems = buildNewsItems(news)
 
             items.addAll(actionItems)
 

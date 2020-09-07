@@ -13,8 +13,7 @@ fun newsReducer(action: Action, state: AppState): NewsState {
         is NewsRequests.FetchNews.Success -> {
             newState = newState.copy(
                     news = action.news,
-                    status = NewsState.Status.IDLE,
-                    pinnedPost = action.pinnedPost
+                    status = NewsState.Status.IDLE
             )
         }
         is NewsRequests.FetchNews -> {
@@ -24,7 +23,7 @@ fun newsReducer(action: Action, state: AppState): NewsState {
             newState = newState.copy(status = NewsState.Status.IDLE)
         }
         is NewsRequests.RemovePinnedPost -> {
-            newState = newState.copy(pinnedPost = null)
+            newState = newState.copy(news = state.news.news.filterNot { it is News.PinnedPost })
         }
     }
 
