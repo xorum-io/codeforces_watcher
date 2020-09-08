@@ -12,15 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
-import com.bogdan.codeforceswatcher.util.Analytics
-import com.bogdan.codeforceswatcher.util.Refresh
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState.SortType.Companion.getSortType
+import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.RefreshScreen
 import kotlinx.android.synthetic.main.fragment_users.*
 import tw.geothings.rekotlin.StoreSubscriber
 import java.util.*
@@ -32,7 +32,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
 
     override fun onRefresh() {
         store.dispatch(UsersRequests.FetchUsers(Source.USER, Locale.getDefault().language))
-        Analytics.logRefreshingData(Refresh.USERS)
+        analyticsController.logRefreshingData(RefreshScreen.USERS)
     }
 
     override fun onStart() {
@@ -56,7 +56,6 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
 
         if (state.addUserStatus == UsersState.Status.DONE) {
             store.dispatch(UsersActions.ClearAddUserState())
-            Analytics.logUserAdded()
         }
     }
 
@@ -126,5 +125,4 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
             user.ratingChanges.lastOrNull()?.ratingUpdateTimeSeconds
         }
     }
-
 }

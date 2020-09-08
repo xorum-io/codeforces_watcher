@@ -83,7 +83,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             self.addEventToCalendar(contest) { success, NSError in
                 if (success) {
                     DispatchQueue.main.async {
-                        Analytics.logEvent("add_contest_to_google_calendar", parameters: ["contest_platform": contest.platform, "contest_name": contest.name])
+                        analyticsControler.logAddContestToCalendarEvent(contestName: contest.name, platform: contest.platform)
                         self.showAlertWithOK(title: contest.name, message: "Has been added to your calendar".localized)
                     }
                 } else {
@@ -100,8 +100,8 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             let webViewController = WebViewController().apply {
                 $0.link = contest.link
                 $0.shareText = buildShareText(contest.name, contest.link)
-                $0.openEventName = "contest_opened"
-                $0.shareEventName = "contest_shared"
+                $0.onOpen = { analyticsControler.logContestOpened() }
+                $0.onShare = { analyticsControler.logContestShared() }
             }
 
             self.presentModal(webViewController)
@@ -181,7 +181,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
 
     @objc private func refreshContests(_ sender: Any) {
-        Analytics.logEvent("contests_list_refresh", parameters: [:])
+        analyticsControler.logRefreshingData(refreshScreen: .contests)
         fetchContests()
     }
     
@@ -212,6 +212,6 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
 
     private func fetchContests() {
-        store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: true))
+        store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: true, language: "locale".localized))
     }
 }

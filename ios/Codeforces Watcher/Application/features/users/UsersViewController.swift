@@ -182,7 +182,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     
     @objc func refreshUsers() {
         store.dispatch(action: UsersRequests.FetchUsers(source: Source.user, language: "locale".localized))
-        Analytics.logEvent("users_list_refresh", parameters: [:])
+        analyticsControler.logRefreshingData(refreshScreen: .users)
     }
     
     override func fabButtonTapped() {
@@ -261,8 +261,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             HUD.hide(afterDelay: 0)
             
             hideBottomInputView()
-
-            Analytics.logEvent("user_added", parameters: [:])
+            
             store.dispatch(action: UsersActions.ClearAddUserState())
         case .idle:
             HUD.hide(afterDelay: 0)

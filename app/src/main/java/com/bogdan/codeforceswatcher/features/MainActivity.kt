@@ -16,15 +16,15 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.AddUserBottomSheet
-import com.bogdan.codeforceswatcher.features.actions.ActionsFragment
+import com.bogdan.codeforceswatcher.features.news.NewsFragment
 import com.bogdan.codeforceswatcher.features.contests.ContestsFragment
 import com.bogdan.codeforceswatcher.features.contests.FiltersActivity
 import com.bogdan.codeforceswatcher.features.problems.ProblemsFragment
 import com.bogdan.codeforceswatcher.features.users.UsersFragment
-import com.bogdan.codeforceswatcher.util.Analytics
 import com.bogdan.codeforceswatcher.util.FeedbackController
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import io.xorum.codeforceswatcher.features.problems.redux.actions.ProblemsActions
+import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity() {
             HomeTab.CONTESTS -> {
                 currentTabFragment as? ContestsFragment ?: ContestsFragment()
             }
-            HomeTab.ACTIONS -> {
-                currentTabFragment as? ActionsFragment ?: ActionsFragment()
+            HomeTab.NEWS -> {
+                currentTabFragment as? NewsFragment ?: NewsFragment()
             }
             HomeTab.PROBLEMS -> {
                 currentTabFragment as? ProblemsFragment ?: ProblemsFragment()
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     private fun onNewTabSelected() = when (selectedHomeTab) {
         HomeTab.USERS -> onUsersTabSelected()
         HomeTab.CONTESTS -> onContestsTabSelected()
-        HomeTab.ACTIONS -> onActionsTabSelected()
+        HomeTab.NEWS -> onNewsTabSelected()
         HomeTab.PROBLEMS -> onProblemsTabSelected()
     }
 
@@ -123,14 +123,14 @@ class MainActivity : AppCompatActivity() {
         fab.setImageDrawable(getDrawable(R.drawable.ic_eye))
     }
 
-    private fun onActionsTabSelected() {
+    private fun onNewsTabSelected() {
         llSorting.visibility = View.GONE
         ivFilter.visibility = View.GONE
         searchViewItem?.isVisible = false
 
         fab.setOnClickListener {
             showShareDialog()
-            Analytics.logShareApp()
+            analyticsController.logShareApp()
         }
         fab.setImageDrawable(getDrawable(R.drawable.ic_share))
     }
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.share)) { _, _ ->
                     share()
-                    Analytics.logAppShared()
+                    analyticsController.logAppShared()
                 }
                 .setNegativeButton(getString(R.string.cancel), null)
                 .create()
@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity() {
 
         USERS(R.string.empty, R.id.navUsers),
         CONTESTS(R.string.contests, R.id.navContests),
-        ACTIONS(R.string.actions, R.id.navActions),
+        NEWS(R.string.news, R.id.navNews),
         PROBLEMS(R.string.problems, R.id.navProblems);
 
         companion object {

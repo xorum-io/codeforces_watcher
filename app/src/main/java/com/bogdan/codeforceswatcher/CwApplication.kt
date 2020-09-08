@@ -5,11 +5,12 @@ import android.content.Intent
 import com.bogdan.codeforceswatcher.handlers.AndroidMessageHandler
 import com.bogdan.codeforceswatcher.handlers.AndroidNotificationHandler
 import com.bogdan.codeforceswatcher.receiver.StartAlarm
+import com.bogdan.codeforceswatcher.util.AnalyticsController
 import com.bogdan.codeforceswatcher.util.Prefs
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import io.xorum.codeforceswatcher.CWDatabase
-import io.xorum.codeforceswatcher.features.actions.redux.requests.ActionsRequests
+import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
 import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
@@ -31,6 +32,7 @@ class CwApp : Application() {
         initSettings()
         initToastHandler()
         initNotificationHandler()
+        initAnalyticsController()
 
         databaseController.onAppCreated()
         persistenceController.onAppCreated()
@@ -61,12 +63,15 @@ class CwApp : Application() {
         notificationHandler = AndroidNotificationHandler()
     }
 
+    private fun initAnalyticsController() {
+        analyticsController = AnalyticsController()
+    }
+
     private fun fetchData() {
-        store.dispatch(ActionsRequests.FetchActions(false, Locale.getDefault().language))
-        store.dispatch(ContestsRequests.FetchContests(false))
+        store.dispatch(NewsRequests.FetchNews(false, Locale.getDefault().language))
+        store.dispatch(ContestsRequests.FetchContests(false, Locale.getDefault().language))
         store.dispatch(UsersRequests.FetchUsers(Source.BACKGROUND, Locale.getDefault().language))
         store.dispatch(ProblemsRequests.FetchProblems(false))
-        store.dispatch(ActionsRequests.FetchPinnedPost())
     }
 
     private fun startAlarm() {

@@ -5,14 +5,19 @@ import io.xorum.codeforceswatcher.features.contests.models.Contest
 import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.network.responses.ContestResponse
 import io.xorum.codeforceswatcher.redux.*
+import io.xorum.codeforceswatcher.util.RefreshScreen
+import io.xorum.codeforceswatcher.util.defineLang
 import tw.geothings.rekotlin.Action
 
 class ContestsRequests {
 
-    class FetchContests(val isInitiatedByUser: Boolean) : Request() {
+    class FetchContests(
+            private val isInitiatedByUser: Boolean,
+            private val language: String
+    ) : Request() {
 
         override suspend fun execute() {
-            val responseCodeforces = codeforcesRepository.getCodeforcesContests()
+            val responseCodeforces = codeforcesRepository.getCodeforcesContests(language.defineLang())
             val responseKontests = kontestsRepository.getAllContests()
 
             val contests = normalizeCodeforcesContests(responseCodeforces?.result) + normalizeAllContests(responseKontests)

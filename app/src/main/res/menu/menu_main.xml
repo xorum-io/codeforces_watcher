@@ -16,9 +16,9 @@
         android:title="" />
 
     <item
-        android:id="@+id/navActions"
-        android:icon="@drawable/ic_actions"
-        android:title="@string/actions" />
+        android:id="@+id/navNews"
+        android:icon="@drawable/ic_news"
+        android:title="@string/news" />
 
     <item
         android:id="@+id/navProblems"

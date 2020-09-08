@@ -2,13 +2,13 @@
 "Codeforces Watcher" = "Codeforces WatchR";
 
 "Contests" = "Контесты";
-"Actions" = "Новости";
+"News" = "Новости";
 "Problems" = "Задачи";
 
 "Commented by" = "Прокомментировал";
 "ago" = "назад";
 
-"actions_explanation" = "Свежайшие новости на пути к вашему устройству…";
+"news_explanation" = "Свежайшие новости на пути к вашему устройству…";
 "created_or_updated_text" = "Создан или обновлен текст, нажмите, чтобы увидеть детали…";
 
 "problems_explanation" = "Задачи на пути к вашему устройству…";

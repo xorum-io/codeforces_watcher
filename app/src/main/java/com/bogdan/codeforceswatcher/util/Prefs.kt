@@ -9,13 +9,13 @@ import io.xorum.codeforceswatcher.util.Settings
 
 class Prefs(private val context: Context) : Settings {
 
-    override fun writePinnedPostLink(pinnedPostLink: String) {
+    override fun writeLastPinnedPostLink(pinnedPostLink: String) {
         val editor = getDefaultPrefs().edit()
         editor.putString(KEY_PINNED_POST, pinnedPostLink)
         editor.apply()
     }
 
-    override fun readPinnedPostLink(): String {
+    override fun readLastPinnedPostLink(): String {
         val defaultPrefs = getDefaultPrefs()
         return defaultPrefs.getString(KEY_PINNED_POST, "").orEmpty()
     }

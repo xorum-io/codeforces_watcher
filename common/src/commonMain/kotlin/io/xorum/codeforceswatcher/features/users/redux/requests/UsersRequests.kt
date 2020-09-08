@@ -4,10 +4,8 @@ import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.getUsers
 import io.xorum.codeforceswatcher.features.users.redux.models.UsersRequestResult
-import io.xorum.codeforceswatcher.redux.Message
-import io.xorum.codeforceswatcher.redux.Request
-import io.xorum.codeforceswatcher.redux.ToastAction
-import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.redux.*
+import io.xorum.codeforceswatcher.util.RefreshScreen
 import io.xorum.codeforceswatcher.util.defineLang
 import kotlinx.coroutines.delay
 import tw.geothings.rekotlin.Action
@@ -91,6 +89,7 @@ class UsersRequests {
             if (foundUser == null) {
                 user.id = DatabaseQueries.Users.insert(user)
                 store.dispatch(Success(user))
+                analyticsController.logUserAdded()
             } else {
                 store.dispatch(Failure(Message.UserAlreadyAdded))
             }

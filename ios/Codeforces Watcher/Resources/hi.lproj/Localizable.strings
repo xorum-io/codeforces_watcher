@@ -2,13 +2,13 @@
 "Codeforces Watcher" = "Codeforces WatchR";
 
 "Contests" = "प्रतियोगिताएं";
-"Actions" = "एक्शन";
+"News" = "एक्शन";
 "Problems" = "प्रॉब्लेमस";
 
 "Commented by" = "कमेंटेड बाय";
 "ago" = "पहले";
 
-"actions_explanation" = "आपके डिवाइस पर आने वाली हाल की क्रियाएं…";
+"news_explanation" = "आपके डिवाइस पर आने वाली हाल की क्रियाएं…";
 "created_or_updated_text" = "टेक्स्ट बनाया या अपडेट किया गया, विवरण देखने के लिए क्लिक करें…";
 
 "problems_explanation" = "सवाल आपके डिवाइस पे लोड हो रहा है...";

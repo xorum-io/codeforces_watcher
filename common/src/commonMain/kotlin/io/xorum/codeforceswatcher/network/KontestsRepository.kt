@@ -11,6 +11,8 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.http.URLProtocol
 import io.xorum.codeforceswatcher.network.responses.ContestResponse
+import io.xorum.codeforceswatcher.redux.analyticsController
+import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.Decoder
 import kotlinx.serialization.Encoder
 import kotlinx.serialization.KSerializer
@@ -28,7 +30,10 @@ internal class KontestsRepository {
 
     suspend fun getAllContests() = try {
         kontestsApiClient.get<List<ContestResponse>>(path = "all")
-    } catch (t: Throwable) {
+    } catch (e: Exception) {
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
+
         null
     }
 

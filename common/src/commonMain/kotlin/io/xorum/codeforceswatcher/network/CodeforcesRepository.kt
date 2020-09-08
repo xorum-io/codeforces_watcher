@@ -12,6 +12,8 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.http.URLProtocol
 import io.xorum.codeforceswatcher.network.responses.*
+import io.xorum.codeforceswatcher.redux.analyticsController
+import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json.Default.nonstrict
 
@@ -26,7 +28,10 @@ internal class CodeforcesRepository {
             parameter("handles", handles)
             parameter("lang", lang)
         }
-    } catch (t: Throwable) {
+    } catch (e: Exception) {
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
+
         null
     }
 
@@ -35,22 +40,21 @@ internal class CodeforcesRepository {
             parameter("handle", handle)
             parameter("lang", lang)
         }
-    } catch (t: Throwable) {
+    } catch (e: Exception) {
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
+
         null
     }
 
-    suspend fun getActions(maxCount: Int = 100, lang: String) = try {
-        codeforcesApiClient.get<ActionsResponse>(path = "recentActions") {
-            parameter("maxCount", maxCount)
+    suspend fun getCodeforcesContests(lang: String) = try {
+        codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list") {
             parameter("lang", lang)
         }
-    } catch (t: Throwable) {
-        null
-    }
+    } catch (e: Exception) {
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
 
-    suspend fun getCodeforcesContests() = try {
-        codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list")
-    } catch (t: Throwable) {
         null
     }
 
@@ -58,7 +62,10 @@ internal class CodeforcesRepository {
         codeforcesApiClient.get<ProblemsResponse>(path = "problemset.problems") {
             parameter("lang", lang)
         }
-    } catch (t: Throwable) {
+    } catch (e: Exception) {
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
+
         null
     }
 
