@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             HomeTab.CONTESTS -> {
                 currentTabFragment as? ContestsFragment ?: ContestsFragment()
             }
-            HomeTab.ACTIONS -> {
+            HomeTab.NEWS -> {
                 currentTabFragment as? NewsFragment ?: NewsFragment()
             }
             HomeTab.PROBLEMS -> {
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     private fun onNewTabSelected() = when (selectedHomeTab) {
         HomeTab.USERS -> onUsersTabSelected()
         HomeTab.CONTESTS -> onContestsTabSelected()
-        HomeTab.ACTIONS -> onActionsTabSelected()
+        HomeTab.NEWS -> onNewsTabSelected()
         HomeTab.PROBLEMS -> onProblemsTabSelected()
     }
 
@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity() {
         fab.setImageDrawable(getDrawable(R.drawable.ic_eye))
     }
 
-    private fun onActionsTabSelected() {
+    private fun onNewsTabSelected() {
         llSorting.visibility = View.GONE
         ivFilter.visibility = View.GONE
         searchViewItem?.isVisible = false
@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity() {
 
         USERS(R.string.empty, R.id.navUsers),
         CONTESTS(R.string.contests, R.id.navContests),
-        ACTIONS(R.string.news, R.id.navNews),
+        NEWS(R.string.news, R.id.navNews),
         PROBLEMS(R.string.problems, R.id.navProblems);
 
         companion object {
