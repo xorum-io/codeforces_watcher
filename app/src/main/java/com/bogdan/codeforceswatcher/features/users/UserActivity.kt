@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.util.CustomMarkerView
@@ -19,12 +20,14 @@ import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.avatar
 import kotlinx.android.synthetic.main.activity_user.*
+import java.lang.IllegalStateException
 import java.text.SimpleDateFormat
 import java.util.*
 
 class UserActivity : AppCompatActivity() {
 
     private var userId: Long = -1
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +38,14 @@ class UserActivity : AppCompatActivity() {
 
         userId = intent.getLongExtra(ID, -1)
 
-        val user = store.state.users.users.find { it.id == userId }
-        user?.let { foundUser ->
-            displayUser(foundUser)
-            if (foundUser.ratingChanges.isNotEmpty()) {
-                displayChart(foundUser)
-            } else {
-                tvRatingChanges.text = ""
-            }
+        user = store.state.users.users.find { it.id == userId } ?: throw IllegalStateException()
+
+        displayUser()
+
+        if (user.ratingChanges.isNotEmpty()) {
+            displayChart()
+        } else {
+            tvRatingChanges.text = ""
         }
     }
 
@@ -51,7 +54,7 @@ class UserActivity : AppCompatActivity() {
         return true
     }
 
-    private fun displayUser(user: User) {
+    private fun displayUser() {
         tvRank.text = user.buildRank()
         tvCurrentRating.text = user.buildRating()
         tvUserHandle.text = getString(R.string.name, user.buildName())
@@ -86,7 +89,7 @@ class UserActivity : AppCompatActivity() {
         getString(R.string.max_rating, maxRating.toString())
     }
 
-    private fun displayChart(user: User) {
+    private fun displayChart() {
         val xAxis = chart.xAxis
         chart.setTouchEnabled(true)
         chart.markerView = CustomMarkerView(this, R.layout.chart)
@@ -120,12 +123,23 @@ class UserActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_delete -> {
-                val user = store.state.users.users.find { it.id == userId }
-                user?.let { store.dispatch(UsersRequests.DeleteUser(it)) }
-                finish()
+                AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.delete_user))
+                        .setMessage(getString(R.string.delete_user_explanation, user.handle))
+                        .setPositiveButton(getString(R.string.ok)) { _, _ ->
+                            deleteUser()
+                        }
+                        .setNegativeButton(getString(R.string.cancel), null)
+                        .create()
+                        .show()
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteUser() {
+        store.dispatch(UsersRequests.DeleteUser(user))
+        finish()
     }
 
     companion object {

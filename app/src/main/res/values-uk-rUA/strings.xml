@@ -70,4 +70,8 @@ Codeforces WatchR дає можливiсть:
 
     <string name="contest_date_format">d MMM о HH:mm, EEEE</string>
     <string name="user_date_format">d MMM yyyy</string>
+
+    <string name="delete_user">Видалити користувача</string>
+    <string name="delete_user_explanation">"Ви впевнені, що хочете видалити %1$s?"</string>
+    <string name="ok">OK</string>
 </resources>
