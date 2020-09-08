@@ -4,10 +4,10 @@ import android.text.SpannableStringBuilder
 import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.features.users.colorTextByUserRank
+import com.bogdan.codeforceswatcher.features.users.getColorByUserRank
 import com.bogdan.codeforceswatcher.util.convertFromHtml
 import io.xorum.codeforceswatcher.network.responses.News
 import io.xorum.codeforceswatcher.util.FeedUIModel
-import io.xorum.codeforceswatcher.util.avatar
 
 sealed class NewsItem {
 
@@ -19,6 +19,7 @@ sealed class NewsItem {
         val commentatorAvatar: String = comment.author.avatar
         val createdAt: Long = comment.createdAt
         val link = comment.link
+        val rankColor = getColorByUserRank(comment.author.rank)
 
         private fun buildHandle(handle: String, rank: String?): CharSequence {
             val colorHandle = colorTextByUserRank(handle, rank)
@@ -37,6 +38,7 @@ sealed class NewsItem {
         val authorAvatar: String = post.author.avatar
         val createdAt: Long = post.createdAt
         val link = post.link
+        val rankColor = getColorByUserRank(post.author.rank)
     }
 
     class PinnedItem(pinnedPost: News.PinnedPost) : NewsItem() {

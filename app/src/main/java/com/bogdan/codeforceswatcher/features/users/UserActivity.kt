@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.util.CustomMarkerView
 import com.github.mikephil.charting.components.XAxis
@@ -14,6 +15,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.redux.store
@@ -56,6 +58,7 @@ class UserActivity : AppCompatActivity() {
         tvCurrentRating.text = user.buildRating()
         tvUserHandle.text = getString(R.string.name, user.buildName())
         tvMaxRating.text = user.buildMaxRating()
+        (ivUserAvatar as CircleImageView).borderColor = ContextCompat.getColor(this, getColorByUserRank(user.rank))
 
         Picasso.get().load(avatar(user.avatar)).into(ivUserAvatar)
         title = user.handle

@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.features.news.models.NewsItem
 import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
@@ -92,6 +94,7 @@ class NewsAdapter(
             onItemClickListener = {
                 itemClickListener(comment.link, comment.title)
             }
+            (ivAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, comment.rankColor)
         }
 
         Picasso.get().load(commentatorAvatar)
@@ -107,6 +110,7 @@ class NewsAdapter(
             onItemClickListener = {
                 itemClickListener(post.link, post.blogTitle)
             }
+            (ivAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, post.rankColor)
         }
 
         Picasso.get().load(authorAvatar)
