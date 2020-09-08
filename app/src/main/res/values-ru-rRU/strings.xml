@@ -68,4 +68,8 @@ Codeforces WatchR позволяет:
     <string name="chart_info">" = %1$s (%2$s) \n Место: %3$s \n %4$s \n %5$s "</string>
     <string name="contest_date_format">d MMM в HH:mm, EEEE</string>
     <string name="user_date_format">d MMM yyyy</string>
+
+    <string name="delete_user">Удалить пользователя</string>
+    <string name="delete_user_explanation">"Вы уверены, что хотите удалить %1$s?"</string>
+    <string name="ok">OK</string>
 </resources>
