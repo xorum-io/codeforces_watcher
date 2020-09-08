@@ -7,117 +7,130 @@ PODS:
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
-  - Firebase/Analytics (6.14.0):
+  - Firebase/Analytics (6.31.1):
     - Firebase/Core
-  - Firebase/Core (6.14.0):
+  - Firebase/Core (6.31.1):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.1.7)
-  - Firebase/CoreOnly (6.14.0):
-    - FirebaseCore (= 6.5.0)
-  - FirebaseAnalytics (6.1.7):
-    - FirebaseCore (~> 6.5)
-    - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.1.7)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (= 0.3.9011)
-  - FirebaseCore (6.5.0):
-    - FirebaseCoreDiagnostics (~> 1.0)
-    - FirebaseCoreDiagnosticsInterop (~> 1.0)
-    - GoogleUtilities/Environment (~> 6.4)
-    - GoogleUtilities/Logger (~> 6.4)
-  - FirebaseCoreDiagnostics (1.1.2):
-    - FirebaseCoreDiagnosticsInterop (~> 1.0)
-    - GoogleDataTransportCCTSupport (~> 1.0)
-    - GoogleUtilities/Environment (~> 6.2)
-    - GoogleUtilities/Logger (~> 6.2)
-    - nanopb (~> 0.3.901)
-  - FirebaseCoreDiagnosticsInterop (1.1.0)
-  - FirebaseInstanceID (4.2.8):
-    - FirebaseCore (~> 6.5)
-    - GoogleUtilities/Environment (~> 6.4)
-    - GoogleUtilities/UserDefaults (~> 6.4)
-  - GoogleAppMeasurement (6.1.7):
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (= 0.3.9011)
-  - GoogleDataTransport (3.2.0)
-  - GoogleDataTransportCCTSupport (1.2.3):
-    - GoogleDataTransport (~> 3.2)
-    - nanopb (~> 0.3.901)
-  - GoogleUtilities/AppDelegateSwizzler (6.4.0):
+    - FirebaseAnalytics (= 6.8.0)
+  - Firebase/CoreOnly (6.31.1):
+    - FirebaseCore (= 6.10.1)
+  - Firebase/Crashlytics (6.31.1):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 4.5.0)
+  - FirebaseAnalytics (6.8.0):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleAppMeasurement (= 6.8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/MethodSwizzler (~> 6.7)
+    - GoogleUtilities/Network (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+    - nanopb (~> 1.30906.0)
+  - FirebaseCore (6.10.1):
+    - FirebaseCoreDiagnostics (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+  - FirebaseCoreDiagnostics (1.6.0):
+    - GoogleDataTransport (~> 7.2)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+    - nanopb (~> 1.30906.0)
+  - FirebaseCrashlytics (4.5.0):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleDataTransport (~> 7.2)
+    - nanopb (~> 1.30906.0)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstallations (1.7.0):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - PromisesObjC (~> 1.2)
+  - GoogleAppMeasurement (6.8.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/MethodSwizzler (~> 6.7)
+    - GoogleUtilities/Network (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+    - nanopb (~> 1.30906.0)
+  - GoogleDataTransport (7.3.0):
+    - nanopb (~> 1.30906.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.4.0)
-  - GoogleUtilities/Logger (6.4.0):
+  - GoogleUtilities/Environment (6.7.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.4.0):
+  - GoogleUtilities/MethodSwizzler (6.7.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.4.0):
+  - GoogleUtilities/Network (6.7.2):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.4.0)"
-  - GoogleUtilities/Reachability (6.4.0):
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.4.0):
+  - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
   - HTMLString (5.0.0)
-  - MaterialComponents/AnimationTiming (105.0.1)
-  - MaterialComponents/Availability (105.0.1)
-  - MaterialComponents/Buttons (105.0.1):
+  - MaterialComponents/AnimationTiming (114.0.0)
+  - MaterialComponents/Availability (114.0.0)
+  - MaterialComponents/Buttons (114.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/Ripple
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Elevation (105.0.1):
+  - MaterialComponents/Elevation (114.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (105.0.1):
+  - MaterialComponents/Ink (114.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/private/Application (105.0.1)
-  - MaterialComponents/private/Color (105.0.1):
+  - MaterialComponents/private/Application (114.0.0)
+  - MaterialComponents/private/Color (114.0.0):
     - MaterialComponents/Availability
-  - MaterialComponents/private/Math (105.0.1)
-  - MaterialComponents/Ripple (105.0.1):
+  - MaterialComponents/private/Math (114.0.0)
+  - MaterialComponents/Ripple (114.0.0):
     - MaterialComponents/AnimationTiming
+    - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/ShadowElevations (105.0.1)
-  - MaterialComponents/ShadowLayer (105.0.1):
+  - MaterialComponents/ShadowElevations (114.0.0)
+  - MaterialComponents/ShadowLayer (114.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/Shapes (105.0.1):
+  - MaterialComponents/ShapeLibrary (114.0.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
+  - MaterialComponents/Shapes (114.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Typography (105.0.1):
+  - MaterialComponents/Typography (114.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
+    - MDFTextAccessibility
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
-  - nanopb (0.3.9011):
-    - nanopb/decode (= 0.3.9011)
-    - nanopb/encode (= 0.3.9011)
-  - nanopb/decode (0.3.9011)
-  - nanopb/encode (0.3.9011)
+  - nanopb (1.30906.0):
+    - nanopb/decode (= 1.30906.0)
+    - nanopb/encode (= 1.30906.0)
+  - nanopb/decode (1.30906.0)
+  - nanopb/encode (1.30906.0)
   - PKHUD (5.3.0)
-  - SDWebImage (5.4.2):
-    - SDWebImage/Core (= 5.4.2)
-  - SDWebImage/Core (5.4.2)
+  - PromisesObjC (1.2.10)
+  - SDWebImage (5.9.0):
+    - SDWebImage/Core (= 5.9.0)
+  - SDWebImage/Core (5.9.0)
   - TinyConstraints (4.0.1)
   - Toast-Swift (5.0.1)
 
@@ -125,9 +138,10 @@ DEPENDENCIES:
   - Alamofire (~> 4.9.1)
   - Charts
   - common (from `../common`)
-  - Crashlytics (~> 3.14.0)
+  - Crashlytics
   - Fabric (~> 1.10.2)
   - Firebase/Analytics
+  - Firebase/Crashlytics
   - HTMLString (~> 5.0)
   - MaterialComponents/Buttons
   - PKHUD (~> 5.0)
@@ -145,11 +159,10 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreDiagnostics
-    - FirebaseCoreDiagnosticsInterop
-    - FirebaseInstanceID
+    - FirebaseCrashlytics
+    - FirebaseInstallations
     - GoogleAppMeasurement
     - GoogleDataTransport
-    - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - HTMLString
     - MaterialComponents
@@ -157,6 +170,7 @@ SPEC REPOS:
     - MDFTextAccessibility
     - nanopb
     - PKHUD
+    - PromisesObjC
     - SDWebImage
     - TinyConstraints
     - Toast-Swift
@@ -171,26 +185,26 @@ SPEC CHECKSUMS:
   common: b488d96f02c83385301e4b1df8634fcebccda734
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
-  FirebaseAnalytics: f68b9f3f1241385129ae0a83b63627fc420c05e5
-  FirebaseCore: 632e05cc5e1199d9147122c16d92305eb04c34bd
-  FirebaseCoreDiagnostics: 511f4f3ed7d440bb69127e8b97c2bc8befae639e
-  FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
-  FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
-  GoogleAppMeasurement: db118eb61a97dd8c4f7014e368d3c335cbbcf80a
-  GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
-  GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2
-  GoogleUtilities: 29bd0d8f850efbd28cff6d99e8b7da1f8d236bcf
+  Firebase: 658370fa0181826a74b7cfca8d68c5856ca749ae
+  FirebaseAnalytics: 0ca9aa2af7cc4dc92392b7a78bfc49feaa2eb60f
+  FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c
+  FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
+  FirebaseCrashlytics: d2a350ec7fd4a332031b906b0802a7a73697630b
+  FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  GoogleAppMeasurement: ecc30d0ab5b66d7d18e85ce1b8e2b345db60626d
+  GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   HTMLString: 20374dc0195423d02569e87561f01153fca0c364
-  MaterialComponents: cfc2fbc3a380238821ea1786d237e21b32d8514e
+  MaterialComponents: 82c900f70f609710c47a9872bc2d59ce08ca0b18
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
-  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
-  SDWebImage: 4ca2dc4eefae4224bea8f504251cda485a363745
+  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: e21de4e9d02b29cdbb0570b7bffbfaa88fae0226
+PODFILE CHECKSUM: 1b1654824be7eecf93ea71afbfe02706f179e0e2
 
 COCOAPODS: 1.9.3

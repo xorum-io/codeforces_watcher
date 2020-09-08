@@ -598,6 +598,7 @@
 				639435FB23BA115C00B302A3 /* Resources */,
 				637C49BA23CE243F00D5069A /* Firebase Crashlytics */,
 				B4F37559F8143C47C46A56FF /* [CP] Embed Pods Frameworks */,
+				6387BD1525079B980048C9E8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -763,6 +764,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
+		6387BD1525079B980048C9E8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		93A30BA90041DEC15E88A689 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
