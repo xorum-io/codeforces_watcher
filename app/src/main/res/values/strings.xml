@@ -44,13 +44,13 @@
 Codeforces WatchR allows:
 
 1. Shortlist and register for upcoming Competitive Programming contests: Codeforces, LeetCode, HackerEarth, AtCoder, TopCoder, CS Academy, CodeChef, Kick Start.
-2. Follow Recent Actions.
+2. Follow Recent News.
 3. Browse and search for Problems, add them to favourites.
 4. Watch for activity of any Codeforces user
 5. Sort users by rating and last participation date.
 
 Download it now on Google Play - https://play.google.com/store/apps/details?id=com.bogdan.codeforceswatcher"</string>
-    <string name="actions_on_the_way">Recent actions on the way to your device…</string>
+    <string name="news_on_the_way">Recent news on the way to your device…</string>
     <string name="problems_on_the_way">Problems on the way to your device…</string>
     <string name="created_or_updated_text">Created or updated the text, click to see details…</string>
     <string name="problem_name_with_index" translatable="false">%1$d%2$s: %3$s</string>

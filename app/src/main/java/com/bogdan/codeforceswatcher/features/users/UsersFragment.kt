@@ -32,6 +32,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
 
     override fun onRefresh() {
         store.dispatch(UsersRequests.FetchUsers(Source.USER, Locale.getDefault().language))
+        analyticsController.logRefreshingData(RefreshScreen.USERS)
     }
 
     override fun onStart() {

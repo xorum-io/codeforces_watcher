@@ -2,6 +2,7 @@ package com.bogdan.codeforceswatcher.util
 
 import android.os.Bundle
 import com.bogdan.codeforceswatcher.CwApp
+import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.util.IAnalyticsController
@@ -115,5 +116,9 @@ class AnalyticsController : IAnalyticsController {
         if (isEnabled) {
             instance.logEvent("contest_shared", Bundle())
         }
+    }
+
+    override fun logError(message: String) {
+        Crashlytics.logException(Throwable(message))
     }
 }

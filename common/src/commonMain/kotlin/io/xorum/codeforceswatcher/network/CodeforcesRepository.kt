@@ -12,6 +12,8 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.http.URLProtocol
 import io.xorum.codeforceswatcher.network.responses.*
+import io.xorum.codeforceswatcher.redux.analyticsController
+import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json.Default.nonstrict
 
@@ -26,8 +28,10 @@ internal class CodeforcesRepository {
             parameter("handles", handles)
             parameter("lang", lang)
         }
-    } catch (t: Throwable) {
-        println(t)
+    } catch (e: Exception) {
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
+
         null
     }
 
@@ -36,8 +40,10 @@ internal class CodeforcesRepository {
             parameter("handle", handle)
             parameter("lang", lang)
         }
-    } catch (t: Throwable) {
-        println(t)
+    } catch (e: Exception) {
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
+
         null
     }
 
@@ -45,8 +51,10 @@ internal class CodeforcesRepository {
         codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list") {
             parameter("lang", lang)
         }
-    } catch (t: Throwable) {
-        println(t)
+    } catch (e: Exception) {
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
+
         null
     }
 
@@ -54,8 +62,10 @@ internal class CodeforcesRepository {
         codeforcesApiClient.get<ProblemsResponse>(path = "problemset.problems") {
             parameter("lang", lang)
         }
-    } catch (t: Throwable) {
-        println(t)
+    } catch (e: Exception) {
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
+
         null
     }
 

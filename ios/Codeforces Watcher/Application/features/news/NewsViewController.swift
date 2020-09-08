@@ -67,7 +67,7 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.separatorStyle = .none
         }
 
-        [CommentTableViewCell.self, BlogEntryTableViewCell.self, NoItemsTableViewCell.self, PinnedPostTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
+        [CommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self, PinnedPostTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
         tableAdapter.onNewsClick = { link, shareText, onOpen, onShare in
             let webViewController = WebViewController().apply {
@@ -82,7 +82,7 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         tableView.refreshControl = refreshControl
 
         refreshControl.run {
-            $0.addTarget(self, action: #selector(refreshActions(_:)), for: .valueChanged)
+            $0.addTarget(self, action: #selector(refreshNews(_:)), for: .valueChanged)
             $0.tintColor = Palette.colorPrimaryDark
         }
     }
@@ -140,7 +140,8 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         analyticsControler.logShareApp()
     }
 
-    @objc private func refreshActions(_ sender: Any) {
+    @objc private func refreshNews(_ sender: Any) {
+        analyticsControler.logRefreshingData(refreshScreen: .news)
         store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: true, language: "locale".localized))
     }
 }

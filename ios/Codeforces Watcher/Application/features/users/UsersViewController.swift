@@ -182,6 +182,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     
     @objc func refreshUsers() {
         store.dispatch(action: UsersRequests.FetchUsers(source: Source.user, language: "locale".localized))
+        analyticsControler.logRefreshingData(refreshScreen: .users)
     }
     
     override func fabButtonTapped() {

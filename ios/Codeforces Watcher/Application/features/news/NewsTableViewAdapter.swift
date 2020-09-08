@@ -34,7 +34,7 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (news.isEmpty) {
             return tableView.dequeueReusableCell(cellType: NoItemsTableViewCell.self).apply {
-                $0.bind(imageName: "noItemsImage", explanation: "actions_explanation")
+                $0.bind(imageName: "noItemsImage", explanation: "news_explanation")
             }
         }
         
@@ -48,7 +48,7 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
                 $0.bind(news)
             }
         case let news as News.Post:
-            return tableView.dequeueReusableCell(cellType: BlogEntryTableViewCell.self).apply {
+            return tableView.dequeueReusableCell(cellType: PostTableViewCell.self).apply {
                 $0.bind(news)
             }
         default:
@@ -61,32 +61,28 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
             return
         }
         
-        var link = "", title = "", onOpen: () -> (), onShare: () -> () = { }
-        
         switch(news[indexPath.row]) {
         case let news as News.PinnedPost:
-            (link, title, onOpen) = (news.link, news.title, { analyticsControler.logPinnedPostOpened() })
+            let shareText = buildShareText(news.title.beautify(), news.link)
+            let onOpen = { analyticsControler.logPinnedPostOpened() }
+            let onShare = { analyticsControler.logShareComment() }
+            
+            onNewsClick(news.link, shareText, onOpen, onShare)
         case let news as News.Comment:
-            (link, title, onOpen, onShare) = (
-                news.link,
-                news.title,
-                { analyticsControler.logActionOpened() },
-                { analyticsControler.logShareComment() }
-            )
+            let shareText = buildShareText(news.title.beautify(), news.link)
+            let onOpen = { analyticsControler.logActionOpened() }
+            let onShare = { analyticsControler.logShareComment() }
+            
+            onNewsClick(news.link, shareText, onOpen, onShare)
         case let news as News.Post:
-            (link, title, onOpen, onShare) = (
-                news.link,
-                news.title,
-                { analyticsControler.logActionOpened() },
-                { analyticsControler.logShareComment() }
-            )
+            let shareText = buildShareText(news.title.beautify(), news.link)
+            let onOpen = { analyticsControler.logActionOpened() }
+            let onShare = { analyticsControler.logShareComment() }
+            
+            onNewsClick(news.link, shareText, onOpen, onShare)
         default:
             return
         }
-
-        let shareText = buildShareText(title.beautify(), link)
-
-        onNewsClick(link, shareText, onOpen, onShare)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

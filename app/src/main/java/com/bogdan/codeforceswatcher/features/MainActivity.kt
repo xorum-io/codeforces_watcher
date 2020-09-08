@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity() {
 
         USERS(R.string.empty, R.id.navUsers),
         CONTESTS(R.string.contests, R.id.navContests),
-        ACTIONS(R.string.news, R.id.navActions),
+        ACTIONS(R.string.news, R.id.navNews),
         PROBLEMS(R.string.problems, R.id.navProblems);
 
         companion object {

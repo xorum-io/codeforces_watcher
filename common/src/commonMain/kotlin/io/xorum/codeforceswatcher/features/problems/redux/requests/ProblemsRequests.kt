@@ -14,8 +14,6 @@ class ProblemsRequests {
     ) : Request() {
 
         override suspend fun execute() {
-            analyticsController.logRefreshingData(RefreshScreen.PROBLEMS)
-
             if (!isInitializedByUser) delay(1000)
 
             val problemsEn = codeforcesRepository.getProblems("en")?.result?.problems

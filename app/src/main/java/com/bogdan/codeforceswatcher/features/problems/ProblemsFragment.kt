@@ -73,6 +73,7 @@ class ProblemsFragment : Fragment(), StoreSubscriber<ProblemsState>, SwipeRefres
 
     override fun onRefresh() {
         store.dispatch(ProblemsRequests.FetchProblems(true))
+        analyticsController.logRefreshingData(RefreshScreen.PROBLEMS)
     }
 
     override fun onStart() {

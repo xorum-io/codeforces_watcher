@@ -22,7 +22,6 @@ class UsersRequests {
     ) : Request() {
 
         override suspend fun execute() {
-            analyticsController.logRefreshingData(RefreshScreen.USERS)
             // Use this delay because actions, problems and contests requests managed to work out(and Codeforces didn't block them)
             if (source == Source.BACKGROUND) delay(1500)
             val users = store.state.users.users

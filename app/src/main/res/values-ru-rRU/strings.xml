@@ -49,7 +49,7 @@ Codeforces WatchR позволяет:
 5. Сортировка пользователей по рейтингу и дате последнего участия.
 
 Загружайте прямо сейчас на Google Play - https://play.google.com/store/apps/details?id=com.bogdan.codeforceswatcher"</string>
-    <string name="actions_on_the_way">Свежайшие новости на пути к вашему устройству…</string>
+    <string name="news_on_the_way">Свежайшие новости на пути к вашему устройству…</string>
     <string name="problems_on_the_way">Задачи на пути к вашему устройству…</string>
     <string name="created_or_updated_text">Создан или обновлен текст, нажмите, чтобы увидеть детали…</string>
     <string name="search_for_problems">Поиск задач…</string>

@@ -41,7 +41,7 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
     private fun buildNewsItems(news: List<News>) = news.map {
         when (it) {
             is News.Comment -> NewsItem.CommentItem(it)
-            is News.Post -> NewsItem.BlogEntryItem(it)
+            is News.Post -> NewsItem.PostItem(it)
             is News.PinnedPost -> NewsItem.PinnedItem(it)
         }
     }
@@ -66,9 +66,8 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
                 return@filter if (it is News.PinnedPost) settings.readLastPinnedPostLink() != it.link else true
             }
 
-            val actionItems = buildNewsItems(news)
-
-            items.addAll(actionItems)
+            val newsItems = buildNewsItems(news)
+            items.addAll(newsItems)
 
             newsAdapter.setItems(items)
         }
@@ -76,13 +75,14 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
 
     override fun onRefresh() {
         store.dispatch(NewsRequests.FetchNews(true, Locale.getDefault().language))
+        analyticsController.logRefreshingData(RefreshScreen.NEWS)
     }
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.fragment_actions, container, false)
+    ): View = inflater.inflate(R.layout.fragment_news, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -9,6 +9,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.xorum.codeforceswatcher.network.responses.NewsResponse
 import io.xorum.codeforceswatcher.redux.analyticsController
+import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.UnstableDefault
 
 internal class BackendApiClient {
@@ -19,9 +20,11 @@ internal class BackendApiClient {
         makeBackendApiClient.get<NewsResponse>(path = "news") {
             parameter("lang", lang)
         }
-    } catch (t: Throwable) {
+    } catch (e: Exception) {
         analyticsController.logFetchNewsFailure()
-        println(t)
+        analyticsController.logError(e.stringify())
+        e.printStackTrace()
+
         null
     }
 

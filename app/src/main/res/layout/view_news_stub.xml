@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/fragment_actions_stub"
+        layout="@layout/fragment_news_stub"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

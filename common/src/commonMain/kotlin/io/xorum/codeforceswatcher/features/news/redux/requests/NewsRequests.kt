@@ -16,7 +16,6 @@ class NewsRequests {
 
         override suspend fun execute() {
             analyticsController.logFetchNews()
-            analyticsController.logRefreshingData(RefreshScreen.NEWS)
 
             val response = backendApiClient.getNews(lang = language.defineLang())
             response?.news?.let { news ->
@@ -36,6 +35,7 @@ class NewsRequests {
     }
 
     class RemovePinnedPost(val link: String) : Request() {
+
         override suspend fun execute() {
             analyticsController.logPinnedPostClosed()
             settings.writeLastPinnedPostLink(link)

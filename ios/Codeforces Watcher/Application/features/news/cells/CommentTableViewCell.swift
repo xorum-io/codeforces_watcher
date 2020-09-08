@@ -1,5 +1,5 @@
 //
-//  ActionsCell.swift
+//  CommentTableViewCell.swift
 //  Codeforces Watcher
 //
 //  Created by Den Matyash on 1/8/20.

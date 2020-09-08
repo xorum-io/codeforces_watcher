@@ -157,6 +157,7 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
 
     @objc private func refreshProblems(_ sender: Any) {
         fetchProblems()
+        analyticsControler.logRefreshingData(refreshScreen: .problems)
     }
 
     private func fetchProblems() {

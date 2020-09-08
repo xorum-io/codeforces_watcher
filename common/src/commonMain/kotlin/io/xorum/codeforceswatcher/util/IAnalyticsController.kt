@@ -37,4 +37,6 @@ interface IAnalyticsController {
     fun logContestOpened()
 
     fun logContestShared()
+
+    fun logError(message: String)
 }

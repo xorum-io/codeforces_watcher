@@ -17,8 +17,6 @@ class ContestsRequests {
     ) : Request() {
 
         override suspend fun execute() {
-            analyticsController.logRefreshingData(RefreshScreen.CONTESTS)
-
             val responseCodeforces = codeforcesRepository.getCodeforcesContests(language.defineLang())
             val responseKontests = kontestsRepository.getAllContests()
 

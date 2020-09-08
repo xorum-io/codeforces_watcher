@@ -30,7 +30,7 @@ sealed class NewsItem {
         }
     }
 
-    class BlogEntryItem(post: News.Post) : NewsItem() {
+    class PostItem(post: News.Post) : NewsItem() {
 
         val authorHandle: CharSequence = colorTextByUserRank(post.author.handle, post.author.rank)
         val blogTitle: String = post.title.convertFromHtml()
@@ -40,11 +40,13 @@ sealed class NewsItem {
     }
 
     class PinnedItem(pinnedPost: News.PinnedPost) : NewsItem() {
+
         val title = pinnedPost.title
         val link = pinnedPost.link
     }
 
     class FeedbackItem(feedUIModel: FeedUIModel) : NewsItem() {
+
         val textPositiveButton = feedUIModel.textPositiveButton
         val textNegativeButton = feedUIModel.textNegativeButton
         val textTitle = feedUIModel.textTitle

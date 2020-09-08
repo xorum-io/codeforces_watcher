@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso
 import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
-import kotlinx.android.synthetic.main.view_blog_entry_item.view.*
+import kotlinx.android.synthetic.main.view_post_item.view.*
 import kotlinx.android.synthetic.main.view_comment_item.view.*
 import kotlinx.android.synthetic.main.view_comment_item.view.tvContent
 import kotlinx.android.synthetic.main.view_comment_item.view.tvHandleAndTime
@@ -41,7 +41,7 @@ class NewsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             when (viewType) {
                 STUB_VIEW_TYPE -> {
-                    val layout = LayoutInflater.from(context).inflate(R.layout.view_actions_stub, parent, false)
+                    val layout = LayoutInflater.from(context).inflate(R.layout.view_news_stub, parent, false)
                     StubViewHolder(layout)
                 }
                 COMMENT_VIEW_TYPE -> {
@@ -56,9 +56,9 @@ class NewsAdapter(
                     val layout = LayoutInflater.from(context).inflate(R.layout.view_feedback_card_view, parent, false)
                     FeedbackItemViewHolder(layout)
                 }
-                BLOG_ENTRY_VIEW_TYPE -> {
-                    val layout = LayoutInflater.from(context).inflate(R.layout.view_blog_entry_item, parent, false)
-                    BlogEntryViewHolder(layout)
+                POST_VIEW_TYPE -> {
+                    val layout = LayoutInflater.from(context).inflate(R.layout.view_post_item, parent, false)
+                    PostViewHolder(layout)
                 }
                 else -> throw IllegalStateException()
             }
@@ -69,7 +69,7 @@ class NewsAdapter(
             items[position] is NewsItem.CommentItem -> COMMENT_VIEW_TYPE
             items[position] is NewsItem.PinnedItem -> PINNED_ITEM_VIEW_TYPE
             items[position] is NewsItem.FeedbackItem -> FEEDBACK_ITEM_VIEW_TYPE
-            items[position] is NewsItem.BlogEntryItem -> BLOG_ENTRY_VIEW_TYPE
+            items[position] is NewsItem.PostItem -> POST_VIEW_TYPE
             else -> throw IllegalStateException()
         }
     }
@@ -79,7 +79,7 @@ class NewsAdapter(
             is NewsItem.Stub -> return
             is NewsItem.PinnedItem -> bindPinnedItem(viewHolder as PinnedItemViewHolder, item)
             is NewsItem.CommentItem -> bindComment(viewHolder as CommentViewHolder, item)
-            is NewsItem.BlogEntryItem -> bindBlogEntry(viewHolder as BlogEntryViewHolder, item)
+            is NewsItem.PostItem -> bindPost(viewHolder as PostViewHolder, item)
             is NewsItem.FeedbackItem -> bindFeedbackItem(viewHolder as FeedbackItemViewHolder, item)
         }
     }
@@ -99,13 +99,13 @@ class NewsAdapter(
                 .into(viewHolder.ivAvatar)
     }
 
-    private fun bindBlogEntry(viewHolder: BlogEntryViewHolder, blogEntry: NewsItem.BlogEntryItem) = with(blogEntry) {
+    private fun bindPost(viewHolder: PostViewHolder, post: NewsItem.PostItem) = with(post) {
         with(viewHolder) {
             tvTitle.text = blogTitle
             tvHandleAndTime.text = TextUtils.concat(authorHandle, " - ${PrettyTime().format(Date(createdAt * 1000))}")
             tvContent.text = CwApp.app.getString(R.string.created_or_updated_text)
             onItemClickListener = {
-                itemClickListener(blogEntry.link, blogEntry.blogTitle)
+                itemClickListener(post.link, post.blogTitle)
             }
         }
 
@@ -220,7 +220,7 @@ class NewsAdapter(
         }
     }
 
-    class BlogEntryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class PostViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvHandleAndTime: TextView = view.tvHandleAndTime
         val tvTitle: TextView = view.tvTitle
         val tvContent: TextView = view.tvContent
@@ -240,7 +240,7 @@ class NewsAdapter(
     companion object {
         const val STUB_VIEW_TYPE = 0
         const val COMMENT_VIEW_TYPE = 1
-        const val BLOG_ENTRY_VIEW_TYPE = 2
+        const val POST_VIEW_TYPE = 2
         const val PINNED_ITEM_VIEW_TYPE = 3
         const val FEEDBACK_ITEM_VIEW_TYPE = 4
     }

@@ -1,5 +1,5 @@
 //
-//  ActionsCell.swift
+//  PostTableViewCell.swift
 //  Codeforces Watcher
 //
 //  Created by Den Matyash on 1/8/20.
@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import common
 
-class BlogEntryTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell {
     
     private let cardView = CardView()
 

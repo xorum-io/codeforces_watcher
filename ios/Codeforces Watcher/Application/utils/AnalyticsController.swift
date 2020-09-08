@@ -9,11 +9,16 @@
 import Foundation
 import common
 import FirebaseAnalytics
+import Crashlytics
 
 class AnalyticsController: IAnalyticsController {
     
     func logFetchNews() {
         Analytics.logEvent("actions_fetch", parameters: [:])
+    }
+    
+    func logError(message: String) {
+        Crashlytics.sharedInstance().recordError(CrashlyticsError(message: message))
     }
     
     func logFetchNewsFailure() {
