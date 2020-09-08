@@ -12,7 +12,9 @@ import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.R.color.bright_green
 import com.bogdan.codeforceswatcher.R.color.red
 import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import io.xorum.codeforceswatcher.util.avatar
+import kotlinx.android.synthetic.main.activity_user.*
 import kotlinx.android.synthetic.main.view_user_item.view.*
 
 class UsersAdapter(
@@ -55,6 +57,7 @@ class UsersAdapter(
                         .placeholder(R.drawable.no_avatar)
                         .into(ivAvatar)
 
+                (ivAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, rankColor)
                 tvHandle.text = handle
                 tvRating.text = rating
                 tvDateLastRatingUpdate.text = dateOfLastRatingUpdate

@@ -25,6 +25,7 @@ sealed class UserItem {
                 ?: user.ratingChanges.lastOrNull()?.newRating?.toString().orEmpty(), user.rank)
         var lastRatingUpdate: String = ""
         var dateOfLastRatingUpdate: String = CwApp.app.getString(R.string.no_rating_update)
+        val rankColor: Int = getColorByUserRank(user.rank)
 
         init {
             user.ratingChanges.lastOrNull()?.let { ratingChange ->
@@ -47,39 +48,41 @@ sealed class UserItem {
     object Stub : UserItem()
 }
 
+fun getColorByUserRank(rank: String?) = when(rank) {
+    null -> R.color.black
+
+    "newbie" -> R.color.gray
+    "новичок" -> R.color.gray
+
+    "pupil" -> R.color.green
+    "ученик" -> R.color.green
+
+    "specialist" -> R.color.blue_green
+    "специалист" -> R.color.blue_green
+
+    "expert" -> R.color.blue
+    "эксперт" -> R.color.blue
+
+    "candidate master" -> R.color.purple
+    "кандидат в мастера" -> R.color.purple
+
+    "master" -> R.color.orange
+    "мастер" -> R.color.orange
+
+    "international master" -> R.color.orange
+    "международный мастер" -> R.color.orange
+
+    "grandmaster" -> R.color.red
+    "гроссмейстер" -> R.color.red
+
+    "international grandmaster" -> R.color.red
+    "международный гроссмейстер" -> R.color.red
+
+    else -> R.color.gray
+}
+
 fun colorTextByUserRank(text: String, rank: String?): SpannableString {
-    val color = when (rank) {
-        null -> R.color.black
-
-        "newbie" -> R.color.gray
-        "новичок" -> R.color.gray
-
-        "pupil" -> R.color.green
-        "ученик" -> R.color.green
-
-        "specialist" -> R.color.blue_green
-        "специалист" -> R.color.blue_green
-
-        "expert" -> R.color.blue
-        "эксперт" -> R.color.blue
-
-        "candidate master" -> R.color.purple
-        "кандидат в мастера" -> R.color.purple
-
-        "master" -> R.color.orange
-        "мастер" -> R.color.orange
-
-        "international master" -> R.color.orange
-        "международный мастер" -> R.color.orange
-
-        "grandmaster" -> R.color.red
-        "гроссмейстер" -> R.color.red
-
-        "international grandmaster" -> R.color.red
-        "международный гроссмейстер" -> R.color.red
-
-        else -> R.color.gray
-    }
+    val color = getColorByUserRank(rank)
 
     return if (listOf("legendary grandmaster", "легендарный гроссмейстер").contains(rank)) {
         val colorText = "<font color=black>${text[0]}</font><font color=red>${
