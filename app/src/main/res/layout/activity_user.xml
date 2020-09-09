@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -16,43 +16,68 @@
             android:id="@+id/ivUserAvatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            app:civ_border_width="1dp" />
+            app:civ_border_width="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvRank"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:text="Master"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/ivUserAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvRank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp" />
+        <TextView
+            android:id="@+id/tvUserHandle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Karavaev1101"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/tvRank"
+            app:layout_constraintTop_toBottomOf="@id/tvRank" />
 
-            <TextView
-                android:id="@+id/tvUserHandle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp" />
+        <ImageView
+            android:id="@+id/ivRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_rating"
+            app:layout_constraintBottom_toTopOf="@id/ivStar"
+            app:layout_constraintStart_toStartOf="@id/ivStar" />
 
+        <TextView
+            android:id="@+id/tvUserRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/rating"
+            app:layout_constraintBottom_toBottomOf="@id/ivRating"
+            app:layout_constraintStart_toEndOf="@id/ivRating"
+            app:layout_constraintTop_toTopOf="@id/ivRating" />
 
-            <TextView
-                android:id="@+id/tvCurrentRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp" />
+        <ImageView
+            android:id="@+id/ivStar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_small_star"
+            app:layout_constraintBottom_toBottomOf="@id/ivUserAvatar"
+            app:layout_constraintStart_toEndOf="@id/ivUserAvatar" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/contribution"
+            app:layout_constraintBottom_toBottomOf="@id/ivStar"
+            app:layout_constraintStart_toEndOf="@id/ivStar"
+            app:layout_constraintTop_toTopOf="@id/ivStar" />
 
-            <TextView
-                android:id="@+id/tvMaxRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tvRatingChanges"
@@ -61,7 +86,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/rating_changes"
-        android:textSize="20sp" />
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"

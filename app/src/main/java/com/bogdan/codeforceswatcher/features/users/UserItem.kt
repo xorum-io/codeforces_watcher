@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
+import com.bogdan.codeforceswatcher.util.colorSubstring
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.abs
@@ -90,9 +91,6 @@ fun colorTextByUserRank(text: String, rank: String?): SpannableString {
         }</font>"
         SpannableString(HtmlCompat.fromHtml(colorText, HtmlCompat.FROM_HTML_MODE_LEGACY))
     } else {
-        val colorText = SpannableString(text)
-        val foregroundColorSpan = ForegroundColorSpan(ContextCompat.getColor(CwApp.app, color))
-        colorText.setSpan(foregroundColorSpan, 0, text.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        colorText
+        return SpannableString(text).apply { colorSubstring(0, text.length, color) }
     }
 }

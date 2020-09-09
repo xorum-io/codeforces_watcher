@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">Codeforces WatchR</string>
-    <string name="rank">Rank: %1$s</string>
-    <string name="name">Name: %1$s</string>
-    <string name="cur_rating">Current Rating: %1$s</string>
-    <string name="max_rating">Max Rating: %1$s</string>
     <string name="last_rating_update">Last rating update: %1$s</string>
     <string name="no_rating_update">No rating update</string>
     <string name="none">None</string>
@@ -74,4 +70,7 @@ Download it now on Google Play - https://play.google.com/store/apps/details?id=c
     <string name="delete_user">Delete user</string>
     <string name="delete_user_explanation">"Are you sure you want to delete %1$s?"</string>
     <string name="ok">OK</string>
+
+    <string name="rating">Rating: %1$s (max. %2$s)</string>
+    <string name="contribution">Contribution: %1$s</string>
 </resources>

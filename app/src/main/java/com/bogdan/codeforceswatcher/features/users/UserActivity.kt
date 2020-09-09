@@ -3,6 +3,7 @@ package com.bogdan.codeforceswatcher.features.users
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableString
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.util.CustomMarkerView
+import com.bogdan.codeforceswatcher.util.colorSubstring
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -22,6 +24,7 @@ import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.avatar
 import kotlinx.android.synthetic.main.activity_user.*
+import kotlinx.android.synthetic.main.activity_user.tvUserHandle
 import java.lang.IllegalStateException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -58,38 +61,53 @@ class UserActivity : AppCompatActivity() {
 
     private fun displayUser() {
         tvRank.text = user.buildRank()
-        tvCurrentRating.text = user.buildRating()
-        tvUserHandle.text = getString(R.string.name, user.buildName())
-        tvMaxRating.text = user.buildMaxRating()
+        tvUserRating.text = user.buildRating()
+        tvUserHandle.text = user.buildName()
         (ivUserAvatar as CircleImageView).borderColor = ContextCompat.getColor(this, getColorByUserRank(user.rank))
 
         Picasso.get().load(avatar(user.avatar)).into(ivUserAvatar)
-        title = user.handle
+        title = user.buildScreenTitle()
     }
 
-    private fun User.buildRank() = if (rank == null) {
-        getString(R.string.rank, getString(R.string.none))
-    } else {
-        getString(R.string.rank, rank)
+    private fun User.buildRank() = rank?.let { colorTextByUserRank(it.capitalize(), it) }
+            ?: getString(R.string.none)
+
+    private fun User.buildRating(): SpannableString {
+        val str = SpannableString(
+                getString(
+                        R.string.rating,
+                        rating?.toString() ?: getString(R.string.none),
+                        maxRating?.toString() ?: getString(R.string.none)
+                )
+        )
+
+        rating?.let {
+            val startIndex = str.indexOf(it.toString())
+            val color = getColorByUserRank(rank)
+            str.colorSubstring(startIndex, startIndex + it.toString().length, color)
+        }
+
+        maxRating?.let {
+            val startIndex = str.lastIndexOf(it.toString())
+            val color = getColorByUserRank(maxRank)
+            str.colorSubstring(startIndex, startIndex + it.toString().length, color)
+        }
+
+        return str
     }
 
-    private fun User.buildRating() = if (rating == null) {
-        getString(R.string.cur_rating, getString(R.string.none))
-    } else {
-        getString(R.string.cur_rating, rating.toString())
-    }
-
-    private fun User.buildName() = when {
+    private fun User.buildName() = colorTextByUserRank(when {
         firstName == null && lastName == null -> getString(R.string.none)
-        firstName == null -> lastName
-        lastName == null -> firstName
+        firstName == null -> lastName!!
+        lastName == null -> firstName!!
         else -> "$firstName $lastName"
-    }
+    }, rank)
 
-    private fun User.buildMaxRating() = if (maxRating == null) {
-        getString(R.string.max_rating, getString(R.string.none))
-    } else {
-        getString(R.string.max_rating, maxRating.toString())
+    private fun User.buildScreenTitle() = when {
+        firstName == null && lastName == null -> handle
+        firstName == null -> lastName!!
+        lastName == null -> firstName!!
+        else -> "$firstName $lastName"
     }
 
     private fun displayChart() {
@@ -156,3 +174,4 @@ class UserActivity : AppCompatActivity() {
         }
     }
 }
+
