@@ -49,7 +49,7 @@ sealed class UserItem {
     object Stub : UserItem()
 }
 
-fun getColorByUserRank(rank: String?) = when(rank) {
+fun getColorByUserRank(rank: String?) = when (rank) {
     null -> R.color.black
 
     "newbie" -> R.color.gray
@@ -79,18 +79,17 @@ fun getColorByUserRank(rank: String?) = when(rank) {
     "international grandmaster" -> R.color.red
     "международный гроссмейстер" -> R.color.red
 
+    "legendary grandmaster" -> R.color.red
+    "легендарный гроссмейстер" -> R.color.red
+
     else -> R.color.gray
 }
 
-fun colorTextByUserRank(text: String, rank: String?): SpannableString {
-    val color = getColorByUserRank(rank)
-
-    return if (listOf("legendary grandmaster", "легендарный гроссмейстер").contains(rank)) {
-        val colorText = "<font color=black>${text[0]}</font><font color=red>${
+fun colorTextByUserRank(text: String, rank: String?) = if (listOf("legendary grandmaster", "легендарный гроссмейстер").contains(rank)) {
+    val colorText = "<font color=black>${text[0]}</font><font color=red>${
         text.subSequence(1, text.length)
-        }</font>"
-        SpannableString(HtmlCompat.fromHtml(colorText, HtmlCompat.FROM_HTML_MODE_LEGACY))
-    } else {
-        return SpannableString(text).apply { colorSubstring(0, text.length, color) }
-    }
+    }</font>"
+    SpannableString(HtmlCompat.fromHtml(colorText, HtmlCompat.FROM_HTML_MODE_LEGACY))
+} else SpannableString(text).apply {
+    colorSubstring(0, text.length, getColorByUserRank(rank))
 }

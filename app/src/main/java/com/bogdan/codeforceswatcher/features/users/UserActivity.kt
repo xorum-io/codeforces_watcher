@@ -63,6 +63,7 @@ class UserActivity : AppCompatActivity() {
         tvRank.text = user.buildRank()
         tvUserRating.text = user.buildRating()
         tvUserHandle.text = user.buildName()
+        tvContribution.text = user.buildContribution()
         (ivUserAvatar as CircleImageView).borderColor = ContextCompat.getColor(this, getColorByUserRank(user.rank))
 
         Picasso.get().load(avatar(user.avatar)).into(ivUserAvatar)
@@ -72,28 +73,24 @@ class UserActivity : AppCompatActivity() {
     private fun User.buildRank() = rank?.let { colorTextByUserRank(it.capitalize(), it) }
             ?: getString(R.string.none)
 
-    private fun User.buildRating(): SpannableString {
-        val str = SpannableString(
-                getString(
-                        R.string.rating,
-                        rating?.toString() ?: getString(R.string.none),
-                        maxRating?.toString() ?: getString(R.string.none)
-                )
-        )
-
+    private fun User.buildRating() = SpannableString(
+            getString(
+                    R.string.rating,
+                    rating?.toString() ?: getString(R.string.none),
+                    maxRating?.toString() ?: getString(R.string.none)
+            )
+    ).apply {
         rating?.let {
-            val startIndex = str.indexOf(it.toString())
+            val startIndex = indexOf(it.toString())
             val color = getColorByUserRank(rank)
-            str.colorSubstring(startIndex, startIndex + it.toString().length, color)
+            colorSubstring(startIndex, startIndex + it.toString().length, color)
         }
 
         maxRating?.let {
-            val startIndex = str.lastIndexOf(it.toString())
+            val startIndex = lastIndexOf(it.toString())
             val color = getColorByUserRank(maxRank)
-            str.colorSubstring(startIndex, startIndex + it.toString().length, color)
+            colorSubstring(startIndex, startIndex + it.toString().length, color)
         }
-
-        return str
     }
 
     private fun User.buildName() = colorTextByUserRank(when {
@@ -102,6 +99,17 @@ class UserActivity : AppCompatActivity() {
         lastName == null -> firstName!!
         else -> "$firstName $lastName"
     }, rank)
+
+    private fun User.buildContribution() = contribution?.let { contribution ->
+        val contributionString = if (contribution > 0) "+$contribution" else contribution.toString()
+        SpannableString(
+                getString(R.string.contribution, contributionString)
+        ).apply {
+            val startIndex = indexOf(contributionString)
+            val color = if (contribution >= 0) R.color.bright_green else R.color.red
+            colorSubstring(startIndex, startIndex + contributionString.length, color)
+        }
+    } ?: getString(R.string.none)
 
     private fun User.buildScreenTitle() = when {
         firstName == null && lastName == null -> handle
