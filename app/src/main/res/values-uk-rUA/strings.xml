@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="rank">Ранг: %1$s</string>
-    <string name="name">Iм\'я: %1$s</string>
-    <string name="cur_rating">Поточний рейтинг: %1$s</string>
-    <string name="max_rating">Макс. рейтинг: %1$s</string>
     <string name="last_rating_update">Останнє оновлення рейтингу: %1$s</string>
     <string name="no_rating_update">Немає оновлення рейтингу</string>
     <string name="none">Немає</string>
@@ -74,4 +70,7 @@ Codeforces WatchR дає можливiсть:
     <string name="delete_user">Видалити користувача</string>
     <string name="delete_user_explanation">"Ви впевнені, що хочете видалити %1$s?"</string>
     <string name="ok">OK</string>
+
+    <string name="rating">Рейтинг: %1$s (макс. %2$s)</string>
+    <string name="contribution">Внесок: %1$s</string>
 </resources>

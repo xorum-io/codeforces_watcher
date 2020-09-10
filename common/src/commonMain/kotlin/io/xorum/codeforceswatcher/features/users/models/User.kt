@@ -17,7 +17,8 @@ data class User(
         val maxRating: Int? = null,
         val firstName: String? = null,
         val lastName: String? = null,
-        var ratingChanges: List<RatingChange> = listOf()
+        var ratingChanges: List<RatingChange> = listOf(),
+        val contribution: Long? = null
 ) {
     companion object {
 
@@ -33,7 +34,8 @@ data class User(
                     maxRating = dbUser.maxRating?.toInt(),
                     firstName = dbUser.firstName,
                     lastName = dbUser.lastName,
-                    ratingChanges = serializer.parse(RatingChange.serializer().list, dbUser.ratingChanges)
+                    ratingChanges = serializer.parse(RatingChange.serializer().list, dbUser.ratingChanges),
+                    contribution = dbUser.contribution
             )
         }
     }

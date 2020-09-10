@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
+import com.bogdan.codeforceswatcher.util.colorSubstring
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.abs
@@ -48,7 +49,7 @@ sealed class UserItem {
     object Stub : UserItem()
 }
 
-fun getColorByUserRank(rank: String?) = when(rank) {
+fun getColorByUserRank(rank: String?) = when (rank) {
     null -> R.color.black
 
     "newbie" -> R.color.gray
@@ -78,21 +79,17 @@ fun getColorByUserRank(rank: String?) = when(rank) {
     "international grandmaster" -> R.color.red
     "международный гроссмейстер" -> R.color.red
 
+    "legendary grandmaster" -> R.color.red
+    "легендарный гроссмейстер" -> R.color.red
+
     else -> R.color.gray
 }
 
-fun colorTextByUserRank(text: String, rank: String?): SpannableString {
-    val color = getColorByUserRank(rank)
-
-    return if (listOf("legendary grandmaster", "легендарный гроссмейстер").contains(rank)) {
-        val colorText = "<font color=black>${text[0]}</font><font color=red>${
+fun colorTextByUserRank(text: String, rank: String?) = if (listOf("legendary grandmaster", "легендарный гроссмейстер").contains(rank)) {
+    val colorText = "<font color=black>${text[0]}</font><font color=red>${
         text.subSequence(1, text.length)
-        }</font>"
-        SpannableString(HtmlCompat.fromHtml(colorText, HtmlCompat.FROM_HTML_MODE_LEGACY))
-    } else {
-        val colorText = SpannableString(text)
-        val foregroundColorSpan = ForegroundColorSpan(ContextCompat.getColor(CwApp.app, color))
-        colorText.setSpan(foregroundColorSpan, 0, text.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        colorText
-    }
+    }</font>"
+    SpannableString(HtmlCompat.fromHtml(colorText, HtmlCompat.FROM_HTML_MODE_LEGACY))
+} else SpannableString(text).apply {
+    colorSubstring(0, text.length, getColorByUserRank(rank))
 }

@@ -1,8 +1,4 @@
 <resources>
-    <string name="rank">रैंक: %1$s</string>
-    <string name="name">नाम: %1$s</string>
-    <string name="cur_rating">वर्तमान रेटिंग: %1$s</string>
-    <string name="max_rating">अधिकतम रेटिंग: %1$s</string>
     <string name="last_rating_update">अंतिम रेटिंग बदलाव: %1$s</string>
     <string name="no_rating_update">कोई रेटिंग परिवर्तन नहीं</string>
     <string name="none">कोई परिणाम नहीं</string>
@@ -70,4 +66,7 @@ Codeforces WatchR के साथ आप:
     <string name="delete_user">उपभोक्ता मिटायें</string>
     <string name="delete_user_explanation">"क्या आप पक्का इसे हटाना चाहते हैं %1$s?"</string>
     <string name="ok">ओके</string>
+
+    <string name="rating">रेटिंग: %1$s (अधिकतम रेटिंग %2$s)</string>
+    <string name="contribution">योगदान: %1$s</string>
 </resources>
