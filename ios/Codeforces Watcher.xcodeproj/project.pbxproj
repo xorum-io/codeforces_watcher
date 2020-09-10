@@ -22,6 +22,8 @@
 		33524AE3A0B0A7C674038501 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3352498A40339DF8C6590EF4 /* UITableViewCell+Extension.swift */; };
 		33524B39CED3D72F41F01C9B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3352449F83A3B6FE1CA12CE9 /* CardView.swift */; };
 		33524BC0E57CE4F3A2D1EC04 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335245916F723E42B7318479 /* UIColor+Extension.swift */; };
+		33524BECFB26356549915B9E /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335248DC66E099A4EF3D47FD /* NSMutableAttributedString+Extension.swift */; };
+		33524D2E524696176F1E52C4 /* StringOccurrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3352475317FAF15F8D51972A /* StringOccurrence.swift */; };
 		33524D7137C7D47F8BE95703 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33524702A30B2AD59D2D359E /* CommentTableViewCell.swift */; };
 		33524DD18E818A18FEE9B1E8 /* ContestsRulesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335241B8E54D2F60B3D7E581 /* ContestsRulesCardView.swift */; };
 		33524E698A1B05C3FAB1E720 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335243CB89037FB5B889F9CD /* Font.swift */; };
@@ -110,7 +112,9 @@
 		335245D036E21019422CD972 /* ScopeFunc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeFunc.swift; sourceTree = "<group>"; };
 		3352466D562397EB9C2CE83E /* Base */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
 		33524702A30B2AD59D2D359E /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		3352475317FAF15F8D51972A /* StringOccurrence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringOccurrence.swift; sourceTree = "<group>"; };
 		335247DA370CF1DDFB7D2F20 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		335248DC66E099A4EF3D47FD /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		3352491960327B2FC4E36E63 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3352491D524E714A6252E83E /* NewsTableViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewAdapter.swift; sourceTree = "<group>"; };
 		335249729ED261CE9723E0AA /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				63EAA0D8244047DF00C234A8 /* Platform+Extension.swift */,
 				63B343012449C16000734CC5 /* UIViewController+Extension.swift */,
 				335247F739C05D9BDD4FD646 /* tableView */,
+				335248DC66E099A4EF3D47FD /* NSMutableAttributedString+Extension.swift */,
+				3352475317FAF15F8D51972A /* StringOccurrence.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -925,6 +931,8 @@
 				63EAA0EA244474DC00C234A8 /* SubheadingLabel.swift in Sources */,
 				63B343072449E3BE00734CC5 /* ChartMarker.swift in Sources */,
 				33524DD18E818A18FEE9B1E8 /* ContestsRulesCardView.swift in Sources */,
+				33524BECFB26356549915B9E /* NSMutableAttributedString+Extension.swift in Sources */,
+				33524D2E524696176F1E52C4 /* StringOccurrence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

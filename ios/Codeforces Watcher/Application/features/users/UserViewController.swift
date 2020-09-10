@@ -13,13 +13,26 @@ import Charts
 class UserViewController: UIViewControllerWithCross {
     
     private let userImage = CircleImageView()
-    private let rankLabel = BodyLabel()
-    private let nameLabel = BodyLabel()
-    private let currentRatingLabel = BodyLabel()
-    private let maxRatingLabel = BodyLabel()
+    private let rankLabel = BodyLabel().apply {
+        $0.font = Font.textBody
+    }
+    private let handleLabel = BodyLabel().apply {
+        $0.font = Font.textHeading
+    }
+    private let ratingIcon = UIImageView(image: UIImage(named: "ratingIcon"))
+    private let ratingLabel = BodyLabel().apply {
+        $0.textColor = Palette.darkGray
+        $0.font = Font.textSubheadingBig
+    }
+    private let starIcon = UIImageView(image: UIImage(named: "starIcon"))
+    private let contributionLabel = BodyLabel().apply {
+        $0.textColor = Palette.darkGray
+        $0.font = Font.textSubheadingBig
+    }
     private let ratingChangesLabel = HeadingLabel().apply {
-        $0.text = "Rating changes".localized
-        $0.textColor = Palette.gray
+        $0.text = "Rating Changes".localized
+        $0.textColor = Palette.black
+        $0.font = Font.textBody
     }
     private let lineChartView = LineChartView()
     
@@ -42,11 +55,13 @@ class UserViewController: UIViewControllerWithCross {
     }
     
     private func setupView() {
-        title = user.handle
+        let userName = "\(user.firstName ?? "") \(user.lastName ?? "")"
+        title = (userName != " " ? userName : user.handle)
+        
         view.backgroundColor = Palette.white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "removeIcon"), 
+            image: UIImage(named: "removeIcon"),
             style: .plain, 
             target: self,
             action: #selector(showDeleteUserAlert)
@@ -122,7 +137,7 @@ class UserViewController: UIViewControllerWithCross {
     }
     
     private func buildViewTree() {
-        [userImage, rankLabel, nameLabel, currentRatingLabel, maxRatingLabel, ratingChangesLabel, lineChartView].forEach(view.addSubview)
+        [userImage, handleLabel, rankLabel, ratingIcon, ratingLabel, starIcon, contributionLabel, ratingChangesLabel, lineChartView].forEach(view.addSubview)
     }
     
     private func setConstraints() {
@@ -134,23 +149,37 @@ class UserViewController: UIViewControllerWithCross {
         }
         
         rankLabel.run {
-            $0.leadingToTrailing(of: userImage, offset: 20)
-            $0.top(to: userImage, offset: 4)
+            $0.leadingToTrailing(of: userImage, offset: 16)
+            $0.top(to: userImage, offset: 0)
         }
         
-        nameLabel.run {
-            $0.topToBottom(of: rankLabel, offset: 2)
+        handleLabel.run {
+            $0.topToBottom(of: rankLabel, offset: 0)
             $0.leading(to: rankLabel)
         }
         
-        currentRatingLabel.run {
-            $0.topToBottom(of: nameLabel, offset: 2)
+        ratingIcon.run {
+            $0.width(16)
+            $0.height(16)
+            $0.topToBottom(of: handleLabel, offset: 10)
+            $0.leading(to: rankLabel)
+        }
+  
+        ratingLabel.run {
+            $0.topToBottom(of: handleLabel, offset: 11)
+            $0.leftToRight(of: ratingIcon, offset: 4)
+        }
+        
+        starIcon.run {
+            $0.width(16)
+            $0.height(16)
+            $0.topToBottom(of: ratingIcon, offset: 1)
             $0.leading(to: rankLabel)
         }
         
-        maxRatingLabel.run {
-            $0.topToBottom(of: currentRatingLabel, offset: 2)
-            $0.leading(to: rankLabel)
+        contributionLabel.run {
+            $0.topToBottom(of: ratingLabel, offset: 4)
+            $0.leftToRight(of: starIcon, offset: 4)
         }
         
         ratingChangesLabel.run {
@@ -170,12 +199,86 @@ class UserViewController: UIViewControllerWithCross {
         let avatar = LinkValidatorKt.avatar(avatarLink: user.avatar)
         userImage.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
         userImage.layer.borderColor = getColorByUserRank(rank: user.rank).cgColor
+
+        rankLabel.attributedText = user.rankText
+        handleLabel.attributedText = user.handleText
+        ratingLabel.attributedText = user.ratingText
+        contributionLabel.attributedText = user.contributionText
+    }
+}
+
+ fileprivate extension User {
+    
+    private var none: NSAttributedString {
+        return NSAttributedString(string: "None".localized)
+    }
+    
+    var rankText: NSAttributedString {
+        if let rank = rank {
+            return colorTextByUserRank(text: rank.capitalized, rank: rank)
+        } else {
+            return none
+        }
+    }
+    
+    var handleText: NSAttributedString {
+        return colorTextByUserRank(text: handle, rank: rank)
+    }
+    
+    var ratingText: NSAttributedString {
+        if let rating = rating, let maxRating = maxRating {
+            return colorRating(text: "Rating".localizedFormat(args: rating, maxRating))
+        } else {
+            return none
+        }
+    }
+    
+    var contributionText: NSAttributedString {
+        if let contribution = contribution {
+            let numberSign = (contribution.intValue <= 0 ? "" : "+")
+            let resultString = "\(numberSign)\(contribution)"
+            return colorContribution(text: "Contribution".localizedFormat(args: resultString))
+        } else {
+            return none
+        }
+    }
+    
+    private func colorContribution(text: String) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(string: text)
+       
+        if let position = text.firstIndex(of: ":") {
+            let nextPosition = text.index(position, offsetBy: 2)
+
+            if let contribution = contribution {
+                let colorOfContribution = (contribution.intValue >= 0 ? Palette.brightGreen : Palette.red)
+                let location = text.distance(from: text.startIndex, to: nextPosition)
+                let length = text.distance(from: nextPosition, to: text.endIndex)
+
+                attributedText.colorSubstring(color: colorOfContribution, range: NSRange(location: location, length: length))
+            }
+        }
+
+        return attributedText
+    }
+    
+    private func colorRating(text: String) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(string: text)
+
+        let colorCurrent = getColorByUserRank(rank: rank)
+        let colorMaximum = getColorByUserRank(rank: maxRank)
         
-        let none = "None".localized
+        if let rating = rating, let maxRating = maxRating {
+            let searchCurrent = "\(rating)"
+            if let rangeCurrent = text.firstOccurrence(string: searchCurrent) {
+                attributedText.colorSubstring(color: colorCurrent, range: rangeCurrent)
+            }
+
+            let searchMaximum = "\(maxRating)"
+            if let rangeMaximum = text.lastOccurrence(string: searchMaximum) {
+                attributedText.colorSubstring(color: colorMaximum, range: rangeMaximum)
+            }
+        }
         
-        rankLabel.text = "Rank".localizedFormat(args: user.rank ?? none)
-        nameLabel.text = "Name".localizedFormat(args: user.firstName ?? "", user.lastName ?? none)
-        currentRatingLabel.text = "Current rating".localizedFormat(args: user.rating ?? none)
-        maxRatingLabel.text = "Max rating".localizedFormat(args: user.maxRating ?? none)
+        return attributedText
     }
 }
