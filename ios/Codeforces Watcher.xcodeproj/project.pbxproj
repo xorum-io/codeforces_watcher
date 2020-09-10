@@ -73,6 +73,8 @@
 		63F02C022462EF1D00B1CD2C /* FeedbackCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F02C012462EF1D00B1CD2C /* FeedbackCardView.swift */; };
 		63F02C042462F0B000B1CD2C /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F02C032462F0B000B1CD2C /* SmallButton.swift */; };
 		63FB270923E1AA50005F19F1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB270823E1AA50005F19F1 /* WebViewController.swift */; };
+		6A174799250A7AE200193D86 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A174798250A7AE200193D86 /* NSMutableAttributedString+Extension.swift */; };
+		6A3FAD8C250A61B300FF3A8D /* StringOccurrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FAD8B250A61B300FF3A8D /* StringOccurrence.swift */; };
 		81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */; };
 		B1E1B3EB23C9040C006A7347 /* Pods_Codeforces_Watcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */; };
 		B1E1B3F423C91D51006A7347 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1E1B3F323C91D51006A7347 /* Assets.xcassets */; };
@@ -168,6 +170,8 @@
 		63F02C012462EF1D00B1CD2C /* FeedbackCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCardView.swift; sourceTree = "<group>"; };
 		63F02C032462F0B000B1CD2C /* SmallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallButton.swift; sourceTree = "<group>"; };
 		63FB270823E1AA50005F19F1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		6A174798250A7AE200193D86 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		6A3FAD8B250A61B300FF3A8D /* StringOccurrence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringOccurrence.swift; sourceTree = "<group>"; };
 		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E1B3E723C9033A006A7347 /* Pods_Codeforces_Watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Codeforces_Watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Codeforces_Watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,6 +246,8 @@
 				63603E6823DF2ADC00F86BC0 /* Double+Extension.swift */,
 				63EAA0D8244047DF00C234A8 /* Platform+Extension.swift */,
 				63B343012449C16000734CC5 /* UIViewController+Extension.swift */,
+				6A3FAD8B250A61B300FF3A8D /* StringOccurrence.swift */,
+				6A174798250A7AE200193D86 /* NSMutableAttributedString+Extension.swift */,
 				335247F739C05D9BDD4FD646 /* tableView */,
 			);
 			path = extensions;
@@ -854,6 +860,7 @@
 				33524D7137C7D47F8BE95703 /* CommentTableViewCell.swift in Sources */,
 				63736F2523D1F3EC001E9AB9 /* ProblemsTableViewAdapter.swift in Sources */,
 				63EAA0D0243EFF2500C234A8 /* FilterItem.swift in Sources */,
+				6A3FAD8C250A61B300FF3A8D /* StringOccurrence.swift in Sources */,
 				33524585031C11024879680D /* BlogEntryTableViewCell.swift in Sources */,
 				63EAA0E524445ABB00C234A8 /* CircleImageView.swift in Sources */,
 				638C39282437277F00DB33A3 /* Prefs.swift in Sources */,
@@ -883,6 +890,7 @@
 				63B342FF2448B8AB00734CC5 /* UserViewController.swift in Sources */,
 				63B343042449C31C00734CC5 /* UIViewControllerWithCross.swift in Sources */,
 				63EAA0DB244051F100C234A8 /* UsersViewController.swift in Sources */,
+				6A174799250A7AE200193D86 /* NSMutableAttributedString+Extension.swift in Sources */,
 				63603E6923DF2ADC00F86BC0 /* Double+Extension.swift in Sources */,
 				335248243065D1A2585B79FE /* ActionsTableViewAdapter.swift in Sources */,
 				633B4CF623E078380099EF41 /* FiltersViewController.swift in Sources */,
