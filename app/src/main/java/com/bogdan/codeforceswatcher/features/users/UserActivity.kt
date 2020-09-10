@@ -95,8 +95,8 @@ class UserActivity : AppCompatActivity() {
 
     private fun User.buildName() = colorTextByUserRank(when {
         firstName == null && lastName == null -> getString(R.string.none)
-        firstName == null -> lastName!!
-        lastName == null -> firstName!!
+        firstName == null -> lastName.orEmpty()
+        lastName == null -> firstName.orEmpty()
         else -> "$firstName $lastName"
     }, rank)
 
@@ -113,8 +113,8 @@ class UserActivity : AppCompatActivity() {
 
     private fun User.buildScreenTitle() = when {
         firstName == null && lastName == null -> handle
-        firstName == null -> lastName!!
-        lastName == null -> firstName!!
+        firstName == null -> lastName.orEmpty()
+        lastName == null -> firstName.orEmpty()
         else -> "$firstName $lastName"
     }
 
