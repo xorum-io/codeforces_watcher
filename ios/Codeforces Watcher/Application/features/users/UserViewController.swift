@@ -245,11 +245,10 @@ class UserViewController: UIViewControllerWithCross {
     private func colorContribution(text: String) -> NSAttributedString {
         let attributedText = NSMutableAttributedString(string: text)
        
-//         "Contribution: +number" | "Contribution: -number"
         if let position = text.firstIndex(of: ":") {
             let nextPosition = text.index(position, offsetBy: 2)
             
-            let colorOfContribution = (text[nextPosition] == "+" ? Palette.green : Palette.red)
+            let colorOfContribution = (text[nextPosition] == "+" ? Palette.brightGreen : Palette.red)
             
             let location = text.distance(from: text.startIndex, to: nextPosition)
             let length = text.distance(from: nextPosition, to: text.endIndex)
