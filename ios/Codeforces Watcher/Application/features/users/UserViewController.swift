@@ -181,11 +181,81 @@ class UserViewController: UIViewControllerWithCross {
         let avatar = LinkValidatorKt.avatar(avatarLink: user.avatar)
         userImage.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
         
-        let none = "None".localized
+        rankLabel.attributedText = user.handleText
+        handleLabel.attributedText = user.handleText
+        ratingLabel.attributedText = user.ratingText
+        contributionLabel.attributedText = user.contributionText
+    }
+}
+
+ fileprivate extension User {
+    
+    private var none: NSAttributedString {
+        return NSAttributedString(string: "None".localized)
+    }
+    
+    var rankText: NSAttributedString {
+        if let rank = rank {
+            return colorTextByUserRank(text: rank.capitalized, rank: rank)
+        } else {
+            return none
+        }
+    }
+    
+    var handleText: NSAttributedString {
+        return colorTextByUserRank(text: handle, rank: rank)
+    }
+    
+    var ratingText: NSAttributedString {
+        if let rating = rating, let maxRating = maxRating {
+            return colorRating(text: "Rating".localizedFormat(args: rating, maxRating))
+        } else {
+            return none
+        }
+    }
+    
+    var contributionText: NSAttributedString {
+        if let contribution = contribution {
+            let numberSign = (contribution.intValue < 0 ? "" : "+")
+            return colorContribution(text: "Contribution".localizedFormat(args: numberSign, contribution))
+        } else {
+            return none
+        }
+    }
+    
+    private func colorContribution(text: String) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(string: text)
+       
+//         "Contribution: +number" | "Contribution: -number"
+        if let position = text.firstIndex(of: ":") {
+            let nextPosition = text.index(position, offsetBy: 2)
+            
+            let colorOfContribution = (text[nextPosition] == "+" ? Palette.green : Palette.red)
+            
+            let location = text.distance(from: text.startIndex, to: nextPosition)
+            let length = text.distance(from: nextPosition, to: text.endIndex)
+            attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: colorOfContribution, range: NSRange(location: location, length: length))
+        }
+
+        return attributedText
+    }
+    
+    private func colorRating(text: String) -> NSMutableAttributedString {
+        let attributedText = NSMutableAttributedString(string: text)
         
-        rankLabel.attributedText = colorTextByUserRank(text: user.rank?.capitalized ?? none, rank: user.rank)
-        handleLabel.attributedText = colorTextByUserRank(text: user.handle, rank: user.rank)
-        ratingLabel.attributedText = ratingViewByUserRank(text: "Rating".localizedFormat(args: user.rating ?? none, user.maxRating ?? none), currentRank: user.rank, maxRank: user.maxRank)
-        contributionLabel.attributedText = contributionView(text: "Contribution".localizedFormat(args: user.contribution ?? none))
+        let colorByCurrentUserRank = getColorByUserRank(rank: rank)
+        let colorByMaximumUserRank = getColorByUserRank(rank: maxRank)
+        
+        if let rating = rating, let maxRating = maxRating {
+            let searchCurrent: String = "\(rating)"
+            let rangeCurrent = NSRange(text.range(of: searchCurrent)!, in: text)
+            attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: colorByCurrentUserRank, range: rangeCurrent)
+            
+            let searchMaximum: String = "\(maxRating)"
+            let rangeMaximum = NSRange(text.range(of: searchMaximum, options: NSString.CompareOptions.backwards)!, in: text)
+            attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: colorByMaximumUserRank, range: rangeMaximum)
+        }
+        
+        return attributedText
     }
 }
