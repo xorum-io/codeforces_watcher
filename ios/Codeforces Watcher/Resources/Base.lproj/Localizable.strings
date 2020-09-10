@@ -50,7 +50,7 @@
 "Rank" = "Rank: %@";
 "Name" = "Name: %@ %@";
 "Rating" = "Rating: %@ (max: %@)";
-"Contribution" = "Contribution: %@";
+"Contribution" = "Contribution: %@%@";
 "Current rating" = "Current rating: %@";
 "Max rating" = "Max rating: %@";
 "Sort" = "Sort by %@ ▼";
