@@ -62,7 +62,7 @@ class UserActivity : AppCompatActivity() {
     private fun displayUser() {
         tvRank.text = user.buildRank()
         tvUserRating.text = user.buildRating()
-        tvUserHandle.text = user.buildName()
+        tvUserHandle.text = user.buildHandle()
         tvContribution.text = user.buildContribution()
         (ivUserAvatar as CircleImageView).borderColor = ContextCompat.getColor(this, getColorByUserRank(user.rank))
 
@@ -93,12 +93,7 @@ class UserActivity : AppCompatActivity() {
         }
     }
 
-    private fun User.buildName() = colorTextByUserRank(when {
-        firstName == null && lastName == null -> getString(R.string.none)
-        firstName == null -> lastName.orEmpty()
-        lastName == null -> firstName.orEmpty()
-        else -> "$firstName $lastName"
-    }, rank)
+    private fun User.buildHandle() = colorTextByUserRank(handle, rank)
 
     private fun User.buildContribution() = contribution?.let { contribution ->
         val contributionString = if (contribution > 0) "+$contribution" else contribution.toString()
