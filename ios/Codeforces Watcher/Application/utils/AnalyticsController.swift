@@ -13,20 +13,20 @@ import Crashlytics
 
 class AnalyticsController: IAnalyticsController {
     
-    func logFetchNews() {
-        Analytics.logEvent("actions_fetch", parameters: [:])
-    }
-    
     func logError(message: String) {
         Crashlytics.sharedInstance().recordError(CrashlyticsError(message: message))
     }
     
+    func logFetchNews() {
+        Analytics.logEvent("news_fetch", parameters: [:])
+    }
+    
     func logFetchNewsFailure() {
-        Analytics.logEvent("actions_fetch_failure", parameters: [:])
+        Analytics.logEvent("news_fetch_failure", parameters: [:])
     }
     
     func logFetchNewsSuccess() {
-        Analytics.logEvent("actions_fetch_success", parameters: [:])
+        Analytics.logEvent("news_fetch_success", parameters: [:])
     }
     
     func logActionOpened() {
