@@ -44,7 +44,7 @@
 "Rating changes" = "Rating changes";
 
 "Delete user" = "Delete user";
-"Are you sure you want to delete %@?" = "Are you sure you want to delete %@?";
+"delete_user_explanation" = "Are you sure you want to delete %@?";
 
 "None" = "None";
 "Rank" = "Rank: %@";

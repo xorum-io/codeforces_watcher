@@ -13,26 +13,20 @@ import Charts
 class UserViewController: UIViewControllerWithCross {
     
     private let userImage = CircleImageView()
-    private let rankLabel = BodyLabel().apply {
-        $0.font = Font.textBody
-    }
-    private let handleLabel = BodyLabel().apply {
-        $0.font = Font.textHeading
-    }
+    private let rankLabel = BodyLabel()
+    private let handleLabel = HeadingLabel()
+    
     private let ratingIcon = UIImageView(image: UIImage(named: "ratingIcon"))
-    private let ratingLabel = BodyLabel().apply {
+    private let ratingLabel = SubheadingBigLabel().apply {
         $0.textColor = Palette.darkGray
-        $0.font = Font.textSubheadingBig
     }
     private let starIcon = UIImageView(image: UIImage(named: "starIcon"))
-    private let contributionLabel = BodyLabel().apply {
+    private let contributionLabel = SubheadingBigLabel().apply {
         $0.textColor = Palette.darkGray
-        $0.font = Font.textSubheadingBig
     }
-    private let ratingChangesLabel = HeadingLabel().apply {
+    private let ratingChangesLabel = BodyLabel().apply {
         $0.text = "Rating Changes".localized
         $0.textColor = Palette.black
-        $0.font = Font.textBody
     }
     private let lineChartView = LineChartView()
     
@@ -55,14 +49,11 @@ class UserViewController: UIViewControllerWithCross {
     }
     
     private func setupView() {
-        let userName = "\(user.firstName ?? "") \(user.lastName ?? "")"
-        title = (userName != " " ? userName : user.handle)
-        
         view.backgroundColor = Palette.white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "removeIcon"),
-            style: .plain, 
+            style: .plain,
             target: self,
             action: #selector(showDeleteUserAlert)
         )
@@ -75,7 +66,7 @@ class UserViewController: UIViewControllerWithCross {
     @objc func showDeleteUserAlert() {
         let alertController = UIAlertController(
             title: "Delete user".localized,
-            message: "Are you sure you want to delete %@?".localizedFormat(args: user.handle),
+            message: "delete_user_explanation".localizedFormat(args: user.handle),
             preferredStyle: .alert
         )
         
@@ -161,25 +152,25 @@ class UserViewController: UIViewControllerWithCross {
         ratingIcon.run {
             $0.width(16)
             $0.height(16)
-            $0.topToBottom(of: handleLabel, offset: 10)
+            $0.bottomToTop(of: starIcon)
             $0.leading(to: rankLabel)
         }
   
         ratingLabel.run {
-            $0.topToBottom(of: handleLabel, offset: 11)
-            $0.leftToRight(of: ratingIcon, offset: 4)
+            $0.centerY(to: ratingIcon)
+            $0.leadingToTrailing(of: ratingIcon, offset: 4)
         }
         
         starIcon.run {
             $0.width(16)
             $0.height(16)
-            $0.topToBottom(of: ratingIcon, offset: 1)
+            $0.bottom(to: userImage)
             $0.leading(to: rankLabel)
         }
         
         contributionLabel.run {
-            $0.topToBottom(of: ratingLabel, offset: 4)
-            $0.leftToRight(of: starIcon, offset: 4)
+            $0.centerY(to: starIcon, offset: 1)
+            $0.leadingToTrailing(of: starIcon, offset: 4)
         }
         
         ratingChangesLabel.run {
@@ -196,9 +187,13 @@ class UserViewController: UIViewControllerWithCross {
     }
     
     private func bind() {
+        title = user.titleText
+        
         let avatar = LinkValidatorKt.avatar(avatarLink: user.avatar)
-        userImage.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
-        userImage.layer.borderColor = getColorByUserRank(rank: user.rank).cgColor
+        userImage.run {
+            $0.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
+            $0.layer.borderColor = getColorByUserRank(rank: user.rank).cgColor
+        }
 
         rankLabel.attributedText = user.rankText
         handleLabel.attributedText = user.handleText
@@ -207,7 +202,7 @@ class UserViewController: UIViewControllerWithCross {
     }
 }
 
- fileprivate extension User {
+fileprivate extension User {
     
     private var none: NSAttributedString {
         return NSAttributedString(string: "None".localized)
@@ -218,6 +213,18 @@ class UserViewController: UIViewControllerWithCross {
             return colorTextByUserRank(text: rank.capitalized, rank: rank)
         } else {
             return none
+        }
+    }
+    
+    var titleText: String {
+        if let firstName = firstName, let lastName = lastName {
+            return "\(firstName) \(lastName)"
+        } else if let firstName = firstName {
+            return firstName
+        } else if let lastName = lastName {
+            return lastName
+        } else {
+            return handle
         }
     }
     
@@ -235,27 +242,20 @@ class UserViewController: UIViewControllerWithCross {
     
     var contributionText: NSAttributedString {
         if let contribution = contribution {
-            let numberSign = (contribution.intValue <= 0 ? "" : "+")
-            let resultString = "\(numberSign)\(contribution)"
-            return colorContribution(text: "Contribution".localizedFormat(args: resultString))
+            let contributionSubstring = (contribution.intValue <= 0 ? contribution.stringValue : "+\(contribution)")
+            return colorContribution(text: "Contribution".localizedFormat(args: contributionSubstring), contributionSubstring)
         } else {
             return none
         }
     }
     
-    private func colorContribution(text: String) -> NSAttributedString {
+    private func colorContribution(text: String, _ contributionSubstring: String) -> NSAttributedString {
         let attributedText = NSMutableAttributedString(string: text)
        
-        if let position = text.firstIndex(of: ":") {
-            let nextPosition = text.index(position, offsetBy: 2)
-
-            if let contribution = contribution {
-                let colorOfContribution = (contribution.intValue >= 0 ? Palette.brightGreen : Palette.red)
-                let location = text.distance(from: text.startIndex, to: nextPosition)
-                let length = text.distance(from: nextPosition, to: text.endIndex)
-
-                attributedText.colorSubstring(color: colorOfContribution, range: NSRange(location: location, length: length))
-            }
+        if let contributionRange = text.firstOccurrence(string: contributionSubstring), let contribution = contribution {
+            let colorOfContribution = (contribution.intValue >= 0 ? Palette.brightGreen : Palette.red)
+            
+            attributedText.colorSubstring(color: colorOfContribution, range: contributionRange)
         }
 
         return attributedText
