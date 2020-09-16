@@ -44,7 +44,7 @@
 "Rating changes" = "Изменения рейтинга";
 
 "Delete user" = "Удалить пользователя";
-"Are you sure you want to delete %@?" = "Вы уверены, что хотите удалить %@?";
+"delete_user_explanation" = "Вы уверены, что хотите удалить %@?";
 
 "None" = "Нет";
 "Rank" = "Ранг: %@";

@@ -44,7 +44,7 @@
 "Rating changes" = "रेटिंग में बदलाव";
 
 "Delete user" = "उपभोक्ता मिटायें";
-"Are you sure you want to delete %@?" = "क्या आप पक्का इसे हटाना चाहते हैं %@?";
+"delete_user_explanation" = "क्या आप पक्का इसे हटाना चाहते हैं %@?";
 
 "None" = "कोई परिणाम नही";
 "Rank" = "रैंक: %@";

@@ -66,7 +66,7 @@ class UserViewController: UIViewControllerWithCross {
     @objc func showDeleteUserAlert() {
         let alertController = UIAlertController(
             title: "Delete user".localized,
-            message: "Are you sure you want to delete %@?".localizedFormat(args: user.handle),
+            message: "delete_user_explanation".localizedFormat(args: user.handle),
             preferredStyle: .alert
         )
         
