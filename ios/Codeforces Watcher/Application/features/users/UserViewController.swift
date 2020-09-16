@@ -53,7 +53,7 @@ class UserViewController: UIViewControllerWithCross {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "removeIcon"),
-            style: .plain, 
+            style: .plain,
             target: self,
             action: #selector(showDeleteUserAlert)
         )
@@ -152,24 +152,24 @@ class UserViewController: UIViewControllerWithCross {
         ratingIcon.run {
             $0.width(16)
             $0.height(16)
-            $0.topToBottom(of: handleLabel, offset: 10)
+            $0.bottomToTop(of: starIcon)
             $0.leading(to: rankLabel)
         }
   
         ratingLabel.run {
-            $0.topToBottom(of: handleLabel, offset: 11)
+            $0.centerY(to: ratingIcon)
             $0.leadingToTrailing(of: ratingIcon, offset: 4)
         }
         
         starIcon.run {
             $0.width(16)
             $0.height(16)
-            $0.topToBottom(of: ratingIcon, offset: 1)
+            $0.bottom(to: userImage)
             $0.leading(to: rankLabel)
         }
         
         contributionLabel.run {
-            $0.topToBottom(of: ratingLabel, offset: 4)
+            $0.centerY(to: starIcon, offset: 1)
             $0.leadingToTrailing(of: starIcon, offset: 4)
         }
         
