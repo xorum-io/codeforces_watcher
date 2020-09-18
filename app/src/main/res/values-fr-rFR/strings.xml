@@ -8,9 +8,9 @@
     <string name="ratings_have_been_updated">Les classements ont été mis à jour</string>
     <string name="ratings_update">Mise à jour de classements</string>
     <string name="user_already_added">Utilisateur déjà ajouté</string>
-    <string name="failed_to_fetch_users">La récupération des utilisateurs a échoué! Attendez ou vérifiez les pseudos...</string>
+    <string name="failed_to_fetch_users">La récupération des utilisateurs a échoué! Attendez ou vérifiez les pseudos…</string>
     <string name="sort_by">Trier par</string>
-    <string name="by_default">Défaut</string>
+    <string name="by_default">défaut</string>
     <string name="by_descending_rating">↓ classement</string>
     <string name="by_ascending_rating">↑ classement</string>
     <string name="by_descending_update">↓ mise à jour</string>
@@ -24,16 +24,16 @@
     <string name="problems">Problèmes</string>
 
     <string name="empty" translatable="false" />
-    <string name="google_calendar_not_found">Désolé, Google Calendrier n'a pas pu être trouvé sur votre appareil</string>
+    <string name="google_calendar_not_found">Désolé, Google Calendrier n\'a pas pu être trouvé sur votre appareil</string>
     <string name="commented_by">"Commenté par %1$s"</string>
-    <string name="feature_isn_t_available_yet">Cette fonctionnalité n'est pas encore disponible.</string>
+    <string name="feature_isn_t_available_yet">Cette fonctionnalité n\'est pas encore disponible.</string>
     <string name="share_with_friends">Partagez avec vos amis</string>
     <string name="shared_through_cw">Partagé avec Codeforces WatchR. Téléchargeable sur Google Play.</string>
-    <string name="no_users">Vous n'avez aucun utilisateur dans votre liste.\nAjoutez-en un avec le «+» présent en bas de l'écran.</string>
-    <string name="no_favourite_problems">Vous n'avez aucun problème favori.\nAjoutez-en un avec le «∞» présent en bas de l'écran.</string>
+    <string name="no_users">Vous n\'avez aucun utilisateur dans votre liste.\nAjoutez-en un avec le «+» présent en bas de l\'écran.</string>
+    <string name="no_favourite_problems">Vous n\'avez aucun problème favori.\nAjoutez-en un avec le «∞» présent en bas de l\'écran.</string>
 
     <string name="share_cw">Partagez Codeforces WatchR</string>
-    <string name="help_cw_make_more_social">Aidez nous à rendre Codeforces et Codeforces WatchR plus sociable en partageant l'application avec vos amis.</string>
+    <string name="help_cw_make_more_social">Aidez nous à rendre Codeforces et Codeforces WatchR plus sociable en partageant l\'application avec vos amis.</string>
     <string name="share">Partager</string>
     <string name="cancel">Annuler</string>
     <string name="share_cw_message">"J'utilise Codeforces WatchR - open-source, application Android gratuite, qui utilise l'API Codeforces pour apporter plus de programmation compétitive sur votre appareil Android.
@@ -51,7 +51,7 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
     <string name="created_or_updated_text">Contenu créé ou mis à jour, cliquez pour voir les détails…</string>
     <string name="problem_name_with_index" translatable="false">%1$d%2$s: %3$s</string>
     <string name="search_for_problems">Chercher des problèmes…</string>
-    <string name="no_browser_has_been_found">Aucun navigateur internet trouvé, essayez d'en installer un.</string>
+    <string name="no_browser_has_been_found">Aucun navigateur internet trouvé, essayez d\'en installer un.</string>
     <string name="filters">Filtres</string>
     <string name="no_contests_found">Pas de concours trouvé</string>
     <string name="click_to_see_details">Cliquez pour voir les détails</string>

@@ -177,6 +177,7 @@
 		63F02C032462F0B000B1CD2C /* SmallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallButton.swift; sourceTree = "<group>"; };
 		63FB270823E1AA50005F19F1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1D1FA5A25152B1C0025D8CD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "Codeforces Watcher/Resources/fr.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B1E1B3E723C9033A006A7347 /* Pods_Codeforces_Watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Codeforces_Watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Codeforces_Watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E1B3F323C91D51006A7347 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -687,6 +688,7 @@
 				hi,
 				ru,
 				uk,
+				fr,
 			);
 			mainGroup = 639435F423BA115C00B302A3;
 			productRefGroup = 639435FE23BA115C00B302A3 /* Products */;
@@ -979,6 +981,7 @@
 				63F02BFC246083C300B1CD2C /* hi */,
 				63F02BFD24608D2600B1CD2C /* ru */,
 				63F02BFE2461617E00B1CD2C /* uk */,
+				B1D1FA5A25152B1C0025D8CD /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
