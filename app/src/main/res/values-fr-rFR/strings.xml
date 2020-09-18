@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name" translatable="false">Codeforces WatchR</string>
+    <string name="last_rating_update">Dernière mise à jour: %1$s</string>
+    <string name="no_rating_update">Pas de mise à jour de classement</string>
+    <string name="none">Aucun</string>
+    <string name="no_connection">Pas de connexion</string>
+    <string name="rating_changes">Changements de classement</string>
+    <string name="ratings_have_been_updated">Les classements ont été mis à jour</string>
+    <string name="ratings_update">Mise à jour de classements</string>
+    <string name="user_already_added">Utilisateur déjà ajouté</string>
+    <string name="failed_to_fetch_users">La récupération des utilisateurs a échoué! Attendez ou vérifiez les pseudos...</string>
+    <string name="sort_by">Trier par</string>
+    <string name="by_default">Défaut</string>
+    <string name="by_descending_rating">↓ classement</string>
+    <string name="by_ascending_rating">↑ classement</string>
+    <string name="by_descending_update">↓ mise à jour</string>
+    <string name="by_ascending_update">↑ mise à jour</string>
+    <string name="add_user">Ajouter utilisateur</string>
+    <string name="enter_handle">Entrez un pseudo</string>
+
+    <string name="users">Utilisateurs</string>
+    <string name="contests">Concours</string>
+    <string name="news">Informations</string>
+    <string name="problems">Problèmes</string>
+
+    <string name="empty" translatable="false" />
+    <string name="google_calendar_not_found">Désolé, Google Calendrier n'a pas pu être trouvé sur votre appareil</string>
+    <string name="commented_by">"Commenté par %1$s"</string>
+    <string name="feature_isn_t_available_yet">Cette fonctionnalité n'est pas encore disponible.</string>
+    <string name="share_with_friends">Partagez avec vos amis</string>
+    <string name="shared_through_cw">Partagé avec Codeforces WatchR. Téléchargeable sur Google Play.</string>
+    <string name="no_users">Vous n'avez aucun utilisateur dans votre liste.\nAjoutez-en un avec le «+» présent en bas de l'écran.</string>
+    <string name="no_favourite_problems">Vous n'avez aucun problème favori.\nAjoutez-en un avec le «∞» présent en bas de l'écran.</string>
+
+    <string name="share_cw">Partagez Codeforces WatchR</string>
+    <string name="help_cw_make_more_social">Aidez nous à rendre Codeforces et Codeforces WatchR plus sociable en partageant l'application avec vos amis.</string>
+    <string name="share">Partager</string>
+    <string name="cancel">Annuler</string>
+    <string name="share_cw_message">"J'utilise Codeforces WatchR - open-source, application Android gratuite, qui utilise l'API Codeforces pour apporter plus de programmation compétitive sur votre appareil Android.
+Codeforces WatchR permet de:
+
+1. Se pré-enregistrer et s'inscrire pour les prochaines concours de Programmation Compétitive: Codeforces, LeetCode, HackerEarth, AtCoder, TopCoder, CS Academy, CodeChef, Kick Start.
+2. Suivre les informations récentes.
+3. Parcourir et chercher des problèmes, les ajouter en favoris.
+4. Suivre l'activité de n'importe quel utilisateur Codeforces.
+5. Trier les utilisateurs par classement et dernière date de participation.
+
+Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id=com.bogdan.codeforceswatcher"</string>
+    <string name="news_on_the_way">Informations récentes en cours de téléchargement…</string>
+    <string name="problems_on_the_way">Problèmes en cours de téléchargement…</string>
+    <string name="created_or_updated_text">Contenu créé ou mis à jour, cliquez pour voir les détails…</string>
+    <string name="problem_name_with_index" translatable="false">%1$d%2$s: %3$s</string>
+    <string name="search_for_problems">Chercher des problèmes…</string>
+    <string name="no_browser_has_been_found">Aucun navigateur internet trouvé, essayez d'en installer un.</string>
+    <string name="filters">Filtres</string>
+    <string name="no_contests_found">Pas de concours trouvé</string>
+    <string name="click_to_see_details">Cliquez pour voir les détails</string>
+
+    <string name="yes">OUI!</string>
+    <string name="rate_us_first_title">Vous appréciez Codeforces WatchR?</string>
+    <string name="rate_us_second_title">Voudriez-vous nous donner un avis?</string>
+    <string name="rate_us_third_title">Pourquoi ne pas la noter sur Google Play?</string>
+    <string name="not_really">Pas vraiment</string>
+    <string name="no_thanks">Non merci</string>
+
+    <string name="chart_info">" = %1$s (%2$s) \n Rank: %3$s \n %4$s \n %5$s "</string>
+    <string name="contest_date_format">HH:mm MMM d, EEEE</string>
+    <string name="user_date_format">d MMM, yyyy</string>
+
+    <string name="delete_user">Supprimer utilisateur</string>
+    <string name="delete_user_explanation">"Êtes-vous sûr de supprimer %1$s?"</string>
+    <string name="ok">OK</string>
+
+    <string name="rating">Classement: %1$s (max. %2$s)</string>
+    <string name="contribution">Contribution: %1$s</string>
+</resources>
