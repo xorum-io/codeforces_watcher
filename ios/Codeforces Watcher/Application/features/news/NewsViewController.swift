@@ -132,7 +132,10 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     
     override func fabButtonTapped() {
         let activityController = UIActivityViewController(activityItems: ["share_cw_message".localized], applicationActivities: nil).apply {
-            $0.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+            $0.popoverPresentationController?.run {
+                $0.sourceView = self.view
+                $0.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.height, width: 0, height: 0)
+            }
         }
         
         present(activityController, animated: true)
