@@ -43,6 +43,8 @@ class PinnedPostTableViewCell: UITableViewCell {
     }
 
     private func setupView() {
+        selectionStyle = .none
+        
         buildViewTree()
         setConstraints()
         setInteractions()
