@@ -3,7 +3,6 @@ package io.xorum.codeforceswatcher.features.problems.redux.requests
 import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.problems.models.Problem
 import io.xorum.codeforceswatcher.redux.*
-import io.xorum.codeforceswatcher.util.RefreshScreen
 import kotlinx.coroutines.delay
 import tw.geothings.rekotlin.Action
 

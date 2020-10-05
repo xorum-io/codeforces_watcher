@@ -14,11 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp"
-        >
+        android:layout_marginTop="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivAuthorAvatar"
+            android:id="@+id/ivPostAuthorAvatar"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginTop="4dp"
@@ -40,34 +39,35 @@
             android:textColor="@color/blue"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivAuthorAvatar"
+            app:layout_constraintStart_toEndOf="@id/ivPostAuthorAvatar"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Mirror of Bubble Cup" />
 
         <TextView
-            android:id="@+id/tvHandleAndTime"
+            android:id="@+id/tvPostHandleAndTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:ellipsize="start"
             android:singleLine="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivAuthorAvatar"
+            app:layout_constraintStart_toEndOf="@id/ivPostAuthorAvatar"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="BOGDAN_ - 17 hours ago" />
 
         <TextView
-            android:id="@+id/tvContent"
+            android:id="@+id/tvPostContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="3"
             android:text="A left-leaning red–black (LLRB) tree is a type of self-balancing binary search tree. It is a variant of the red–black tree and guarantees the same ..."
+            android:textColor="@color/black"
             android:textColorLink="@color/bright_blue"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvHandleAndTime" />
+            app:layout_constraintTop_toBottomOf="@id/tvPostHandleAndTime" />
 
         <View
             android:id="@+id/horizontalLine"
@@ -77,27 +77,87 @@
             android:background="@color/divider_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvContent" />
+            app:layout_constraintTop_toBottomOf="@id/tvPostContent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivCommentAuthorAvatar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:src="@color/bright_black"
+            app:civ_border_color="@color/blue_green"
+            app:civ_border_width="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontalLine" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/layout_with_corners"
+            android:padding="8dp"
+            app:layout_constraintCircleRadius="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivCommentAuthorAvatar"
+            app:layout_constraintTop_toTopOf="@id/ivCommentAuthorAvatar">
+
+            <TextView
+                android:id="@+id/tvCommentHandleAndTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="start"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="BOGDAN_ - 17 hours ago" />
+
+            <TextView
+                android:id="@+id/tvCommentContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="It's not that interesting really. It's O(n) running time to delete the first element of a vector, while removing the last element ..."
+                android:textColorLink="@color/bright_blue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvCommentHandleAndTime"
+                app:layout_constraintTop_toBottomOf="@id/tvCommentHandleAndTime"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/horizontalLine2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/divider_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/comment" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/be_first_to_comment"
+            android:text="@string/see_all_comments"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/arrow"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/arrow"
-            app:layout_constraintBottom_toBottomOf="@id/arrow"/>
+            app:layout_constraintTop_toTopOf="@id/arrow" />
 
         <ImageView
             android:id="@+id/arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow"
             android:layout_marginVertical="12dp"
+            android:src="@drawable/ic_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/horizontalLine" />
+            app:layout_constraintTop_toBottomOf="@id/horizontalLine2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

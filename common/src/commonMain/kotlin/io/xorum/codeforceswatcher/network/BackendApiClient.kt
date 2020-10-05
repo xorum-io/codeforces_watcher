@@ -19,6 +19,7 @@ internal class BackendApiClient {
     suspend fun getNews(lang: String) = try {
         makeBackendApiClient.get<NewsResponse>(path = "news") {
             parameter("lang", lang)
+            parameter("version", "v1")
         }
     } catch (e: Exception) {
         analyticsController.logFetchNewsFailure()

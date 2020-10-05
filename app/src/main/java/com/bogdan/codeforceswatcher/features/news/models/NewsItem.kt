@@ -1,8 +1,5 @@
 package com.bogdan.codeforceswatcher.features.news.models
 
-import android.text.SpannableStringBuilder
-import com.bogdan.codeforceswatcher.CwApp
-import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.features.users.colorTextByUserRank
 import com.bogdan.codeforceswatcher.features.users.getColorByUserRank
 import com.bogdan.codeforceswatcher.util.convertFromHtml
@@ -11,24 +8,22 @@ import io.xorum.codeforceswatcher.util.FeedUIModel
 
 sealed class NewsItem {
 
-    class CommentItem(comment: News.Comment) : NewsItem() {
+    class PostWithCommentItem(post: News.Post, comment: News.Comment) : NewsItem() {
 
-        val commentatorHandle: CharSequence = buildHandle(comment.author.handle, comment.author.rank)
-        val title: String = comment.title.convertFromHtml()
-        val content: String = comment.content.convertFromHtml()
+        val blogTitle: String = post.title.convertFromHtml()
+
+        val postAuthorAvatar: String = post.author.avatar
+        val postAuthorHandle: CharSequence = colorTextByUserRank(post.author.handle, post.author.rank)
+        val postModifiedAt = post.modifiedAt
+        val postContent = post.content
+        val postAuthorRankColor = getColorByUserRank(post.author.rank)
+
         val commentatorAvatar: String = comment.author.avatar
-        val createdAt: Long = comment.createdAt
-        val link = comment.link
-        val rankColor = getColorByUserRank(comment.author.rank)
-
-        private fun buildHandle(handle: String, rank: String?): CharSequence {
-            val colorHandle = colorTextByUserRank(handle, rank)
-            val commentedByString = CwApp.app.getString(R.string.commented_by)
-            val handlePosition = commentedByString.indexOf("%1\$s")
-
-            return SpannableStringBuilder(commentedByString)
-                    .replace(handlePosition, handlePosition + "%1\$s".length, colorHandle)
-        }
+        val commentatorHandle: CharSequence = colorTextByUserRank(comment.author.handle, comment.author.rank)
+        val commentCreatedAt = comment.createdAt
+        val commentatorContent: String = comment.content.convertFromHtml()
+        val commentLink = comment.link
+        val commentatorRankColor = getColorByUserRank(comment.author.rank)
     }
 
     class PostItem(post: News.Post) : NewsItem() {
@@ -36,9 +31,10 @@ sealed class NewsItem {
         val authorHandle: CharSequence = colorTextByUserRank(post.author.handle, post.author.rank)
         val blogTitle: String = post.title.convertFromHtml()
         val authorAvatar: String = post.author.avatar
-        val createdAt: Long = post.createdAt
+        val modifiedAt: Long = post.modifiedAt
         val link = post.link
         val rankColor = getColorByUserRank(post.author.rank)
+        val content = post.content
     }
 
     class PinnedItem(pinnedPost: News.PinnedPost) : NewsItem() {

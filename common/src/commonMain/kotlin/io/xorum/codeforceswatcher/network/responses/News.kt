@@ -16,24 +16,29 @@ sealed class News {
     @Serializable
     @SerialName("Post")
     data class Post(
-            val id: Long,
-            val createdAt: Long,
-            val title: String,
-            val content: String?,
-            val author: User,
-            val link: String
-    ) : News()
-
-    @Serializable
-    @SerialName("Comment")
-    data class Comment(
-            val id: Long,
-            val createdAt: Long,
+            val id: String,
+            val modifiedAt: Long,
             val title: String,
             val content: String,
             val author: User,
             val link: String
     ) : News()
+
+    @Serializable
+    @SerialName("PostWithComment")
+    data class PostWithComment(
+            val post: Post,
+            val comment: Comment
+    ) : News()
+
+    @Serializable
+    data class Comment(
+            val id: String,
+            val createdAt: Long,
+            val content: String,
+            val author: User,
+            val link: String
+    )
 
     @Serializable
     data class User(

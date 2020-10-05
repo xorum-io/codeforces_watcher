@@ -40,9 +40,9 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
 
     private fun buildNewsItems(news: List<News>) = news.map {
         when (it) {
-            is News.Comment -> NewsItem.CommentItem(it)
             is News.Post -> NewsItem.PostItem(it)
             is News.PinnedPost -> NewsItem.PinnedItem(it)
+            is News.PostWithComment -> NewsItem.PostWithCommentItem(it.post, it.comment)
         }
     }
 

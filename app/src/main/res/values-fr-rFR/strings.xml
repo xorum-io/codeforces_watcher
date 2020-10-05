@@ -48,7 +48,6 @@ Codeforces WatchR permet de:
 Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id=com.bogdan.codeforceswatcher"</string>
     <string name="news_on_the_way">Informations récentes en cours de téléchargement…</string>
     <string name="problems_on_the_way">Problèmes en cours de téléchargement…</string>
-    <string name="created_or_updated_text">Contenu créé ou mis à jour, cliquez pour voir les détails…</string>
     <string name="problem_name_with_index" translatable="false">%1$d%2$s: %3$s</string>
     <string name="search_for_problems">Chercher des problèmes…</string>
     <string name="no_browser_has_been_found">Aucun navigateur internet trouvé, essayez d\'en installer un.</string>

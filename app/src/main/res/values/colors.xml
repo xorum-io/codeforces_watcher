@@ -15,8 +15,9 @@
     <color name="bright_green">#00FF00</color>
     <color name="white">#FFFFFF</color>
     <color name="bright_black">#212121</color>
-    <color name="divider_gray">#20000000</color>
     <color name="black">#000</color>
+    <color name="divider_gray">#C2C2C2</color>
+    <color name="gray6">#F2F2F2</color>
 
     <color name="xlight">#EBF0F5</color>
 </resources>
