@@ -26,6 +26,6 @@ public class Palette {
     public static let brightGreen = UIColor(rgb: 0x00FF00)
     public static let white = UIColor(rgb: 0xFFFFFF)
     public static let brightBlack = UIColor(rgb: 0x212121)
-    public static let dividerGray = UIColor(rgb: 0x20000000)
+    public static let dividerGray = UIColor(rgb: 0xC2C2C2)
     public static let black = UIColor(rgb: 0x000)
 }
