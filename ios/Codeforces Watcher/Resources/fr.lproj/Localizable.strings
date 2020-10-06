@@ -6,10 +6,9 @@
 "Problems" = "Problèmes";
 
 "Commented by" = "Commenté par";
-"ago" = "";
+"ago" = " - %@";
 
 "news_explanation" = "Informations récentes en cours de téléchargement...";
-"created_or_updated_text" = "Contenu créé ou mis à jour, cliquez pour voir les détails...";
 
 "problems_explanation" = "Problèmes en cours de téléchargement...";
 "contests_explanation" = "Concours en cours de téléchargement...";

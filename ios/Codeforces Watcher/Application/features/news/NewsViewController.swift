@@ -67,7 +67,7 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.separatorStyle = .none
         }
 
-        [CommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self, PinnedPostTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
+        [PostWithCommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self, PinnedPostTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
         tableAdapter.onNewsClick = { link, shareText, onOpen, onShare in
             let webViewController = WebViewController().apply {
@@ -111,7 +111,7 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             }
         }
         
-        tableAdapter.news = news
+        tableAdapter.news = news.mapToItems()
 
         tableView.reloadData()
     }
@@ -146,5 +146,22 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     @objc private func refreshNews(_ sender: Any) {
         analyticsControler.logRefreshingData(refreshScreen: .news)
         store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: true, language: "locale".localized))
+    }
+}
+
+fileprivate extension Array where Element == News {
+    func mapToItems() -> [NewsItem] {
+        map { news in
+            switch(news) {
+            case let postWithComment as News.PostWithComment:
+                return NewsItem.postWithCommentItem(NewsItem.PostWithCommentItem(postWithComment.comment, postWithComment.post))
+            case let post as News.Post:
+                return NewsItem.postItem(NewsItem.PostItem(post))
+            case let pinnedPost as News.PinnedPost:
+                return NewsItem.pinnedItem(NewsItem.PinnedItem(pinnedPost))
+            default:
+                fatalError()
+            }
+        }
     }
 }

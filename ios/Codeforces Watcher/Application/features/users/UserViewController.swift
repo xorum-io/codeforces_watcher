@@ -192,7 +192,7 @@ class UserViewController: UIViewControllerWithCross {
         let avatar = LinkValidatorKt.avatar(avatarLink: user.avatar)
         userImage.run {
             $0.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
-            $0.layer.borderColor = getColorByUserRank(rank: user.rank).cgColor
+            $0.layer.borderColor = getColorByUserRank(user.rank).cgColor
         }
 
         rankLabel.attributedText = user.rankText
@@ -264,8 +264,8 @@ fileprivate extension User {
     private func colorRating(text: String) -> NSAttributedString {
         let attributedText = NSMutableAttributedString(string: text)
 
-        let colorCurrent = getColorByUserRank(rank: rank)
-        let colorMaximum = getColorByUserRank(rank: maxRank)
+        let colorCurrent = getColorByUserRank(rank)
+        let colorMaximum = getColorByUserRank(maxRank)
         
         if let rating = rating, let maxRating = maxRating {
             let searchCurrent = "\(rating)"

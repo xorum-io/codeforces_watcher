@@ -1,5 +1,5 @@
 //
-//  CommentTableViewCell.swift
+//  PostWithCommentTableViewCell.swift
 //  Codeforces Watcher
 //
 //  Created by Den Matyash on 1/8/20.
@@ -9,7 +9,7 @@
 import UIKit
 import common
 
-class CommentTableViewCell: UITableViewCell {
+class PostWithCommentTableViewCell: UITableViewCell {
 
     private let cardView = CardView()
 
@@ -100,19 +100,15 @@ class CommentTableViewCell: UITableViewCell {
         }
     }
 
-    func bind(_ news: News.Comment) {
-        guard let timePassed = TimeInterval((Int(Date().timeIntervalSince1970) - Int(news.createdAt))).socialDate else { return }
-
-        blogEntryTitleLabel.text = news.title.beautify()
-        userHandleLabel.attributedText = colorTextByUserRank(text: news.author.handle, rank: news.author.rank)
-
-        someTimeAgoLabel.text = " - \(timePassed) " + "ago".localized
-
-        detailsLabel.text = news.content.beautify()
+    func bind(_ news: NewsItem.PostWithCommentItem) {
+        blogEntryTitleLabel.text = news.blogTitle
+        userHandleLabel.attributedText = news.commentatorHandle
+        someTimeAgoLabel.text = news.commentatorAgoText
+        detailsLabel.text = news.commentatorContent
 
         userImage.run {
-            $0.sd_setImage(with: URL(string: news.author.avatar), placeholderImage: noImage)
-            $0.layer.borderColor = getColorByUserRank(rank: news.author.rank).cgColor
+            $0.sd_setImage(with: URL(string: news.commentatorAvatar), placeholderImage: noImage)
+            $0.layer.borderColor = news.commentatorRankColor
         }
     }
 }

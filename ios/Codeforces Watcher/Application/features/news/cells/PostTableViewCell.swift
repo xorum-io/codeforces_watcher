@@ -24,8 +24,7 @@ class PostTableViewCell: UITableViewCell {
     private let someTimeAgoLabel = SubheadingLabel()
 
     private let detailsLabel = BodyLabel().apply {
-        $0.numberOfLines = 1
-        $0.text = "created_or_updated_text".localized
+        $0.numberOfLines = 3
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -87,16 +86,15 @@ class PostTableViewCell: UITableViewCell {
         }
     }
 
-    func bind(_ news: News.Post) {
-        guard let timePassed = TimeInterval((Int(Date().timeIntervalSince1970) - Int(news.createdAt))).socialDate else { return }
-
-        blogEntryTitleLabel.text = news.title.beautify()
-        userHandleLabel.attributedText = colorTextByUserRank(text: news.author.handle, rank: news.author.rank)
-        someTimeAgoLabel.text = " - \(timePassed) " + "ago".localized
+    func bind(_ post: NewsItem.PostItem) {
+        blogEntryTitleLabel.text = post.blogTitle
+        userHandleLabel.attributedText = post.authorHandle
+        someTimeAgoLabel.text = post.agoText
+        detailsLabel.text = post.content
 
         userImage.run {
-            $0.sd_setImage(with: URL(string: news.author.avatar), placeholderImage: noImage)
-            $0.layer.borderColor = getColorByUserRank(rank: news.author.rank).cgColor
+            $0.sd_setImage(with: URL(string: post.authorAvatar), placeholderImage: noImage)
+            $0.layer.borderColor = post.rankColor
         }
     }
 }

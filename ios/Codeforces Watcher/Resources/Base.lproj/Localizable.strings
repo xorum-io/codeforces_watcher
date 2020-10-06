@@ -6,10 +6,9 @@
 "Problems" = "Problems";
 
 "Commented by" = "Commented by";
-"ago" = "ago";
+"ago" = " - %@ ago";
 
 "news_explanation" = "Recent news are on the way to your device...";
-"created_or_updated_text" = "Created or updated the text, click to see details...";
 
 "problems_explanation" = "Problems are on the way to your device...";
 "contests_explanation" = "Contests are on the way to your device...";

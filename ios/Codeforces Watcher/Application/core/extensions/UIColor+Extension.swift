@@ -25,7 +25,7 @@ extension UIColor {
     }
 }
 
-func getColorByUserRank(rank: String?) -> UIColor {
+func getColorByUserRank(_ rank: String?) -> UIColor {
     var color = UIColor()
     
     switch (rank) {
@@ -54,7 +54,7 @@ func getColorByUserRank(rank: String?) -> UIColor {
 }
 
 func colorTextByUserRank(text: String, rank: String?) -> NSMutableAttributedString {
-    let color = getColorByUserRank(rank: rank)
+    let color = getColorByUserRank(rank)
 
     let attributedText = NSMutableAttributedString(string: text).apply {
         $0.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: NSRange(location: 0, length: text.count))
