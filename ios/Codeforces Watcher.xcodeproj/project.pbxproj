@@ -49,6 +49,7 @@
 		6394361823BA116000B302A3 /* Codeforces_WatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6394361723BA116000B302A3 /* Codeforces_WatcherTests.swift */; };
 		6394362323BA116000B302A3 /* Codeforces_WatcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6394362223BA116000B302A3 /* Codeforces_WatcherUITests.swift */; };
 		63966E65252C540C00F3A447 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63966E64252C540C00F3A447 /* NewsItem.swift */; };
+		63966E6A252C797900F3A447 /* FeedbackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63966E69252C797900F3A447 /* FeedbackTableViewCell.swift */; };
 		63B342FF2448B8AB00734CC5 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B342FE2448B8AA00734CC5 /* UserViewController.swift */; };
 		63B343022449C16100734CC5 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B343012449C16000734CC5 /* UIViewController+Extension.swift */; };
 		63B343042449C31C00734CC5 /* UIViewControllerWithCross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B343032449C31C00734CC5 /* UIViewControllerWithCross.swift */; };
@@ -75,7 +76,6 @@
 		63EB12EF23CF1B310013A974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63EB12EE23CF1B310013A974 /* GoogleService-Info.plist */; };
 		63EB130123CF3F830013A974 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB130023CF3F830013A974 /* MainViewController.swift */; };
 		63F02C002462E8F700B1CD2C /* FeedbackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F02BFF2462E8F700B1CD2C /* FeedbackController.swift */; };
-		63F02C022462EF1D00B1CD2C /* FeedbackCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F02C012462EF1D00B1CD2C /* FeedbackCardView.swift */; };
 		63F02C042462F0B000B1CD2C /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F02C032462F0B000B1CD2C /* SmallButton.swift */; };
 		63FB270923E1AA50005F19F1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB270823E1AA50005F19F1 /* WebViewController.swift */; };
 		81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */; };
@@ -146,6 +146,7 @@
 		6394362223BA116000B302A3 /* Codeforces_WatcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codeforces_WatcherUITests.swift; sourceTree = "<group>"; };
 		6394362423BA116000B302A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63966E64252C540C00F3A447 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
+		63966E69252C797900F3A447 /* FeedbackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewCell.swift; sourceTree = "<group>"; };
 		63B342FE2448B8AA00734CC5 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		63B343012449C16000734CC5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		63B343032449C31C00734CC5 /* UIViewControllerWithCross.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerWithCross.swift; sourceTree = "<group>"; };
@@ -175,7 +176,6 @@
 		63F02BFD24608D2600B1CD2C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ../ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63F02BFE2461617E00B1CD2C /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = ../uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63F02BFF2462E8F700B1CD2C /* FeedbackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackController.swift; sourceTree = "<group>"; };
-		63F02C012462EF1D00B1CD2C /* FeedbackCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCardView.swift; sourceTree = "<group>"; };
 		63F02C032462F0B000B1CD2C /* SmallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallButton.swift; sourceTree = "<group>"; };
 		63FB270823E1AA50005F19F1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,6 +300,7 @@
 				33524702A30B2AD59D2D359E /* PostWithCommentTableViewCell.swift */,
 				335247DA370CF1DDFB7D2F20 /* PostTableViewCell.swift */,
 				63D5114225063CFA0031660B /* PinnedPostTableViewCell.swift */,
+				63966E69252C797900F3A447 /* FeedbackTableViewCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -561,7 +562,6 @@
 				335241B8E54D2F60B3D7E581 /* ContestsRulesCardView.swift */,
 				3352449F83A3B6FE1CA12CE9 /* CardView.swift */,
 				63EAA0FD24470BA000C234A8 /* AddUserCardView.swift */,
-				63F02C012462EF1D00B1CD2C /* FeedbackCardView.swift */,
 			);
 			path = cardViews;
 			sourceTree = "<group>";
@@ -905,7 +905,6 @@
 				33524EA5619D62409125FD81 /* AppDelegate.swift in Sources */,
 				63EB130123CF3F830013A974 /* MainViewController.swift in Sources */,
 				335240BE358E7469D97B1472 /* String+Extension.swift in Sources */,
-				63F02C022462EF1D00B1CD2C /* FeedbackCardView.swift in Sources */,
 				33524BC0E57CE4F3A2D1EC04 /* UIColor+Extension.swift in Sources */,
 				3352406FDC5916F705E86498 /* ScopeFunc.swift in Sources */,
 				63EAA0E72444719C00C234A8 /* UIViewControllerWithFab.swift in Sources */,
@@ -930,6 +929,7 @@
 				33524AE3A0B0A7C674038501 /* UITableViewCell+Extension.swift in Sources */,
 				63736F0023CF6557001E9AB9 /* ContestTableViewCell.swift in Sources */,
 				63736F0923CF67FC001E9AB9 /* ContestsTableViewAdapter.swift in Sources */,
+				63966E6A252C797900F3A447 /* FeedbackTableViewCell.swift in Sources */,
 				63EAA0F22445AA3100C234A8 /* SubheadingBigLabel.swift in Sources */,
 				63B343022449C16100734CC5 /* UIViewController+Extension.swift in Sources */,
 				6387BD1425078A5B0048C9E8 /* CrashlyticsError.swift in Sources */,

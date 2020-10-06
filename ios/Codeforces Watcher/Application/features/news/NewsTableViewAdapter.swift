@@ -11,6 +11,7 @@ import common
 
 class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     var news: [NewsItem] = []
+    var callback: () -> () = { }
 
     var onNewsClick: (
         _ link: String,
@@ -51,8 +52,12 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
             return tableView.dequeueReusableCell(cellType: PostTableViewCell.self).apply {
                 $0.bind(item)
             }
-        default:
-            fatalError()
+        case .feedbackItem(let item):
+            return tableView.dequeueReusableCell(cellType: FeedbackTableViewCell.self).apply {
+                $0.bind(item) {
+                    self.callback()
+                }
+            }
         }
     }
 
