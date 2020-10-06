@@ -15,7 +15,7 @@ sealed class NewsItem {
         val postAuthorAvatar: String = post.author.avatar
         val postAuthorHandle: CharSequence = colorTextByUserRank(post.author.handle, post.author.rank)
         val postModifiedAt = post.modifiedAt
-        val postContent = post.content
+        val postContent = post.content.convertFromHtml()
         val postAuthorRankColor = getColorByUserRank(post.author.rank)
 
         val commentatorAvatar: String = comment.author.avatar
@@ -34,7 +34,7 @@ sealed class NewsItem {
         val modifiedAt: Long = post.modifiedAt
         val link = post.link
         val rankColor = getColorByUserRank(post.author.rank)
-        val content = post.content
+        val content = post.content.convertFromHtml()
     }
 
     class PinnedItem(pinnedPost: News.PinnedPost) : NewsItem() {

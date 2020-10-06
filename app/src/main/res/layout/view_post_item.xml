@@ -14,8 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp"
-        >
+        android:layout_marginTop="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivAuthorAvatar"
@@ -37,7 +36,6 @@
             android:layout_marginStart="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/blue"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivAuthorAvatar"
@@ -85,16 +83,17 @@
             android:layout_marginStart="4dp"
             android:text="@string/be_first_to_comment"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/arrow"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/arrow"
-            app:layout_constraintBottom_toBottomOf="@id/arrow"/>
+            app:layout_constraintTop_toTopOf="@id/arrow" />
 
         <ImageView
             android:id="@+id/arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow"
             android:layout_marginVertical="12dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalLine" />
