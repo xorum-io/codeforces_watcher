@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="4dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivAuthorAvatar"
@@ -24,7 +24,6 @@
             android:src="@color/bright_black"
             app:civ_border_color="@color/blue_green"
             app:civ_border_width="1dp"
-            app:layout_constraintEnd_toStartOf="@id/tvTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,9 +33,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivAuthorAvatar"
             app:layout_constraintTop_toTopOf="parent"
@@ -50,9 +46,9 @@
             android:ellipsize="start"
             android:singleLine="true"
             android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivAuthorAvatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivAuthorAvatar"
-            app:layout_constraintBottom_toBottomOf="@id/ivAuthorAvatar"
             tools:text="BOGDAN_ - 17 hours ago" />
 
         <TextView

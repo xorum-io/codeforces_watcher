@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/ivCrossFeedback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="end"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
@@ -30,12 +30,12 @@
 
             <TextView
                 android:id="@+id/tvTitle"
+                style="@style/TextHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
                 android:layout_marginTop="12dp"
-                android:textSize="18sp"
                 android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
