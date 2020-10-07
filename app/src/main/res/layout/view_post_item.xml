@@ -36,7 +36,7 @@
             android:layout_marginStart="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivAuthorAvatar"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,9 +49,10 @@
             android:layout_marginStart="8dp"
             android:ellipsize="start"
             android:singleLine="true"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivAuthorAvatar"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintBottom_toBottomOf="@id/ivAuthorAvatar"
             tools:text="BOGDAN_ - 17 hours ago" />
 
         <TextView
@@ -63,7 +64,7 @@
             android:maxLines="3"
             android:text="A left-leaning red–black (LLRB) tree is a type of self-balancing binary search tree. It is a variant of the red–black tree and guarantees the same ..."
             android:textColorLink="@color/bright_blue"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvHandleAndTime" />
 
@@ -82,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="@string/be_first_to_comment"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/arrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/arrow" />
