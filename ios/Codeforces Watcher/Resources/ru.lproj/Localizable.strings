@@ -46,10 +46,8 @@
 "delete_user_explanation" = "Вы уверены, что хотите удалить %@?";
 
 "None" = "Нет";
-"Rank" = "Ранг: %@";
-"Name" = "Имя: %@ %@";
-"Current rating" = "Текущий рейтинг: %@";
-"Max rating" = "Макс. рейтинг: %@";
+"Rating" = "Рейтинг: %@ (макс. %@)";
+"Contribution" = "Вклад: %@";
 "Sort" = "Сорт. по %@ ▼";
 
 "default" = "умолчанию";
@@ -75,3 +73,5 @@
 "contest_date_format" = "d MMM в HH:mm, EEEE";
 "user_date_format" = "d MMM yyyy";
 
+"be_the_first_to_comment" = "Прокомментируйте первым";
+"see_all_comments" = "Смотреть все комментарии";

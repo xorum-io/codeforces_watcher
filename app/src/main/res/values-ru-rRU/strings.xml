@@ -70,4 +70,7 @@ Codeforces WatchR позволяет:
 
     <string name="rating">Рейтинг: %1$s (макс. %2$s)</string>
     <string name="contribution">Вклад: %1$s</string>
+
+    <string name="see_all_comments">Смотреть все комментарии</string>
+    <string name="be_first_to_comment">Прокомментируйте первым</string>
 </resources>

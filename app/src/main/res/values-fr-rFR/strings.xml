@@ -72,4 +72,7 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
 
     <string name="rating">Classement: %1$s (max. %2$s)</string>
     <string name="contribution">Contribution: %1$s</string>
+
+    <string name="see_all_comments">Voir tous les commentaires</string>
+    <string name="be_first_to_comment">Soyez le premier à commenter</string>
 </resources>

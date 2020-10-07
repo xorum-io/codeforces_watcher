@@ -68,4 +68,7 @@ Codeforces WatchR के साथ आप:
 
     <string name="rating">रेटिंग: %1$s (अधिकतम रेटिंग %2$s)</string>
     <string name="contribution">योगदान: %1$s</string>
+
+    <string name="see_all_comments">सभी टिप्पणियाँ देखें</string>
+    <string name="be_first_to_comment">टिप्पणी करने वाला पहला व्यक्ति बनें</string>
 </resources>

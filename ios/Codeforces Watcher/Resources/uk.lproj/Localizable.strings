@@ -46,10 +46,8 @@
 "delete_user_explanation" = "Ви впевнені, що хочете видалити %@?";
 
 "None" = "Немає";
-"Rank" = "Ранг: %@";
-"Name" = "Iм\'я: %@ %@";
-"Current rating" = "Поточний рейтинг: %@";
-"Max rating" = "Макс. рейтинг: %@";
+"Rating" = "Рейтинг: %@ (макс. %@)";
+"Contribution" = "Внесок: %@";
 "Sort" = "Сорт. за %@ ▼";
 
 "default" = "замовчуванням";
@@ -74,3 +72,6 @@
 
 "contest_date_format" = "d MMM о HH:mm, EEEE";
 "user_date_format" = "d MMM yyyy";
+
+"be_the_first_to_comment" = "Коментуйте першим";
+"see_all_comments" = "Переглянути всі коментарі";

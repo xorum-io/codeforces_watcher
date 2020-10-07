@@ -46,12 +46,8 @@
 "delete_user_explanation" = "Are you sure you want to delete %@?";
 
 "None" = "None";
-"Rank" = "Rank: %@";
-"Name" = "Name: %@ %@";
 "Rating" = "Rating: %@ (max: %@)";
 "Contribution" = "Contribution: %@";
-"Current rating" = "Current rating: %@";
-"Max rating" = "Max rating: %@";
 "Sort" = "Sort by %@ ▼";
 
 "default" = "default";
@@ -76,5 +72,6 @@
 
 "contest_date_format" = "HH:mm MMM d, EEEE";
 "user_date_format" = "MMM d, yyyy";
+
 "be_the_first_to_comment" = "Be the first to comment";
 "see_all_comments" = "See all comments";
