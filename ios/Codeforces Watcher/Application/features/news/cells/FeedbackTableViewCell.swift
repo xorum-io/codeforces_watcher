@@ -40,6 +40,7 @@ class FeedbackTableViewCell: UITableViewCell {
     }
 
     private func setupView() {
+        selectionStyle = .none
         backgroundColor = Palette.white
 
         buildViewTree()

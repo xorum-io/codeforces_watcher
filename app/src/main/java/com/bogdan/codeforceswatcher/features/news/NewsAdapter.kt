@@ -1,7 +1,6 @@
 package com.bogdan.codeforceswatcher.features.news
 
 import android.content.Context
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +14,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
-import org.ocpsoft.prettytime.PrettyTime
 import java.lang.IllegalStateException
-import java.util.*
 
 class NewsAdapter(
         private val context: Context,
@@ -80,11 +77,11 @@ class NewsAdapter(
         with(viewHolder) {
             tvTitle.text = blogTitle
 
-            tvPostAuthorHandleAndTime.text = TextUtils.concat(postAuthorHandle, " - ${PrettyTime().format(Date(postModifiedAt * 1000))}")
+            tvPostAuthorHandleAndTime.text = postAgoText
             tvPostContent.text = postContent
 
-            tvCommentatorHandleAndTime.text = TextUtils.concat(commentatorHandle, " - ${PrettyTime().format(Date(commentCreatedAt * 1000))}")
-            tvCommentContent.text = commentatorContent
+            tvCommentatorHandleAndTime.text = commentAgoText
+            tvCommentContent.text = commentContent
 
             onItemClickListener = {
                 itemClickListener(commentLink, blogTitle)
@@ -106,7 +103,7 @@ class NewsAdapter(
     private fun bindPost(viewHolder: PostViewHolder, post: NewsItem.PostItem) = with(post) {
         with(viewHolder) {
             tvTitle.text = blogTitle
-            tvHandleAndTime.text = TextUtils.concat(authorHandle, " - ${PrettyTime().format(Date(modifiedAt * 1000))}")
+            tvHandleAndTime.text = agoText
             tvContent.text = content
             onItemClickListener = {
                 itemClickListener(link, blogTitle)

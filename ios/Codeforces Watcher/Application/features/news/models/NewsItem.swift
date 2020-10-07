@@ -22,11 +22,10 @@ enum NewsItem {
 
         let commentatorAvatar: String
         let commentatorHandle: NSAttributedString
-        let commentCreatedAt: Int64
-        let commentatorContent: String
+        let commentContent: String
         let commentLink: String
         let commentatorRankColor: CGColor
-        let commentatorAgoText: String
+        let commentAgoText: String
 
         init(_ comment: News.Comment, _ post: News.Post) {
             blogTitle = post.title.beautify()
@@ -38,13 +37,12 @@ enum NewsItem {
 
             commentatorAvatar = comment.author.avatar
             commentatorHandle = colorTextByUserRank(text: comment.author.handle, rank: comment.author.rank)
-            commentCreatedAt = comment.createdAt
-            commentatorContent = comment.content.beautify()
+            commentContent = comment.content.beautify()
             commentLink = comment.link
             commentatorRankColor = getColorByUserRank(comment.author.rank).cgColor
-            
+                
             postAgoText = post.modifiedAt.buildAgoText()
-            commentatorAgoText = comment.createdAt.buildAgoText()
+            commentAgoText = comment.createdAt.buildAgoText()
         }
     }
     

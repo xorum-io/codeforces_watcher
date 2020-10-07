@@ -183,7 +183,7 @@ class PostWithCommentTableViewCell: UITableViewCell {
             $0.layer.borderColor = news.commentatorRankColor
         }
         commentatorHandleLabel.attributedText = news.commentatorHandle
-        commentAgoLabel.text = news.commentatorAgoText
-        commentContentLabel.text = news.commentatorContent
+        commentAgoLabel.text = news.commentAgoText
+        commentContentLabel.text = news.commentContent
     }
 }
