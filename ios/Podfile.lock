@@ -4,9 +4,6 @@ PODS:
     - Charts/Core (= 3.5.0)
   - Charts/Core (3.5.0)
   - common (0.0.1-SNAPSHOT)
-  - Crashlytics (3.14.0):
-    - Fabric (~> 1.10.2)
-  - Fabric (1.10.2)
   - Firebase/Analytics (6.31.1):
     - Firebase/Core
   - Firebase/Core (6.31.1):
@@ -138,8 +135,6 @@ DEPENDENCIES:
   - Alamofire (~> 4.9.1)
   - Charts
   - common (from `../common`)
-  - Crashlytics
-  - Fabric (~> 1.10.2)
   - Firebase/Analytics
   - Firebase/Crashlytics
   - HTMLString (~> 5.0)
@@ -153,8 +148,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Charts
-    - Crashlytics
-    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -183,8 +176,6 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   common: b488d96f02c83385301e4b1df8634fcebccda734
-  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 658370fa0181826a74b7cfca8d68c5856ca749ae
   FirebaseAnalytics: 0ca9aa2af7cc4dc92392b7a78bfc49feaa2eb60f
   FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c
@@ -205,6 +196,6 @@ SPEC CHECKSUMS:
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 1b1654824be7eecf93ea71afbfe02706f179e0e2
+PODFILE CHECKSUM: a1b99ef17390d2a315d47ee6889c4b7900530c7c
 
 COCOAPODS: 1.9.3

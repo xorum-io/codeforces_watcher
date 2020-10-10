@@ -12,9 +12,7 @@ target 'Codeforces Watcher' do
   	pod "TinyConstraints"
   	pod 'SDWebImage', '~> 5.0'
   	pod 'HTMLString', '~> 5.0'
-  	pod 'Fabric', '~> 1.10.2'
   	pod 'Firebase/Crashlytics'
-	pod 'Crashlytics'
   	pod 'Firebase/Analytics'
   	pod 'PKHUD', '~> 5.0'
 	pod 'MaterialComponents/Buttons'

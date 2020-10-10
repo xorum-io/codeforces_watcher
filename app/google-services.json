@@ -30,6 +30,13 @@
             {
               "client_id": "986014841748-n7n1iamqqhhiec8uj5tlkd2b55n0u3vi.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "986014841748-m9f14f3iukhgv0adkgn2047vqk1jfgeb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.xorum.codeforceswatcher.Codeforces-Watcher"
+              }
             }
           ]
         }
@@ -59,6 +66,13 @@
             {
               "client_id": "986014841748-n7n1iamqqhhiec8uj5tlkd2b55n0u3vi.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "986014841748-m9f14f3iukhgv0adkgn2047vqk1jfgeb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.xorum.codeforceswatcher.Codeforces-Watcher"
+              }
             }
           ]
         }

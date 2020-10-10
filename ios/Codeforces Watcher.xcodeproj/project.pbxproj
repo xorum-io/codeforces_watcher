@@ -54,6 +54,7 @@
 		63B343072449E3BE00734CC5 /* ChartMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B343062449E3BE00734CC5 /* ChartMarker.swift */; };
 		63D5114325063CFA0031660B /* PinnedPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5114225063CFA0031660B /* PinnedPostTableViewCell.swift */; };
 		63D51145250651290031660B /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D51144250651290031660B /* AnalyticsController.swift */; };
+		63E79874253068A4003B62B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63E79873253068A4003B62B2 /* GoogleService-Info.plist */; };
 		63EAA0D0243EFF2500C234A8 /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA0CF243EFF2400C234A8 /* FilterItem.swift */; };
 		63EAA0D9244047DF00C234A8 /* Platform+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA0D8244047DF00C234A8 /* Platform+Extension.swift */; };
 		63EAA0DB244051F100C234A8 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA0DA244051F100C234A8 /* UsersViewController.swift */; };
@@ -71,7 +72,6 @@
 		63EAA102244854CA00C234A8 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63EAA101244854CA00C234A8 /* Roboto-Medium.ttf */; };
 		63EAA1052448554400C234A8 /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA1042448554400C234A8 /* CommonButton.swift */; };
 		63EAA1072448749200C234A8 /* UsersPickerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA1062448749200C234A8 /* UsersPickerViewAdapter.swift */; };
-		63EB12EF23CF1B310013A974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63EB12EE23CF1B310013A974 /* GoogleService-Info.plist */; };
 		63EB130123CF3F830013A974 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB130023CF3F830013A974 /* MainViewController.swift */; };
 		63F02C002462E8F700B1CD2C /* FeedbackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F02BFF2462E8F700B1CD2C /* FeedbackController.swift */; };
 		63F02C022462EF1D00B1CD2C /* FeedbackCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F02C012462EF1D00B1CD2C /* FeedbackCardView.swift */; };
@@ -150,6 +150,7 @@
 		63B343062449E3BE00734CC5 /* ChartMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMarker.swift; sourceTree = "<group>"; };
 		63D5114225063CFA0031660B /* PinnedPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedPostTableViewCell.swift; sourceTree = "<group>"; };
 		63D51144250651290031660B /* AnalyticsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsController.swift; sourceTree = "<group>"; };
+		63E79873253068A4003B62B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63EAA0CF243EFF2400C234A8 /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
 		63EAA0D8244047DF00C234A8 /* Platform+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+Extension.swift"; sourceTree = "<group>"; };
 		63EAA0DA244051F100C234A8 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -167,7 +168,6 @@
 		63EAA101244854CA00C234A8 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		63EAA1042448554400C234A8 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 		63EAA1062448749200C234A8 /* UsersPickerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersPickerViewAdapter.swift; sourceTree = "<group>"; };
-		63EB12EE23CF1B310013A974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63EB130023CF3F830013A974 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		63F02BFC246083C300B1CD2C /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = ../hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63F02BFD24608D2600B1CD2C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ../ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -235,7 +235,6 @@
 				63EB12F223CF24F10013A974 /* contests */,
 				63736F1A23D1F29E001E9AB9 /* problems */,
 				63EAA0C9243DFBD000C234A8 /* common */,
-				33524D79129AF7DA2C68A75C /* AppDelegate.swift */,
 				63EB130023CF3F830013A974 /* MainViewController.swift */,
 			);
 			path = features;
@@ -265,6 +264,7 @@
 				3352401A97D8267FCF1ED0D5 /* features */,
 				63EAA0D1243F264900C234A8 /* utils */,
 				33524AFABB95461924E2C987 /* components */,
+				33524D79129AF7DA2C68A75C /* AppDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -403,6 +403,7 @@
 		639435F423BA115C00B302A3 = {
 			isa = PBXGroup;
 			children = (
+				63E79873253068A4003B62B2 /* GoogleService-Info.plist */,
 				639435FF23BA115C00B302A3 /* Codeforces Watcher */,
 				6394361623BA116000B302A3 /* Codeforces WatcherTests */,
 				6394362123BA116000B302A3 /* Codeforces WatcherUITests */,
@@ -425,7 +426,6 @@
 		639435FF23BA115C00B302A3 /* Codeforces Watcher */ = {
 			isa = PBXGroup;
 			children = (
-				63EB12EE23CF1B310013A974 /* GoogleService-Info.plist */,
 				6394360E23BA116000B302A3 /* Info.plist */,
 				335240F7C9F81BE76F32A381 /* Application */,
 				33524D72368A43AD1FFD2F9E /* Resources */,
@@ -603,7 +603,6 @@
 				639435F923BA115C00B302A3 /* Sources */,
 				639435FA23BA115C00B302A3 /* Frameworks */,
 				639435FB23BA115C00B302A3 /* Resources */,
-				637C49BA23CE243F00D5069A /* Firebase Crashlytics */,
 				B4F37559F8143C47C46A56FF /* [CP] Embed Pods Frameworks */,
 				6387BD1525079B980048C9E8 /* ShellScript */,
 			);
@@ -712,7 +711,7 @@
 				63EAA102244854CA00C234A8 /* Roboto-Medium.ttf in Resources */,
 				B1E1B3F423C91D51006A7347 /* Assets.xcassets in Resources */,
 				335243A8CBE3634A99524B33 /* Roboto-Regular.ttf in Resources */,
-				63EB12EF23CF1B310013A974 /* GoogleService-Info.plist in Resources */,
+				63E79874253068A4003B62B2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,24 +753,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		637C49BA23CE243F00D5069A /* Firebase Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Firebase Crashlytics";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		6387BD1525079B980048C9E8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
