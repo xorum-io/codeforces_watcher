@@ -18,6 +18,7 @@ class FeedbackTableViewCell: UITableViewCell {
     private let titleLabel = HeadingLabel().apply {
         $0.textAlignment = .center
         $0.textColor = Palette.colorPrimary
+        $0.numberOfLines = 0
     }
     private let closeButton = UIButton().apply {
         $0.setImage(UIImage(named: "crossIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)

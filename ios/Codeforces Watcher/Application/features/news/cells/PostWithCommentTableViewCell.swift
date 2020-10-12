@@ -13,9 +13,7 @@ class PostWithCommentTableViewCell: UITableViewCell {
 
     private let cardView = CardView()
 
-    private let blogEntryTitleLabel = HeadingLabel().apply {
-        $0.numberOfLines = 1
-    }
+    private let blogEntryTitleLabel = HeadingLabel()
 
     private let postAuthorImage = CircleImageView().apply {
         $0.image = noImage
