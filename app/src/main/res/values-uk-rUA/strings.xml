@@ -75,4 +75,7 @@ Codeforces WatchR дає можливiсть:
 
     <string name="see_all_comments">Переглянути всі коментарі</string>
     <string name="be_first_to_comment">Коментуйте першим</string>
+
+    <string name="modified">змiнено</string>
+    <string name="created">створено</string>
 </resources>

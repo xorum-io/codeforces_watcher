@@ -18,6 +18,7 @@ sealed class News {
     data class Post(
             val id: String,
             val modifiedAt: Long,
+            val isModified: Boolean,
             val title: String,
             val content: String,
             val author: User,

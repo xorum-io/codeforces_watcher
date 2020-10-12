@@ -71,4 +71,7 @@ Codeforces WatchR के साथ आप:
 
     <string name="see_all_comments">सभी टिप्पणियाँ देखें</string>
     <string name="be_first_to_comment">टिप्पणी करने वाला पहला व्यक्ति बनें</string>
+
+    <string name="modified">संशोधित</string>
+    <string name="created">बनाया था</string>
 </resources>
