@@ -66,8 +66,7 @@ private fun buildCommentAgoText(user: News.User, time: Long): CharSequence {
 
 private fun buildPostAgoText(user: News.User, time: Long, isModified: Boolean): CharSequence {
     val handle: CharSequence = colorTextByUserRank(user.handle, user.rank)
+    val postState = CwApp.app.getString(if (isModified) R.string.modified else R.string.created)
 
-    return TextUtils.concat(handle, " - ${
-        CwApp.app.getString(if (isModified) R.string.modified else R.string.created)
-    } ${PrettyTime().format(Date(time * 1000))}")
+    return TextUtils.concat(handle, " - $postState ${PrettyTime().format(Date(time * 1000))}")
 }

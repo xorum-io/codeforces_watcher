@@ -41,8 +41,8 @@ enum NewsItem {
             commentLink = comment.link
             commentatorRankColor = getColorByUserRank(comment.author.rank).cgColor
                 
-            postAgoText = post.modifiedAt.buildAgoText()
-            commentAgoText = comment.createdAt.buildAgoText()
+            postAgoText = post.modifiedAt.buildPostAgoText(post.isModified)
+            commentAgoText = comment.createdAt.buildCommentAgoText()
         }
     }
     
@@ -62,7 +62,7 @@ enum NewsItem {
             link = post.link
             rankColor = getColorByUserRank(post.author.rank).cgColor
             content = post.content.beautify()
-            agoText = post.modifiedAt.buildAgoText()
+            agoText = post.modifiedAt.buildPostAgoText(post.isModified)
         }
     }
     
@@ -101,8 +101,14 @@ enum NewsItem {
 }
 
 fileprivate extension Int64 {
-    func buildAgoText() -> String {
+    func buildCommentAgoText() -> String {
         guard let timePassed = TimeInterval((Int(Date().timeIntervalSince1970) - Int(self))).socialDate else { fatalError() }
         return "ago".localizedFormat(args: timePassed)
+    }
+    
+    func buildPostAgoText(_ isModified: Bool) -> String {
+        guard let timePassed = TimeInterval((Int(Date().timeIntervalSince1970) - Int(self))).socialDate else { fatalError() }
+        let postState = (isModified ? "modified" : "created").localized
+        return "post_ago".localizedFormat(args: postState, timePassed)
     }
 }
