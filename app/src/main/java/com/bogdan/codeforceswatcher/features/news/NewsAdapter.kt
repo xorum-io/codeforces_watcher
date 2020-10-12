@@ -157,7 +157,7 @@ class NewsAdapter(
     }
 
     fun setItems(actionsList: List<NewsItem>) {
-        items = if (actionsList.isEmpty() || actionsList.size == 1 && actionsList.first() is NewsItem.FeedbackItem) listOf(NewsItem.Stub)
+        items = if (actionsList.isEmpty() || (actionsList.size == 1 && actionsList.first() is NewsItem.FeedbackItem)) listOf(NewsItem.Stub)
         else actionsList
         notifyDataSetChanged()
     }

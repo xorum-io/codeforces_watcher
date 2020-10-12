@@ -72,7 +72,8 @@ class PostWithCommentTableViewCell: UITableViewCell {
     private func buildViewTree() {
         contentView.addSubview(cardView)
 
-        [blogEntryTitleLabel, postAuthorImage, postAuthorHandleLabel, postAgoLabel, postContentLabel, horizontalLine1, commentatorImage, commentView, horizontalLine2, explanationLabel, arrowView].forEach(cardView.addSubview)
+        [blogEntryTitleLabel, postAuthorImage, postAuthorHandleLabel, postAgoLabel, postContentLabel,
+         horizontalLine1, commentatorImage, commentView, horizontalLine2, explanationLabel, arrowView].forEach(cardView.addSubview)
         
         [commentatorHandleLabel, commentAgoLabel, commentContentLabel].forEach(commentView.addSubview)
     }

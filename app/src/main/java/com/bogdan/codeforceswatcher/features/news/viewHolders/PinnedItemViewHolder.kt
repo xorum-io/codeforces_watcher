@@ -12,13 +12,11 @@ class PinnedItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var onCrossClickListener: (() -> Unit)? = null
 
     init {
-        view.run {
-            setOnClickListener {
-                onItemClickListener?.invoke()
-            }
-            ivCrossPost.setOnClickListener {
-                onCrossClickListener?.invoke()
-            }
+        view.setOnClickListener {
+            onItemClickListener?.invoke()
+        }
+        view.ivCrossPost.setOnClickListener {
+            onCrossClickListener?.invoke()
         }
     }
 }

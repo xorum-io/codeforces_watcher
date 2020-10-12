@@ -50,9 +50,9 @@
             android:ellipsize="start"
             android:singleLine="true"
             android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivPostAuthorAvatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivPostAuthorAvatar"
-            app:layout_constraintBottom_toBottomOf="@id/ivPostAuthorAvatar"
             tools:text="BOGDAN_ - 17 hours ago" />
 
         <TextView
@@ -62,12 +62,12 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="A left-leaning red–black (LLRB) tree is a type of self-balancing binary search tree. It is a variant of the red–black tree and guarantees the same ..."
             android:textColor="@color/black"
             android:textColorLink="@color/bright_blue"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPostHandleAndTime" />
+            app:layout_constraintTop_toBottomOf="@id/tvPostHandleAndTime"
+            tools:text="A left-leaning red–black (LLRB) tree is a type of self-balancing binary search tree. It is a variant of the red–black tree and guarantees the same ..." />
 
         <View
             android:id="@+id/horizontalLine"
@@ -107,8 +107,8 @@
                 android:id="@+id/tvCommentHandleAndTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ellipsize="start"
                 android:layout_marginTop="6dp"
+                android:ellipsize="start"
                 android:singleLine="true"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -122,13 +122,12 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text="It's not that interesting really. It's O(n) running time to delete the first element of a vector, while removing the last element ..."
                 android:textColorLink="@color/bright_blue"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tvCommentHandleAndTime"
                 app:layout_constraintTop_toBottomOf="@id/tvCommentHandleAndTime"
-
+                tools:text="It's not that interesting really. It's O(n) running time to delete the first element of a vector, while removing the last element ..."
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

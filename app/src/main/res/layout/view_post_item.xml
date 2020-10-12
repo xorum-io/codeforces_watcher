@@ -58,7 +58,7 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="A left-leaning red–black (LLRB) tree is a type of self-balancing binary search tree. It is a variant of the red–black tree and guarantees the same ..."
+            tools:text="A left-leaning red–black (LLRB) tree is a type of self-balancing binary search tree. It is a variant of the red–black tree and guarantees the same ..."
             android:textColorLink="@color/bright_blue"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"

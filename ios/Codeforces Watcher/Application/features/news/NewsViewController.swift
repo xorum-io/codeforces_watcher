@@ -66,7 +66,8 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.separatorStyle = .none
         }
 
-        [PostWithCommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self, PinnedPostTableViewCell.self, FeedbackTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
+        [PostWithCommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self,
+         PinnedPostTableViewCell.self, FeedbackTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
         tableAdapter.onNewsClick = { link, shareText, onOpen, onShare in
             let webViewController = WebViewController().apply {
@@ -137,7 +138,7 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
 
 fileprivate extension Array where Element == News {
     func mapToItems() -> [NewsItem] {
-        map { news in
+        compactMap { news in
             switch(news) {
             case let postWithComment as News.PostWithComment:
                 return NewsItem.postWithCommentItem(NewsItem.PostWithCommentItem(postWithComment.comment, postWithComment.post))
@@ -146,7 +147,7 @@ fileprivate extension Array where Element == News {
             case let pinnedPost as News.PinnedPost:
                 return NewsItem.pinnedItem(NewsItem.PinnedItem(pinnedPost))
             default:
-                fatalError()
+                return nil
             }
         }
     }

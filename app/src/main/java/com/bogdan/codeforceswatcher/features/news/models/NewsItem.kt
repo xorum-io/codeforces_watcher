@@ -15,15 +15,15 @@ sealed class NewsItem {
 
     class PostWithCommentItem(post: News.Post, comment: News.Comment) : NewsItem() {
 
-        val blogTitle: String = post.title.convertFromHtml()
+        val blogTitle = post.title.convertFromHtml()
 
-        val postAuthorAvatar: String = post.author.avatar
+        val postAuthorAvatar = post.author.avatar
         val postContent = post.content.convertFromHtml()
         val postAuthorRankColor = getColorByUserRank(post.author.rank)
         val postAgoText = buildPostAgoText(post.author, post.modifiedAt, post.isModified)
 
-        val commentatorAvatar: String = comment.author.avatar
-        val commentContent: String = comment.content.convertFromHtml()
+        val commentatorAvatar = comment.author.avatar
+        val commentContent = comment.content.convertFromHtml()
         val commentLink = comment.link
         val commentatorRankColor = getColorByUserRank(comment.author.rank)
         val commentAgoText = buildCommentAgoText(comment.author, comment.createdAt)
@@ -31,8 +31,8 @@ sealed class NewsItem {
 
     class PostItem(post: News.Post) : NewsItem() {
 
-        val blogTitle: String = post.title.convertFromHtml()
-        val authorAvatar: String = post.author.avatar
+        val blogTitle = post.title.convertFromHtml()
+        val authorAvatar = post.author.avatar
         val link = post.link
         val rankColor = getColorByUserRank(post.author.rank)
         val content = post.content.convertFromHtml()
