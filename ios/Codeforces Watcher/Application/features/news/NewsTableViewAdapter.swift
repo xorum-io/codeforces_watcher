@@ -46,7 +46,13 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
             }
         case .postWithCommentItem(let item):
             return tableView.dequeueReusableCell(cellType: PostWithCommentTableViewCell.self).apply {
-                $0.bind(item)
+                $0.bind(item) { link in
+                    let shareText = buildShareText(item.blogTitle, link)
+                    let onOpen = { analyticsControler.logActionOpened() }
+                    let onShare = { analyticsControler.logShareComment() }
+                    
+                    self.onNewsClick(link, shareText, onOpen, onShare)
+                }
             }
         case .postItem(let item):
             return tableView.dequeueReusableCell(cellType: PostTableViewCell.self).apply {
@@ -73,12 +79,6 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
             let onShare = { analyticsControler.logShareComment() }
             
             onNewsClick(news.link, shareText, onOpen, onShare)
-        case .postWithCommentItem(let news):
-            let shareText = buildShareText(news.blogTitle, news.commentLink)
-            let onOpen = { analyticsControler.logActionOpened() }
-            let onShare = { analyticsControler.logShareComment() }
-            
-            onNewsClick(news.commentLink, shareText, onOpen, onShare)
         case .postItem(let news):
             let shareText = buildShareText(news.blogTitle, news.link)
             let onOpen = { analyticsControler.logActionOpened() }

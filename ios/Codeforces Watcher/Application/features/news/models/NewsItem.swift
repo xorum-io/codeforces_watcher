@@ -17,6 +17,7 @@ enum NewsItem {
         let postAuthorAvatar: String
         let postAuthorHandle: NSAttributedString
         let postContent: String
+        let postLink: String
         let postAuthorRankColor: CGColor
         let postAgoText: String
 
@@ -33,6 +34,7 @@ enum NewsItem {
             postAuthorAvatar = post.author.avatar
             postAuthorHandle = colorTextByUserRank(text: post.author.handle, rank: post.author.rank)
             postContent = post.content.beautify()
+            postLink = post.link
             postAuthorRankColor = getColorByUserRank(post.author.rank).cgColor
 
             commentatorAvatar = comment.author.avatar
@@ -40,7 +42,7 @@ enum NewsItem {
             commentContent = comment.content.beautify()
             commentLink = comment.link
             commentatorRankColor = getColorByUserRank(comment.author.rank).cgColor
-                
+            
             postAgoText = post.modifiedAt.buildPostAgoText(post.isModified)
             commentAgoText = comment.createdAt.buildCommentAgoText()
         }

@@ -57,6 +57,7 @@
 		63D5114325063CFA0031660B /* PinnedPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5114225063CFA0031660B /* PinnedPostTableViewCell.swift */; };
 		63D51145250651290031660B /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D51144250651290031660B /* AnalyticsController.swift */; };
 		63E798B925346DD4003B62B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63E798B825346DD4003B62B2 /* GoogleService-Info.plist */; };
+		63EA5CB225349595008F76EF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA5CB125349595008F76EF /* UIView+Extension.swift */; };
 		63EAA0D0243EFF2500C234A8 /* FilterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA0CF243EFF2400C234A8 /* FilterItem.swift */; };
 		63EAA0D9244047DF00C234A8 /* Platform+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA0D8244047DF00C234A8 /* Platform+Extension.swift */; };
 		63EAA0DB244051F100C234A8 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAA0DA244051F100C234A8 /* UsersViewController.swift */; };
@@ -154,6 +155,7 @@
 		63D5114225063CFA0031660B /* PinnedPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedPostTableViewCell.swift; sourceTree = "<group>"; };
 		63D51144250651290031660B /* AnalyticsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsController.swift; sourceTree = "<group>"; };
 		63E798B825346DD4003B62B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Codeforces Watcher/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		63EA5CB125349595008F76EF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		63EAA0CF243EFF2400C234A8 /* FilterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterItem.swift; sourceTree = "<group>"; };
 		63EAA0D8244047DF00C234A8 /* Platform+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+Extension.swift"; sourceTree = "<group>"; };
 		63EAA0DA244051F100C234A8 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				335247F739C05D9BDD4FD646 /* tableView */,
 				335248DC66E099A4EF3D47FD /* NSMutableAttributedString+Extension.swift */,
 				3352475317FAF15F8D51972A /* StringOccurrence.swift */,
+				63EA5CB125349595008F76EF /* UIView+Extension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -898,6 +901,7 @@
 				63EAA0FB2446FF6A00C234A8 /* NoItemsTableViewCell.swift in Sources */,
 				63736F2123D1F336001E9AB9 /* ProblemTableViewCell.swift in Sources */,
 				335247826CC8C76840B8B161 /* NewsViewController.swift in Sources */,
+				63EA5CB225349595008F76EF /* UIView+Extension.swift in Sources */,
 				63736F1F23D1F2FD001E9AB9 /* ProblemsViewController.swift in Sources */,
 				33524B39CED3D72F41F01C9B /* CardView.swift in Sources */,
 				63EAA0D9244047DF00C234A8 /* Platform+Extension.swift in Sources */,
