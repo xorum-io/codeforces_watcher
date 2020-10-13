@@ -19,6 +19,7 @@ sealed class NewsItem {
 
         val postAuthorAvatar = post.author.avatar
         val postContent = post.content.convertFromHtml()
+        val postLink = post.link
         val postAuthorRankColor = getColorByUserRank(post.author.rank)
         val postAgoText = buildPostAgoText(post.author, post.modifiedAt, post.isModified)
 

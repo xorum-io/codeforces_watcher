@@ -83,8 +83,12 @@ class NewsAdapter(
             tvCommentatorHandleAndTime.text = commentAgoText
             tvCommentContent.text = commentContent
 
-            onItemClickListener = {
+            onCommentClickListener = {
                 itemClickListener(commentLink, blogTitle)
+            }
+
+            onPostClickListener = {
+                itemClickListener(postLink, blogTitle)
             }
 
             (ivPostAuthorAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, postAuthorRankColor)

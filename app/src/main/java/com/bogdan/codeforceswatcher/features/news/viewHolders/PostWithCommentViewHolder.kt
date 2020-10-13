@@ -16,11 +16,18 @@ class PostWithCommentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val ivCommentatorAvatar: ImageView = view.ivCommentAuthorAvatar
     val tvCommentContent: TextView = view.tvCommentContent
 
-    var onItemClickListener: ((Int) -> Unit)? = null
+    var onCommentClickListener: (() -> Unit)? = null
+    var onPostClickListener: (() -> Unit)? = null
 
     init {
-        view.setOnClickListener {
-            onItemClickListener?.invoke(adapterPosition)
+        view.postContainer.setOnClickListener {
+            onPostClickListener?.invoke()
+        }
+        view.commentContainer.setOnClickListener {
+            onCommentClickListener?.invoke()
+        }
+        view.footerContainer.setOnClickListener {
+            onPostClickListener?.invoke()
         }
     }
 }
