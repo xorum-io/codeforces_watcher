@@ -12,9 +12,14 @@ import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.UnstableDefault
 
+const val BACKEND_PROD_LINK = "algoris-me-backend.herokuapp.com"
+const val BACKEND_STAGING_LINK = "algoris-me-backend-staging.herokuapp.com"
+
+lateinit var backendLink: String
+
 internal class BackendApiClient {
 
-    private val makeBackendApiClient = makeBackendApiClient()
+    private val makeBackendApiClient by lazy { makeBackendApiClient() }
 
     suspend fun getNews(lang: String) = try {
         makeBackendApiClient.get<NewsResponse>(path = "news") {
@@ -34,7 +39,7 @@ internal class BackendApiClient {
         expectSuccess = false
         defaultRequest {
             url {
-                host = API_LINK
+                host = backendLink
                 protocol = URLProtocol.HTTPS
             }
         }
@@ -45,9 +50,5 @@ internal class BackendApiClient {
             logger = Logger.DEFAULT
             level = LogLevel.INFO
         }
-    }
-
-    companion object {
-        private const val API_LINK = "algoris-me-backend.herokuapp.com"
     }
 }

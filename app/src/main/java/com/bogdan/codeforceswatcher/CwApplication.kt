@@ -15,6 +15,10 @@ import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsReque
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
+import io.xorum.codeforceswatcher.network.BACKEND_PROD_LINK
+import io.xorum.codeforceswatcher.network.BACKEND_STAGING_LINK
+import io.xorum.codeforceswatcher.network.backendLink
+
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.redux.middlewares.notificationHandler
 import io.xorum.codeforceswatcher.redux.middlewares.toastHandlers
@@ -39,6 +43,7 @@ class CwApp : Application() {
 
         FirebaseAnalytics.getInstance(this)
 
+        setBackendLink()
         fetchData()
 
         if (Prefs.get().readAlarm().isEmpty()) {
@@ -65,6 +70,12 @@ class CwApp : Application() {
 
     private fun initAnalyticsController() {
         analyticsController = AnalyticsController()
+    }
+
+    private fun setBackendLink() = if (BuildConfig.DEBUG) {
+        backendLink = BACKEND_STAGING_LINK
+    } else {
+        backendLink = BACKEND_PROD_LINK
     }
 
     private fun fetchData() {
