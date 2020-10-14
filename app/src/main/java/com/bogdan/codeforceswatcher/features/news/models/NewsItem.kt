@@ -1,6 +1,6 @@
 package com.bogdan.codeforceswatcher.features.news.models
 
-import android.text.SpannableStringBuilder
+import android.text.TextUtils
 import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.features.users.colorTextByUserRank
@@ -8,37 +8,36 @@ import com.bogdan.codeforceswatcher.features.users.getColorByUserRank
 import com.bogdan.codeforceswatcher.util.convertFromHtml
 import io.xorum.codeforceswatcher.network.responses.News
 import io.xorum.codeforceswatcher.util.FeedUIModel
+import org.ocpsoft.prettytime.PrettyTime
+import java.util.*
 
 sealed class NewsItem {
 
-    class CommentItem(comment: News.Comment) : NewsItem() {
+    class PostWithCommentItem(post: News.Post, comment: News.Comment) : NewsItem() {
 
-        val commentatorHandle: CharSequence = buildHandle(comment.author.handle, comment.author.rank)
-        val title: String = comment.title.convertFromHtml()
-        val content: String = comment.content.convertFromHtml()
-        val commentatorAvatar: String = comment.author.avatar
-        val createdAt: Long = comment.createdAt
-        val link = comment.link
-        val rankColor = getColorByUserRank(comment.author.rank)
+        val blogTitle = post.title.convertFromHtml()
 
-        private fun buildHandle(handle: String, rank: String?): CharSequence {
-            val colorHandle = colorTextByUserRank(handle, rank)
-            val commentedByString = CwApp.app.getString(R.string.commented_by)
-            val handlePosition = commentedByString.indexOf("%1\$s")
+        val postAuthorAvatar = post.author.avatar
+        val postContent = post.content.convertFromHtml()
+        val postLink = post.link
+        val postAuthorRankColor = getColorByUserRank(post.author.rank)
+        val postAgoText = buildPostAgoText(post.author, post.modifiedAt, post.isModified)
 
-            return SpannableStringBuilder(commentedByString)
-                    .replace(handlePosition, handlePosition + "%1\$s".length, colorHandle)
-        }
+        val commentatorAvatar = comment.author.avatar
+        val commentContent = comment.content.convertFromHtml()
+        val commentLink = comment.link
+        val commentatorRankColor = getColorByUserRank(comment.author.rank)
+        val commentAgoText = buildCommentAgoText(comment.author, comment.createdAt)
     }
 
     class PostItem(post: News.Post) : NewsItem() {
 
-        val authorHandle: CharSequence = colorTextByUserRank(post.author.handle, post.author.rank)
-        val blogTitle: String = post.title.convertFromHtml()
-        val authorAvatar: String = post.author.avatar
-        val createdAt: Long = post.createdAt
+        val blogTitle = post.title.convertFromHtml()
+        val authorAvatar = post.author.avatar
         val link = post.link
         val rankColor = getColorByUserRank(post.author.rank)
+        val content = post.content.convertFromHtml()
+        val agoText = buildPostAgoText(post.author, post.modifiedAt, post.isModified)
     }
 
     class PinnedItem(pinnedPost: News.PinnedPost) : NewsItem() {
@@ -58,4 +57,17 @@ sealed class NewsItem {
     }
 
     object Stub : NewsItem()
+}
+
+private fun buildCommentAgoText(user: News.User, time: Long): CharSequence {
+    val handle: CharSequence = colorTextByUserRank(user.handle, user.rank)
+
+    return TextUtils.concat(handle, " - ${PrettyTime().format(Date(time * 1000))}")
+}
+
+private fun buildPostAgoText(user: News.User, time: Long, isModified: Boolean): CharSequence {
+    val handle: CharSequence = colorTextByUserRank(user.handle, user.rank)
+    val postState = CwApp.app.getString(if (isModified) R.string.modified else R.string.created)
+
+    return TextUtils.concat(handle, " - $postState ${PrettyTime().format(Date(time * 1000))}")
 }

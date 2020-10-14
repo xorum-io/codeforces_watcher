@@ -9,7 +9,7 @@ extension TimeInterval {
 
     var socialDate: String? {
         return DateComponentsFormatter().apply {
-            $0.allowedUnits = [.day, .hour, .minute, .second]
+            $0.allowedUnits = [.year, .month, .weekday, .day, .hour, .minute, .second]
             $0.unitsStyle = .full
             $0.maximumUnitCount = 1
         }.string(from: self)

@@ -5,7 +5,6 @@ import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.getUsers
 import io.xorum.codeforceswatcher.features.users.redux.models.UsersRequestResult
 import io.xorum.codeforceswatcher.redux.*
-import io.xorum.codeforceswatcher.util.RefreshScreen
 import io.xorum.codeforceswatcher.util.defineLang
 import kotlinx.coroutines.delay
 import tw.geothings.rekotlin.Action

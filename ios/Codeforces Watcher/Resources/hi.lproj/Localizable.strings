@@ -6,10 +6,10 @@
 "Problems" = "प्रॉब्लेमस";
 
 "Commented by" = "कमेंटेड बाय";
-"ago" = "पहले";
+"ago" = " - %@ पहले";
+"post_ago" = " - %@ %@ पहले";
 
 "news_explanation" = "आपके डिवाइस पर आने वाली हाल की क्रियाएं…";
-"created_or_updated_text" = "टेक्स्ट बनाया या अपडेट किया गया, विवरण देखने के लिए क्लिक करें…";
 
 "problems_explanation" = "सवाल आपके डिवाइस पे लोड हो रहा है...";
 "contests_explanation" = "आपके उपकरण के रास्ते में प्रतियोगिताएं होती हैं...";
@@ -47,10 +47,8 @@
 "delete_user_explanation" = "क्या आप पक्का इसे हटाना चाहते हैं %@?";
 
 "None" = "कोई परिणाम नही";
-"Rank" = "रैंक: %@";
-"Name" = "नाम: %@ %@";
-"Current rating" = "वर्तमान रेटिंग: %@";
-"Max rating" = "अधिकतम रेटिंग: %@";
+"Rating" = "रेटिंग: %@ (अधिकतम रेटिंग: %@)";
+"Contribution" = "योगदान: %@";
 "Sort" = "सॉर्ट करें %@ ▼";
 
 "default" = "िफ़ॉल्ट";
@@ -75,3 +73,9 @@
 
 "contest_date_format" = "HH:mm MMM d, EEEE";
 "user_date_format" = "MMM d, yyyy";
+
+"be_the_first_to_comment" = "टिप्पणी करने वाला पहला व्यक्ति बनें";
+"see_all_comments" = "सभी टिप्पणियाँ देखें";
+
+"modified" = "संशोधित";
+"created" = "बनाया था";

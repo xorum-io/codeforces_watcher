@@ -30,7 +30,7 @@ class PinnedPostTableViewCell: UITableViewCell {
         $0.tintColor = Palette.gray
     }
     
-    private var pinnedPost: News.PinnedPost!
+    private var pinnedPost: NewsItem.PinnedItem!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -98,7 +98,7 @@ class PinnedPostTableViewCell: UITableViewCell {
         store.dispatch(action: NewsRequests.RemovePinnedPost(link: pinnedPost.link))
     }
     
-    func bind(_ pinnedPost: News.PinnedPost) {
+    func bind(_ pinnedPost: NewsItem.PinnedItem) {
         self.pinnedPost = pinnedPost
         headingLabel.text = pinnedPost.title
     }

@@ -16,9 +16,7 @@ class ContestTableViewCell: UITableViewCell {
     private let cardView = CardView()
 
     private var logoView = CircleImageView()
-    private let nameLabel = HeadingLabel().apply {
-        $0.numberOfLines = 1
-    }
+    private let nameLabel = HeadingLabel()
 
     private let timeLabel = SubheadingBigLabel()
 

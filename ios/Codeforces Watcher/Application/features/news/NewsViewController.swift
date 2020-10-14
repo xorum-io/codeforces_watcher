@@ -17,7 +17,6 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     private let tableView = UITableView()
     private let tableAdapter = NewsTableViewAdapter()
     private let refreshControl = UIRefreshControl()
-    private let feedbackCardView = FeedbackCardView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +66,8 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.separatorStyle = .none
         }
 
-        [CommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self, PinnedPostTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
+        [PostWithCommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self,
+         PinnedPostTableViewCell.self, FeedbackTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
         tableAdapter.onNewsClick = { link, shareText, onOpen, onShare in
             let webViewController = WebViewController().apply {
@@ -90,16 +90,16 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     func onNewState(state: Any) {
         let state = state as! NewsState
         
+        var items: [NewsItem] = []
+        
         if (state.status == .idle) {
             refreshControl.endRefreshing()
             
             if (feedbackController.shouldShowFeedbackCell()) {
-                showFeedbackCardView()
-                feedbackCardView.callback = {
+                items.append(NewsItem.feedbackItem(NewsItem.FeedbackItem(feedbackController.feedUIModel)))
+                tableAdapter.callback = {
                     self.onNewState(state: state)
                 }
-            } else {
-                tableView.tableHeaderView = nil
             }
         }
         
@@ -111,23 +111,10 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             }
         }
         
-        tableAdapter.news = news
+        items += news.mapToItems()
+        tableAdapter.news = items
 
         tableView.reloadData()
-    }
-    
-    private func showFeedbackCardView() {
-        feedbackCardView.bind()
-        
-        tableView.run {
-            $0.tableHeaderView = feedbackCardView
-            $0.tableHeaderView?.widthToSuperview()
-        }
-        
-        feedbackCardView.run {
-            $0.setNeedsLayout()
-            $0.layoutIfNeeded()
-        }
     }
     
     override func fabButtonTapped() {
@@ -146,5 +133,22 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     @objc private func refreshNews(_ sender: Any) {
         analyticsControler.logRefreshingData(refreshScreen: .news)
         store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: true, language: "locale".localized))
+    }
+}
+
+fileprivate extension Array where Element == News {
+    func mapToItems() -> [NewsItem] {
+        compactMap { news in
+            switch(news) {
+            case let postWithComment as News.PostWithComment:
+                return NewsItem.postWithCommentItem(NewsItem.PostWithCommentItem(postWithComment.comment, postWithComment.post))
+            case let post as News.Post:
+                return NewsItem.postItem(NewsItem.PostItem(post))
+            case let pinnedPost as News.PinnedPost:
+                return NewsItem.pinnedItem(NewsItem.PinnedItem(pinnedPost))
+            default:
+                return nil
+            }
+        }
     }
 }

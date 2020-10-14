@@ -5,7 +5,6 @@ import io.xorum.codeforceswatcher.features.contests.models.Contest
 import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.network.responses.ContestResponse
 import io.xorum.codeforceswatcher.redux.*
-import io.xorum.codeforceswatcher.util.RefreshScreen
 import io.xorum.codeforceswatcher.util.defineLang
 import tw.geothings.rekotlin.Action
 

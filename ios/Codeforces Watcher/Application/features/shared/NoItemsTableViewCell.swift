@@ -11,7 +11,9 @@ import UIKit
 class NoItemsTableViewCell: UITableViewCell {
 
     private let noItemsImage = UIImageView()
-    private let explanationLabel = HeadingLabel()
+    private let explanationLabel = HeadingLabel().apply {
+        $0.numberOfLines = 0
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -43,7 +43,6 @@ Codeforces WatchR के साथ आप:
 
 इसे अब Google Play पर डाउनलोड करें - https://play.google.com/store/apps/details?id=com.bogdan.codeforceswatcher"</string>
     <string name="news_on_the_way">आपके डिवाइस पर आने वाली हाल की क्रियाएं…</string>
-    <string name="created_or_updated_text">टेक्स्ट बनाया या अपडेट किया गया, विवरण देखने के लिए क्लिक करें…</string>
     <string name="no_favourite_problems">आपके पास अभी कोई पसंदीदा सवाल नहीं है ।\n अपना पहला पसंदीदा सवाल स्क्रीन में नीचे दिए गए «∞» बटन पर क्लिक करके जोड़ें ।</string>
     <string name="problems_on_the_way">सवाल आपके डिवाइस पे लोड हो रहा है...</string>
     <string name="search_for_problems">सवाल खोजे...</string>
@@ -69,4 +68,10 @@ Codeforces WatchR के साथ आप:
 
     <string name="rating">रेटिंग: %1$s (अधिकतम रेटिंग %2$s)</string>
     <string name="contribution">योगदान: %1$s</string>
+
+    <string name="see_all_comments">सभी टिप्पणियाँ देखें</string>
+    <string name="be_first_to_comment">टिप्पणी करने वाला पहला व्यक्ति बनें</string>
+
+    <string name="modified">संशोधित</string>
+    <string name="created">बनाया था</string>
 </resources>

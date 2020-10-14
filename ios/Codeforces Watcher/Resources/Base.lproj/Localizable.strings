@@ -6,10 +6,10 @@
 "Problems" = "Problems";
 
 "Commented by" = "Commented by";
-"ago" = "ago";
+"ago" = " - %@ ago";
+"post_ago" = " - %@ %@ ago";
 
 "news_explanation" = "Recent news are on the way to your device...";
-"created_or_updated_text" = "Created or updated the text, click to see details...";
 
 "problems_explanation" = "Problems are on the way to your device...";
 "contests_explanation" = "Contests are on the way to your device...";
@@ -47,12 +47,8 @@
 "delete_user_explanation" = "Are you sure you want to delete %@?";
 
 "None" = "None";
-"Rank" = "Rank: %@";
-"Name" = "Name: %@ %@";
 "Rating" = "Rating: %@ (max: %@)";
 "Contribution" = "Contribution: %@";
-"Current rating" = "Current rating: %@";
-"Max rating" = "Max rating: %@";
 "Sort" = "Sort by %@ ▼";
 
 "default" = "default";
@@ -77,3 +73,9 @@
 
 "contest_date_format" = "HH:mm MMM d, EEEE";
 "user_date_format" = "MMM d, yyyy";
+
+"be_the_first_to_comment" = "Be the first to comment";
+"see_all_comments" = "See all comments";
+
+"modified" = "modified";
+"created" = "created";

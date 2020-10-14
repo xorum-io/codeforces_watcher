@@ -10,7 +10,8 @@ import UIKit
 import common
 
 class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
-    var news: [News] = []
+    var news: [NewsItem] = []
+    var callback: () -> () = { }
 
     var onNewsClick: (
         _ link: String,
@@ -39,20 +40,30 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
         }
         
         switch(news[indexPath.row]) {
-        case let news as News.PinnedPost:
+        case .pinnedItem(let item):
             return tableView.dequeueReusableCell(cellType: PinnedPostTableViewCell.self).apply {
-                $0.bind(news)
+                $0.bind(item)
             }
-        case let news as News.Comment:
-            return tableView.dequeueReusableCell(cellType: CommentTableViewCell.self).apply {
-                $0.bind(news)
+        case .postWithCommentItem(let item):
+            return tableView.dequeueReusableCell(cellType: PostWithCommentTableViewCell.self).apply {
+                $0.bind(item) { link in
+                    let shareText = buildShareText(item.blogTitle, link)
+                    let onOpen = { analyticsControler.logActionOpened() }
+                    let onShare = { analyticsControler.logShareComment() }
+                    
+                    self.onNewsClick(link, shareText, onOpen, onShare)
+                }
             }
-        case let news as News.Post:
+        case .postItem(let item):
             return tableView.dequeueReusableCell(cellType: PostTableViewCell.self).apply {
-                $0.bind(news)
+                $0.bind(item)
             }
-        default:
-            return tableView.dequeueReusableCell(cellType: CommentTableViewCell.self)
+        case .feedbackItem(let item):
+            return tableView.dequeueReusableCell(cellType: FeedbackTableViewCell.self).apply {
+                $0.bind(item) {
+                    self.callback()
+                }
+            }
         }
     }
 
@@ -62,20 +73,14 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
         }
         
         switch(news[indexPath.row]) {
-        case let news as News.PinnedPost:
-            let shareText = buildShareText(news.title.beautify(), news.link)
+        case .pinnedItem(let news):
+            let shareText = buildShareText(news.title, news.link)
             let onOpen = { analyticsControler.logPinnedPostOpened() }
             let onShare = { analyticsControler.logShareComment() }
             
             onNewsClick(news.link, shareText, onOpen, onShare)
-        case let news as News.Comment:
-            let shareText = buildShareText(news.title.beautify(), news.link)
-            let onOpen = { analyticsControler.logActionOpened() }
-            let onShare = { analyticsControler.logShareComment() }
-            
-            onNewsClick(news.link, shareText, onOpen, onShare)
-        case let news as News.Post:
-            let shareText = buildShareText(news.title.beautify(), news.link)
+        case .postItem(let news):
+            let shareText = buildShareText(news.blogTitle, news.link)
             let onOpen = { analyticsControler.logActionOpened() }
             let onShare = { analyticsControler.logShareComment() }
             

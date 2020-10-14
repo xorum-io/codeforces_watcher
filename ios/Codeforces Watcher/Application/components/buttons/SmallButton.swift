@@ -62,7 +62,7 @@ class SmallButton: UIButton {
     }
     
     private func setConstraints() {
-        height(24)
+        height(30)
         width(80)
     }
 }

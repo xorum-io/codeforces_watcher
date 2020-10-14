@@ -21,7 +21,7 @@ class HeadingLabel: UILabel {
     }
     
     private func setupView() {
-        numberOfLines = 0
+        numberOfLines = 1
         textColor = Palette.black
         font = Font.textHeading
     }

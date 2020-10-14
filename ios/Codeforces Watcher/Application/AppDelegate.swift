@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initSettings()
         initToastHandler()
         initAnalyticsController()
+        setBackendLink()
 
         AppStoreKt.databaseController.onAppCreated()
         AppStoreKt.persistenceController.onAppCreated()
@@ -52,6 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func initAnalyticsController() {
         AppStoreKt.analyticsController = AnalyticsController()
+    }
+    
+    private func setBackendLink() {
+        #if DEBUG
+        BackendApiClientKt.backendLink = BackendApiClientKt.BACKEND_STAGING_LINK
+        #else
+        BackendApiClientKt.backendLink = BackendApiClientKt.BACKEND_PROD_LINK
+        #endif
     }
 
     private func fetchData() {

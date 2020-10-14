@@ -1,24 +1,24 @@
 //
-//  FeedbackCardView.swift
+//  FeedbackTableViewCell.swift
 //  Codeforces Watcher
 //
-//  Created by Den Matyash on 5/6/20.
+//  Created by Den Matyash on 06.10.2020.
 //  Copyright © 2020 xorum.io. All rights reserved.
 //
 
 import Foundation
 import UIKit
-import StoreKit
-import common
 
-class FeedbackCardView: UIView {
-    private var feedbackItem: FeedUIModel!
+class FeedbackTableViewCell: UITableViewCell {
+    
+    private var feedbackItem: NewsItem.FeedbackItem!
     var callback: () -> () = {}
 
     private let cardView = CardView()
     private let titleLabel = HeadingLabel().apply {
         $0.textAlignment = .center
         $0.textColor = Palette.colorPrimary
+        $0.numberOfLines = 0
     }
     private let closeButton = UIButton().apply {
         $0.setImage(UIImage(named: "crossIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -28,18 +28,20 @@ class FeedbackCardView: UIView {
         $0.mode = .bordered
     }
     private let positiveButton = SmallButton()
+
     
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
 
     private func setupView() {
+        selectionStyle = .none
         backgroundColor = Palette.white
 
         buildViewTree()
@@ -106,8 +108,9 @@ class FeedbackCardView: UIView {
         callback()
     }
 
-    public func bind() {
-        feedbackItem = feedbackController.feedUIModel
+    func bind(_ feedbackItem: NewsItem.FeedbackItem, completion: @escaping () -> ()) {
+        self.feedbackItem = feedbackItem
+        self.callback = completion
 
         titleLabel.text = feedbackItem.textTitle
         positiveButton.setTitle(feedbackItem.textPositiveButton, for: .normal)

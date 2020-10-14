@@ -47,7 +47,6 @@ Codeforces WatchR дає можливiсть:
 Завантажуйте прямо зараз на Google Play - https://play.google.com/store/apps/details?id=com.bogdan.codeforceswatcher"</string>
     <string name="news_on_the_way">Свіжі новини на шляху до вашого пристрою…</string>
     <string name="problems_on_the_way">Задачі на шляху до вашого пристрою…</string>
-    <string name="created_or_updated_text">Створено або оновлено текст, натисніть, щоб переглянути деталі…</string>
     <string name="search_for_problems">Пошук задач…</string>
     <string name="no_browser_has_been_found">Не знайдено браузера, спробуйте встановити його.</string>
     <string name="filters">Фiльтри</string>
@@ -73,4 +72,10 @@ Codeforces WatchR дає можливiсть:
 
     <string name="rating">Рейтинг: %1$s (макс. %2$s)</string>
     <string name="contribution">Внесок: %1$s</string>
+
+    <string name="see_all_comments">Переглянути всі коментарі</string>
+    <string name="be_first_to_comment">Коментуйте першим</string>
+
+    <string name="modified">змiнено</string>
+    <string name="created">створено</string>
 </resources>

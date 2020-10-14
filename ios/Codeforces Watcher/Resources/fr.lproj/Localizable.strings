@@ -6,10 +6,10 @@
 "Problems" = "Problèmes";
 
 "Commented by" = "Commenté par";
-"ago" = "";
+"ago" = " - %@";
+"post_ago" = " - %@ %@";
 
 "news_explanation" = "Informations récentes en cours de téléchargement...";
-"created_or_updated_text" = "Contenu créé ou mis à jour, cliquez pour voir les détails...";
 
 "problems_explanation" = "Problèmes en cours de téléchargement...";
 "contests_explanation" = "Concours en cours de téléchargement...";
@@ -47,12 +47,8 @@
 "delete_user_explanation" = "Êtes-vous sûr de supprimer %@?";
 
 "None" = "Aucun";
-"Rank" = "Rang: %@";
-"Name" = "Nom: %@ %@";
 "Rating" = "Classement: %@ (max: %@)";
 "Contribution" = "Contribution: %@";
-"Current rating" = "Classement actuel: %@";
-"Max rating" = "Meilleur classement: %@";
 "Sort" = "Trier par %@ ▼";
 
 "default" = "défaut";
@@ -77,3 +73,9 @@
 
 "contest_date_format" = "HH:mm MMM d, EEEE";
 "user_date_format" = "d MMM, yyyy";
+
+"be_the_first_to_comment" = "Soyez le premier à commenter";
+"see_all_comments" = "Voir tous les commentaires";
+
+"modified" = "modifié";
+"created" = "créé";
