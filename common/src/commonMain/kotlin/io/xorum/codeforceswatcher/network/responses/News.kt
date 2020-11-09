@@ -33,6 +33,17 @@ sealed class News {
     ) : News()
 
     @Serializable
+    @SerialName("Video")
+    data class Video(
+            val id: String,
+            val author: User,
+            val createdAt: Long,
+            val title: String,
+            val thumbnailLink: String,
+            val link: String
+    ) : News()
+
+    @Serializable
     data class Comment(
             val id: String,
             val createdAt: Long,
