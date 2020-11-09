@@ -49,6 +49,10 @@ class NewsAdapter(
                     val layout = LayoutInflater.from(context).inflate(R.layout.view_post_item, parent, false)
                     PostViewHolder(layout)
                 }
+                VIDEO_ITEM_VIEW_TYPE -> {
+                    val layout = LayoutInflater.from(context).inflate(R.layout.view_video_item, parent, false)
+                    VideoItemViewHolder(layout)
+                }
                 else -> throw IllegalStateException()
             }
 
@@ -59,6 +63,7 @@ class NewsAdapter(
             items[position] is NewsItem.PinnedItem -> PINNED_ITEM_VIEW_TYPE
             items[position] is NewsItem.FeedbackItem -> FEEDBACK_ITEM_VIEW_TYPE
             items[position] is NewsItem.PostItem -> POST_VIEW_TYPE
+            items[position] is NewsItem.VideoItem -> VIDEO_ITEM_VIEW_TYPE
             else -> throw IllegalStateException()
         }
     }
@@ -70,10 +75,14 @@ class NewsAdapter(
             is NewsItem.PostWithCommentItem -> bindPostWithComment(viewHolder as PostWithCommentViewHolder, item)
             is NewsItem.PostItem -> bindPost(viewHolder as PostViewHolder, item)
             is NewsItem.FeedbackItem -> bindFeedbackItem(viewHolder as FeedbackItemViewHolder, item)
+            is NewsItem.VideoItem -> bindVideoItem(viewHolder as VideoItemViewHolder, item)
         }
     }
 
-    private fun bindPostWithComment(viewHolder: PostWithCommentViewHolder, postWithComment: NewsItem.PostWithCommentItem) = with(postWithComment) {
+    private fun bindPostWithComment(
+            viewHolder: PostWithCommentViewHolder,
+            postWithComment: NewsItem.PostWithCommentItem
+    ) = with(postWithComment) {
         with(viewHolder) {
             tvTitle.text = blogTitle
 
@@ -104,7 +113,10 @@ class NewsAdapter(
                 .into(viewHolder.ivPostAuthorAvatar)
     }
 
-    private fun bindPost(viewHolder: PostViewHolder, post: NewsItem.PostItem) = with(post) {
+    private fun bindPost(
+            viewHolder: PostViewHolder,
+            post: NewsItem.PostItem
+    ) = with(post) {
         with(viewHolder) {
             tvTitle.text = blogTitle
             tvHandleAndTime.text = agoText
@@ -112,7 +124,7 @@ class NewsAdapter(
             onItemClickListener = {
                 itemClickListener(link, blogTitle)
             }
-            (ivAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, post.rankColor)
+            (ivAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, rankColor)
         }
 
         Picasso.get().load(authorAvatar)
@@ -120,7 +132,10 @@ class NewsAdapter(
                 .into(viewHolder.ivAvatar)
     }
 
-    private fun bindPinnedItem(viewHolder: PinnedItemViewHolder, pinnedItem: NewsItem.PinnedItem) = with(pinnedItem) {
+    private fun bindPinnedItem(
+            viewHolder: PinnedItemViewHolder,
+            pinnedItem: NewsItem.PinnedItem
+    ) = with(pinnedItem) {
         with(viewHolder) {
             tvTitle.text = title
             onItemClickListener = {
@@ -160,6 +175,29 @@ class NewsAdapter(
         }
     }
 
+    private fun bindVideoItem(
+            viewHolder: VideoItemViewHolder,
+            videoItem: NewsItem.VideoItem
+    ) = with(videoItem) {
+        with(viewHolder) {
+            tvTitle.text = title
+            (ivAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, rankColor)
+            tvHandleAndTime.text = agoText
+
+            onItemClickListener = {
+                itemClickListener(link, title)
+            }
+        }
+
+        Picasso.get().load(authorAvatar)
+                .placeholder(R.drawable.no_avatar)
+                .into(viewHolder.ivAvatar)
+
+        Picasso.get().load(thumbnailLink)
+                .placeholder(R.drawable.video_placeholder)
+                .into(viewHolder.ivThumbnail)
+    }
+
     fun setItems(actionsList: List<NewsItem>) {
         items = if (actionsList.isEmpty() || (actionsList.size == 1 && actionsList.first() is NewsItem.FeedbackItem)) listOf(NewsItem.Stub)
         else actionsList
@@ -174,5 +212,6 @@ class NewsAdapter(
         const val POST_VIEW_TYPE = 2
         const val PINNED_ITEM_VIEW_TYPE = 3
         const val FEEDBACK_ITEM_VIEW_TYPE = 4
+        const val VIDEO_ITEM_VIEW_TYPE = 5
     }
 }
