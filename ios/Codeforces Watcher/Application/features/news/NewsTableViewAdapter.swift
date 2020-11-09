@@ -64,6 +64,10 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
                     self.callback()
                 }
             }
+        case .videoItem(let item):
+            return tableView.dequeueReusableCell(cellType: VideoTableViewCell.self).apply {
+                $0.bind(item)
+            }
         }
     }
 
@@ -81,6 +85,12 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
             onNewsClick(news.link, shareText, onOpen, onShare)
         case .postItem(let news):
             let shareText = buildShareText(news.blogTitle, news.link)
+            let onOpen = { analyticsControler.logActionOpened() }
+            let onShare = { analyticsControler.logShareComment() }
+            
+            onNewsClick(news.link, shareText, onOpen, onShare)
+        case .videoItem(let news):
+            let shareText = buildShareText(news.title, news.link)
             let onOpen = { analyticsControler.logActionOpened() }
             let onShare = { analyticsControler.logShareComment() }
             

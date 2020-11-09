@@ -67,7 +67,7 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         }
 
         [PostWithCommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self,
-         PinnedPostTableViewCell.self, FeedbackTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
+         PinnedPostTableViewCell.self, FeedbackTableViewCell.self, VideoTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
         tableAdapter.onNewsClick = { link, shareText, onOpen, onShare in
             let webViewController = WebViewController().apply {
@@ -146,6 +146,8 @@ fileprivate extension Array where Element == News {
                 return NewsItem.postItem(NewsItem.PostItem(post))
             case let pinnedPost as News.PinnedPost:
                 return NewsItem.pinnedItem(NewsItem.PinnedItem(pinnedPost))
+            case let video as News.Video:
+                return NewsItem.videoItem(NewsItem.VideoItem(video))
             default:
                 return nil
             }
