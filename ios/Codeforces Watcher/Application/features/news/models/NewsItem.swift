@@ -29,17 +29,17 @@ enum NewsItem {
         let commentAgoText: String
 
         init(_ comment: News.Comment, _ post: News.Post) {
-            blogTitle = post.title.beautify()
+            blogTitle = post.title.convertFromHtml()
 
             postAuthorAvatar = post.author.avatar
             postAuthorHandle = colorTextByUserRank(text: post.author.handle, rank: post.author.rank)
-            postContent = post.content.beautify()
+            postContent = post.content.convertFromHtml()
             postLink = post.link
             postAuthorRankColor = getColorByUserRank(post.author.rank).cgColor
 
             commentatorAvatar = comment.author.avatar
             commentatorHandle = colorTextByUserRank(text: comment.author.handle, rank: comment.author.rank)
-            commentContent = comment.content.beautify()
+            commentContent = comment.content.convertFromHtml()
             commentLink = comment.link
             commentatorRankColor = getColorByUserRank(comment.author.rank).cgColor
             
@@ -59,11 +59,11 @@ enum NewsItem {
         
         init(_ post: News.Post) {
             authorHandle = colorTextByUserRank(text: post.author.handle, rank: post.author.rank)
-            blogTitle = post.title.beautify()
+            blogTitle = post.title.convertFromHtml()
             authorAvatar = post.author.avatar
             link = post.link
             rankColor = getColorByUserRank(post.author.rank).cgColor
-            content = post.content.beautify()
+            content = post.content.convertFromHtml()
             agoText = post.modifiedAt.buildPostAgoText(post.isModified)
         }
     }
@@ -108,7 +108,7 @@ enum NewsItem {
         init(_ video: News.Video) {
             authorAvatar = video.author.avatar
             rankColor = getColorByUserRank(video.author.rank).cgColor
-            title = video.title.beautify()
+            title = video.title.convertFromHtml()
             agoText = video.createdAt.buildAgoText()
             thumbnailLink = video.thumbnailLink
             link = video.link
