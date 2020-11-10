@@ -76,4 +76,6 @@ Codeforces WatchR позволяет:
 
     <string name="modified">изменен</string>
     <string name="created">создан</string>
+
+    <string name="watch_video">Смотреть видео</string>
 </resources>

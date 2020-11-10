@@ -44,7 +44,7 @@ enum NewsItem {
             commentatorRankColor = getColorByUserRank(comment.author.rank).cgColor
             
             postAgoText = post.modifiedAt.buildPostAgoText(post.isModified)
-            commentAgoText = comment.createdAt.buildCommentAgoText()
+            commentAgoText = comment.createdAt.buildAgoText()
         }
     }
     
@@ -96,14 +96,35 @@ enum NewsItem {
         }
     }
     
+    struct VideoItem {
+        let authorHandle: NSAttributedString
+        let authorAvatar: String
+        let rankColor: CGColor
+        let title: String
+        let agoText: String
+        let thumbnailLink: String
+        let link: String
+        
+        init(_ video: News.Video) {
+            authorAvatar = video.author.avatar
+            rankColor = getColorByUserRank(video.author.rank).cgColor
+            title = video.title
+            agoText = video.createdAt.buildAgoText()
+            thumbnailLink = video.thumbnailLink
+            link = video.link
+            authorHandle = colorTextByUserRank(text: video.author.handle, rank: video.author.rank)
+        }
+    }
+    
     case postWithCommentItem(PostWithCommentItem)
     case postItem(PostItem)
     case pinnedItem(PinnedItem)
     case feedbackItem(FeedbackItem)
+    case videoItem(VideoItem)
 }
 
 fileprivate extension Int64 {
-    func buildCommentAgoText() -> String {
+    func buildAgoText() -> String {
         guard let timePassed = TimeInterval((Int(Date().timeIntervalSince1970) - Int(self))).socialDate else { fatalError() }
         return "ago".localizedFormat(args: timePassed)
     }

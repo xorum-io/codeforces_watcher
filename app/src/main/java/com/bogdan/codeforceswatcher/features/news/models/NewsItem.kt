@@ -27,7 +27,7 @@ sealed class NewsItem {
         val commentContent = comment.content.convertFromHtml()
         val commentLink = comment.link
         val commentatorRankColor = getColorByUserRank(comment.author.rank)
-        val commentAgoText = buildCommentAgoText(comment.author, comment.createdAt)
+        val commentAgoText = buildAgoText(comment.author, comment.createdAt)
     }
 
     class PostItem(post: News.Post) : NewsItem() {
@@ -56,10 +56,20 @@ sealed class NewsItem {
         val neutralButtonClick = feedUIModel.neutralButtonClick
     }
 
+    class VideoItem(video: News.Video) : NewsItem() {
+
+        val authorAvatar = video.author.avatar
+        val rankColor = getColorByUserRank(video.author.rank)
+        val title = video.title
+        val agoText = buildAgoText(video.author, video.createdAt)
+        val thumbnailLink = video.thumbnailLink
+        val link = video.link
+    }
+
     object Stub : NewsItem()
 }
 
-private fun buildCommentAgoText(user: News.User, time: Long): CharSequence {
+private fun buildAgoText(user: News.User, time: Long): CharSequence {
     val handle: CharSequence = colorTextByUserRank(user.handle, user.rank)
 
     return TextUtils.concat(handle, " - ${PrettyTime().format(Date(time * 1000))}")

@@ -43,6 +43,7 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
             is News.Post -> NewsItem.PostItem(it)
             is News.PinnedPost -> NewsItem.PinnedItem(it)
             is News.PostWithComment -> NewsItem.PostWithCommentItem(it.post, it.comment)
+            is News.Video -> NewsItem.VideoItem(it)
         }
     }
 
