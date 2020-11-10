@@ -78,4 +78,6 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
 
     <string name="modified">modifié</string>
     <string name="created">créé</string>
+
+    <string name="watch_video">regarder la vidéo</string>
 </resources>

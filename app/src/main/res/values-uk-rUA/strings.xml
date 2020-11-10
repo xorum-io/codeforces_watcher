@@ -78,4 +78,6 @@ Codeforces WatchR дає можливiсть:
 
     <string name="modified">змiнено</string>
     <string name="created">створено</string>
+
+    <string name="watch_video">Переглянути відео</string>
 </resources>
