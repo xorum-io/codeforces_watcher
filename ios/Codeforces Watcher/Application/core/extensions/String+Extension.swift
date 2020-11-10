@@ -12,7 +12,7 @@ extension String {
         self = self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
 
-    func beautify() -> String {
+    func convertFromHtml() -> String {
         var newString = self
         newString.deleteHtmlTags()
         newString.removeHTMLEntities()

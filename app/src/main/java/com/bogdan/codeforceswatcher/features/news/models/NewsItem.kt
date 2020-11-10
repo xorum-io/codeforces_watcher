@@ -60,7 +60,7 @@ sealed class NewsItem {
 
         val authorAvatar = video.author.avatar
         val rankColor = getColorByUserRank(video.author.rank)
-        val title = video.title
+        val title = video.title.convertFromHtml()
         val agoText = buildAgoText(video.author, video.createdAt)
         val thumbnailLink = video.thumbnailLink
         val link = video.link
