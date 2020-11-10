@@ -108,7 +108,7 @@ enum NewsItem {
         init(_ video: News.Video) {
             authorAvatar = video.author.avatar
             rankColor = getColorByUserRank(video.author.rank).cgColor
-            title = video.title
+            title = video.title.beautify()
             agoText = video.createdAt.buildAgoText()
             thumbnailLink = video.thumbnailLink
             link = video.link
