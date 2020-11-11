@@ -5,7 +5,6 @@ import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.features.users.colorTextByUserRank
 import com.bogdan.codeforceswatcher.features.users.getColorByUserRank
-import com.bogdan.codeforceswatcher.util.convertFromHtml
 import io.xorum.codeforceswatcher.network.responses.News
 import io.xorum.codeforceswatcher.util.FeedUIModel
 import org.ocpsoft.prettytime.PrettyTime
@@ -15,16 +14,16 @@ sealed class NewsItem {
 
     class PostWithCommentItem(post: News.Post, comment: News.Comment) : NewsItem() {
 
-        val blogTitle = post.title.convertFromHtml()
+        val blogTitle = post.title
 
         val postAuthorAvatar = post.author.avatar
-        val postContent = post.content.convertFromHtml()
+        val postContent = post.content
         val postLink = post.link
         val postAuthorRankColor = getColorByUserRank(post.author.rank)
         val postAgoText = buildPostAgoText(post.author, post.modifiedAt, post.isModified)
 
         val commentatorAvatar = comment.author.avatar
-        val commentContent = comment.content.convertFromHtml()
+        val commentContent = comment.content
         val commentLink = comment.link
         val commentatorRankColor = getColorByUserRank(comment.author.rank)
         val commentAgoText = buildAgoText(comment.author, comment.createdAt)
@@ -32,11 +31,11 @@ sealed class NewsItem {
 
     class PostItem(post: News.Post) : NewsItem() {
 
-        val blogTitle = post.title.convertFromHtml()
+        val blogTitle = post.title
         val authorAvatar = post.author.avatar
         val link = post.link
         val rankColor = getColorByUserRank(post.author.rank)
-        val content = post.content.convertFromHtml()
+        val content = post.content
         val agoText = buildPostAgoText(post.author, post.modifiedAt, post.isModified)
     }
 
@@ -60,7 +59,7 @@ sealed class NewsItem {
 
         val authorAvatar = video.author.avatar
         val rankColor = getColorByUserRank(video.author.rank)
-        val title = video.title.convertFromHtml()
+        val title = video.title
         val agoText = buildAgoText(video.author, video.createdAt)
         val thumbnailLink = video.thumbnailLink
         val link = video.link
