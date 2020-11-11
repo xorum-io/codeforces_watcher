@@ -4,22 +4,9 @@
 //
 
 import Foundation
-import HTMLString
+import UIKit
 
 extension String {
-    
-    mutating func deleteHtmlTags() {
-        self = self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-    }
-
-    func convertFromHtml() -> String {
-        var newString = self
-        newString.deleteHtmlTags()
-        newString.removeHTMLEntities()
-        newString = newString.replacingOccurrences(of: "$$$", with: "")
-
-        return newString
-    }
 
     var localized: String {
         let string = NSLocalizedString(self, comment: "")
