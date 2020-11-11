@@ -16,8 +16,8 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
     var onNewsClick: (
         _ link: String,
         _ shareText: String,
-        _ onOpen: @escaping () -> (),
-        _ onShare: @escaping () -> ()
+        _ onOpenEvent: String,
+        _ onShareEvent: String
     ) -> () = { _, _, _, _ in }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,10 +48,10 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
             return tableView.dequeueReusableCell(cellType: PostWithCommentTableViewCell.self).apply {
                 $0.bind(item) { link in
                     let shareText = buildShareText(item.blogTitle, link)
-                    let onOpen = { analyticsControler.logActionOpened() }
-                    let onShare = { analyticsControler.logShareComment() }
+                    let onOpenEvent = "action_opened"
+                    let onShareEvent = "action_share_comment"
                     
-                    self.onNewsClick(link, shareText, onOpen, onShare)
+                    self.onNewsClick(link, shareText, onOpenEvent, onShareEvent)
                 }
             }
         case .postItem(let item):
@@ -79,22 +79,22 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
         switch(news[indexPath.row]) {
         case .pinnedItem(let news):
             let shareText = buildShareText(news.title, news.link)
-            let onOpen = { analyticsControler.logPinnedPostOpened() }
-            let onShare = { analyticsControler.logShareComment() }
+            let onOpenEvent = "actions_pinned_post_opened"
+            let onShareEvent = "action_share_comment"
             
-            onNewsClick(news.link, shareText, onOpen, onShare)
+            onNewsClick(news.link, shareText, onOpenEvent, onShareEvent)
         case .postItem(let news):
             let shareText = buildShareText(news.blogTitle, news.link)
-            let onOpen = { analyticsControler.logActionOpened() }
-            let onShare = { analyticsControler.logShareComment() }
+            let onOpenEvent = "action_opened"
+            let onShareEvent = "action_share_comment"
             
-            onNewsClick(news.link, shareText, onOpen, onShare)
-        case .videoItem(let news):
-            let shareText = buildShareText(news.title, news.link)
-            let onOpen = { analyticsControler.logActionOpened() }
-            let onShare = { analyticsControler.logShareComment() }
+            onNewsClick(news.link, shareText, onOpenEvent, onShareEvent)
+        case .postWithCommentItem(let news):
+            let shareText = buildShareText(news.blogTitle, news.commentLink)
+            let onOpen = "action_opened"
+            let onShare = "action_share_comment"
             
-            onNewsClick(news.link, shareText, onOpen, onShare)
+            onNewsClick(news.commentLink, shareText, onOpen, onShare)
         default:
             return
         }

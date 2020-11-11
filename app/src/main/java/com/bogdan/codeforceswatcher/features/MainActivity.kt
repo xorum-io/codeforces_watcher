@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             showShareDialog()
-            analyticsController.logShareApp()
+            analyticsController.logEvent("actions_share_app")
         }
         fab.setImageDrawable(getDrawable(R.drawable.ic_share))
     }
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.share)) { _, _ ->
                     share()
-                    analyticsController.logAppShared()
+                    analyticsController.logEvent("actions_app_shared")
                 }
                 .setNegativeButton(getString(R.string.cancel), null)
                 .create()

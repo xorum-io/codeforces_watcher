@@ -41,7 +41,7 @@ class ProblemActivity : AppCompatActivity() {
         initData()
         initViews()
 
-        analyticsController.logProblemOpened()
+        analyticsController.logEvent("problem_opened")
     }
 
     private fun initData() {
@@ -64,7 +64,7 @@ class ProblemActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_share -> {
                 share()
-                analyticsController.logShareProblem()
+                analyticsController.logEvent("problem_shared")
             }
         }
         return super.onOptionsItemSelected(item)

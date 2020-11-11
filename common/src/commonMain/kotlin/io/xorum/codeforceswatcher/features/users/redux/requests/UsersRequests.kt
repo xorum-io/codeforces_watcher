@@ -88,7 +88,7 @@ class UsersRequests {
             if (foundUser == null) {
                 user.id = DatabaseQueries.Users.insert(user)
                 store.dispatch(Success(user))
-                analyticsController.logUserAdded()
+                analyticsController.logEvent("user_added")
             } else {
                 store.dispatch(Failure(Message.UserAlreadyAdded))
             }

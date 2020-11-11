@@ -33,7 +33,7 @@ class WebViewActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         initViews()
-        analyticsController.logActionOpened()
+        analyticsController.logEvent("action_opened")
     }
 
     private fun initViews() {
@@ -51,7 +51,7 @@ class WebViewActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_share -> {
                 share()
-                analyticsController.logShareComment()
+                analyticsController.logEvent("action_share_comment")
             }
         }
         return super.onOptionsItemSelected(item)

@@ -18,7 +18,6 @@ import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsReque
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
-import io.xorum.codeforceswatcher.util.RefreshScreen
 import kotlinx.android.synthetic.main.fragment_contests.*
 import tw.geothings.rekotlin.StoreSubscriber
 import java.net.URLEncoder
@@ -62,7 +61,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
 
     override fun onRefresh() {
         store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = true, language = Locale.getDefault().language))
-        analyticsController.logRefreshingData(RefreshScreen.CONTESTS)
+        analyticsController.logEvent("contests_list_refresh")
     }
 
     override fun onCreateView(
@@ -99,7 +98,13 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
                     Toast.LENGTH_SHORT
             ).show()
         }
-        analyticsController.logAddContestToCalendarEvent(contest.name, contest.platform)
+        analyticsController.logEvent(
+                "add_contest_to_google_calendar",
+                mapOf(
+                        "contest_platform" to contest.platform.toString(),
+                        "contest_name" to contest.name
+                )
+        )
     }
 
     private fun getCalendarTime(time: Long): String {

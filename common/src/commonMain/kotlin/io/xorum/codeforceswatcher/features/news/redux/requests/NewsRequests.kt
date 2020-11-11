@@ -14,11 +14,11 @@ class NewsRequests {
     ) : Request() {
 
         override suspend fun execute() {
-            analyticsController.logFetchNews()
+            analyticsController.logEvent("news_fetch")
 
             val response = backendApiClient.getNews(lang = language.defineLang())
             response?.news?.let { news ->
-                analyticsController.logFetchNewsSuccess()
+                analyticsController.logEvent("news_fetch_success")
                 store.dispatch(Success(news))
             } ?: dispatchFailure()
         }
@@ -36,7 +36,7 @@ class NewsRequests {
     class RemovePinnedPost(val link: String) : Request() {
 
         override suspend fun execute() {
-            analyticsController.logPinnedPostClosed()
+            analyticsController.logEvent("actions_pinned_post_closed")
             settings.writeLastPinnedPostLink(link)
         }
     }

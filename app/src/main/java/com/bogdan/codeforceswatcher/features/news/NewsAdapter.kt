@@ -140,7 +140,7 @@ class NewsAdapter(
             tvTitle.text = title
             onItemClickListener = {
                 itemClickListener(pinnedItem.link, pinnedItem.title)
-                analyticsController.logPinnedPostOpened()
+                analyticsController.logEvent("actions_pinned_post_opened")
             }
             onCrossClickListener = {
                 store.dispatch(NewsRequests.RemovePinnedPost(pinnedItem.link))

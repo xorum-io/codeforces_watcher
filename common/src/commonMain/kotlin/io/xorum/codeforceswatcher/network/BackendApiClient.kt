@@ -27,7 +27,7 @@ internal class BackendApiClient {
             parameter("version", "v1")
         }
     } catch (e: Exception) {
-        analyticsController.logFetchNewsFailure()
+        analyticsController.logEvent("news_fetch_failure")
         analyticsController.logError(e.stringify())
         e.printStackTrace()
 
