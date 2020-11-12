@@ -20,7 +20,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".features.users.UserActivity" />
         <activity android:name=".features.news.WebViewActivity" />
-        <activity android:name=".features.problems.ProblemActivity" />
         <activity
             android:name=".features.MainActivity"
             android:configChanges="orientation|screenSize"

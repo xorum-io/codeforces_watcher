@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
+import com.bogdan.codeforceswatcher.features.news.WebViewActivity
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
 import io.xorum.codeforceswatcher.redux.analyticsController
@@ -66,7 +67,17 @@ class ProblemsFragment : Fragment(), StoreSubscriber<ProblemsState>, SwipeRefres
 
     private fun initViews() {
         swipeRefreshLayout.setOnRefreshListener(this)
-        problemsAdapter = ProblemsAdapter(requireContext()) { startActivity(ProblemActivity.newIntent(requireContext(), it.identify())) }
+        problemsAdapter = ProblemsAdapter(requireContext()) { problem ->
+            startActivity(
+                    WebViewActivity.newIntent(
+                            requireContext(),
+                            problem.link,
+                            problem.fullName,
+                            "problem_opened",
+                            "problem_shared"
+                    )
+            )
+        }
         recyclerView.adapter = problemsAdapter
     }
 
