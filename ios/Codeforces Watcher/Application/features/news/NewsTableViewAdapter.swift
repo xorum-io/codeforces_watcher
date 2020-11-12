@@ -89,12 +89,12 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
             let onShareEvent = "action_share_comment"
             
             onNewsClick(news.link, title, onOpenEvent, onShareEvent)
-        case .postWithCommentItem(let news):
-            let title = news.blogTitle
-            let onOpenEvent = "action_opened"
-            let onShareEvent = "action_share_comment"
+        case .videoItem(let video):
+            let title = video.title
+            let onOpenEvent = "video_opened"
+            let onShareEvent = "video_shared"
             
-            onNewsClick(news.commentLink, title, onOpen, onShare)
+            onNewsClick(video.link, title, onOpenEvent, onShareEvent)
         default:
             return
         }

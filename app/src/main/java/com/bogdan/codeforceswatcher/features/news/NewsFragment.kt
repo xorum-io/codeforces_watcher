@@ -91,8 +91,8 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
 
     private fun initViews() {
         swipeRefreshLayout.setOnRefreshListener(this)
-        newsAdapter = NewsAdapter(requireContext()) { link, title ->
-            startActivity(WebViewActivity.newIntent(requireContext(), link, title))
+        newsAdapter = NewsAdapter(requireContext()) { link, title, openEvent, shareEvent ->
+            startActivity(WebViewActivity.newIntent(requireContext(), link, title, openEvent, shareEvent))
         }
         recyclerView.adapter = newsAdapter
     }

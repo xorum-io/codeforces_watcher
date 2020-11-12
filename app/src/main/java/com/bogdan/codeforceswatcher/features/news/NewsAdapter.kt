@@ -18,7 +18,7 @@ import java.lang.IllegalStateException
 
 class NewsAdapter(
         private val context: Context,
-        private val itemClickListener: (String, String) -> Unit
+        private val itemClickListener: (link: String, title: String, openEvent: String, shareEvent: String) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: List<NewsItem> = listOf()
@@ -93,11 +93,11 @@ class NewsAdapter(
             tvCommentContent.text = commentContent
 
             onCommentClickListener = {
-                itemClickListener(commentLink, blogTitle)
+                itemClickListener(commentLink, blogTitle, "action_opened", "action_share_comment")
             }
 
             onPostClickListener = {
-                itemClickListener(postLink, blogTitle)
+                itemClickListener(postLink, blogTitle, "action_opened", "action_share_comment")
             }
 
             (ivPostAuthorAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, postAuthorRankColor)
@@ -122,7 +122,7 @@ class NewsAdapter(
             tvHandleAndTime.text = agoText
             tvContent.text = content
             onItemClickListener = {
-                itemClickListener(link, blogTitle)
+                itemClickListener(link, blogTitle, "action_opened", "action_share_comment")
             }
             (ivAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, rankColor)
         }
@@ -139,8 +139,7 @@ class NewsAdapter(
         with(viewHolder) {
             tvTitle.text = title
             onItemClickListener = {
-                itemClickListener(pinnedItem.link, pinnedItem.title)
-                analyticsController.logEvent("actions_pinned_post_opened")
+                itemClickListener(pinnedItem.link, pinnedItem.title, "actions_pinned_post_opened", "action_share_comment")
             }
             onCrossClickListener = {
                 store.dispatch(NewsRequests.RemovePinnedPost(pinnedItem.link))
@@ -185,7 +184,7 @@ class NewsAdapter(
             tvHandleAndTime.text = agoText
 
             onItemClickListener = {
-                itemClickListener(link, title)
+                itemClickListener(link, title, "video_opened", "video_shared")
             }
         }
 

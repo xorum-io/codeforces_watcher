@@ -16,7 +16,7 @@ class NewsRequests {
         override suspend fun execute() {
             analyticsController.logEvent("news_fetch")
 
-            val response = backendApiClient.getNews(lang = language.defineLang())
+            val response = backendRepository.getNews(lang = language.defineLang())
             response?.news?.let { news ->
                 analyticsController.logEvent("news_fetch_success")
                 store.dispatch(Success(news))

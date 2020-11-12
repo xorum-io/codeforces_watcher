@@ -17,7 +17,7 @@ const val BACKEND_STAGING_LINK = "algoris-me-backend-staging.herokuapp.com"
 
 lateinit var backendLink: String
 
-internal class BackendApiClient {
+internal class BackendRepository {
 
     private val makeBackendApiClient by lazy { makeBackendApiClient() }
 
