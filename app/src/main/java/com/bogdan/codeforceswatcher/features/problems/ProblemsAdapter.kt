@@ -58,7 +58,7 @@ class ProblemsAdapter(
         val problemViewHolder = viewHolder as ProblemViewHolder
         with(problemViewHolder) {
             with(showingItems[adapterPosition]) {
-                tvProblemName.text = context.getString(R.string.problem_name_with_index, contestId, index, name)
+                tvProblemName.text = fullName
                 tvContestName.text = contestName
                 ivFavourite.setColorFilter(ContextCompat.getColor(
                         context, if (isFavourite) R.color.colorAccent else R.color.dark_gray)

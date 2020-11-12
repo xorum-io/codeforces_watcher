@@ -97,12 +97,12 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         [ContestTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
         tableAdapter.onContestClick = { (contest) in
-            let webViewController = WebViewController().apply {
-                $0.link = contest.link
-                $0.shareText = buildShareText(contest.name, contest.link)
-                $0.onOpenEvent = "contest_opened"
-                $0.onShareEvent = "contest_shared"
-            }
+            let webViewController = WebViewController(
+                contest.link,
+                contest.name,
+                "contest_opened",
+                "contest_shared"
+            )
 
             self.presentModal(webViewController)
         }
@@ -122,10 +122,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     @objc func contestsRulesTapped(sender: Any) {
         let rulesLink = "https://codeforces.com/blog/entry/4088"
         
-        let webViewController = WebViewController().apply {
-            $0.link = rulesLink
-            $0.shareText = buildShareText("Official Codeforces rules".localized, rulesLink)
-        }
+        let webViewController = WebViewController(rulesLink, "Official Codeforces rules".localized)
         presentModal(webViewController)
     }
 
@@ -188,13 +185,10 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     override func fabButtonTapped() {
         let contestsLink = "https://clist.by/"
         
-        let webViewController = WebViewController().apply {
-            $0.link = contestsLink
-            $0.shareText = buildShareText("Check upcoming programming contests".localized, contestsLink)
-        }
+        let webViewController = WebViewController(contestsLink, "upcoming_contests".localized)
         presentModal(webViewController)
     }
-
+    
     func onNewState(state: Any) {
         let state = state as! ContestsState
 

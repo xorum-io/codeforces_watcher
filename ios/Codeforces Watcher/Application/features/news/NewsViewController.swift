@@ -69,13 +69,13 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         [PostWithCommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self,
          PinnedPostTableViewCell.self, FeedbackTableViewCell.self, VideoTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
-        tableAdapter.onNewsClick = { link, shareText, onOpenEvent, onShareEvent in
-            let webViewController = WebViewController().apply {
-                $0.link = link
-                $0.shareText = shareText
-                $0.onOpenEvent = onOpenEvent
-                $0.onShareEvent = onShareEvent
-            }
+        tableAdapter.onNewsClick = { link, title, onOpenEvent, onShareEvent in
+            let webViewController = WebViewController(
+                link,
+                title,
+                onOpenEvent,
+                onShareEvent
+            )
             self.presentModal(webViewController)
         }
 

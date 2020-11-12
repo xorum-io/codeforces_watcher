@@ -81,7 +81,7 @@ class ProblemTableViewCell: UITableViewCell {
     }
 
     func bind(_ problem: Problem) {
-        nameLabel.text = "\(problem.contestId)\(problem.index): \(problem.name)"
+        nameLabel.text = problem.fullName
         contestLabel.text = problem.contestName
         self.problem = problem
         

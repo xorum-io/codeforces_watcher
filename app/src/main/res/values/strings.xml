@@ -48,7 +48,6 @@ Codeforces WatchR allows:
 Download it now on Google Play - https://play.google.com/store/apps/details?id=com.bogdan.codeforceswatcher"</string>
     <string name="news_on_the_way">Recent news on the way to your device…</string>
     <string name="problems_on_the_way">Problems on the way to your device…</string>
-    <string name="problem_name_with_index" translatable="false">%1$d%2$s: %3$s</string>
     <string name="search_for_problems">Search for problems…</string>
     <string name="no_browser_has_been_found">No browser has been found, try to install one.</string>
     <string name="filters">Filters</string>

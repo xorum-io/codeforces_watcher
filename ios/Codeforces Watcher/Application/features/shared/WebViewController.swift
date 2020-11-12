@@ -18,49 +18,43 @@ class WebViewController: UIViewControllerWithCross, WKUIDelegate, WKNavigationDe
         $0.allowsBackForwardNavigationGestures = true
         $0.navigationDelegate = self
     }
+    
+    let link: String
+    let titleName: String
 
-    var link: String!
-    var shareText: String!
-
-    var onOpenEvent: String? = nil
-    var onShareEvent: String? = nil
+    let onOpenEvent: String?
+    let onShareEvent: String?
+    
+    init(_ link: String, _ titleName: String, _ onOpenEvent: String? = nil, _ onShareEvent: String? = nil) {
+        self.link = link
+        self.titleName = titleName
+        self.onOpenEvent = onOpenEvent
+        self.onShareEvent = onShareEvent
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = webView
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "shareImage"), style: .plain, target: self, action: #selector(shareTapped))
-        openWebPage()
         
+        setupView()
+        openWebPage()
         sendOnOpenEvent()
     }
     
-    private func sendOnOpenEvent() {
-        if let onOpenEvent = onOpenEvent {
-            analyticsControler.logEvent(eventName: onOpenEvent, params: [:])
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        showLoading()
-    }
-    
-    private func showLoading() {
-        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = true
-        HUD.show(.progress, onView: navigationController?.view)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        hideLoading()
-    }
-    
-    private func hideLoading() {
-        HUD.hide(afterDelay: 0)
+    private func setupView() {
+        view = webView
+        title = titleName
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "shareImage"), style: .plain, target: self, action: #selector(shareTapped))
     }
 
     @objc func shareTapped() {
-        let activityController = UIActivityViewController(activityItems: [shareText!], applicationActivities: nil).apply {
+        let shareText = buildShareText(titleName, link)
+        let activityController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil).apply {
             $0.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         }
 
@@ -69,16 +63,39 @@ class WebViewController: UIViewControllerWithCross, WKUIDelegate, WKNavigationDe
         sendOnShareEvent()
     }
     
+    private func sendOnOpenEvent() {
+        guard let onOpenEvent = onOpenEvent else { return }
+        analyticsControler.logEvent(eventName: onOpenEvent, params: [:])
+    }
+    
     private func sendOnShareEvent() {
-        if let onShareEvent = onShareEvent {
-            analyticsControler.logEvent(eventName: onShareEvent, params: [:])
-        }
+        guard let onShareEvent = onShareEvent else { return }
+        analyticsControler.logEvent(eventName: onShareEvent, params: [:])
     }
 
     private func openWebPage() {
         if let url = URL(string: link) {
             webView.load(URLRequest(url: url))
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showLoading()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideLoading()
+    }
+    
+    private func showLoading() {
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = true
+        HUD.show(.progress, onView: navigationController?.view)
+    }
+    
+    private func hideLoading() {
+        HUD.hide(afterDelay: 0)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

@@ -45,7 +45,7 @@ class ProblemActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        pageTitle = getString(R.string.problem_name_with_index, problem.contestId, problem.index, problem.name)
+        pageTitle = problem.fullName
         link = problem.link
     }
 

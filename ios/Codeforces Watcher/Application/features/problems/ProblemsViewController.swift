@@ -70,13 +70,13 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
 
         [ProblemTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
-        tableAdapter.onProblemClick = { (link, shareText) in
-            let webViewController = WebViewController().apply {
-                $0.link = link
-                $0.shareText = shareText
-                $0.onOpenEvent = "problem_opened"
-                $0.onShareEvent = "problem_shared"
-            }
+        tableAdapter.onProblemClick = { (link, title) in
+            let webViewController = WebViewController(
+                link,
+                title,
+                "problem_opened",
+                "problem_shared"
+            )
             self.searchController.dismiss(animated: false)
             self.presentModal(webViewController)
         }
@@ -123,7 +123,7 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
         let filteredProblems = problems.filter {
             var shouldAdd = false
 
-            ["\($0.contestId)\($0.index)", $0.enName, $0.ruName, $0.contestName].forEach {
+            [$0.fullName, $0.enName, $0.ruName, $0.contestName].forEach {
                 if $0.lowercased().contains(text) {
                     shouldAdd = true
                 }

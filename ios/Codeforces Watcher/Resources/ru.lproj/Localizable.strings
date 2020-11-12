@@ -60,7 +60,7 @@
 "Last rating update" = "Последнее обновление рейтинга: %@";
 
 "share_text" = "%@ - %@\n\nОтправлено через Codeforces WatchR. Найдите его в App Store.";
-"Check upcoming programming contests" = "Cледите за предстоящими контестами по программированию";
+"upcoming_contests" = "Предстоящие контесты";
 
 "yes" = "Да!";
 "rate_us_first_title" = "Вам нравится Codeforces WatchR?";

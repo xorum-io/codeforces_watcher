@@ -15,7 +15,7 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
 
     var onNewsClick: (
         _ link: String,
-        _ shareText: String,
+        _ title: String,
         _ onOpenEvent: String,
         _ onShareEvent: String
     ) -> () = { _, _, _, _ in }
@@ -78,23 +78,23 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
         
         switch(news[indexPath.row]) {
         case .pinnedItem(let news):
-            let shareText = buildShareText(news.title, news.link)
+            let title = news.title
             let onOpenEvent = "actions_pinned_post_opened"
             let onShareEvent = "action_share_comment"
             
-            onNewsClick(news.link, shareText, onOpenEvent, onShareEvent)
+            onNewsClick(news.link, title, onOpenEvent, onShareEvent)
         case .postItem(let news):
-            let shareText = buildShareText(news.blogTitle, news.link)
+            let title = news.blogTitle
             let onOpenEvent = "action_opened"
             let onShareEvent = "action_share_comment"
             
-            onNewsClick(news.link, shareText, onOpenEvent, onShareEvent)
+            onNewsClick(news.link, title, onOpenEvent, onShareEvent)
         case .postWithCommentItem(let news):
-            let shareText = buildShareText(news.blogTitle, news.commentLink)
-            let onOpen = "action_opened"
-            let onShare = "action_share_comment"
+            let title = news.blogTitle
+            let onOpenEvent = "action_opened"
+            let onShareEvent = "action_share_comment"
             
-            onNewsClick(news.commentLink, shareText, onOpen, onShare)
+            onNewsClick(news.commentLink, title, onOpen, onShare)
         default:
             return
         }

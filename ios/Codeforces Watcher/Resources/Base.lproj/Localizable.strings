@@ -60,7 +60,7 @@
 "Last rating update" = "Last rating update: %@";
 
 "share_text" = "%@ - %@\n\nShared through Codeforces Watcher. Find it on App Store.";
-"Check upcoming programming contests" = "Check upcoming programming contests";
+"upcoming_contests" = "Upcoming contests";
 
 "yes" = "Yes!";
 "rate_us_first_title" = "Enjoying our Codeforces WatchR App?";
