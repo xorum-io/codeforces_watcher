@@ -9,15 +9,14 @@ target 'Codeforces Watcher' do
   
   	pod 'common', :path => '../common'
   	pod 'Alamofire', '~> 4.9.1'
-  	pod "TinyConstraints"
+  	pod 'TinyConstraints'
   	pod 'SDWebImage', '~> 5.0'
-  	pod 'HTMLString', '~> 5.0'
   	pod 'Firebase/Crashlytics'
   	pod 'Firebase/Analytics'
   	pod 'PKHUD', '~> 5.0'
-	pod 'MaterialComponents/Buttons'
-	pod 'Toast-Swift', '~> 5.0.1'
-	pod 'Charts'
+	  pod 'MaterialComponents/Buttons'
+	  pod 'Toast-Swift', '~> 5.0.1'
+	  pod 'Charts'
 
   	target 'Codeforces WatcherTests' do
     	inherit! :search_paths
