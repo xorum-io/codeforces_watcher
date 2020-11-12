@@ -30,7 +30,17 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
         ContestsAdapter(
                 requireContext(),
                 addToCalendarClickListener = { addContestToCalendar(it) },
-                itemClickListener = { startActivity(WebViewActivity.newIntent(requireContext(), it.link, it.name)) }
+                itemClickListener = { contest ->
+                    startActivity(
+                            WebViewActivity.newIntent(
+                                    requireContext(),
+                                    contest.link,
+                                    contest.name,
+                                    "contest_opened",
+                                    "contest_shared"
+                            )
+                    )
+                }
         )
     }
 
