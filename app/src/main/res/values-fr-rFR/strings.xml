@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Codeforces WatchR</string>
     <string name="last_rating_update">Dernière mise à jour: %1$s</string>
     <string name="no_rating_update">Pas de mise à jour de classement</string>
     <string name="none">Aucun</string>
@@ -23,7 +22,6 @@
     <string name="news">Informations</string>
     <string name="problems">Problèmes</string>
 
-    <string name="empty" translatable="false" />
     <string name="google_calendar_not_found">Désolé, Google Calendrier n\'a pas pu être trouvé sur votre appareil</string>
     <string name="commented_by">"Commenté par %1$s"</string>
     <string name="feature_isn_t_available_yet">Cette fonctionnalité n\'est pas encore disponible.</string>
@@ -79,4 +77,5 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
     <string name="created">créé</string>
 
     <string name="watch_video">regarder la vidéo</string>
+    <string name="upcoming_contests">concours à venir</string>
 </resources>
