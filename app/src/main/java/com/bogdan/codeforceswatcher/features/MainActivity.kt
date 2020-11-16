@@ -24,6 +24,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import io.xorum.codeforceswatcher.features.problems.redux.actions.ProblemsActions
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
 
@@ -129,7 +130,7 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             showShareDialog()
-            analyticsController.logEvent("actions_share_app")
+            analyticsController.logEvent(AnalyticsEvents.SHARE_APP)
         }
         fab.setImageDrawable(getDrawable(R.drawable.ic_share))
     }
@@ -165,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.share)) { _, _ ->
                     share()
-                    analyticsController.logEvent("actions_app_shared")
+                    analyticsController.logEvent(AnalyticsEvents.APP_SHARED)
                 }
                 .setNegativeButton(getString(R.string.cancel), null)
                 .create()

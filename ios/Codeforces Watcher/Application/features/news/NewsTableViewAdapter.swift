@@ -48,8 +48,8 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
             return tableView.dequeueReusableCell(cellType: PostWithCommentTableViewCell.self).apply {
                 $0.bind(item) { link in
                     let shareText = buildShareText(item.blogTitle, link)
-                    let onOpenEvent = "action_opened"
-                    let onShareEvent = "action_share_comment"
+                    let onOpenEvent = AnalyticsEvents().ACTION_OPENED
+                    let onShareEvent = AnalyticsEvents().ACTION_SHARED
                     
                     self.onNewsClick(link, shareText, onOpenEvent, onShareEvent)
                 }
@@ -79,20 +79,20 @@ class NewsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource
         switch(news[indexPath.row]) {
         case .pinnedItem(let news):
             let title = news.title
-            let onOpenEvent = "actions_pinned_post_opened"
-            let onShareEvent = "action_share_comment"
+            let onOpenEvent = AnalyticsEvents().PINNED_POST_OPENED
+            let onShareEvent = AnalyticsEvents().ACTION_SHARED
             
             onNewsClick(news.link, title, onOpenEvent, onShareEvent)
         case .postItem(let news):
             let title = news.blogTitle
-            let onOpenEvent = "action_opened"
-            let onShareEvent = "action_share_comment"
+            let onOpenEvent = AnalyticsEvents().ACTION_OPENED
+            let onShareEvent = AnalyticsEvents().ACTION_SHARED
             
             onNewsClick(news.link, title, onOpenEvent, onShareEvent)
         case .videoItem(let video):
             let title = video.title
-            let onOpenEvent = "video_opened"
-            let onShareEvent = "video_shared"
+            let onOpenEvent = AnalyticsEvents().VIDEO_OPENED
+            let onShareEvent = AnalyticsEvents().VIDEO_SHARED
             
             onNewsClick(video.link, title, onOpenEvent, onShareEvent)
         default:

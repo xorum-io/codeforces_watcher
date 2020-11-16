@@ -15,7 +15,7 @@ class AnalyticsController : IAnalyticsController {
     }
 
     override fun logEvent(eventName: String, params: Map<String, String>) {
-        instance.logEvent("contest_shared", params.toBundle())
+        instance.logEvent(eventName, params.toBundle())
     }
 
     private fun Map<String, String>.toBundle() = Bundle().apply {

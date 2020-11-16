@@ -127,11 +127,11 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         
         present(activityController, animated: true)
         
-        analyticsControler.logEvent(eventName: "actions_share_app", params: [:])
+        analyticsControler.logEvent(eventName: AnalyticsEvents().SHARE_APP, params: [:])
     }
 
     @objc private func refreshNews(_ sender: Any) {
-        analyticsControler.logEvent(eventName: "actions_list_refresh", params: [:])
+        analyticsControler.logEvent(eventName: AnalyticsEvents().ACTIONS_REFRESH, params: [:])
         store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: true, language: "locale".localized))
     }
 }

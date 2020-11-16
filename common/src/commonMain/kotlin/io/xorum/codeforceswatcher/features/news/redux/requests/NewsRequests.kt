@@ -2,6 +2,7 @@ package io.xorum.codeforceswatcher.features.news.redux.requests
 
 import io.xorum.codeforceswatcher.network.responses.News
 import io.xorum.codeforceswatcher.redux.*
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import io.xorum.codeforceswatcher.util.defineLang
 import io.xorum.codeforceswatcher.util.settings
 import tw.geothings.rekotlin.Action
@@ -14,11 +15,11 @@ class NewsRequests {
     ) : Request() {
 
         override suspend fun execute() {
-            analyticsController.logEvent("news_fetch")
+            analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH)
 
             val response = backendRepository.getNews(lang = language.defineLang())
             response?.news?.let { news ->
-                analyticsController.logEvent("news_fetch_success")
+                analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_SUCCESS)
                 store.dispatch(Success(news))
             } ?: dispatchFailure()
         }
@@ -36,7 +37,7 @@ class NewsRequests {
     class RemovePinnedPost(val link: String) : Request() {
 
         override suspend fun execute() {
-            analyticsController.logEvent("actions_pinned_post_closed")
+            analyticsController.logEvent(AnalyticsEvents.PINNED_POST_CLOSED)
             settings.writeLastPinnedPostLink(link)
         }
     }

@@ -126,13 +126,17 @@ class WebViewActivity : AppCompatActivity() {
         private const val PAGE_OPEN_EVENT_ID = "page_open_event_id"
         private const val PAGE_SHARE_EVENT_ID = "page_share_event_id"
 
-        fun newIntent(context: Context, link: String, title: String, openEvent: String? = null, shareEvent: String? = null): Intent {
-            return Intent(context, WebViewActivity::class.java).apply {
-                putExtra(PAGE_TITLE_ID, title)
-                putExtra(PAGE_LINK_ID, link)
-                putExtra(PAGE_OPEN_EVENT_ID, openEvent)
-                putExtra(PAGE_SHARE_EVENT_ID, shareEvent)
-            }
+        fun newIntent(
+                context: Context,
+                link: String,
+                title: String,
+                openEvent: String? = null,
+                shareEvent: String? = null
+        ) = Intent(context, WebViewActivity::class.java).apply {
+            putExtra(PAGE_TITLE_ID, title)
+            putExtra(PAGE_LINK_ID, link)
+            putExtra(PAGE_OPEN_EVENT_ID, openEvent)
+            putExtra(PAGE_SHARE_EVENT_ID, shareEvent)
         }
     }
 }

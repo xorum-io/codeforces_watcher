@@ -14,6 +14,7 @@ import io.xorum.codeforceswatcher.features.news.redux.states.NewsState
 import io.xorum.codeforceswatcher.network.responses.News
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import io.xorum.codeforceswatcher.util.settings
 import kotlinx.android.synthetic.main.fragment_users.*
 import tw.geothings.rekotlin.StoreSubscriber
@@ -75,7 +76,7 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
 
     override fun onRefresh() {
         store.dispatch(NewsRequests.FetchNews(true, Locale.getDefault().language))
-        analyticsController.logEvent("actions_list_refresh")
+        analyticsController.logEvent(AnalyticsEvents.ACTIONS_REFRESH)
     }
 
     override fun onCreateView(

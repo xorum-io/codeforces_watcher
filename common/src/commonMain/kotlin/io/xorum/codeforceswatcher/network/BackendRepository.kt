@@ -9,6 +9,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.xorum.codeforceswatcher.network.responses.NewsResponse
 import io.xorum.codeforceswatcher.redux.analyticsController
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.UnstableDefault
 
@@ -27,7 +28,7 @@ internal class BackendRepository {
             parameter("version", "v2")
         }
     } catch (e: Exception) {
-        analyticsController.logEvent("news_fetch_failure")
+        analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_FAILURE)
         analyticsController.logError(e.stringify())
         e.printStackTrace()
 

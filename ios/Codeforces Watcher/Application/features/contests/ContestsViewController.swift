@@ -83,7 +83,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             self.addEventToCalendar(contest) { success, NSError in
                 if (success) {
                     DispatchQueue.main.async {
-                        analyticsControler.logEvent(eventName: "add_contest_to_google_calendar", params: ["contest_name": contest.name, "contest_platform": contest.platform.name])
+                        analyticsControler.logEvent(eventName: AnalyticsEvents().ADD_CONTEST_TO_CALENDAR, params: ["contest_name": contest.name, "contest_platform": contest.platform.name])
                         self.showAlertWithOK(title: contest.name, message: "Has been added to your calendar".localized)
                     }
                 } else {
@@ -100,8 +100,8 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             let webViewController = WebViewController(
                 contest.link,
                 contest.name,
-                "contest_opened",
-                "contest_shared"
+                AnalyticsEvents().CONTEST_OPENED,
+                AnalyticsEvents().CONTEST_SHARED
             )
 
             self.presentModal(webViewController)
@@ -178,7 +178,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
 
     @objc private func refreshContests(_ sender: Any) {
-        analyticsControler.logEvent(eventName: "contests_list_refresh", params: [:])
+        analyticsControler.logEvent(eventName: AnalyticsEvents().CONTESTS_REFRESH, params: [:])
         fetchContests()
     }
     

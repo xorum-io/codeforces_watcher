@@ -18,6 +18,7 @@ import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsReque
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.fragment_contests.*
 import tw.geothings.rekotlin.StoreSubscriber
 import java.net.URLEncoder
@@ -36,8 +37,8 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
                                     requireContext(),
                                     contest.link,
                                     contest.name,
-                                    "contest_opened",
-                                    "contest_shared"
+                                    AnalyticsEvents.CONTEST_OPENED,
+                                    AnalyticsEvents.CONTEST_SHARED
                             )
                     )
                 }
@@ -71,7 +72,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
 
     override fun onRefresh() {
         store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = true, language = Locale.getDefault().language))
-        analyticsController.logEvent("contests_list_refresh")
+        analyticsController.logEvent(AnalyticsEvents.CONTESTS_REFRESH)
     }
 
     override fun onCreateView(
@@ -109,7 +110,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
             ).show()
         }
         analyticsController.logEvent(
-                "add_contest_to_google_calendar",
+                AnalyticsEvents.ADD_CONTEST_TO_CALENDAR,
                 mapOf(
                         "contest_platform" to contest.platform.toString(),
                         "contest_name" to contest.name

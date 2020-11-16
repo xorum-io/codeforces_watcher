@@ -74,8 +74,8 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
             let webViewController = WebViewController(
                 link,
                 title,
-                "problem_opened",
-                "problem_shared"
+                AnalyticsEvents().PROBLEM_OPENED,
+                AnalyticsEvents().PROBLEM_SHARED
             )
             self.searchController.dismiss(animated: false)
             self.presentModal(webViewController)
@@ -157,7 +157,7 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
 
     @objc private func refreshProblems(_ sender: Any) {
         fetchProblems()
-        analyticsControler.logEvent(eventName: "problems_list_refresh", params: [:])
+        analyticsControler.logEvent(eventName: AnalyticsEvents().PROBLEMS_REFRESH, params: [:])
     }
 
     private func fetchProblems() {
