@@ -24,7 +24,7 @@ internal class BackendRepository {
     suspend fun getNews(lang: String) = try {
         makeBackendApiClient.get<NewsResponse>(path = "news") {
             parameter("lang", lang)
-            parameter("version", "v1")
+            parameter("version", "v2")
         }
     } catch (e: Exception) {
         analyticsController.logEvent("news_fetch_failure")

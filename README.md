@@ -4,7 +4,7 @@
 
 [Codeforces](https://codeforces.com/) is one of the most popular platforms for competitive programming. Each month there are conducted dozens of contests with thousands of participants, including us.
 
-We decided to give back to this amazing community by creating **Codeforces WatchR** - nice and user-friendly Android application, which leverages Codeforces API to bring more competitive programming to Android devices. Codeforces WatchR allows:
+We decided to give back to this amazing community by creating **Codeforces WatchR** - nice and user-friendly Android & IOS application, which leverages Codeforces API to bring more competitive programming to Android & IOS devices. Codeforces WatchR allows:
 1. **Watch for activity** of any Codeforces user.
 2. **Sort users** by rating and last participation date.
 3. Shortlist and register for **upcoming Codeforces contests**.
