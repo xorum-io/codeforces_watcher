@@ -10,8 +10,8 @@ android {
         applicationId "com.bogdan.codeforceswatcher"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 34
-        versionName "1.8.0"
+        versionCode 35
+        versionName "1.8.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
