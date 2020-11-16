@@ -70,7 +70,6 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
-  - HTMLString (5.0.0)
   - MaterialComponents/AnimationTiming (114.0.0)
   - MaterialComponents/Availability (114.0.0)
   - MaterialComponents/Buttons (114.0.0):
@@ -137,7 +136,6 @@ DEPENDENCIES:
   - common (from `../common`)
   - Firebase/Analytics
   - Firebase/Crashlytics
-  - HTMLString (~> 5.0)
   - MaterialComponents/Buttons
   - PKHUD (~> 5.0)
   - SDWebImage (~> 5.0)
@@ -157,7 +155,6 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
-    - HTMLString
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -185,7 +182,6 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: ecc30d0ab5b66d7d18e85ce1b8e2b345db60626d
   GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
-  HTMLString: 20374dc0195423d02569e87561f01153fca0c364
   MaterialComponents: 82c900f70f609710c47a9872bc2d59ce08ca0b18
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
@@ -196,6 +192,6 @@ SPEC CHECKSUMS:
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: a1b99ef17390d2a315d47ee6889c4b7900530c7c
+PODFILE CHECKSUM: 7c8bc3910c5a358e689f19dcc17393ab5c44c1f5
 
 COCOAPODS: 1.10.0.rc.1

@@ -1,15 +1,12 @@
 package com.bogdan.codeforceswatcher.features
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.PorterDuff
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -19,6 +16,7 @@ import com.bogdan.codeforceswatcher.components.AddUserBottomSheet
 import com.bogdan.codeforceswatcher.features.news.NewsFragment
 import com.bogdan.codeforceswatcher.features.contests.ContestsFragment
 import com.bogdan.codeforceswatcher.features.contests.FiltersActivity
+import com.bogdan.codeforceswatcher.features.news.WebViewActivity
 import com.bogdan.codeforceswatcher.features.problems.ProblemsFragment
 import com.bogdan.codeforceswatcher.features.users.UsersFragment
 import com.bogdan.codeforceswatcher.util.FeedbackController
@@ -26,6 +24,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import io.xorum.codeforceswatcher.features.problems.redux.actions.ProblemsActions
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
 
@@ -110,12 +109,13 @@ class MainActivity : AppCompatActivity() {
         searchViewItem?.isVisible = false
 
         fab.setOnClickListener {
-            try {
-                val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(CONTESTS_LINK))
-                startActivity(intent)
-            } catch (t: ActivityNotFoundException) {
-                Toast.makeText(this, getString(R.string.no_browser_has_been_found), Toast.LENGTH_SHORT).show()
-            }
+            startActivity(
+                    WebViewActivity.newIntent(
+                            this,
+                            CONTESTS_LINK,
+                            getString(R.string.upcoming_contests)
+                    )
+            )
         }
         ivFilter.setOnClickListener {
             startActivity(Intent(this, FiltersActivity::class.java))
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             showShareDialog()
-            analyticsController.logShareApp()
+            analyticsController.logEvent(AnalyticsEvents.SHARE_APP)
         }
         fab.setImageDrawable(getDrawable(R.drawable.ic_share))
     }
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.share)) { _, _ ->
                     share()
-                    analyticsController.logAppShared()
+                    analyticsController.logEvent(AnalyticsEvents.APP_SHARED)
                 }
                 .setNegativeButton(getString(R.string.cancel), null)
                 .create()

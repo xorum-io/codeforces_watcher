@@ -60,7 +60,7 @@
 "Last rating update" = "Dernière mise à jour: %@";
 
 "share_text" = "%@ - %@\n\nPartagé avec Codeforces WatchR. Téléchargeable sur App Store.";
-"Check upcoming programming contests" = "Voir les prochains concours";
+"upcoming_contests" = "concours à venir";
 
 "yes" = "Oui!";
 "rate_us_first_title" = "Vous appréciez Codeforces WatchR?";

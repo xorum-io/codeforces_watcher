@@ -57,9 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setBackendLink() {
         #if DEBUG
-        BackendApiClientKt.backendLink = BackendApiClientKt.BACKEND_STAGING_LINK
+        BackendRepositoryKt.backendLink = BackendRepositoryKt.BACKEND_STAGING_LINK
         #else
-        BackendApiClientKt.backendLink = BackendApiClientKt.BACKEND_PROD_LINK
+        BackendRepositoryKt.backendLink = BackendRepositoryKt.BACKEND_PROD_LINK
         #endif
     }
 

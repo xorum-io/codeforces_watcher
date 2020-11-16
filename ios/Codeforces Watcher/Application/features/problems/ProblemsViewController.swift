@@ -70,13 +70,13 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
 
         [ProblemTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
-        tableAdapter.onProblemClick = { (link, shareText) in
-            let webViewController = WebViewController().apply {
-                $0.link = link
-                $0.shareText = shareText
-                $0.onOpen = { analyticsControler.logProblemOpened() }
-                $0.onShare = { analyticsControler.logShareProblem() }
-            }
+        tableAdapter.onProblemClick = { (link, title) in
+            let webViewController = WebViewController(
+                link,
+                title,
+                AnalyticsEvents().PROBLEM_OPENED,
+                AnalyticsEvents().PROBLEM_SHARED
+            )
             self.searchController.dismiss(animated: false)
             self.presentModal(webViewController)
         }
@@ -123,7 +123,7 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
         let filteredProblems = problems.filter {
             var shouldAdd = false
 
-            ["\($0.contestId)\($0.index)", $0.enName, $0.ruName, $0.contestName].forEach {
+            [$0.fullName, $0.enName, $0.ruName, $0.contestName].forEach {
                 if $0.lowercased().contains(text) {
                     shouldAdd = true
                 }
@@ -157,7 +157,7 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
 
     @objc private func refreshProblems(_ sender: Any) {
         fetchProblems()
-        analyticsControler.logRefreshingData(refreshScreen: .problems)
+        analyticsControler.logEvent(eventName: AnalyticsEvents().PROBLEMS_REFRESH, params: [:])
     }
 
     private func fetchProblems() {

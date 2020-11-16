@@ -25,6 +25,12 @@ class WebViewActivity : AppCompatActivity() {
     private val link: String
         get() = intent.getStringExtra(PAGE_LINK_ID).orEmpty()
 
+    private val openEvent: String?
+        get() = intent.getStringExtra(PAGE_OPEN_EVENT_ID)
+
+    private val shareEvent: String?
+        get() = intent.getStringExtra(PAGE_SHARE_EVENT_ID)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_page)
@@ -33,7 +39,10 @@ class WebViewActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         initViews()
-        analyticsController.logActionOpened()
+
+        openEvent?.let {
+            analyticsController.logEvent(it)
+        }
     }
 
     private fun initViews() {
@@ -51,7 +60,9 @@ class WebViewActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_share -> {
                 share()
-                analyticsController.logShareComment()
+                shareEvent?.let {
+                    analyticsController.logEvent(it)
+                }
             }
         }
         return super.onOptionsItemSelected(item)
@@ -112,12 +123,20 @@ class WebViewActivity : AppCompatActivity() {
     companion object {
         private const val PAGE_TITLE_ID = "page_title_id"
         private const val PAGE_LINK_ID = "page_link_id"
+        private const val PAGE_OPEN_EVENT_ID = "page_open_event_id"
+        private const val PAGE_SHARE_EVENT_ID = "page_share_event_id"
 
-        fun newIntent(context: Context, link: String, title: String): Intent {
-            val intent = Intent(context, WebViewActivity::class.java)
-            intent.putExtra(PAGE_TITLE_ID, title)
-            intent.putExtra(PAGE_LINK_ID, link)
-            return intent
+        fun newIntent(
+                context: Context,
+                link: String,
+                title: String,
+                openEvent: String? = null,
+                shareEvent: String? = null
+        ) = Intent(context, WebViewActivity::class.java).apply {
+            putExtra(PAGE_TITLE_ID, title)
+            putExtra(PAGE_LINK_ID, link)
+            putExtra(PAGE_OPEN_EVENT_ID, openEvent)
+            putExtra(PAGE_SHARE_EVENT_ID, shareEvent)
         }
     }
 }

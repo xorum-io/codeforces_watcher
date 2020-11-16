@@ -5,6 +5,7 @@ import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.getUsers
 import io.xorum.codeforceswatcher.features.users.redux.models.UsersRequestResult
 import io.xorum.codeforceswatcher.redux.*
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import io.xorum.codeforceswatcher.util.defineLang
 import kotlinx.coroutines.delay
 import tw.geothings.rekotlin.Action
@@ -88,7 +89,7 @@ class UsersRequests {
             if (foundUser == null) {
                 user.id = DatabaseQueries.Users.insert(user)
                 store.dispatch(Success(user))
-                analyticsController.logUserAdded()
+                analyticsController.logEvent(AnalyticsEvents.USER_ADDED)
             } else {
                 store.dispatch(Failure(Message.UserAlreadyAdded))
             }

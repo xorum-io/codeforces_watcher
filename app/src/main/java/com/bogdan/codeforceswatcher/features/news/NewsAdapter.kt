@@ -12,13 +12,13 @@ import com.bogdan.codeforceswatcher.features.news.viewHolders.*
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
-import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import java.lang.IllegalStateException
 
 class NewsAdapter(
         private val context: Context,
-        private val itemClickListener: (String, String) -> Unit
+        private val itemClickListener: (link: String, title: String, openEvent: String, shareEvent: String) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: List<NewsItem> = listOf()
@@ -93,11 +93,11 @@ class NewsAdapter(
             tvCommentContent.text = commentContent
 
             onCommentClickListener = {
-                itemClickListener(commentLink, blogTitle)
+                itemClickListener(commentLink, blogTitle, AnalyticsEvents.ACTION_OPENED, AnalyticsEvents.ACTION_SHARED)
             }
 
             onPostClickListener = {
-                itemClickListener(postLink, blogTitle)
+                itemClickListener(postLink, blogTitle, AnalyticsEvents.ACTION_OPENED, AnalyticsEvents.ACTION_SHARED)
             }
 
             (ivPostAuthorAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, postAuthorRankColor)
@@ -122,7 +122,7 @@ class NewsAdapter(
             tvHandleAndTime.text = agoText
             tvContent.text = content
             onItemClickListener = {
-                itemClickListener(link, blogTitle)
+                itemClickListener(link, blogTitle, AnalyticsEvents.ACTION_OPENED, AnalyticsEvents.ACTION_SHARED)
             }
             (ivAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, rankColor)
         }
@@ -139,8 +139,7 @@ class NewsAdapter(
         with(viewHolder) {
             tvTitle.text = title
             onItemClickListener = {
-                itemClickListener(pinnedItem.link, pinnedItem.title)
-                analyticsController.logPinnedPostOpened()
+                itemClickListener(pinnedItem.link, pinnedItem.title, AnalyticsEvents.PINNED_POST_OPENED, AnalyticsEvents.ACTION_SHARED)
             }
             onCrossClickListener = {
                 store.dispatch(NewsRequests.RemovePinnedPost(pinnedItem.link))
@@ -185,7 +184,7 @@ class NewsAdapter(
             tvHandleAndTime.text = agoText
 
             onItemClickListener = {
-                itemClickListener(link, title)
+                itemClickListener(link, title, AnalyticsEvents.VIDEO_OPENED, AnalyticsEvents.VIDEO_SHARED)
             }
         }
 

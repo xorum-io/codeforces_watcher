@@ -18,7 +18,7 @@ import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsReque
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
-import io.xorum.codeforceswatcher.util.RefreshScreen
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.fragment_contests.*
 import tw.geothings.rekotlin.StoreSubscriber
 import java.net.URLEncoder
@@ -31,7 +31,17 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
         ContestsAdapter(
                 requireContext(),
                 addToCalendarClickListener = { addContestToCalendar(it) },
-                itemClickListener = { startActivity(WebViewActivity.newIntent(requireContext(), it.link, it.name)) }
+                itemClickListener = { contest ->
+                    startActivity(
+                            WebViewActivity.newIntent(
+                                    requireContext(),
+                                    contest.link,
+                                    contest.name,
+                                    AnalyticsEvents.CONTEST_OPENED,
+                                    AnalyticsEvents.CONTEST_SHARED
+                            )
+                    )
+                }
         )
     }
 
@@ -62,7 +72,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
 
     override fun onRefresh() {
         store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = true, language = Locale.getDefault().language))
-        analyticsController.logRefreshingData(RefreshScreen.CONTESTS)
+        analyticsController.logEvent(AnalyticsEvents.CONTESTS_REFRESH)
     }
 
     override fun onCreateView(
@@ -99,7 +109,13 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
                     Toast.LENGTH_SHORT
             ).show()
         }
-        analyticsController.logAddContestToCalendarEvent(contest.name, contest.platform)
+        analyticsController.logEvent(
+                AnalyticsEvents.ADD_CONTEST_TO_CALENDAR,
+                mapOf(
+                        "contest_platform" to contest.platform.toString(),
+                        "contest_name" to contest.name
+                )
+        )
     }
 
     private fun getCalendarTime(time: Long): String {

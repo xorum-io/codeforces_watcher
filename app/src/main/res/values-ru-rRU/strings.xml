@@ -78,4 +78,5 @@ Codeforces WatchR позволяет:
     <string name="created">создан</string>
 
     <string name="watch_video">Смотреть видео</string>
+    <string name="upcoming_contests">Предстоящие контесты</string>
 </resources>

@@ -83,7 +83,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             self.addEventToCalendar(contest) { success, NSError in
                 if (success) {
                     DispatchQueue.main.async {
-                        analyticsControler.logAddContestToCalendarEvent(contestName: contest.name, platform: contest.platform)
+                        analyticsControler.logEvent(eventName: AnalyticsEvents().ADD_CONTEST_TO_CALENDAR, params: ["contest_name": contest.name, "contest_platform": contest.platform.name])
                         self.showAlertWithOK(title: contest.name, message: "Has been added to your calendar".localized)
                     }
                 } else {
@@ -97,12 +97,12 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         [ContestTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
         tableAdapter.onContestClick = { (contest) in
-            let webViewController = WebViewController().apply {
-                $0.link = contest.link
-                $0.shareText = buildShareText(contest.name, contest.link)
-                $0.onOpen = { analyticsControler.logContestOpened() }
-                $0.onShare = { analyticsControler.logContestShared() }
-            }
+            let webViewController = WebViewController(
+                contest.link,
+                contest.name,
+                AnalyticsEvents().CONTEST_OPENED,
+                AnalyticsEvents().CONTEST_SHARED
+            )
 
             self.presentModal(webViewController)
         }
@@ -122,10 +122,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     @objc func contestsRulesTapped(sender: Any) {
         let rulesLink = "https://codeforces.com/blog/entry/4088"
         
-        let webViewController = WebViewController().apply {
-            $0.link = rulesLink
-            $0.shareText = buildShareText("Official Codeforces rules".localized, rulesLink)
-        }
+        let webViewController = WebViewController(rulesLink, "Official Codeforces rules".localized)
         presentModal(webViewController)
     }
 
@@ -181,20 +178,17 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
 
     @objc private func refreshContests(_ sender: Any) {
-        analyticsControler.logRefreshingData(refreshScreen: .contests)
+        analyticsControler.logEvent(eventName: AnalyticsEvents().CONTESTS_REFRESH, params: [:])
         fetchContests()
     }
     
     override func fabButtonTapped() {
         let contestsLink = "https://clist.by/"
         
-        let webViewController = WebViewController().apply {
-            $0.link = contestsLink
-            $0.shareText = buildShareText("Check upcoming programming contests".localized, contestsLink)
-        }
+        let webViewController = WebViewController(contestsLink, "upcoming_contests".localized)
         presentModal(webViewController)
     }
-
+    
     func onNewState(state: Any) {
         let state = state as! ContestsState
 

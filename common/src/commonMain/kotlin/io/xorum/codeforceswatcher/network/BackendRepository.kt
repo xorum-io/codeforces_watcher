@@ -9,6 +9,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.xorum.codeforceswatcher.network.responses.NewsResponse
 import io.xorum.codeforceswatcher.redux.analyticsController
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.UnstableDefault
 
@@ -17,7 +18,7 @@ const val BACKEND_STAGING_LINK = "algoris-me-backend-staging.herokuapp.com"
 
 lateinit var backendLink: String
 
-internal class BackendApiClient {
+internal class BackendRepository {
 
     private val makeBackendApiClient by lazy { makeBackendApiClient() }
 
@@ -27,7 +28,7 @@ internal class BackendApiClient {
             parameter("version", "v2")
         }
     } catch (e: Exception) {
-        analyticsController.logFetchNewsFailure()
+        analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_FAILURE)
         analyticsController.logError(e.stringify())
         e.printStackTrace()
 

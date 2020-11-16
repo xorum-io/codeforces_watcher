@@ -14,7 +14,7 @@ import io.xorum.codeforceswatcher.features.news.redux.states.NewsState
 import io.xorum.codeforceswatcher.network.responses.News
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
-import io.xorum.codeforceswatcher.util.RefreshScreen
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import io.xorum.codeforceswatcher.util.settings
 import kotlinx.android.synthetic.main.fragment_users.*
 import tw.geothings.rekotlin.StoreSubscriber
@@ -76,7 +76,7 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
 
     override fun onRefresh() {
         store.dispatch(NewsRequests.FetchNews(true, Locale.getDefault().language))
-        analyticsController.logRefreshingData(RefreshScreen.NEWS)
+        analyticsController.logEvent(AnalyticsEvents.ACTIONS_REFRESH)
     }
 
     override fun onCreateView(
@@ -92,8 +92,8 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
 
     private fun initViews() {
         swipeRefreshLayout.setOnRefreshListener(this)
-        newsAdapter = NewsAdapter(requireContext()) { link, title ->
-            startActivity(WebViewActivity.newIntent(requireContext(), link, title))
+        newsAdapter = NewsAdapter(requireContext()) { link, title, openEvent, shareEvent ->
+            startActivity(WebViewActivity.newIntent(requireContext(), link, title, openEvent, shareEvent))
         }
         recyclerView.adapter = newsAdapter
     }

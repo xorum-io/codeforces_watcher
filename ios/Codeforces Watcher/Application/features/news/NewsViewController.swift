@@ -69,13 +69,13 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         [PostWithCommentTableViewCell.self, PostTableViewCell.self, NoItemsTableViewCell.self,
          PinnedPostTableViewCell.self, FeedbackTableViewCell.self, VideoTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
-        tableAdapter.onNewsClick = { link, shareText, onOpen, onShare in
-            let webViewController = WebViewController().apply {
-                $0.link = link
-                $0.shareText = shareText
-                $0.onOpen = onOpen
-                $0.onShare = onShare
-            }
+        tableAdapter.onNewsClick = { link, title, onOpenEvent, onShareEvent in
+            let webViewController = WebViewController(
+                link,
+                title,
+                onOpenEvent,
+                onShareEvent
+            )
             self.presentModal(webViewController)
         }
 
@@ -127,11 +127,11 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         
         present(activityController, animated: true)
         
-        analyticsControler.logShareApp()
+        analyticsControler.logEvent(eventName: AnalyticsEvents().SHARE_APP, params: [:])
     }
 
     @objc private func refreshNews(_ sender: Any) {
-        analyticsControler.logRefreshingData(refreshScreen: .news)
+        analyticsControler.logEvent(eventName: AnalyticsEvents().ACTIONS_REFRESH, params: [:])
         store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: true, language: "locale".localized))
     }
 }

@@ -20,7 +20,7 @@ import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState.SortType.Companion.getSortType
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
-import io.xorum.codeforceswatcher.util.RefreshScreen
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.fragment_users.*
 import tw.geothings.rekotlin.StoreSubscriber
 import java.util.*
@@ -32,7 +32,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
 
     override fun onRefresh() {
         store.dispatch(UsersRequests.FetchUsers(Source.USER, Locale.getDefault().language))
-        analyticsController.logRefreshingData(RefreshScreen.USERS)
+        analyticsController.logEvent(AnalyticsEvents.USERS_REFRESH)
     }
 
     override fun onStart() {
