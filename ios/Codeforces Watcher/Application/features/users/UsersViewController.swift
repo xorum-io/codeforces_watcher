@@ -252,6 +252,8 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             refreshControl.endRefreshing()
         }
         
+        tableView.refreshControl = state.users.isEmpty ? nil : refreshControl
+        
         users = state.users
         sortTextField.isHidden = users.isEmpty
         sortUsers(state.sortType)
