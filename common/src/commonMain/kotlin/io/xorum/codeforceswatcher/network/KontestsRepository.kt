@@ -30,7 +30,7 @@ internal class KontestsRepository {
 
     suspend fun getAllContests() = try {
         kontestsApiClient.get<List<ContestResponse>>(path = "all")
-    } catch (e: Exception) {
+    } catch (e: Throwable) {
         analyticsController.logError(e.stringify())
         e.printStackTrace()
 

@@ -1,6 +1,6 @@
 package io.xorum.codeforceswatcher.util
 
-fun Exception.stringify(): String {
+fun Throwable.stringify(): String {
     var trace = this.toString() + "\n"
 
     for (e1 in this.getStackTrace()) {

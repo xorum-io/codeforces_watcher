@@ -28,7 +28,7 @@ internal class CodeforcesRepository {
             parameter("handles", handles)
             parameter("lang", lang)
         }
-    } catch (e: Exception) {
+    } catch (e: Throwable) {
         analyticsController.logError(e.stringify())
         e.printStackTrace()
 
@@ -40,7 +40,7 @@ internal class CodeforcesRepository {
             parameter("handle", handle)
             parameter("lang", lang)
         }
-    } catch (e: Exception) {
+    } catch (e: Throwable) {
         analyticsController.logError(e.stringify())
         e.printStackTrace()
 
@@ -51,7 +51,7 @@ internal class CodeforcesRepository {
         codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list") {
             parameter("lang", lang)
         }
-    } catch (e: Exception) {
+    } catch (e: Throwable) {
         analyticsController.logError(e.stringify())
         e.printStackTrace()
 
@@ -62,7 +62,7 @@ internal class CodeforcesRepository {
         codeforcesApiClient.get<ProblemsResponse>(path = "problemset.problems") {
             parameter("lang", lang)
         }
-    } catch (e: Exception) {
+    } catch (e: Throwable) {
         analyticsController.logError(e.stringify())
         e.printStackTrace()
 

@@ -27,7 +27,7 @@ internal class BackendRepository {
             parameter("lang", lang)
             parameter("version", "v2")
         }
-    } catch (e: Exception) {
+    } catch (e: Throwable) {
         analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_FAILURE)
         analyticsController.logError(e.stringify())
         e.printStackTrace()
