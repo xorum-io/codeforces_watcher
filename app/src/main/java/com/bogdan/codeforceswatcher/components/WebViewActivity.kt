@@ -1,19 +1,17 @@
-package com.bogdan.codeforceswatcher.features.news
+package com.bogdan.codeforceswatcher.components
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
+import android.view.*
 import android.view.KeyEvent.KEYCODE_BACK
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.bogdan.codeforceswatcher.R
+import com.bogdan.codeforceswatcher.components.VideoEnabledWebChromeClient.ToggledFullscreenCallback
 import io.xorum.codeforceswatcher.redux.analyticsController
 import kotlinx.android.synthetic.main.activity_web_page.*
 
@@ -79,6 +77,34 @@ class WebViewActivity : AppCompatActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView() = with(webView) {
         loadUrl(link)
+
+        val webChromeClient = object : VideoEnabledWebChromeClient(swipeRefreshLayout, videoLayout, null, webView)  {}
+
+        webChromeClient.setOnToggledFullscreen(object : ToggledFullscreenCallback {
+            override fun toggledFullscreen(fullscreen: Boolean) {
+                // Your code to handle the full-screen change, for example showing and hiding the title bar. Example:
+                if (fullscreen) {
+                    val attrs = window.attributes
+
+                    attrs.flags = attrs.flags or WindowManager.LayoutParams.FLAG_FULLSCREEN
+                    attrs.flags = attrs.flags or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                    window.attributes = attrs
+                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE
+
+                    supportActionBar?.hide()
+                } else {
+                    val attrs = window.attributes
+                    attrs.flags = attrs.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN.inv()
+                    attrs.flags = attrs.flags and WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON.inv()
+                    window.attributes = attrs
+                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+
+                    supportActionBar?.show()
+                }
+            }
+        })
+        webView.setWebChromeClient(webChromeClient)
+
         settings.apply {
             javaScriptEnabled = true
             layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
