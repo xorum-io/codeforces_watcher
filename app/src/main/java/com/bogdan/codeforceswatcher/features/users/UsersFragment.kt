@@ -128,7 +128,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
     class EpoxyController : BaseEpoxyController<UserItem>() {
 
         override fun buildModels() {
-            if (data.isNullOrEmpty()) UsersStubItemEpoxyModel().addTo(this)
+            ProfileItemEpoxyModel().addTo(this)
             data?.forEach { userItem ->
                 UserItemEpoxyModel(userItem).addTo(this)
             }

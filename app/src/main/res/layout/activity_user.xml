@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="6dp"
-            android:src="@drawable/ic_small_star"
+            android:src="@drawable/ic_contribution"
             app:layout_constraintBottom_toBottomOf="@id/ivUserAvatar"
             app:layout_constraintStart_toEndOf="@id/ivUserAvatar" />
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/divider"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+        android:id="@+id/ivRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_rating"
+        app:layout_constraintBottom_toBottomOf="@id/tvRating"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvRating" />
+
+    <TextView
+        android:id="@+id/tvRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@id/ivRating"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Rating: 1658" />
+
+    <ImageView
+        android:id="@+id/ivMaxRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_max_rating"
+        app:layout_constraintBottom_toBottomOf="@id/tvMaxRating"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvMaxRating" />
+
+    <TextView
+        android:id="@+id/tvMaxRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/ivRating"
+        app:layout_constraintTop_toBottomOf="@id/tvRating"
+        tools:text="Max rating: 1820" />
+
+    <ImageView
+        android:id="@+id/ivContribution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_contribution"
+        app:layout_constraintBottom_toBottomOf="@id/tvContribution"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvContribution" />
+
+    <TextView
+        android:id="@+id/tvContribution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/ivContribution"
+        app:layout_constraintTop_toBottomOf="@id/tvMaxRating"
+        tools:text="Contribution: +13" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

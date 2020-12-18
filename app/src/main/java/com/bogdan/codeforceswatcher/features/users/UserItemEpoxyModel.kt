@@ -52,10 +52,3 @@ data class UserItemEpoxyModel(
         }
     }
 }
-
-class UsersStubItemEpoxyModel : BaseEpoxyModel(R.layout.view_users_stub) {
-
-    init {
-        id("UsersStubItemEpoxyModel")
-    }
-}
