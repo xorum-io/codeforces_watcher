@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
+import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyController
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
@@ -28,7 +29,8 @@ import java.util.*
 class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubscriber<UsersState> {
 
     private lateinit var spSort: AppCompatSpinner
-    private lateinit var usersAdapter: UsersAdapter
+
+    private val epoxyController by lazy { EpoxyController() }
 
     override fun onRefresh() {
         store.dispatch(UsersRequests.FetchUsers(Source.USER, Locale.getDefault().language))
@@ -51,7 +53,9 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
 
     override fun onNewState(state: UsersState) {
         swipeRefreshLayout.isRefreshing = (state.status == UsersState.Status.PENDING)
-        usersAdapter.setItems(state.users.sort(state.sortType).map { UserItem.User(it) })
+        val updatedUsersList = state.users.sort(state.sortType).map { UserItem(it) }
+        epoxyController.data = updatedUsersList
+
         adjustSpinnerSortVisibility(state.users.isEmpty())
 
         if (state.addUserStatus == UsersState.Status.DONE) {
@@ -80,12 +84,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
     private fun initViews() {
         swipeRefreshLayout.setOnRefreshListener(this)
 
-        usersAdapter = UsersAdapter(requireContext()) { userIndex ->
-            val user = store.state.users.users.sort(store.state.users.sortType)[userIndex]
-            startActivity(UserActivity.newIntent(requireContext(), user.id))
-        }
-
-        recyclerView.adapter = usersAdapter
+        recyclerView.adapter = epoxyController.adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         spSort = requireActivity().findViewById(R.id.spSort)
@@ -123,6 +122,16 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
         }
         UsersState.SortType.UPDATE_UP -> sortedBy { user ->
             user.ratingChanges.lastOrNull()?.ratingUpdateTimeSeconds
+        }
+    }
+
+    class EpoxyController : BaseEpoxyController<UserItem>() {
+
+        override fun buildModels() {
+            if (data.isNullOrEmpty()) UsersStubItemEpoxyModel().addTo(this)
+            data?.forEach { userItem ->
+                UserItemEpoxyModel(userItem).addTo(this)
+            }
         }
     }
 }

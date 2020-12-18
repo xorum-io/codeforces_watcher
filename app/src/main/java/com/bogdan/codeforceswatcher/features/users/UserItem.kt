@@ -1,9 +1,6 @@
 package com.bogdan.codeforceswatcher.features.users
 
-import android.text.Spannable
 import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
-import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
@@ -14,39 +11,34 @@ import kotlin.math.abs
 
 enum class Update { INCREASE, DECREASE, NULL }
 
-sealed class UserItem {
+data class UserItem(private val user: io.xorum.codeforceswatcher.features.users.models.User) {
 
-    class User(user: io.xorum.codeforceswatcher.features.users.models.User) : UserItem() {
+    val id: Long = user.id
+    val avatarLink: String = user.avatar
+    var update: Update = Update.NULL
+    val handle: SpannableString = colorTextByUserRank(user.handle, user.rank)
+    val rating: SpannableString = colorTextByUserRank(user.rating?.toString()
+            ?: user.ratingChanges.lastOrNull()?.newRating?.toString().orEmpty(), user.rank)
+    var lastRatingUpdate: String = ""
+    var dateOfLastRatingUpdate: String = CwApp.app.getString(R.string.no_rating_update)
+    val rankColor: Int = getColorByUserRank(user.rank)
 
-        val id: Long = user.id
-        val avatarLink: String = user.avatar
-        var update: Update = Update.NULL
-        val handle: SpannableString = colorTextByUserRank(user.handle, user.rank)
-        val rating: SpannableString = colorTextByUserRank(user.rating?.toString()
-                ?: user.ratingChanges.lastOrNull()?.newRating?.toString().orEmpty(), user.rank)
-        var lastRatingUpdate: String = ""
-        var dateOfLastRatingUpdate: String = CwApp.app.getString(R.string.no_rating_update)
-        val rankColor: Int = getColorByUserRank(user.rank)
-
-        init {
-            user.ratingChanges.lastOrNull()?.let { ratingChange ->
-                dateOfLastRatingUpdate = CwApp.app.getString(
-                        R.string.last_rating_update,
-                        getDateTime(ratingChange.ratingUpdateTimeSeconds)
-                )
-                val difference = ratingChange.newRating - ratingChange.oldRating
-                update = if (difference >= 0) Update.INCREASE else Update.DECREASE
-                lastRatingUpdate = abs(difference).toString()
-            }
-        }
-
-        private fun getDateTime(seconds: Long): String {
-            val dateFormat = SimpleDateFormat(CwApp.app.getString(R.string.user_date_format), Locale.getDefault())
-            return dateFormat.format(Date(seconds * 1000)).toString()
+    init {
+        user.ratingChanges.lastOrNull()?.let { ratingChange ->
+            dateOfLastRatingUpdate = CwApp.app.getString(
+                    R.string.last_rating_update,
+                    getDateTime(ratingChange.ratingUpdateTimeSeconds)
+            )
+            val difference = ratingChange.newRating - ratingChange.oldRating
+            update = if (difference >= 0) Update.INCREASE else Update.DECREASE
+            lastRatingUpdate = abs(difference).toString()
         }
     }
 
-    object Stub : UserItem()
+    private fun getDateTime(seconds: Long): String {
+        val dateFormat = SimpleDateFormat(CwApp.app.getString(R.string.user_date_format), Locale.getDefault())
+        return dateFormat.format(Date(seconds * 1000)).toString()
+    }
 }
 
 fun getColorByUserRank(rank: String?) = when (rank) {
@@ -87,7 +79,7 @@ fun getColorByUserRank(rank: String?) = when (rank) {
 
 fun colorTextByUserRank(text: String, rank: String?) = if (listOf("legendary grandmaster", "легендарный гроссмейстер").contains(rank)) {
     val colorText = "<font color=black>${text[0]}</font><font color=red>${
-        text.subSequence(1, text.length)
+    text.subSequence(1, text.length)
     }</font>"
     SpannableString(HtmlCompat.fromHtml(colorText, HtmlCompat.FROM_HTML_MODE_LEGACY))
 } else SpannableString(text).apply {
