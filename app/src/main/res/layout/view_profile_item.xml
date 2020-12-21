@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
             card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
             card_view:layout_constraintStart_toStartOf="@id/ivProfile"
             card_view:layout_constraintTop_toBottomOf="@id/tvRank"
@@ -88,7 +88,7 @@
 
         <include
             android:id="@+id/noUserLayout"
-            layout="@layout/login_to_identify_layout"
+            layout="@layout/no_user_card_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="gone"

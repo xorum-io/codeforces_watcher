@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.util.CustomMarkerView
 import com.bogdan.codeforceswatcher.util.colorSubstring
@@ -67,11 +68,8 @@ class UserActivity : AppCompatActivity() {
         (ivUserAvatar as CircleImageView).borderColor = ContextCompat.getColor(this, getColorByUserRank(user.rank))
 
         Picasso.get().load(avatar(user.avatar)).into(ivUserAvatar)
-        title = user.buildScreenTitle()
+        title = user.buildFullName()
     }
-
-    private fun User.buildRank() = rank?.let { colorTextByUserRank(it.capitalize(), it) }
-            ?: getString(R.string.none)
 
     private fun User.buildRating() = SpannableString(
             getString(
@@ -93,8 +91,6 @@ class UserActivity : AppCompatActivity() {
         }
     }
 
-    private fun User.buildHandle() = colorTextByUserRank(handle, rank)
-
     private fun User.buildContribution() = contribution?.let { contribution ->
         val contributionString = if (contribution > 0) "+$contribution" else contribution.toString()
         SpannableString(
@@ -105,13 +101,6 @@ class UserActivity : AppCompatActivity() {
             colorSubstring(startIndex, startIndex + contributionString.length, color)
         }
     } ?: getString(R.string.none)
-
-    private fun User.buildScreenTitle() = when {
-        firstName == null && lastName == null -> handle
-        firstName == null -> lastName.orEmpty()
-        lastName == null -> firstName.orEmpty()
-        else -> "$firstName $lastName"
-    }
 
     private fun displayChart() {
         val xAxis = chart.xAxis
@@ -178,3 +167,14 @@ class UserActivity : AppCompatActivity() {
     }
 }
 
+fun User.buildRank() = rank?.let { colorTextByUserRank(it.capitalize(), it) }
+        ?: CwApp.app.applicationContext.getString(R.string.none)
+
+fun User.buildHandle() = colorTextByUserRank(handle, rank)
+
+fun User.buildFullName() = when {
+    firstName == null && lastName == null -> handle
+    firstName == null -> lastName.orEmpty()
+    lastName == null -> firstName.orEmpty()
+    else -> "$firstName $lastName"
+}

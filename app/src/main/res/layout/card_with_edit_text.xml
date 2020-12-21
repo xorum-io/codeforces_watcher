@@ -63,7 +63,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/add_user"
-                android:background="@drawable/blue_button_with_ripple"
+                android:background="@drawable/button_blue_ripple_16"
                 android:textColor="@color/white" />
 
         </LinearLayout>

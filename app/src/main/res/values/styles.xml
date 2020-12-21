@@ -72,7 +72,7 @@
     </style>
 
     <style name="Widget.CW.Button.Blue">
-        <item name="android:background">@drawable/button_blue_ripple</item>
+        <item name="android:background">@drawable/button_blue_ripple_6</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

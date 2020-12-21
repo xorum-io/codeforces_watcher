@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyController
+import io.xorum.codeforceswatcher.features.auth.UserAccount
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
@@ -55,6 +56,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
         swipeRefreshLayout.isRefreshing = (state.status == UsersState.Status.PENDING)
         val updatedUsersList = state.users.sort(state.sortType).map { UserItem(it) }
         epoxyController.data = updatedUsersList
+        epoxyController.userAccount = state.userAccount
 
         adjustSpinnerSortVisibility(state.users.isEmpty())
 
@@ -127,8 +129,14 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
 
     class EpoxyController : BaseEpoxyController<UserItem>() {
 
+        var userAccount: UserAccount? = null
+            set(value) {
+                field = value
+                requestModelBuild()
+            }
+
         override fun buildModels() {
-            ProfileItemEpoxyModel().addTo(this)
+            ProfileItemEpoxyModel(userAccount).addTo(this)
             data?.forEach { userItem ->
                 UserItemEpoxyModel(userItem).addTo(this)
             }
