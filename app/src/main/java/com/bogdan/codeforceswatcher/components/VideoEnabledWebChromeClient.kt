@@ -36,7 +36,12 @@ import android.widget.VideoView
  * Note: The web page must only contain one video tag in order for the HTML5 video ended event to work. This could be improved if needed (see Javascript code).
  */
 
-open class VideoEnabledWebChromeClient(private var activityNonVideoView: View?, private var activityVideoView: ViewGroup?, private var loadingView: View?, private var webView: VideoEnabledWebView?) : WebChromeClient(), OnPreparedListener, OnCompletionListener, MediaPlayer.OnErrorListener {
+open class VideoEnabledWebChromeClient(
+        private var activityNonVideoView: View?,
+        private var activityVideoView: ViewGroup?,
+        private var loadingView: View?,
+        private var webView: VideoEnabledWebView?
+) : WebChromeClient(), OnPreparedListener, OnCompletionListener, MediaPlayer.OnErrorListener {
 
     interface ToggledFullscreenCallback {
         fun toggledFullscreen(fullscreen: Boolean)
