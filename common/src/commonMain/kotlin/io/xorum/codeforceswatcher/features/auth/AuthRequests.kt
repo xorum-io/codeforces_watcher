@@ -7,10 +7,13 @@ import tw.geothings.rekotlin.Action
 
 class AuthRequests {
 
-    class SignIn : Request() {
+    class SignIn(
+            private val email: String,
+            private val password: String
+    ) : Request() {
 
         override suspend fun execute() {
-            store.dispatch(Success(UserAccount(null, "token")))
+            // store.dispatch(Success(UserAccount(null, "token")))
         }
 
         data class Success(val userAccount: UserAccount) : Action

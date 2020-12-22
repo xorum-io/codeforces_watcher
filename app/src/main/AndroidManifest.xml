@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_antivirus_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".features.auth.SignInActivity"></activity>
         <activity
             android:name=".features.contests.FiltersActivity"
             android:theme="@style/AppTheme.NoActionBar" />
