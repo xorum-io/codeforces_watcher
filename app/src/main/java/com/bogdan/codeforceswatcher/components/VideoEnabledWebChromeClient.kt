@@ -37,6 +37,7 @@ import android.widget.VideoView
  */
 
 open class VideoEnabledWebChromeClient(private var activityNonVideoView: View?, private var activityVideoView: ViewGroup?, private var loadingView: View?, private var webView: VideoEnabledWebView?) : WebChromeClient(), OnPreparedListener, OnCompletionListener, MediaPlayer.OnErrorListener {
+
     interface ToggledFullscreenCallback {
         fun toggledFullscreen(fullscreen: Boolean)
     }
@@ -64,7 +65,6 @@ open class VideoEnabledWebChromeClient(private var activityNonVideoView: View?, 
 
     override fun onShowCustomView(view: View, callback: CustomViewCallback) {
         if (view is FrameLayout) {
-            println("here frame")
             // A video wants to be shown
 
             val focusedChild = view.focusedChild
@@ -79,7 +79,6 @@ open class VideoEnabledWebChromeClient(private var activityNonVideoView: View?, 
             activityVideoView?.addView(videoViewContainer, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
             activityVideoView?.visibility = View.VISIBLE
             if (focusedChild is VideoView) {
-                println("here videView")
                 // android.widget.VideoView (typically API level <11)
 
                 // Handle all the required events
@@ -87,8 +86,6 @@ open class VideoEnabledWebChromeClient(private var activityNonVideoView: View?, 
                 focusedChild.setOnCompletionListener(this)
                 focusedChild.setOnErrorListener(this)
             } else {
-                println("here other")
-
                 // Other classes, including:
                 // - android.webkit.HTML5VideoFullScreen$VideoSurfaceView, which inherits from android.view.SurfaceView (typically API level 11-18)
                 // - android.webkit.HTML5VideoFullScreen$VideoTextureView, which inherits from android.view.TextureView (typically API level 11-18)

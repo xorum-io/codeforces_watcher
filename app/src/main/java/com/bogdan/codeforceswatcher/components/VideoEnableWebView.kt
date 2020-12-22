@@ -18,6 +18,7 @@ import android.webkit.WebView
  * @author Cristian Perez (http://cpr.name)
  */
 class VideoEnabledWebView : WebView {
+    
     inner class JavascriptInterface
 
     private var videoEnabledWebChromeClient: VideoEnabledWebChromeClient? = null
