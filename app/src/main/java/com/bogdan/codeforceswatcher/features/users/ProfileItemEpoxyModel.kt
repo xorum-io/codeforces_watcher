@@ -65,7 +65,7 @@ class ProfileItemEpoxyModel(private val userAccount: UserAccount?) : BaseEpoxyMo
         tvLastUpdate.text = context.getString(R.string.never_updated)
     }
 
-    private fun showLoginPart(view: View) = view.noUserLayout.run {
+    private fun showLoginPart(view: View) = with(view.noUserLayout) {
         visibility = View.VISIBLE
         tvTitle.text = context.getString(R.string.login_to_identify)
         tvSubtitle.text = context.getString(R.string.get_instant_notifications)
@@ -76,7 +76,7 @@ class ProfileItemEpoxyModel(private val userAccount: UserAccount?) : BaseEpoxyMo
         }
     }
 
-    private fun showVerifyPart(view: View) = view.noUserLayout.run {
+    private fun showVerifyPart(view: View) = with(view.noUserLayout) {
         visibility = View.VISIBLE
         tvTitle.text = context.getString(R.string.verify_account)
         tvSubtitle.text = context.getString(R.string.pass_quick_verification)
@@ -86,5 +86,4 @@ class ProfileItemEpoxyModel(private val userAccount: UserAccount?) : BaseEpoxyMo
             store.dispatch(AuthRequests.Verify())
         }
     }
-
 }
