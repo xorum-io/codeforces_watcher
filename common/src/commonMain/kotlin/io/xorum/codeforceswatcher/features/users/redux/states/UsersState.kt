@@ -1,5 +1,6 @@
 package io.xorum.codeforceswatcher.features.users.redux.states
 
+import io.xorum.codeforceswatcher.features.auth.UserAccount
 import io.xorum.codeforceswatcher.features.users.models.User
 import tw.geothings.rekotlin.StateType
 
@@ -7,7 +8,8 @@ data class UsersState(
         val status: Status = Status.IDLE,
         val users: List<User> = listOf(),
         val sortType: SortType = SortType.DEFAULT,
-        val addUserStatus: Status = Status.IDLE
+        val addUserStatus: Status = Status.IDLE,
+        val userAccount: UserAccount? = null
 ) : StateType {
 
     enum class Status { IDLE, PENDING, DONE }

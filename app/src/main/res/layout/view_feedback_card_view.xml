@@ -63,7 +63,7 @@
                 android:layout_height="32dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/blue_button_with_ripple"
+                android:background="@drawable/button_blue_ripple_16"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:textAllCaps="false"

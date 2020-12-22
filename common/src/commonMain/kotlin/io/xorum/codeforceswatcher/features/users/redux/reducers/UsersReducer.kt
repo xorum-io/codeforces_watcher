@@ -1,5 +1,6 @@
 package io.xorum.codeforceswatcher.features.users.redux.reducers
 
+import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
@@ -38,6 +39,12 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         }
         is UsersActions.ClearAddUserState -> {
             newState = newState.copy(addUserStatus = UsersState.Status.IDLE)
+        }
+        is AuthRequests.SignIn.Success -> {
+            newState = newState.copy(userAccount = action.userAccount)
+        }
+        is AuthRequests.Verify.Success -> {
+            newState = newState.copy(userAccount = action.userAccount)
         }
     }
 
