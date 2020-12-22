@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
-import com.bogdan.codeforceswatcher.features.news.WebViewActivity
+import com.bogdan.codeforceswatcher.components.WebViewActivity
 import io.xorum.codeforceswatcher.features.contests.models.Contest
 import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState

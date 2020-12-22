@@ -16,7 +16,7 @@ import com.bogdan.codeforceswatcher.components.AddUserBottomSheet
 import com.bogdan.codeforceswatcher.features.news.NewsFragment
 import com.bogdan.codeforceswatcher.features.contests.ContestsFragment
 import com.bogdan.codeforceswatcher.features.contests.FiltersActivity
-import com.bogdan.codeforceswatcher.features.news.WebViewActivity
+import com.bogdan.codeforceswatcher.components.WebViewActivity
 import com.bogdan.codeforceswatcher.features.problems.ProblemsFragment
 import com.bogdan.codeforceswatcher.features.users.UsersFragment
 import com.bogdan.codeforceswatcher.util.FeedbackController

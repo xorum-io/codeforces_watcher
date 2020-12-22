@@ -19,7 +19,9 @@
             android:name=".features.contests.FiltersActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".features.users.UserActivity" />
-        <activity android:name=".features.news.WebViewActivity" />
+        <activity
+            android:name=".components.WebViewActivity"
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".features.MainActivity"
             android:configChanges="orientation|screenSize"

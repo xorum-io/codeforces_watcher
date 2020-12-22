@@ -9,7 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
-import com.bogdan.codeforceswatcher.features.news.WebViewActivity
+import com.bogdan.codeforceswatcher.components.WebViewActivity
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
 import io.xorum.codeforceswatcher.redux.analyticsController
