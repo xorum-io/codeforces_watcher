@@ -4,16 +4,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
+import com.bogdan.codeforceswatcher.util.AnalyticsController
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
+import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.input_field.view.*
+import tw.geothings.rekotlin.StoreSubscriber
 
-class SignInActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
+
+        title = getString(R.string.sign_in)
 
         ifEmail.configure(
                 labelTextResId = R.string.email,
@@ -28,17 +34,38 @@ class SignInActivity : AppCompatActivity() {
                 }
         )
 
+        // TODO add spinner
+
+        btnSignIn.setOnClickListener { signInWithEmailAndPassword() }
         tvForgotPassword.setOnClickListener { forgotPassword() }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        store.subscribe(this) { state ->
+            state.skipRepeats { oldState, newState ->
+                oldState.users.userAccount == newState.users.userAccount
+            }.select { it.users }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        store.unsubscribe(this)
     }
 
     private fun forgotPassword() {
         val email = ifEmail.editText.text.trim().toString()
-        // TODO add analytics
+        AnalyticsController().logEvent(AnalyticsEvents.FORGOT_PASSWORD_PRESSED, mapOf("email" to email))
     }
 
     private fun signInWithEmailAndPassword() {
         val email = ifEmail.editText.text.trim().toString()
         val password = ifPassword.editText.text.toString()
         store.dispatch(AuthRequests.SignIn(email, password))
+    }
+
+    override fun onNewState(state: UsersState) {
+        if (state.userAccount != null) finish()
     }
 }

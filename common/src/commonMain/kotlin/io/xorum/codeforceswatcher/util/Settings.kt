@@ -1,8 +1,14 @@
 package io.xorum.codeforceswatcher.util
 
+import io.xorum.codeforceswatcher.features.auth.UserAccount
+
 lateinit var settings: Settings
 
 interface Settings {
+
+    fun writeUserAccount(userAccount: UserAccount)
+
+    fun readUserAccount(): UserAccount?
 
     fun readSpinnerSortPosition(): Int
 

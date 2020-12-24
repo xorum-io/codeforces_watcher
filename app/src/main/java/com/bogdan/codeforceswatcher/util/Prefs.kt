@@ -4,10 +4,26 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import com.bogdan.codeforceswatcher.CwApp
+import com.google.gson.Gson
+import io.xorum.codeforceswatcher.features.auth.UserAccount
 import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.util.Settings
 
 class Prefs(private val context: Context) : Settings {
+
+    override fun writeUserAccount(userAccount: UserAccount) {
+        val editor = getDefaultPrefs().edit()
+        editor.putString(KEY_USER_ACCOUNT, Gson().toJson(userAccount))
+        editor.apply()
+    }
+
+    override fun readUserAccount(): UserAccount {
+        val defaultPrefs = getDefaultPrefs()
+        return Gson().fromJson<UserAccount>(
+                defaultPrefs.getString(KEY_USER_ACCOUNT, ""),
+                UserAccount::class.java
+        )
+    }
 
     override fun writeLastPinnedPostLink(pinnedPostLink: String) {
         val editor = getDefaultPrefs().edit()
@@ -75,6 +91,7 @@ class Prefs(private val context: Context) : Settings {
         private const val KEY_ALARM = "key_alarm"
         private const val KEY_CONTESTS_FILTERS = "key_contests_filters"
         private const val KEY_PINNED_POST = "key_pinned_post"
+        private const val KEY_USER_ACCOUNT = "key_user_account"
 
         @SuppressLint("StaticFieldLeak")
         private val prefs: Prefs = Prefs(CwApp.app)
