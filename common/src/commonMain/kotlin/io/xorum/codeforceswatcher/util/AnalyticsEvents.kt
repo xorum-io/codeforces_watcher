@@ -22,6 +22,7 @@ object AnalyticsEvents {
     const val NEWS_FETCH_FAILURE = "news_fetch_failure"
     const val VIDEO_OPENED = "video_opened"
     const val VIDEO_SHARED = "video_shared"
+    const val FORGOT_PASSWORD_PRESSED = "forgot_password_pressed"
 
     const val PROBLEMS_REFRESH = "problems_list_refresh"
     const val PROBLEM_OPENED = "problem_opened"

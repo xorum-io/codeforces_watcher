@@ -1,16 +1,17 @@
 package io.xorum.codeforceswatcher.network
 
-import io.ktor.client.*
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
-import io.ktor.client.request.*
-import io.ktor.http.*
+import io.ktor.client.HttpClient
+import io.ktor.client.features.defaultRequest
+import io.ktor.client.features.json.Json
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.logging.DEFAULT
+import io.ktor.client.features.logging.LogLevel
+import io.ktor.client.features.logging.Logger
+import io.ktor.client.features.logging.Logging
+import io.ktor.client.request.parameter
+import io.ktor.http.URLProtocol
+import io.xorum.codeforceswatcher.features.auth.UserAccount
 import io.xorum.codeforceswatcher.network.responses.NewsResponse
-import io.xorum.codeforceswatcher.redux.analyticsController
-import io.xorum.codeforceswatcher.util.AnalyticsEvents
-import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.UnstableDefault
 
 const val BACKEND_PROD_LINK = "algoris-me-backend.herokuapp.com"
@@ -20,36 +21,35 @@ lateinit var backendLink: String
 
 internal class BackendRepository {
 
-    private val makeBackendApiClient by lazy { makeBackendApiClient() }
+    private val ktorResponseClient = KtorResponseClient()
 
-    suspend fun getNews(lang: String) = try {
-        makeBackendApiClient.get<NewsResponse>(path = "news") {
-            parameter("lang", lang)
-            parameter("version", "v2")
-        }
-    } catch (e: Throwable) {
-        analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_FAILURE)
-        analyticsController.logError(e.stringify())
-        e.printStackTrace()
-
-        null
-    }
-
-    @UseExperimental(UnstableDefault::class)
-    private fun makeBackendApiClient(): HttpClient = HttpClient {
-        expectSuccess = false
-        defaultRequest {
-            url {
-                host = backendLink
-                protocol = URLProtocol.HTTPS
+    suspend fun getNews(lang: String) =
+            ktorResponseClient.get<NewsResponse>(path = "news") {
+                parameter("lang", lang)
+                parameter("version", "v2")
             }
+
+    suspend fun signIn(email: String, password: String) =
+            ktorResponseClient.post<UserAccount>("user/sign-in") {
+                parameter("email", email)
+                parameter("password", password)
+            }
+}
+
+@UseExperimental(UnstableDefault::class)
+internal fun makeBackendApiClient(): HttpClient = HttpClient {
+    defaultRequest {
+        url {
+            host = backendLink
+            protocol = URLProtocol.HTTPS
         }
-        Json {
-            serializer = KotlinxSerializer(json = kotlinx.serialization.json.Json.nonstrict)
-        }
-        Logging {
-            logger = Logger.DEFAULT
-            level = LogLevel.INFO
-        }
+    }
+    Json {
+        serializer = KotlinxSerializer(json = kotlinx.serialization.json.Json.nonstrict)
+    }
+    Logging {
+        logger = Logger.DEFAULT
+        level = LogLevel.INFO
     }
 }
+
