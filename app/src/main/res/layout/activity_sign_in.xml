@@ -35,7 +35,7 @@
         android:clickable="true"
         android:focusable="true"
         android:text="@string/forgot_password"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ifPassword" />
 

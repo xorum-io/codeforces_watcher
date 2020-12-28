@@ -22,6 +22,11 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
         title = getString(R.string.sign_in)
 
+        supportActionBar?.run {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+
         ifEmail.configure(
                 labelTextResId = R.string.email,
                 type = InputField.Type.EMAIL,
@@ -37,6 +42,11 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
         btnSignIn.setOnClickListener { signInWithEmailAndPassword() }
         tvForgotPassword.setOnClickListener { forgotPassword() }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     override fun onStart() {
@@ -66,7 +76,7 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
     override fun onNewState(state: UsersState) {
         when (state.signInStatus) {
-            UsersState.Status.PENDING -> spinner.visibility = View.VISIBLE.also { println("Here here ") }
+            UsersState.Status.PENDING -> spinner.visibility = View.VISIBLE
             UsersState.Status.DONE -> finish()
             UsersState.Status.IDLE -> spinner.visibility = View.GONE
         }
