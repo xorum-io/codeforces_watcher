@@ -1,6 +1,7 @@
 package io.xorum.codeforceswatcher.features.news.redux.requests
 
 import io.xorum.codeforceswatcher.network.responses.News
+import io.xorum.codeforceswatcher.network.responses.Response
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import io.xorum.codeforceswatcher.util.defineLang
@@ -17,11 +18,15 @@ class NewsRequests {
         override suspend fun execute() {
             analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH)
 
-            val response = backendRepository.getNews(lang = language.defineLang())
-            response?.news?.let { news ->
-                analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_SUCCESS)
-                store.dispatch(Success(news))
-            } ?: dispatchFailure()
+            when (val response = backendRepository.getNews(lang = language.defineLang())) {
+                is Response.Success -> {
+                    analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_SUCCESS)
+                    store.dispatch(Success(response.result.news))
+                }
+                is Response.Failure -> {
+                    dispatchFailure()
+                }
+            }
         }
 
         private fun dispatchFailure() {

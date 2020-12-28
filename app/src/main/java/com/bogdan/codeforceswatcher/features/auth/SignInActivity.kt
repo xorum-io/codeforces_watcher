@@ -2,6 +2,7 @@ package com.bogdan.codeforceswatcher.features.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
 import com.bogdan.codeforceswatcher.util.AnalyticsController
@@ -34,8 +35,6 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
                 }
         )
 
-        // TODO add spinner
-
         btnSignIn.setOnClickListener { signInWithEmailAndPassword() }
         tvForgotPassword.setOnClickListener { forgotPassword() }
     }
@@ -44,7 +43,7 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
         super.onStart()
         store.subscribe(this) { state ->
             state.skipRepeats { oldState, newState ->
-                oldState.users.userAccount == newState.users.userAccount
+                oldState.users.signInStatus == newState.users.signInStatus
             }.select { it.users }
         }
     }
@@ -66,6 +65,10 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
     }
 
     override fun onNewState(state: UsersState) {
-        if (state.userAccount != null) finish()
+        when (state.signInStatus) {
+            UsersState.Status.PENDING -> spinner.visibility = View.VISIBLE.also { println("Here here ") }
+            UsersState.Status.DONE -> finish()
+            UsersState.Status.IDLE -> spinner.visibility = View.GONE
+        }
     }
 }

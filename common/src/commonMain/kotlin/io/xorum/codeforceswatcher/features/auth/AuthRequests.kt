@@ -15,18 +15,20 @@ class AuthRequests {
     ) : Request() {
 
         override suspend fun execute() {
-            val response = backendRepository.signIn(email, password)
-            if (response is Response.Success) {
-                store.dispatch(Success(response.result))
-                settings.writeUserAccount(response.result)
-            } else {
-                with(response as Response.Failure) {
-                    store.dispatch(
-                            Failure(error?.let { Message.Custom(it) } ?: Message.None)
-                    )
+            when (val response = backendRepository.signIn(email, password)) {
+                is Response.Success -> {
+                    store.dispatch(Success(response.result))
+                    settings.writeUserAccount(response.result)
+                }
+                is Response.Failure -> {
+                    store.dispatch(Failure(response.error.toMessage()))
                 }
             }
         }
+
+        private fun String?.toMessage() =
+                if (this == null) Message.None
+                else Message.Custom(this)
 
         data class Success(val userAccount: UserAccount) : Action
         data class Failure(override val message: Message) : ToastAction

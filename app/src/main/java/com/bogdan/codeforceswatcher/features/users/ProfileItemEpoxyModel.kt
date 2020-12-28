@@ -75,7 +75,6 @@ class ProfileItemEpoxyModel(private val userAccount: UserAccount?) : BaseEpoxyMo
 
         btnAction.setOnClickListener {
             context.startActivity(Intent(context, SignInActivity::class.java))
-            // store.dispatch(AuthRequests.SignIn())
         }
     }
 
