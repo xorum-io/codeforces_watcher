@@ -55,8 +55,8 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
     override fun onNewState(state: UsersState) {
         swipeRefreshLayout.isRefreshing = (state.status == UsersState.Status.PENDING)
         val updatedUsersList = state.users.sort(state.sortType).map { UserItem(it) }
-        epoxyController.data = updatedUsersList
         epoxyController.userAccount = state.userAccount
+        epoxyController.data = updatedUsersList
 
         adjustSpinnerSortVisibility(state.users.isEmpty())
 
