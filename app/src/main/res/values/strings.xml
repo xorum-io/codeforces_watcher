@@ -94,4 +94,11 @@ Download it now on Google Play - https://play.google.com/store/apps/details?id=c
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
+    <string name="dont_have_an_account_yet"><![CDATA[Don\'t have an account yet? <link>Sign Up</link>]]></string>
+    <string name="already_have_an_account"><![CDATA[Already have an account? <link>Sign In</link>]]></string>
+    <string name="sign_up">Sign up</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="passwords_do_not_match">Passwords don\'t match</string>
+    <string name="agree_to_the_privacy_policy">Agree to the privacy policy</string>
+    <string name="agree_with_the_conditions_and_privacy_policy">I agree with the <u>Terms and Conditions</u> and the <u>Privacy Policy</u></string>
 </resources>

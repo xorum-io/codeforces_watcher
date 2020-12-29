@@ -34,6 +34,12 @@ internal class BackendRepository {
                 parameter("email", email)
                 parameter("password", password)
             }
+
+    suspend fun signUp(email: String, password: String) =
+            ktorResponseClient.post<UserAccount>("user/sign-up") {
+                parameter("email", email)
+                parameter("password", password)
+            }
 }
 
 @UseExperimental(UnstableDefault::class)

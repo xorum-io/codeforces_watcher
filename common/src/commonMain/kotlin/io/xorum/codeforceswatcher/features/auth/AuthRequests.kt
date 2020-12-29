@@ -26,9 +26,26 @@ class AuthRequests {
             }
         }
 
-        private fun String?.toMessage() =
-                if (this == null) Message.None
-                else Message.Custom(this)
+        data class Success(val userAccount: UserAccount) : Action
+        data class Failure(override val message: Message) : ToastAction
+    }
+
+    class SignUp(
+            private val email: String,
+            private val password: String
+    ) : Request() {
+
+        override suspend fun execute() {
+            when (val response = backendRepository.signUp(email, password)) {
+                is Response.Success -> {
+                    store.dispatch(Success(response.result))
+                    settings.writeUserAccount(response.result)
+                }
+                is Response.Failure -> {
+                    store.dispatch(Failure(response.error.toMessage()))
+                }
+            }
+        }
 
         data class Success(val userAccount: UserAccount) : Action
         data class Failure(override val message: Message) : ToastAction
