@@ -1,17 +1,23 @@
 package com.bogdan.codeforceswatcher.features.auth
 
-import android.content.Intent
 import android.os.Bundle
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.CharacterStyle
+import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.UnderlineSpan
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
-import com.bogdan.codeforceswatcher.util.colorLinkTagPart
+import com.bogdan.codeforceswatcher.components.WebViewActivity
+import com.bogdan.codeforceswatcher.util.linked
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.AuthState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.redux.toMessage
-import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_sign_up.ifEmail
 import kotlinx.android.synthetic.main.activity_sign_up.ifPassword
@@ -57,8 +63,48 @@ class SignUpActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
 
         btnSignUp.setOnClickListener { signUp() }
 
-        tvSignIn.text = getString(R.string.already_have_an_account).colorLinkTagPart()
+        tvSignIn.text = getString(R.string.already_have_an_account).linked(listOf(listOf(
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary))
+        )))
+        tvPrivacy.text = getString(R.string.agree_with_the_conditions_and_privacy_policy).linked(listOf(listOf<CharacterStyle>(
+                buildClickableSpan {
+                    startActivity(WebViewActivity.newIntent(this, TERMS_AND_CONDITIONS_LINK, getString(R.string.terms_and_conditions)))
+                }
+        ), listOf<CharacterStyle>(
+                buildClickableSpan {
+                    startActivity(WebViewActivity.newIntent(this, PRIVACY_POLICY_LINK, getString(R.string.privacy_policy)))
+                }
+        )))
+        tvPrivacy.movementMethod = LinkMovementMethod.getInstance()
+
         tvSignIn.setOnClickListener { finish() }
+
+        adjustButtonEnablement(false)
+
+        checkbox.setOnCheckedChangeListener { _, isChecked ->
+            adjustButtonEnablement(isChecked)
+        }
+    }
+
+    private fun buildClickableSpan(onClickListener: () -> Unit) = object : ClickableSpan() {
+        override fun onClick(widget: View) {
+            onClickListener.invoke()
+        }
+
+        override fun updateDrawState(ds: TextPaint) {
+            super.updateDrawState(ds)
+            ds.color = ContextCompat.getColor(this@SignUpActivity, R.color.black)
+        }
+    }
+
+    private fun adjustButtonEnablement(isChecked: Boolean) {
+        if (isChecked) {
+            btnSignUp.isEnabled = true
+            btnSignUp.alpha = 1f
+        } else {
+            btnSignUp.isEnabled = false
+            btnSignUp.alpha = 0.5f
+        }
     }
 
     private fun signUp() {
@@ -67,7 +113,7 @@ class SignUpActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
         val confirmedPassword = ifConfirmPassword.editText.text.toString()
         when {
             password != confirmedPassword -> store.dispatch(AuthRequests.SignUp.Failure(getString(R.string.passwords_do_not_match).toMessage()))
-            checkbox.isChecked.not() -> store.dispatch(AuthRequests.SignUp.Failure(getString(R.string.agree_to_the_privacy_policy).toMessage()))
+            !checkbox.isChecked -> store.dispatch(AuthRequests.SignUp.Failure(getString(R.string.agree_to_the_privacy_policy).toMessage()))
             else -> store.dispatch(AuthRequests.SignUp(email, password))
         }
     }
@@ -92,5 +138,10 @@ class SignUpActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
             AuthState.Status.DONE -> finish()
             AuthState.Status.IDLE -> spinner.visibility = View.GONE
         }
+    }
+
+    companion object {
+        const val TERMS_AND_CONDITIONS_LINK = "https://docs.google.com/document/d/1hvL5NJ-wEJTEj_lurHkGy0kbtBAwd0w0Q1RIb4fzClg/edit"
+        const val PRIVACY_POLICY_LINK = "https://docs.google.com/document/d/17mkrB4fKU9lS8QBbgo0AzdpkfoFdoPftCtql_dD8iZI/edit"
     }
 }

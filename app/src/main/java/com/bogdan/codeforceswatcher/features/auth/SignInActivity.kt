@@ -2,12 +2,15 @@ package com.bogdan.codeforceswatcher.features.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
 import com.bogdan.codeforceswatcher.util.AnalyticsController
-import com.bogdan.codeforceswatcher.util.colorLinkTagPart
+import com.bogdan.codeforceswatcher.util.linked
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.AuthState
 import io.xorum.codeforceswatcher.redux.store
@@ -45,7 +48,9 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
         btnSignIn.setOnClickListener { signInWithEmailAndPassword() }
         tvForgotPassword.setOnClickListener { forgotPassword() }
 
-        tvSignUp.text = getString(R.string.dont_have_an_account_yet).colorLinkTagPart()
+        tvSignUp.text = getString(R.string.dont_have_an_account_yet).linked(listOf(listOf(
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary))
+        )))
         tvSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }

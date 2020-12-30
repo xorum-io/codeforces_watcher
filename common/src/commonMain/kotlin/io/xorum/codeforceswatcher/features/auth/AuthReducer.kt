@@ -7,7 +7,6 @@ fun authReducer(action: Action, state: AppState): AuthState {
     var newState = state.auth
 
     when (action) {
-
         is AuthRequests.SignIn.Success -> {
             newState = newState.copy(
                     signInStatus = AuthState.Status.DONE
