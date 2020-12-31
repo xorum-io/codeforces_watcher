@@ -9,8 +9,7 @@ data class UsersState(
         val users: List<User> = listOf(),
         val sortType: SortType = SortType.DEFAULT,
         val addUserStatus: Status = Status.IDLE,
-        val userAccount: UserAccount? = null,
-        val signInStatus: Status = Status.IDLE
+        val userAccount: UserAccount? = null
 ) : StateType {
 
     enum class Status { IDLE, PENDING, DONE }

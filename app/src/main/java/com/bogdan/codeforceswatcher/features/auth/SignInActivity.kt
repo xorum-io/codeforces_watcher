@@ -1,20 +1,25 @@
 package com.bogdan.codeforceswatcher.features.auth
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.text.style.ForegroundColorSpan
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
 import com.bogdan.codeforceswatcher.util.AnalyticsController
+import com.bogdan.codeforceswatcher.util.linked
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
+import io.xorum.codeforceswatcher.features.auth.AuthState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.input_field.view.*
 import tw.geothings.rekotlin.StoreSubscriber
 
-class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
+class SignInActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +47,13 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
         btnSignIn.setOnClickListener { signInWithEmailAndPassword() }
         tvForgotPassword.setOnClickListener { forgotPassword() }
+
+        tvSignUp.text = getString(R.string.dont_have_an_account_yet).linked(listOf(listOf(
+                ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary))
+        )))
+        tvSignUp.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -53,8 +65,8 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
         super.onStart()
         store.subscribe(this) { state ->
             state.skipRepeats { oldState, newState ->
-                oldState.users.signInStatus == newState.users.signInStatus
-            }.select { it.users }
+                oldState.auth.signInStatus == newState.auth.signInStatus
+            }.select { it.auth }
         }
     }
 
@@ -74,11 +86,11 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
         store.dispatch(AuthRequests.SignIn(email, password))
     }
 
-    override fun onNewState(state: UsersState) {
+    override fun onNewState(state: AuthState) {
         when (state.signInStatus) {
-            UsersState.Status.PENDING -> spinner.visibility = View.VISIBLE
-            UsersState.Status.DONE -> finish()
-            UsersState.Status.IDLE -> spinner.visibility = View.GONE
+            AuthState.Status.PENDING -> spinner.visibility = View.VISIBLE
+            AuthState.Status.DONE -> finish()
+            AuthState.Status.IDLE -> spinner.visibility = View.GONE
         }
     }
 }
