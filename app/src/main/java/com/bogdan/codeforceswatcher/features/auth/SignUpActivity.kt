@@ -6,7 +6,6 @@ import android.text.method.LinkMovementMethod
 import android.text.style.CharacterStyle
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
-import android.text.style.UnderlineSpan
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -18,10 +17,9 @@ import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.AuthState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.redux.toMessage
+import io.xorum.codeforceswatcher.util.Constants.PRIVACY_POLICY_LINK
+import io.xorum.codeforceswatcher.util.Constants.TERMS_AND_CONDITIONS_LINK
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.activity_sign_up.ifEmail
-import kotlinx.android.synthetic.main.activity_sign_up.ifPassword
-import kotlinx.android.synthetic.main.activity_sign_up.spinner
 import kotlinx.android.synthetic.main.input_field.view.*
 import tw.geothings.rekotlin.StoreSubscriber
 
@@ -63,18 +61,19 @@ class SignUpActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
 
         btnSignUp.setOnClickListener { signUp() }
 
-        tvSignIn.text = getString(R.string.already_have_an_account).linked(listOf(listOf(
-                ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary))
-        )))
-        tvPrivacy.text = getString(R.string.agree_with_the_conditions_and_privacy_policy).linked(listOf(listOf<CharacterStyle>(
-                buildClickableSpan {
-                    startActivity(WebViewActivity.newIntent(this, TERMS_AND_CONDITIONS_LINK, getString(R.string.terms_and_conditions)))
-                }
-        ), listOf<CharacterStyle>(
+        tvSignIn.text = getString(R.string.already_have_an_account).linked(
+                listOf(listOf(ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorPrimary))))
+        )
+        tvPrivacy.text = getString(R.string.agree_with_the_conditions_and_privacy_policy).linked(listOf(
+                listOf<CharacterStyle>(
+                        buildClickableSpan {
+                            startActivity(WebViewActivity.newIntent(this, TERMS_AND_CONDITIONS_LINK, getString(R.string.terms_and_conditions)))
+                        }
+                ), listOf<CharacterStyle>(
                 buildClickableSpan {
                     startActivity(WebViewActivity.newIntent(this, PRIVACY_POLICY_LINK, getString(R.string.privacy_policy)))
-                }
-        )))
+                })
+        ))
         tvPrivacy.movementMethod = LinkMovementMethod.getInstance()
 
         tvSignIn.setOnClickListener { finish() }
@@ -138,10 +137,5 @@ class SignUpActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
             AuthState.Status.DONE -> finish()
             AuthState.Status.IDLE -> spinner.visibility = View.GONE
         }
-    }
-
-    companion object {
-        const val TERMS_AND_CONDITIONS_LINK = "https://docs.google.com/document/d/1hvL5NJ-wEJTEj_lurHkGy0kbtBAwd0w0Q1RIb4fzClg/edit"
-        const val PRIVACY_POLICY_LINK = "https://docs.google.com/document/d/17mkrB4fKU9lS8QBbgo0AzdpkfoFdoPftCtql_dD8iZI/edit"
     }
 }
