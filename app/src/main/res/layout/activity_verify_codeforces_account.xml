@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    tools:context=".features.auth.SignInActivity">
+
+    <com.bogdan.codeforceswatcher.components.InputField
+        android:id="@+id/ifHandle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvExplanation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/to_verify_please_change_your_last_name"
+        android:textColor="@color/dark_gray"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ifHandle" />
+
+    <TextView
+        android:id="@+id/tvVerificationCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvExplanation"
+        tools:text="xV123GH5" />
+
+    <TextView
+        android:id="@+id/tvExplanationBelow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/after_successful_login_you_can_change_it_back"
+        android:textColor="@color/dark_gray"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvVerificationCode" />
+
+    <Button
+        android:id="@+id/btnVerify"
+        style="@style/Widget.CW.Button.Blue"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/verify"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvExplanationBelow" />
+
+    <ProgressBar
+        android:id="@+id/spinner"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:elevation="10dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorAccent"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

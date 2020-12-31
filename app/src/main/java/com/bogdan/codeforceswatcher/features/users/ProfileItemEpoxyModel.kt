@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyModel
 import com.bogdan.codeforceswatcher.features.auth.SignInActivity
+import com.bogdan.codeforceswatcher.features.auth.VerifyCodeforcesAccountActivity
 import com.bogdan.codeforceswatcher.util.colorSubstring
 import com.squareup.picasso.Picasso
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
@@ -85,7 +86,7 @@ class ProfileItemEpoxyModel(private val userAccount: UserAccount?) : BaseEpoxyMo
         btnAction.text = context.getString(R.string.verify_in_42_seconds)
 
         btnAction.setOnClickListener {
-            store.dispatch(AuthRequests.Verify())
+            context.startActivity(Intent(context, VerifyCodeforcesAccountActivity::class.java))
         }
     }
 }

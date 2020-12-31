@@ -70,9 +70,10 @@ class SignUpActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
                             startActivity(WebViewActivity.newIntent(this, TERMS_AND_CONDITIONS_LINK, getString(R.string.terms_and_conditions)))
                         }
                 ), listOf<CharacterStyle>(
-                buildClickableSpan {
-                    startActivity(WebViewActivity.newIntent(this, PRIVACY_POLICY_LINK, getString(R.string.privacy_policy)))
-                })
+                        buildClickableSpan {
+                            startActivity(WebViewActivity.newIntent(this, PRIVACY_POLICY_LINK, getString(R.string.privacy_policy)))
+                        }
+                )
         ))
         tvPrivacy.movementMethod = LinkMovementMethod.getInstance()
 

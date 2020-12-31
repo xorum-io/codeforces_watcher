@@ -103,4 +103,9 @@ Download it now on Google Play - https://play.google.com/store/apps/details?id=c
     <string name="agree_with_the_conditions_and_privacy_policy"><![CDATA[I agree with the <link>Terms and Conditions</link> and the <link>Privacy Policy</link>]]></string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="privacy_policy">Privacy Policy</string>
+    <string name="verify_codeforces_account">Verify Codeforces account</string>
+    <string name="verify">Verify</string>
+    <string name="to_verify_please_change_your_last_name">To verify that account belongs to you, please, change your English ”Last name” in your <b>Profile - Settings - Social</b> to this value:</string>
+    <string name="after_successful_login_you_can_change_it_back">Right after successful login you can change it back.</string>
+    <string name="codeforces_handle">Codeforces handle</string>
 </resources>
