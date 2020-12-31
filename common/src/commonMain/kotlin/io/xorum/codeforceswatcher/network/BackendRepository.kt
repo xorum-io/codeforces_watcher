@@ -8,10 +8,13 @@ import io.ktor.client.features.logging.DEFAULT
 import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
+import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 import io.ktor.http.URLProtocol
 import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.verification.VerificationCodeResponse
 import io.xorum.codeforceswatcher.network.responses.NewsResponse
+import io.xorum.codeforceswatcher.redux.store
 import kotlinx.serialization.UnstableDefault
 
 const val BACKEND_PROD_LINK = "algoris-me-backend.herokuapp.com"
@@ -40,6 +43,11 @@ internal class BackendRepository {
                 parameter("email", email)
                 parameter("password", password)
             }
+
+    suspend fun fetchCodeforcesVerificationCode() = ktorResponseClient.put<VerificationCodeResponse>("user/generate-verify-code/codeforces")
+    suspend fun verifyCodeforcesAccount(handle: String) = ktorResponseClient.post<UserAccount>("user/verify/codeforces") {
+        parameter("handle", handle)
+    }
 }
 
 @UseExperimental(UnstableDefault::class)
@@ -48,6 +56,7 @@ internal fun makeBackendApiClient(): HttpClient = HttpClient {
         url {
             host = backendLink
             protocol = URLProtocol.HTTPS
+            header("token", userToken)
         }
     }
     Json {
@@ -59,3 +68,6 @@ internal fun makeBackendApiClient(): HttpClient = HttpClient {
     }
 }
 
+
+private val userToken: String?
+    get() = store.state.users.userAccount?.token

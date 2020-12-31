@@ -108,4 +108,5 @@ Download it now on Google Play - https://play.google.com/store/apps/details?id=c
     <string name="to_verify_please_change_your_last_name">To verify that account belongs to you, please, change your English ”Last name” in your <b>Profile - Settings - Social</b> to this value:</string>
     <string name="after_successful_login_you_can_change_it_back">Right after successful login you can change it back.</string>
     <string name="codeforces_handle">Codeforces handle</string>
+    <string name="code_copied_to_clipboard">Code copied to clipboard</string>
 </resources>

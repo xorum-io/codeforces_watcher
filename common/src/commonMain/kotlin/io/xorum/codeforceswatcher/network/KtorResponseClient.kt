@@ -4,6 +4,7 @@ import io.ktor.client.features.ClientRequestException
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
 import io.ktor.client.request.post
+import io.ktor.client.request.put
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.readUTF8Line
 import io.xorum.codeforceswatcher.network.responses.Response
@@ -38,6 +39,21 @@ class KtorResponseClient {
     ): Response<T> {
         return try {
             Response.Success(result = backendApiClient.get(path = path, block = block))
+        } catch (clientRequestException: ClientRequestException) {
+            Response.Failure(getError(clientRequestException.response.content)?.error)
+        } catch (e: Throwable) {
+            analyticsController.logError(e.stringify())
+
+            Response.Failure(null)
+        }
+    }
+
+    suspend inline fun <reified T> put(
+            path: String,
+            block: HttpRequestBuilder.() -> Unit = {}
+    ): Response<T> {
+        return try {
+            Response.Success(result = backendApiClient.put(path = path, block = block))
         } catch (clientRequestException: ClientRequestException) {
             Response.Failure(getError(clientRequestException.response.content)?.error)
         } catch (e: Throwable) {
