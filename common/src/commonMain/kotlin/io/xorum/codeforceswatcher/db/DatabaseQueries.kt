@@ -5,9 +5,8 @@ import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.features.problems.models.Problem
 import io.xorum.codeforceswatcher.features.users.models.RatingChange
 import io.xorum.codeforceswatcher.features.users.models.User
-import kotlinx.serialization.builtins.list
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 
 internal object DatabaseQueries {
 
@@ -16,8 +15,8 @@ internal object DatabaseQueries {
         fun getAll() = database.userQueries.getAll().executeAsList().map { User.fromDB(it) }
 
         fun insert(user: User): Long {
-            val serializer = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
-            val ratingChangesJson = serializer.stringify(RatingChange.serializer().list, user.ratingChanges)
+            val serializer = Json(from = Json.Default) { ignoreUnknownKeys = true }
+            val ratingChangesJson = serializer.encodeToString(ListSerializer(RatingChange.serializer()), user.ratingChanges)
             if (user.id == 0L) {
                 database.userQueries.insert(user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank, user.contribution)
             } else {

@@ -14,8 +14,6 @@ import io.ktor.http.URLProtocol
 import io.xorum.codeforceswatcher.network.responses.*
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.util.stringify
-import kotlinx.serialization.UnstableDefault
-import kotlinx.serialization.json.Json.Default.nonstrict
 
 private const val CODEFORCES_API_LINK = "www.codeforces.com/api"
 
@@ -69,7 +67,6 @@ internal class CodeforcesRepository {
         null
     }
 
-    @UseExperimental(UnstableDefault::class)
     private fun makeCodeforcesApiClient(): HttpClient = HttpClient {
         expectSuccess = false
         defaultRequest {
@@ -79,7 +76,15 @@ internal class CodeforcesRepository {
             }
         }
         Json {
-            serializer = KotlinxSerializer(json = nonstrict)
+            serializer = KotlinxSerializer(
+                kotlinx.serialization.json.Json(from = kotlinx.serialization.json.Json.Default) {
+                    isLenient = true
+                    ignoreUnknownKeys = true
+                    allowSpecialFloatingPointValues = true
+                    useArrayPolymorphism = true
+                    encodeDefaults = true
+                }
+            )
         }
         Logging {
             logger = Logger.DEFAULT
