@@ -13,14 +13,6 @@ import io.ktor.http.URLProtocol
 import io.xorum.codeforceswatcher.network.responses.ContestResponse
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.util.stringify
-import kotlinx.serialization.Decoder
-import kotlinx.serialization.Encoder
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerialDescriptor
-import kotlinx.serialization.UnstableDefault
-import kotlinx.serialization.builtins.list
-import kotlinx.serialization.internal.UnitDescriptor
-import kotlinx.serialization.json.Json.Default.nonstrict
 
 private const val KONTESTS_API_LINK = "www.kontests.net/api/v1"
 
@@ -37,7 +29,6 @@ internal class KontestsRepository {
         null
     }
 
-    @UseExperimental(UnstableDefault::class)
     private fun makeKontestsApiClient(): HttpClient = HttpClient {
         expectSuccess = false
         defaultRequest {
@@ -47,9 +38,15 @@ internal class KontestsRepository {
             }
         }
         Json {
-            serializer = KotlinxSerializer(json = nonstrict).apply {
-                register(ListContestSerializer)
-            }
+            serializer = KotlinxSerializer(
+                kotlinx.serialization.json.Json(from = kotlinx.serialization.json.Json.Default) {
+                    isLenient = true
+                    ignoreUnknownKeys = true
+                    allowSpecialFloatingPointValues = true
+                    useArrayPolymorphism = true
+                    encodeDefaults = true
+                }
+            )
         }
         Logging {
             logger = Logger.DEFAULT
@@ -57,15 +54,3 @@ internal class KontestsRepository {
         }
     }
 }
-
-private object ListContestSerializer : KSerializer<List<ContestResponse>> {
-
-    override val descriptor: SerialDescriptor = UnitDescriptor
-
-    override fun deserialize(decoder: Decoder) =
-            ContestResponse.serializer().list.deserialize(decoder)
-
-    override fun serialize(encoder: Encoder, obj: List<ContestResponse>) =
-            ContestResponse.serializer().list.serialize(encoder, obj)
-}
-
