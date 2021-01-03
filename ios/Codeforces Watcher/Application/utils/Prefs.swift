@@ -11,6 +11,10 @@ import common
 
 class Prefs: Settings {
     
+    func readUserAccount() -> UserAccount? { nil }
+
+    func writeUserAccount(userAccount: UserAccount) { }
+
     func readContestsFilters() -> Set<String> {
         if let savedFilters = (UserDefaults.standard.value(forKey: "contestsFilters")) as? Array<String> {
             return Set(savedFilters)
