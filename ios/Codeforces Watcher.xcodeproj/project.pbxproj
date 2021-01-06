@@ -82,6 +82,7 @@
 		677BE8E325597C01008691C8 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677BE8E225597C01008691C8 /* VideoTableViewCell.swift */; };
 		677BE8E825597F19008691C8 /* video_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 677BE8E725597F19008691C8 /* video_placeholder.jpg */; };
 		81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */; };
+		B1AB01E525A648FC00DF37C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1AB01E325A648FB00DF37C1 /* LaunchScreen.storyboard */; };
 		B1E1B3EB23C9040C006A7347 /* Pods_Codeforces_Watcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */; };
 		B1E1B3F423C91D51006A7347 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1E1B3F323C91D51006A7347 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -185,6 +186,7 @@
 		677BE8E225597C01008691C8 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		677BE8E725597F19008691C8 /* video_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = video_placeholder.jpg; sourceTree = "<group>"; };
 		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1AB01E425A648FB00DF37C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1D1FA5A25152B1C0025D8CD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "Codeforces Watcher/Resources/fr.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B1E1B3E723C9033A006A7347 /* Pods_Codeforces_Watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Codeforces_Watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Codeforces_Watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +327,7 @@
 		335248926FCBDB39A48BE7D7 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
+				B1AB01E325A648FB00DF37C1 /* LaunchScreen.storyboard */,
 				335240C0BF4B6E64B855CE0C /* Localizable.strings */,
 			);
 			path = Base.lproj;
@@ -719,6 +722,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33524345B234AE1F2804F64E /* Localizable.strings in Resources */,
+				B1AB01E525A648FC00DF37C1 /* LaunchScreen.storyboard in Resources */,
 				335243F2682C1A8F3A9AE1CA /* no-image.jpg in Resources */,
 				63EAA102244854CA00C234A8 /* Roboto-Medium.ttf in Resources */,
 				677BE8E825597F19008691C8 /* video_placeholder.jpg in Resources */,
@@ -981,6 +985,14 @@
 				B1D1FA5A25152B1C0025D8CD /* fr */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B1AB01E325A648FB00DF37C1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1AB01E425A648FB00DF37C1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
