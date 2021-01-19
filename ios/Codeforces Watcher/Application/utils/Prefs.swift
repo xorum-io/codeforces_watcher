@@ -77,4 +77,3 @@ class Prefs: Settings {
         UserDefaults.standard.synchronize()
     }
 }
-

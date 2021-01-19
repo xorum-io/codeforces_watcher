@@ -40,6 +40,8 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     
     private var users: [User] = []
     
+    private let loginToIdentifyView = LoginToIdentifyView()
+    
     override var inputAccessoryView: UIView? {
         get {
             return bottomInputCardView
@@ -133,14 +135,20 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
     
     private func buildViewTree() {
-        view.addSubview(tableView)
+        [loginToIdentifyView, tableView].forEach(view.addSubview)
         navigationController?.view.addSubview(blackView)
         navigationController?.navigationBar.addSubview(sortTextField)
     }
     
     private func setConstraints() {
-        tableView.edgesToSuperview()
         blackView.edgesToSuperview()
+        
+        loginToIdentifyView.edgesToSuperview(excluding: .bottom)
+        
+        tableView.run {
+            $0.topToBottom(of: loginToIdentifyView)
+            $0.edgesToSuperview(excluding: .top)
+        }
         
         sortTextField.run {
             $0.topToSuperview()
