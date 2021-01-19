@@ -223,7 +223,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         blackView.isHidden = true
     }
     
-    private func sortUsers(_ sortType: UsersState.SortType) {        
+    private func sortUsers(_ sortType: UsersState.SortType) -> [User] {
         var sortedUsers = users
         
         switch(sortType) {
@@ -249,8 +249,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             break
         }
         
-        tableAdapter.users = sortedUsers
-        tableView.reloadData()
+        return sortedUsers
     }
     
     func onNewState(state: Any) {
@@ -264,7 +263,8 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         
         users = state.users
         sortTextField.isHidden = users.isEmpty
-        sortUsers(state.sortType)
+        
+        tableView.reloadData()
         
         switch (state.addUserStatus) {
         case .done:
