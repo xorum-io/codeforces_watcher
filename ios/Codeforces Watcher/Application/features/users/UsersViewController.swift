@@ -40,8 +40,6 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     
     private var users: [User] = []
     
-    private let loginToIdentifyView = LoginToIdentifyView()
-    
     override var inputAccessoryView: UIView? {
         get {
             return bottomInputCardView
@@ -135,20 +133,14 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
     
     private func buildViewTree() {
-        [loginToIdentifyView, tableView].forEach(view.addSubview)
+        view.addSubview(tableView)
         navigationController?.view.addSubview(blackView)
         navigationController?.navigationBar.addSubview(sortTextField)
     }
     
     private func setConstraints() {
+        tableView.edgesToSuperview()
         blackView.edgesToSuperview()
-        
-        loginToIdentifyView.edgesToSuperview(excluding: .bottom)
-        
-        tableView.run {
-            $0.topToBottom(of: loginToIdentifyView)
-            $0.edgesToSuperview(excluding: .top)
-        }
         
         sortTextField.run {
             $0.topToSuperview()
@@ -176,11 +168,11 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.refreshControl = refreshControl
         }
         
-        tableAdapter.onUserTap = { user in
-            self.presentModal(UserViewController(user))
+        tableAdapter.onUserTap = { userId in
+            self.presentModal(UserViewController(userId))
         }
 
-        [UserTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
+        [LoginTableViewCell.self, UserTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
         refreshControl.run {
             $0.addTarget(self, action: #selector(refreshUsers), for: .valueChanged)
@@ -262,6 +254,14 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         tableView.refreshControl = state.users.isEmpty ? nil : refreshControl
         
         users = state.users
+        let sortedUsers = sortUsers(state.sortType)
+        
+        if let userAccount = state.userAccount?.user {
+            tableAdapter.users = sortedUsers.mapToItems()
+        } else {
+            tableAdapter.users = [.loginItem(UserItem.LoginItem())] + sortedUsers.mapToItems()
+        }
+        
         sortTextField.isHidden = users.isEmpty
         
         tableView.reloadData()
@@ -281,5 +281,13 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         
         let currentOption = pickerAdapter.options[Int(state.sortType.position)]
         sortTextField.text = "Sort".localizedFormat(args: currentOption)
+    }
+}
+
+fileprivate extension Array where Element == User {
+    func mapToItems() -> [UserItem] {
+        compactMap { user in
+            return UserItem.userItem(UserItem.UserItem(user))
+        }
     }
 }

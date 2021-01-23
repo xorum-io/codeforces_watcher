@@ -82,7 +82,7 @@ class UserTableViewCell: UITableViewCell {
         }
     }
 
-    func bind(_ user: User) {
+    func bind(_ user: UserItem.UserItem) {
         ratingLabel.text = ""
         ratingUpdateLabel.text = ""
 

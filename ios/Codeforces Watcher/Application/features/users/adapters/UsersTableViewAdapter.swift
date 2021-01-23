@@ -12,8 +12,8 @@ import common
 
 class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
 
-    var users: [UsersItem] = []
-    var onUserTap: ((User) -> ())?
+    var users: [UserItem] = []
+    var onUserTap: ((Int) -> ())?
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -32,13 +32,13 @@ class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSourc
         }
         
         switch(users[indexPath.row]) {
-        case .loginToIdentifyItem(let item):
-            return tableView.dequeueReusableCell(cellType: UserTableViewCell.self).apply {
-                $0.bind(item.user)
+        case .loginItem:
+            return tableView.dequeueReusableCell(cellType: LoginTableViewCell.self).apply {
+                $0.bind()
             }
         case .userItem(let item):
             return tableView.dequeueReusableCell(cellType: UserTableViewCell.self).apply {
-                $0.bind(item.user)
+                $0.bind(item)
             }
         }
     }
@@ -46,9 +46,10 @@ class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard !users.isEmpty else { return }
         switch(users[indexPath.row]) {
+        case .loginItem:
+            break
         case .userItem(let item):
-            onUserTap?(item.user)
-        case .loginToIdentifyItem(_):
+            onUserTap?(item.id)
             break
         }
     }
