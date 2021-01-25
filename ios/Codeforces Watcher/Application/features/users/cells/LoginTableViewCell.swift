@@ -14,6 +14,7 @@ class LoginTableViewCell: UITableViewCell {
     private let cardView = CardView()
     
     private let galacticMasterCardView = GalacticMasterCardView()
+    private let loginToIdentifyCardView = LoginToIdentifyCardView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,16 +36,22 @@ class LoginTableViewCell: UITableViewCell {
     private func buildViewTree() {
         addSubview(cardView)
 
-        [galacticMasterCardView].forEach(cardView.addSubview)
+        [galacticMasterCardView, loginToIdentifyCardView].forEach(cardView.addSubview)
     }
 
     private func setConstraints() {
-        cardView.edgesToSuperview()
-        galacticMasterCardView.edgesToSuperview()
+        cardView.edgesToSuperview(insets: UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))
+        
+        galacticMasterCardView.edgesToSuperview(excluding: .trailing)
+        
+        loginToIdentifyCardView.run {
+            $0.width(to: galacticMasterCardView)
+            $0.edgesToSuperview(excluding: .leading)
+            $0.leadingToTrailing(of: galacticMasterCardView)
+        }
     }
     
     func bind() {
         
     }
 }
-

@@ -83,6 +83,7 @@
 		677BE8E825597F19008691C8 /* video_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 677BE8E725597F19008691C8 /* video_placeholder.jpg */; };
 		6A38706125BACBD70092792F /* LoginTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A38706025BACBD70092792F /* LoginTableViewCell.swift */; };
 		6AC30E0D25BEF89C00A86716 /* GalacticMasterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC30E0C25BEF89C00A86716 /* GalacticMasterCardView.swift */; };
+		6ADA86AA25BEFB5700EFF950 /* LoginToIdentifyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADA86A925BEFB5700EFF950 /* LoginToIdentifyCardView.swift */; };
 		6AF14F7025B6F4FE00979BB7 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */; };
 		81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */; };
 		B1E1B3EB23C9040C006A7347 /* Pods_Codeforces_Watcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */; };
@@ -189,6 +190,7 @@
 		677BE8E725597F19008691C8 /* video_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = video_placeholder.jpg; sourceTree = "<group>"; };
 		6A38706025BACBD70092792F /* LoginTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewCell.swift; sourceTree = "<group>"; };
 		6AC30E0C25BEF89C00A86716 /* GalacticMasterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalacticMasterCardView.swift; sourceTree = "<group>"; };
+		6ADA86A925BEFB5700EFF950 /* LoginToIdentifyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToIdentifyCardView.swift; sourceTree = "<group>"; };
 		6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1D1FA5A25152B1C0025D8CD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "Codeforces Watcher/Resources/fr.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
@@ -580,6 +582,7 @@
 				3352449F83A3B6FE1CA12CE9 /* CardView.swift */,
 				63EAA0FD24470BA000C234A8 /* AddUserCardView.swift */,
 				6AC30E0C25BEF89C00A86716 /* GalacticMasterCardView.swift */,
+				6ADA86A925BEFB5700EFF950 /* LoginToIdentifyCardView.swift */,
 			);
 			path = cardViews;
 			sourceTree = "<group>";
@@ -913,6 +916,7 @@
 				33524BC0E57CE4F3A2D1EC04 /* UIColor+Extension.swift in Sources */,
 				3352406FDC5916F705E86498 /* ScopeFunc.swift in Sources */,
 				63EAA0E72444719C00C234A8 /* UIViewControllerWithFab.swift in Sources */,
+				6ADA86AA25BEFB5700EFF950 /* LoginToIdentifyCardView.swift in Sources */,
 				63EAA1052448554400C234A8 /* CommonButton.swift in Sources */,
 				638C392624361AC200DB33A3 /* IOSToastHandler.swift in Sources */,
 				63FB270923E1AA50005F19F1 /* WebViewController.swift in Sources */,
