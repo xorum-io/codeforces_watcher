@@ -12,18 +12,9 @@ import common
 class LoginTableViewCell: UITableViewCell {
 
     private let cardView = CardView()
-
-    private let userImage = CircleImageView().apply {
-        $0.image = noImage
-    }
-    private let handleLabel = HeadingLabel()
-    private let ratingUpdateDateLabel = SubheadingBigLabel().apply {
-        $0.lineBreakMode = .byTruncatingHead
-    }
-
-    private let ratingLabel = HeadingLabel()
-    private let ratingUpdateLabel = SubheadingBigLabel()
-
+    
+    private let galacticMasterCardView = GalacticMasterCardView()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -35,17 +26,23 @@ class LoginTableViewCell: UITableViewCell {
     }
 
     private func setupView() {
-        
+        selectionStyle = .none
+
+        buildViewTree()
+        setConstraints()
     }
 
     private func buildViewTree() {
-        
+        addSubview(cardView)
+
+        [galacticMasterCardView].forEach(cardView.addSubview)
     }
 
     private func setConstraints() {
-        
+        cardView.edgesToSuperview()
+        galacticMasterCardView.edgesToSuperview()
     }
-
+    
     func bind() {
         
     }
