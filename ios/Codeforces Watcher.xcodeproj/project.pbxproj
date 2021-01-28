@@ -266,10 +266,10 @@
 				63603E6823DF2ADC00F86BC0 /* Double+Extension.swift */,
 				63EAA0D8244047DF00C234A8 /* Platform+Extension.swift */,
 				63B343012449C16000734CC5 /* UIViewController+Extension.swift */,
+				63EA5CB125349595008F76EF /* UIView+Extension.swift */,
 				335247F739C05D9BDD4FD646 /* tableView */,
 				335248DC66E099A4EF3D47FD /* NSMutableAttributedString+Extension.swift */,
 				3352475317FAF15F8D51972A /* StringOccurrence.swift */,
-				63EA5CB125349595008F76EF /* UIView+Extension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
