@@ -12,8 +12,8 @@ import common
 
 class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
 
-    var users: [User] = []
-    var onUserTap: ((User) -> ())?
+    var users: [UserItem] = []
+    var onUserTap: ((Int) -> ())?
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -30,16 +30,28 @@ class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSourc
                 $0.bind(imageName: "alienImage", explanation: "no_users_explanation")
             }
         }
-
-        return tableView.dequeueReusableCell(cellType: UserTableViewCell.self).apply {
-            $0.bind(users[indexPath.row])
+        
+        switch(users[indexPath.row]) {
+        case .loginItem:
+            return tableView.dequeueReusableCell(cellType: LoginTableViewCell.self).apply {
+                $0.bind()
+            }
+        case .userItem(let item):
+            return tableView.dequeueReusableCell(cellType: UserTableViewCell.self).apply {
+                $0.bind(item)
+            }
         }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard !users.isEmpty else { return }
-
-        onUserTap?(users[indexPath.row])
+        switch(users[indexPath.row]) {
+        case .loginItem:
+            break
+        case .userItem(let item):
+            onUserTap?(item.id)
+            break
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

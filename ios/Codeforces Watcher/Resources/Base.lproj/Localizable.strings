@@ -80,3 +80,12 @@
 "modified" = "modified";
 "created" = "created";
 "watch_video" = "Watch video";
+
+"galactic_master" = "Galactic master";
+"form_of_life" = "form_of_life";
+"unknown" = "Unknown";
+"never_updated" = "Never updated";
+
+"login_to_identify" = "Login to identify";
+"prompt_to_loginToIdentify" = "And get instant push\n  notifications about\n  rating updates";
+"login_in_42_seconds" = "Login in 42 seconds";

@@ -10,11 +10,15 @@ import Foundation
 import common
 
 class Prefs: Settings {
+
+    func readUserAccount() -> UserAccount? {
+        UserDefaults.standard.value(forKey: "userAccount") as? UserAccount
+    }
     
-    func readUserAccount() -> UserAccount? { nil }
-
-    func writeUserAccount(userAccount: UserAccount) { }
-
+    func writeUserAccount(userAccount: UserAccount) {
+        UserDefaults.standard.setValue(userAccount, forKey: "userAccount")
+    }
+  
     func readContestsFilters() -> Set<String> {
         if let savedFilters = (UserDefaults.standard.value(forKey: "contestsFilters")) as? Array<String> {
             return Set(savedFilters)
@@ -69,4 +73,3 @@ class Prefs: Settings {
         UserDefaults.standard.synchronize()
     }
 }
-
