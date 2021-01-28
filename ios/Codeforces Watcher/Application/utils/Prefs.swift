@@ -12,11 +12,7 @@ import common
 class Prefs: Settings {
 
     func readUserAccount() -> UserAccount? {
-        if let userAccount = (UserDefaults.standard.value(forKey: "userAccount")) as? UserAccount {
-            return userAccount
-        } else {
-            return nil
-        }
+        UserDefaults.standard.value(forKey: "userAccount") as? UserAccount
     }
     
     func writeUserAccount(userAccount: UserAccount) {

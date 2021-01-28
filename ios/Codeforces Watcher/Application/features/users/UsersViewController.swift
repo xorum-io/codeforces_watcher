@@ -287,7 +287,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
 fileprivate extension Array where Element == User {
     func mapToItems() -> [UserItem] {
         compactMap { user in
-            return UserItem.userItem(UserItem.UserItem(user))
+            UserItem.userItem(UserItem.UserItem(user))
         }
     }
 }
