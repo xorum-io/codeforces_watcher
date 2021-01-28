@@ -1,15 +1,14 @@
 //
-//  LoginToIdentifyCardView.swift
+//  LoginToIdentifyView.swift
 //  Codeforces Watcher
 //
-//  Created by Ivan Karavaiev on 1/25/21.
+//  Created by Ivan Karavaiev on 1/28/21.
 //  Copyright © 2021 xorum.io. All rights reserved.
 //
 
 import UIKit
-import TinyConstraints
 
-class LoginToIdentifyCardView: UIView {
+class LoginToIdentifyView: UIView {
     
     private let contentView = UIView()
     
@@ -43,7 +42,7 @@ class LoginToIdentifyCardView: UIView {
     }
 
     private func setupView() {
-        clipsToBounds = false 
+        clipsToBounds = false
         
         loginButton.titleLabel?.font = Font.textSubheading
         
