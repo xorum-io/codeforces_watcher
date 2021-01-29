@@ -89,3 +89,7 @@
 "login_to_identify" = "Login to identify";
 "prompt_to_loginToIdentify" = "And get instant push\n  notifications about\n  rating updates";
 "login_in_42_seconds" = "Login in 42 seconds";
+
+"sign_in" = "Sign In";
+"email" = "Email";
+"password" = "Password";
