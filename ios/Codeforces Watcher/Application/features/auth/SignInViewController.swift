@@ -25,6 +25,13 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
         $0.textColor = Palette.colorPrimary
         $0.font = Font.textHint
     }
+    private let signInButton = UIButton().apply {
+        $0.setTitle("sign_in".localized.uppercased(), for: .normal)
+        $0.setTitleColor(Palette.white, for: .normal)
+        $0.backgroundColor = Palette.colorPrimary
+        $0.layer.cornerRadius = 4
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +42,8 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
         view.backgroundColor = .white
         
         title = "sign_in".localized
+    
+        signInButton.titleLabel?.font = Font.textBody
         
         buildViewTree()
         setConstraints()
@@ -43,7 +52,7 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
 
     private func buildViewTree() {
         view.addSubview(contentView)
-        [emailInput, passwordInput, forgotPasswordLabel].forEach(contentView.addSubview)
+        [emailInput, passwordInput, forgotPasswordLabel, signInButton].forEach(contentView.addSubview)
     }
     
     private func setConstraints() {
@@ -61,6 +70,12 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
         
         forgotPasswordLabel.run {
             $0.topToBottom(of: passwordInput, offset: 8)
+            $0.horizontalToSuperview()
+        }
+        
+        signInButton.run {
+            $0.height(36)
+            $0.topToBottom(of: forgotPasswordLabel, offset: 16)
             $0.horizontalToSuperview()
         }
     }
