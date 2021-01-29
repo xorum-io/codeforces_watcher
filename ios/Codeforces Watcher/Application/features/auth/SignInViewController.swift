@@ -17,11 +17,14 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
     private let emailInput = TextInputLayout(explanation: "email".localized, type: .email).apply {
         $0.tag = 0
     }
-
     private let passwordInput = TextInputLayout(explanation: "password".localized, type: .password).apply {
         $0.tag = 1
     }
-    
+    private let forgotPasswordLabel = UILabel().apply {
+        $0.text = "forgot_password".localized
+        $0.textColor = Palette.colorPrimary
+        $0.font = Font.textHint
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +43,7 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
 
     private func buildViewTree() {
         view.addSubview(contentView)
-        [emailInput, passwordInput].forEach(contentView.addSubview)
+        [emailInput, passwordInput, forgotPasswordLabel].forEach(contentView.addSubview)
     }
     
     private func setConstraints() {
@@ -53,6 +56,11 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
         
         passwordInput.run {
             $0.topToBottom(of: emailInput, offset: 16)
+            $0.horizontalToSuperview()
+        }
+        
+        forgotPasswordLabel.run {
+            $0.topToBottom(of: passwordInput, offset: 8)
             $0.horizontalToSuperview()
         }
     }
