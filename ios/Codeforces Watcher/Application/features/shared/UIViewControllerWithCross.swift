@@ -1,5 +1,5 @@
 //
-//  UIViewControllerWithCross.swift
+//  ClosableViewController.swift
 //  Codeforces Watcher
 //
 //  Created by Den Matyash on 4/17/20.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UIViewControllerWithCross: UIViewController {
+class ClosableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

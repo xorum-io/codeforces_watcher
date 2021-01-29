@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import common
 
-class FiltersViewController: UIViewControllerWithCross, ReKampStoreSubscriber {
+class FiltersViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private let tableView = UITableView()
     private let tableAdapter = FiltersTableViewAdapter()

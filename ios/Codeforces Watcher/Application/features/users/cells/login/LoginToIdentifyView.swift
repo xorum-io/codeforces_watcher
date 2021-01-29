@@ -48,6 +48,7 @@ class LoginToIdentifyView: UIView {
         
         buildViewTree()
         setConstraints()
+        setInteractions()
     }
 
     private func buildViewTree() {
@@ -73,5 +74,17 @@ class LoginToIdentifyView: UIView {
             $0.horizontalToSuperview(insets: .horizontal(8))
             $0.bottomToSuperview(offset: -8)
         }
+    }
+    
+    private func setInteractions() {
+        loginButton.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(loginButtonTapped))
+        )
+    }
+    
+    @objc func loginButtonTapped() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let signInViewController = SignInViewController()
+        appDelegate.rootViewController.presentModal(signInViewController)
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import common
 import Charts
 
-class UserViewController: UIViewControllerWithCross {
+class UserViewController: ClosableViewController {
     
     private let userImage = CircleImageView()
     private let rankLabel = BodyLabel()
