@@ -10,16 +10,12 @@ import UIKit
 import common
 import PKHUD
 
-class SignInViewController: ClosableViewController, UITextFieldDelegate {
+class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private let contentView = UIView()
     
-    private let emailInput = TextInputLayout(explanation: "email".localized, type: .email).apply {
-        $0.tag = 0
-    }
-    private let passwordInput = TextInputLayout(explanation: "password".localized, type: .password).apply {
-        $0.tag = 1
-    }
+    private let emailInput = TextInputLayout(explanation: "email".localized, type: .email)
+    private let passwordInput = TextInputLayout(explanation: "password".localized, type: .password)
     private let forgotPasswordLabel = UILabel().apply {
         $0.text = "forgot_password".localized
         $0.textColor = Palette.colorPrimary
@@ -32,6 +28,46 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
         $0.layer.cornerRadius = 4
     }
     private let signUpView = SwitchToSignUpView()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        store.subscribe(subscriber: self) { subscription in
+            subscription.skipRepeats { oldState, newState in
+                return KotlinBoolean(bool: oldState.auth == newState.auth)
+            }.select { state in
+                return state.auth
+            }
+        }
+    }
+    
+    func onNewState(state: Any) {
+        let state = state as! AuthState
+        
+        switch (state.signInStatus) {
+        case AuthState.Status.done:
+            hideLoading()
+            closeViewController()
+        case AuthState.Status.pending:
+            showLoading()
+        case AuthState.Status.idle:
+            hideLoading()
+        default:
+            return
+        }
+    }
+    
+    private func showLoading() {
+        HUD.show(.progress, onView: UIApplication.shared.windows.last)
+    }
+    
+    private func hideLoading() {
+        HUD.hide(afterDelay: 0)
+    }
+    
+    private func closeViewController() {
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +123,12 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
     }
     
     private func setInteractions() {
-        
+        signInButton.onTap(target: self, action: #selector(didSignInClick))
+    }
+    
+    @objc func didSignInClick() {
+        let email = emailInput.textField.text ?? ""
+        let password = passwordInput.textField.text ?? ""
+        store.dispatch(action: AuthRequests.SignIn(email: email, password: password))
     }
 }
