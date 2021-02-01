@@ -31,6 +31,7 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
         $0.backgroundColor = Palette.colorPrimary
         $0.layer.cornerRadius = 4
     }
+    private let signUpView = SwitchToSignUpView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,7 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
 
     private func buildViewTree() {
         view.addSubview(contentView)
-        [emailInput, passwordInput, forgotPasswordLabel, signInButton].forEach(contentView.addSubview)
+        [emailInput, passwordInput, forgotPasswordLabel, signInButton, signUpView].forEach(contentView.addSubview)
     }
     
     private func setConstraints() {
@@ -77,6 +78,11 @@ class SignInViewController: ClosableViewController, UITextFieldDelegate {
             $0.height(36)
             $0.topToBottom(of: forgotPasswordLabel, offset: 16)
             $0.horizontalToSuperview()
+        }
+        
+        signUpView.run {
+            $0.bottomToSuperview()
+            $0.centerXToSuperview()
         }
     }
     

@@ -94,3 +94,6 @@
 "email" = "Email";
 "password" = "Password";
 "forgot_password" = "Forgot password?";
+
+"sign_up" = "Sign Up";
+"sign_up_hint" = "Don't have an account yet?";
