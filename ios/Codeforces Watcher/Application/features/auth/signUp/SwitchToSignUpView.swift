@@ -58,10 +58,10 @@ class SwitchToSignUpView: UIView {
     }
     
     private func setInteractions() {
-        switchLabel.onTap(target: self, action: #selector(jumpLabelTapped))
+        switchLabel.onTap(target: self, action: #selector(switchLabelTapped))
     }
     
-    @objc func jumpLabelTapped() {
+    @objc func switchLabelTapped() {
         print("SwitchToSignUp")
     }
 }
