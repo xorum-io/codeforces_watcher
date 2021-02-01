@@ -87,6 +87,7 @@
 		6A8BDAD125C2B60200C63878 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8BDAD025C2B60200C63878 /* LoginView.swift */; };
 		6A8BDAD625C2B68B00C63878 /* GalacticMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8BDAD525C2B68B00C63878 /* GalacticMasterView.swift */; };
 		6A8BDADE25C2B6C900C63878 /* LoginToIdentifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8BDADD25C2B6C900C63878 /* LoginToIdentifyView.swift */; };
+		6A9E0E2F25C816C90014DCAA /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */; };
 		6AA4982725C7F32D0002C16A /* SwitchToSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4982625C7F32D0002C16A /* SwitchToSignUpView.swift */; };
 		6AF14F7025B6F4FE00979BB7 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */; };
 		81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */; };
@@ -199,6 +200,7 @@
 		6A8BDAD025C2B60200C63878 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		6A8BDAD525C2B68B00C63878 /* GalacticMasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalacticMasterView.swift; sourceTree = "<group>"; };
 		6A8BDADD25C2B6C900C63878 /* LoginToIdentifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToIdentifyView.swift; sourceTree = "<group>"; };
+		6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		6AA4982625C7F32D0002C16A /* SwitchToSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchToSignUpView.swift; sourceTree = "<group>"; };
 		6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -281,6 +283,7 @@
 				335247F739C05D9BDD4FD646 /* tableView */,
 				335248DC66E099A4EF3D47FD /* NSMutableAttributedString+Extension.swift */,
 				3352475317FAF15F8D51972A /* StringOccurrence.swift */,
+				6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -988,6 +991,7 @@
 				63EAA0EA244474DC00C234A8 /* SubheadingLabel.swift in Sources */,
 				63B343072449E3BE00734CC5 /* ChartMarker.swift in Sources */,
 				33524DD18E818A18FEE9B1E8 /* ContestsRulesCardView.swift in Sources */,
+				6A9E0E2F25C816C90014DCAA /* UITextField+Extension.swift in Sources */,
 				63966E65252C540C00F3A447 /* NewsItem.swift in Sources */,
 				6A8BDADE25C2B6C900C63878 /* LoginToIdentifyView.swift in Sources */,
 				33524BECFB26356549915B9E /* NSMutableAttributedString+Extension.swift in Sources */,

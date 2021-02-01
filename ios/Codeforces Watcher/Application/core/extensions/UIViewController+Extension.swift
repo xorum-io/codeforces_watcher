@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
     func presentModal(_ viewController: UIViewController) {
         present(UINavigationController(rootViewController: viewController).apply() {
             $0.modalPresentationStyle = .fullScreen

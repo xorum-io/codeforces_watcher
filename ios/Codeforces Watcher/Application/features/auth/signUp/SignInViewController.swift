@@ -72,7 +72,13 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTextInputs()
         setupView()
+    }
+    
+    private func setupTextInputs() {
+        emailInput.textField.setupKeyboard()
+        passwordInput.textField.setupKeyboard()
     }
     
     private func setupView() {
