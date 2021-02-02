@@ -15,7 +15,6 @@ import io.xorum.codeforceswatcher.features.auth.UserAccount
 import io.xorum.codeforceswatcher.features.verification.VerificationCodeResponse
 import io.xorum.codeforceswatcher.network.responses.NewsResponse
 import io.xorum.codeforceswatcher.redux.store
-import kotlinx.serialization.UnstableDefault
 
 const val BACKEND_PROD_LINK = "algoris-me-backend.herokuapp.com"
 const val BACKEND_STAGING_LINK = "algoris-me-backend-staging.herokuapp.com"
@@ -45,12 +44,12 @@ internal class BackendRepository {
             }
 
     suspend fun fetchCodeforcesVerificationCode() = ktorResponseClient.put<VerificationCodeResponse>("user/generate-verify-code/codeforces")
+
     suspend fun verifyCodeforcesAccount(handle: String) = ktorResponseClient.post<UserAccount>("user/verify/codeforces") {
         parameter("handle", handle)
     }
 }
 
-@UseExperimental(UnstableDefault::class)
 internal fun makeBackendApiClient(): HttpClient = HttpClient {
     defaultRequest {
         url {
@@ -60,14 +59,21 @@ internal fun makeBackendApiClient(): HttpClient = HttpClient {
         }
     }
     Json {
-        serializer = KotlinxSerializer(json = kotlinx.serialization.json.Json.nonstrict)
+        serializer = KotlinxSerializer(
+            kotlinx.serialization.json.Json(from = kotlinx.serialization.json.Json.Default) {
+                isLenient = true
+                ignoreUnknownKeys = true
+                allowSpecialFloatingPointValues = true
+                useArrayPolymorphism = true
+                encodeDefaults = true
+            }
+        )
     }
     Logging {
         logger = Logger.DEFAULT
         level = LogLevel.INFO
     }
 }
-
 
 private val userToken: String?
     get() = store.state.users.userAccount?.token

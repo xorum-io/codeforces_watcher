@@ -40,7 +40,7 @@ class VerificationActivity : AppCompatActivity(), StoreSubscriber<VerificationSt
         store.dispatch(VerificationRequests.FetchVerificationCode())
 
         tvVerificationCode.setOnLongClickListener {
-            val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText("text", tvVerificationCode.text)
             clipboard.setPrimaryClip(clip)
             showToast(getString(R.string.code_copied_to_clipboard))

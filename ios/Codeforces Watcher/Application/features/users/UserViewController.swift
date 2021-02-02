@@ -32,8 +32,10 @@ class UserViewController: UIViewControllerWithCross {
     
     private let user: User
     
-    init(_ user: User) {
+    init(_ userId: Int) {
+        guard let user = store.state.users.users.first(where: {$0.id == userId}) else { fatalError() }
         self.user = user
+        
         super.init(nibName: nil, bundle: nil)
     }
     

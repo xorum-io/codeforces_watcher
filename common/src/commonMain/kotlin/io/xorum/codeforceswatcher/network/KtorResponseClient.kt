@@ -12,7 +12,6 @@ import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 
 class KtorResponseClient {
 
@@ -65,7 +64,7 @@ class KtorResponseClient {
 
     suspend fun getError(responseContent: ByteReadChannel) =
             responseContent.readUTF8Line()?.let {
-                Json(JsonConfiguration.Stable).parse(Error.serializer(), it)
+                Json(from = Json.Default) {}.decodeFromString(Error.serializer(), it)
             }
 
     @Serializable
