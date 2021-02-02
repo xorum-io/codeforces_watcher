@@ -74,6 +74,8 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
         
         setupTextInputs()
         setupView()
+        
+        addKeyboardListeners()
     }
     
     private func setupTextInputs() {
@@ -97,6 +99,8 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
         view.addSubview(contentView)
         [emailInput, passwordInput, forgotPasswordLabel, signInButton, signUpView].forEach(contentView.addSubview)
     }
+    
+    private var signUpViewConstraint = NSLayoutConstraint()
     
     private func setConstraints() {
         contentView.edgesToSuperview(insets: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
@@ -123,7 +127,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
         }
         
         signUpView.run {
-            $0.bottomToSuperview()
+            signUpViewConstraint = $0.bottomToSuperview()
             $0.centerXToSuperview()
         }
     }
@@ -136,5 +140,22 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
         let email = emailInput.textField.text ?? ""
         let password = passwordInput.textField.text ?? ""
         store.dispatch(action: AuthRequests.SignIn(email: email, password: password))
+    }
+    
+    private func addKeyboardListeners() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
+        
+        signUpViewConstraint.constant = -keyboardSize
+        view.layoutIfNeeded()
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        signUpViewConstraint.constant = 0
+        view.layoutIfNeeded()
     }
 }
