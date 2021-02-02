@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
 import com.bogdan.codeforceswatcher.components.WebViewActivity
+import com.bogdan.codeforceswatcher.util.disable
+import com.bogdan.codeforceswatcher.util.enable
 import com.bogdan.codeforceswatcher.util.linked
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.AuthState
@@ -72,7 +74,8 @@ class SignUpActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
                 ), listOf<CharacterStyle>(
                 buildClickableSpan {
                     startActivity(WebViewActivity.newIntent(this, PRIVACY_POLICY_LINK, getString(R.string.privacy_policy)))
-                })
+                }
+        )
         ))
         tvPrivacy.movementMethod = LinkMovementMethod.getInstance()
 
@@ -97,13 +100,8 @@ class SignUpActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
     }
 
     private fun adjustButtonEnablement(isChecked: Boolean) {
-        if (isChecked) {
-            btnSignUp.isEnabled = true
-            btnSignUp.alpha = 1f
-        } else {
-            btnSignUp.isEnabled = false
-            btnSignUp.alpha = 0.5f
-        }
+        if (isChecked) btnSignUp.enable()
+        else btnSignUp.disable()
     }
 
     private fun signUp() {

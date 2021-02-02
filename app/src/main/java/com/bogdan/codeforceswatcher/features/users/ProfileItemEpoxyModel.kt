@@ -7,11 +7,10 @@ import androidx.core.content.ContextCompat
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyModel
 import com.bogdan.codeforceswatcher.features.auth.SignInActivity
+import com.bogdan.codeforceswatcher.features.auth.VerificationActivity
 import com.bogdan.codeforceswatcher.util.colorSubstring
 import com.squareup.picasso.Picasso
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.UserAccount
-import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.no_user_card_layout.view.*
 import kotlinx.android.synthetic.main.view_profile_item.view.*
 
@@ -30,7 +29,7 @@ class ProfileItemEpoxyModel(private val userAccount: UserAccount?) : BaseEpoxyMo
                 profileLayout.visibility = View.GONE
                 showLoginPart(view)
             }
-            userAccount.user == null -> {
+            userAccount.codeforcesUser == null -> {
                 showNoUserData(view)
                 profileLayout.visibility = View.GONE
                 showVerifyPart(view)
@@ -45,7 +44,7 @@ class ProfileItemEpoxyModel(private val userAccount: UserAccount?) : BaseEpoxyMo
     private fun showUserData(view: View) = with(view) {
         profileLayout.visibility = View.VISIBLE
 
-        userAccount?.user?.run {
+        userAccount?.codeforcesUser?.run {
             Picasso.get().load(avatar).into(ivProfile)
             tvRank.text = buildRank()
             tvHandle.text = buildHandle()
@@ -85,7 +84,7 @@ class ProfileItemEpoxyModel(private val userAccount: UserAccount?) : BaseEpoxyMo
         btnAction.text = context.getString(R.string.verify_in_42_seconds)
 
         btnAction.setOnClickListener {
-            store.dispatch(AuthRequests.Verify())
+            context.startActivity(Intent(context, VerificationActivity::class.java))
         }
     }
 }
