@@ -14,8 +14,8 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private let contentView = UIView()
     
-    private let emailInput = TextInputLayout(explanation: "email".localized, type: .email)
-    private let passwordInput = TextInputLayout(explanation: "password".localized, type: .password)
+    private let emailInput = TextInputLayout(hint: "email".localized, type: .email)
+    private let passwordInput = TextInputLayout(hint: "password".localized, type: .password)
     private let forgotPasswordLabel = UILabel().apply {
         $0.text = "forgot_password".localized
         $0.textColor = Palette.colorPrimary
@@ -45,12 +45,12 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
         let state = state as! AuthState
         
         switch (state.signInStatus) {
-        case AuthState.Status.done:
+        case .done:
             hideLoading()
             closeViewController()
-        case AuthState.Status.pending:
+        case .pending:
             showLoading()
-        case AuthState.Status.idle:
+        case .idle:
             hideLoading()
         default:
             return
@@ -103,7 +103,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     private var signUpViewConstraint = NSLayoutConstraint()
     
     private func setConstraints() {
-        contentView.edgesToSuperview(insets: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
+        contentView.edgesToSuperview(insets: .uniform(16))
         
         emailInput.run {
             $0.topToSuperview()
@@ -127,7 +127,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
         }
         
         signUpView.run {
-            signUpViewConstraint = $0.bottomToSuperview()
+            signUpViewConstraint = $0.bottomToSuperview(usingSafeArea: true)
             $0.centerXToSuperview()
         }
     }

@@ -5,6 +5,7 @@ import io.xorum.codeforceswatcher.features.news.redux.states.NewsState
 import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
+import io.xorum.codeforceswatcher.features.verification.VerificationState
 import tw.geothings.rekotlin.StateType
 
 data class AppState(
@@ -12,5 +13,6 @@ data class AppState(
         val users: UsersState = UsersState(),
         val news: NewsState = NewsState(),
         val problems: ProblemsState = ProblemsState(),
-        val auth: AuthState = AuthState()
+        val auth: AuthState = AuthState(),
+        val verification: VerificationState = VerificationState()
 ) : StateType

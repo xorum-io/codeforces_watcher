@@ -10,7 +10,7 @@ import UIKit
 
 class TextInputLayout: UIView {
     
-    private let explanationLabel = UILabel().apply {
+    private let hintLabel = UILabel().apply {
         $0.font = Font.textHint
         $0.textColor = Palette.darkGray
     }
@@ -22,8 +22,8 @@ class TextInputLayout: UIView {
         case text
     }
     
-    init(explanation: String, type: TypeOfField = .text) {
-        explanationLabel.text = explanation
+    init(hint: String, type: TypeOfField = .text) {
+        hintLabel.text = hint
         
         switch(type) {
         case .email:
@@ -48,14 +48,14 @@ class TextInputLayout: UIView {
     }
     
     private func buildViewTree() {
-        [explanationLabel, textField].forEach(addSubview)
+        [hintLabel, textField].forEach(addSubview)
     }
     
     private func setConstraints() {
-        explanationLabel.edgesToSuperview(excluding: .bottom)
+        hintLabel.edgesToSuperview(excluding: .bottom)
         
         textField.run {
-            $0.topToBottom(of: explanationLabel, offset: 8)
+            $0.topToBottom(of: hintLabel, offset: 8)
             $0.edgesToSuperview(excluding: .top)
         }
     }

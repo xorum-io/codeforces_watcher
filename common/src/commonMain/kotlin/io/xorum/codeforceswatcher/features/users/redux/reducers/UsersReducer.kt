@@ -4,6 +4,7 @@ import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
+import io.xorum.codeforceswatcher.features.verification.VerificationRequests
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
 
@@ -50,7 +51,7 @@ fun usersReducer(action: Action, state: AppState): UsersState {
                     userAccount = action.userAccount
             )
         }
-        is AuthRequests.Verify.Success -> {
+        is VerificationRequests.Verify.Success -> {
             newState = newState.copy(userAccount = action.userAccount)
         }
         is AuthRequests.FetchUserAccount.Success -> {

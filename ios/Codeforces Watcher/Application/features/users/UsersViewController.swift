@@ -256,7 +256,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         users = state.users
         let sortedUsers = sortUsers(state.sortType)
         
-        if let userAccount = state.userAccount?.user {
+        if let userAccount = state.userAccount?.codeforcesUser {
             tableAdapter.users = sortedUsers.mapToItems()
         } else {
             tableAdapter.users = [.loginItem(UserItem.LoginItem())] + sortedUsers.mapToItems()
