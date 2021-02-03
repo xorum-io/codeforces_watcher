@@ -26,11 +26,8 @@ class LoginToIdentifyView: UIView {
         $0.numberOfLines = 0
         $0.textAlignment = .center
     }
-    private let loginButton = UIButton().apply {
+    private let loginButton = PrimaryButton().apply {
         $0.setTitle("login_in_42_seconds".localized.uppercased(), for: .normal)
-        $0.setTitleColor(Palette.white, for: .normal)
-        $0.backgroundColor = Palette.colorPrimary
-        $0.layer.cornerRadius = 4
     }
     
     public override init(frame: CGRect) {

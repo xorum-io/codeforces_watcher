@@ -21,11 +21,8 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
         $0.textColor = Palette.colorPrimary
         $0.font = Font.textHint
     }
-    private let signInButton = UIButton().apply {
+    private let signInButton = PrimaryButton().apply {
         $0.setTitle("sign_in".localized.uppercased(), for: .normal)
-        $0.setTitleColor(Palette.white, for: .normal)
-        $0.backgroundColor = Palette.colorPrimary
-        $0.layer.cornerRadius = 4
     }
     private let signUpView = SwitchToSignUpView()
     
@@ -87,8 +84,6 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
         view.backgroundColor = .white
         
         title = "sign_in".localized
-    
-        signInButton.titleLabel?.font = Font.textBody
         
         buildViewTree()
         setConstraints()
