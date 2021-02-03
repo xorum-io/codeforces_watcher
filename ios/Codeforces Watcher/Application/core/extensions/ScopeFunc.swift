@@ -9,6 +9,7 @@ public protocol ScopeFunc {
 }
 
 extension ScopeFunc {
+    
     @inline(__always) public func apply(block: (Self) -> ()) -> Self {
         block(self)
         return self

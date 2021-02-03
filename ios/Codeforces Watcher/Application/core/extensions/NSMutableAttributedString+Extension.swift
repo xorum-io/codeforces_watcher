@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 extension NSMutableAttributedString {
+    
     func colorSubstring(color: UIColor, range: NSRange) -> () {
         self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
     }

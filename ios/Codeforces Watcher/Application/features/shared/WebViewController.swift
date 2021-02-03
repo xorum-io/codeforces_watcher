@@ -11,7 +11,7 @@ import WebKit
 import FirebaseAnalytics
 import PKHUD
 
-class WebViewController: UIViewControllerWithCross, WKUIDelegate, WKNavigationDelegate {
+class WebViewController: ClosableViewController, WKUIDelegate, WKNavigationDelegate {
 
     private lazy var webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration()).apply {
         $0.uiDelegate = self
