@@ -10,6 +10,8 @@ import UIKit
 
 class LoginToIdentifyView: UIView {
     
+    private var onLoginTap: () -> () = {}
+    
     private let contentView = UIView()
     
     private let loginLabel = UILabel().apply {
@@ -83,8 +85,10 @@ class LoginToIdentifyView: UIView {
     }
     
     @objc func loginButtonTapped() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let signInViewController = SignInViewController()
-        appDelegate.rootViewController.presentModal(signInViewController)
+        onLoginTap()
+    }
+
+    func bind(onClick: @escaping () -> ()) {
+        onLoginTap = onClick
     }
 }

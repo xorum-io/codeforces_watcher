@@ -12,8 +12,8 @@ class LoginView: UIView {
 
     private let contentView = CardView()
 
-    private let galacticMasterCardView = GalacticMasterView()
-    private let loginToIdentifyCardView = LoginToIdentifyView()
+    private let galacticMasterView = GalacticMasterView()
+    private let loginToIdentifyView = LoginToIdentifyView()
     
     private let dashedLineView = UIView()
     
@@ -28,7 +28,6 @@ class LoginView: UIView {
     }
 
     private func setupView() {
-        clipsToBounds = false
         buildViewTree()
         setConstraints()
     }
@@ -36,25 +35,29 @@ class LoginView: UIView {
     private func buildViewTree() {
         addSubview(contentView)
 
-        [galacticMasterCardView, dashedLineView, loginToIdentifyCardView].forEach(contentView.addSubview)
+        [galacticMasterView, dashedLineView, loginToIdentifyView].forEach(contentView.addSubview)
     }
 
     private func setConstraints() {
         contentView.edgesToSuperview()
         
-        galacticMasterCardView.edgesToSuperview(excluding: .trailing)
+        galacticMasterView.edgesToSuperview(excluding: .trailing)
         
         dashedLineView.run {
             $0.width(2)
-            $0.leadingToTrailing(of: galacticMasterCardView)
+            $0.leadingToTrailing(of: galacticMasterView)
             $0.verticalToSuperview()
         }
         
-        loginToIdentifyCardView.run {
-            $0.width(to: galacticMasterCardView)
+        loginToIdentifyView.run {
+            $0.width(to: galacticMasterView)
             $0.edgesToSuperview(excluding: .leading)
             $0.leadingToTrailing(of: dashedLineView)
         }
+    }
+    
+    func bind(onClick: @escaping () -> ()) {
+        loginToIdentifyView.bind(onClick: onClick)
     }
 
     override func layoutSubviews() {

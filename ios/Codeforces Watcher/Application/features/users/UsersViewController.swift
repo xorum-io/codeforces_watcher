@@ -168,8 +168,13 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.refreshControl = refreshControl
         }
         
-        tableAdapter.onUserTap = { userId in
-            self.presentModal(UserViewController(userId))
+        tableAdapter.run {
+            $0.onUserTap = { userId in
+                self.presentModal(UserViewController(userId))
+            }
+            $0.onLoginTap = {
+                self.presentModal(SignInViewController())
+            }
         }
 
         [LoginTableViewCell.self, UserTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
