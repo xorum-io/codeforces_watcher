@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class BodyLabel: UILabel {
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

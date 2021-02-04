@@ -82,6 +82,7 @@
 		677BE8E325597C01008691C8 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677BE8E225597C01008691C8 /* VideoTableViewCell.swift */; };
 		677BE8E825597F19008691C8 /* video_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 677BE8E725597F19008691C8 /* video_placeholder.jpg */; };
 		6A07788925CAC97B00CED3E0 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07788825CAC97B00CED3E0 /* PrimaryButton.swift */; };
+		6A07788E25CACBBF00CED3E0 /* ActionableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */; };
 		6A38706125BACBD70092792F /* LoginTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A38706025BACBD70092792F /* LoginTableViewCell.swift */; };
 		6A69B26525C403D9001D19A9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A69B26425C403D9001D19A9 /* SignInViewController.swift */; };
 		6A69B27225C417BD001D19A9 /* TextInputLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A69B27125C417BD001D19A9 /* TextInputLayout.swift */; };
@@ -197,6 +198,7 @@
 		677BE8E225597C01008691C8 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		677BE8E725597F19008691C8 /* video_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = video_placeholder.jpg; sourceTree = "<group>"; };
 		6A07788825CAC97B00CED3E0 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionableLabel.swift; sourceTree = "<group>"; };
 		6A38706025BACBD70092792F /* LoginTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewCell.swift; sourceTree = "<group>"; };
 		6A69B26425C403D9001D19A9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6A69B27125C417BD001D19A9 /* TextInputLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputLayout.swift; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 				63EAA0ED244476C100C234A8 /* HeadingLabel.swift */,
 				63EAA0E9244474DC00C234A8 /* SubheadingLabel.swift */,
 				63EAA0F12445AA3100C234A8 /* SubheadingBigLabel.swift */,
+				6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */,
 			);
 			path = labels;
 			sourceTree = "<group>";
@@ -943,6 +946,7 @@
 				6AA73A5F25CA91AA00A575B2 /* SignUpViewController.swift in Sources */,
 				63EAA0F92445EC9100C234A8 /* UserTableViewCell.swift in Sources */,
 				63736EFD23CF6405001E9AB9 /* ContestsViewController.swift in Sources */,
+				6A07788E25CACBBF00CED3E0 /* ActionableLabel.swift in Sources */,
 				33524D7137C7D47F8BE95703 /* PostWithCommentTableViewCell.swift in Sources */,
 				6AF14F7025B6F4FE00979BB7 /* UserItem.swift in Sources */,
 				63736F2523D1F3EC001E9AB9 /* ProblemsTableViewAdapter.swift in Sources */,

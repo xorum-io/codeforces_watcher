@@ -24,7 +24,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     private let signInButton = PrimaryButton().apply {
         $0.setTitle("sign_in".localized.uppercased(), for: .normal)
     }
-    private let signUpView = SwitchToSignUpView()
+    private let signUpLabel = ActionableLabel(hintText: "sign_up_hint".localized, linkText: "sign_up".localized)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -92,7 +92,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
 
     private func buildViewTree() {
         view.addSubview(contentView)
-        [emailInput, passwordInput, forgotPasswordLabel, signInButton, signUpView].forEach(contentView.addSubview)
+        [emailInput, passwordInput, forgotPasswordLabel, signInButton, signUpLabel].forEach(contentView.addSubview)
     }
     
     private var signUpViewConstraint = NSLayoutConstraint()
@@ -121,7 +121,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
             $0.horizontalToSuperview()
         }
         
-        signUpView.run {
+        signUpLabel.run {
             signUpViewConstraint = $0.bottomToSuperview(usingSafeArea: true)
             $0.centerXToSuperview()
         }
@@ -129,12 +129,17 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private func setInteractions() {
         signInButton.onTap(target: self, action: #selector(didSignInClick))
+        signUpLabel.onTap(target: self, action: #selector(didSignUpClick))
     }
     
     @objc func didSignInClick() {
         let email = emailInput.textField.text ?? ""
         let password = passwordInput.textField.text ?? ""
         store.dispatch(action: AuthRequests.SignIn(email: email, password: password))
+    }
+    
+    @objc func didSignUpClick() {
+        presentModal(SignUpViewController())
     }
     
     private func addKeyboardListeners() {
