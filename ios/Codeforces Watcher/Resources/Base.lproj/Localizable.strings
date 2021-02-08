@@ -90,14 +90,15 @@
 "prompt_to_loginToIdentify" = "And get instant push\n  notifications about\n  rating updates";
 "login_in_42_seconds" = "Login in 42 seconds";
 
-"sign_in" = "Sign In";
 "email" = "Email";
 "password" = "Password";
 "confirm_password" = "Confirm password";
 "forgot_password" = "Forgot password?";
 
+"sign_in" = "Sign In";
+"sign_in_hint" = "Already have an account?";
+
 "sign_up" = "Sign Up";
 "sign_up_hint" = "Don't have an account yet?";
 
-"sign_in" = "Sign In";
-"sign_in_hint" = "Already have an account?";
+"agreement_terms_and_privacy" = "I agree with the <terms>Terms and Conditions</terms> and the <privacy>Privacy Policy</privacy>";

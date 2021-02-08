@@ -17,7 +17,7 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     private let emailInput = TextInputLayout(hint: "email".localized, type: .email)
     private let passwordInput = TextInputLayout(hint: "password".localized, type: .password)
     private let confirmInput = TextInputLayout(hint: "confirm_password".localized, type: .password)
-    
+    private let signUpAgreement = SignUpAgreementView()
     private let signUpButton = PrimaryButton().apply {
         $0.setTitle("sign_up".localized.uppercased(), for: .normal)
     }
@@ -90,7 +90,7 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
 
     private func buildViewTree() {
         view.addSubview(contentView)
-        [emailInput, passwordInput, confirmInput, signUpButton, signInLabel].forEach(contentView.addSubview)
+        [emailInput, passwordInput, confirmInput, signUpAgreement, signUpButton, signInLabel].forEach(contentView.addSubview)
     }
     
     private var signInViewConstraint = NSLayoutConstraint()
@@ -113,9 +113,14 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
             $0.horizontalToSuperview()
         }
         
+        signUpAgreement.run {
+            $0.topToBottom(of: confirmInput, offset: 16)
+            $0.horizontalToSuperview()
+        }
+        
         signUpButton.run {
             $0.height(36)
-            $0.topToBottom(of: confirmInput, offset: 16)
+            $0.topToBottom(of: signUpAgreement, offset: 16)
             $0.horizontalToSuperview()
         }
         
