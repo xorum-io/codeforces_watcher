@@ -16,7 +16,9 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private let emailInput = TextInputLayout(hint: "email".localized, type: .email)
     private let passwordInput = TextInputLayout(hint: "password".localized, type: .password)
-    private let confirmInput = TextInputLayout(hint: "password".localized, type: .password)
+    private let confirmInput = TextInputLayout(hint: "confirm_password".localized, type: .password)
+    
+    private let signInLabel = ActionableLabel(hintText: "sign_in_hint".localized, linkText: "sign_in".localized)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,11 +65,14 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
         
         setupTextInputs()
         setupView()
+        
+        addKeyboardListeners()
     }
     
     private func setupTextInputs() {
         emailInput.textField.setupKeyboard()
         passwordInput.textField.setupKeyboard()
+        confirmInput.textField.setupKeyboard()
     }
     
     private func setupView() {
@@ -82,10 +87,10 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
 
     private func buildViewTree() {
         view.addSubview(contentView)
-        [emailInput, passwordInput, confirmInput].forEach(contentView.addSubview)
+        [emailInput, passwordInput, confirmInput, signInLabel].forEach(contentView.addSubview)
     }
     
-    private var signUpViewConstraint = NSLayoutConstraint()
+    private var signInViewConstraint = NSLayoutConstraint()
     
     private func setConstraints() {
         contentView.edgesToSuperview(insets: .uniform(16))
@@ -104,9 +109,35 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
             $0.topToBottom(of: passwordInput, offset: 16)
             $0.horizontalToSuperview()
         }
+        
+        signInLabel.run {
+            signInViewConstraint = $0.bottomToSuperview(usingSafeArea: true)
+            $0.centerXToSuperview()
+        }
     }
     
     private func setInteractions() {
+        signInLabel.onTap(target: self, action: #selector(didSignInClick))
+    }
+    
+    @objc func didSignInClick() {
+        presentModal(SignInViewController())
+    }
+    
+    private func addKeyboardListeners() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
         
+        signInViewConstraint.constant = -keyboardSize
+        view.layoutIfNeeded()
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        signInViewConstraint.constant = 0
+        view.layoutIfNeeded()
     }
 }
