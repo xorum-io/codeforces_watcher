@@ -18,6 +18,9 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     private let passwordInput = TextInputLayout(hint: "password".localized, type: .password)
     private let confirmInput = TextInputLayout(hint: "confirm_password".localized, type: .password)
     
+    private let signUpButton = PrimaryButton().apply {
+        $0.setTitle("sign_up".localized.uppercased(), for: .normal)
+    }
     private let signInLabel = ActionableLabel(hintText: "sign_in_hint".localized, linkText: "sign_in".localized)
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,7 +90,7 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
 
     private func buildViewTree() {
         view.addSubview(contentView)
-        [emailInput, passwordInput, confirmInput, signInLabel].forEach(contentView.addSubview)
+        [emailInput, passwordInput, confirmInput, signUpButton, signInLabel].forEach(contentView.addSubview)
     }
     
     private var signInViewConstraint = NSLayoutConstraint()
@@ -110,6 +113,12 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
             $0.horizontalToSuperview()
         }
         
+        signUpButton.run {
+            $0.height(36)
+            $0.topToBottom(of: confirmInput, offset: 16)
+            $0.horizontalToSuperview()
+        }
+        
         signInLabel.run {
             signInViewConstraint = $0.bottomToSuperview(usingSafeArea: true)
             $0.centerXToSuperview()
@@ -117,7 +126,17 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     }
     
     private func setInteractions() {
+        signUpButton.onTap(target: self, action: #selector(didSignUpClick))
         signInLabel.onTap(target: self, action: #selector(didSignInClick))
+    }
+    
+    @objc func didSignUpClick() {
+        let email = emailInput.textField.text ?? ""
+        let password = passwordInput.textField.text ?? ""
+        let confirm = confirmInput.textField.text ?? ""
+        if (password == confirm) {
+            store.dispatch(action: AuthRequests.SignUp(email: email, password: password))
+        }
     }
     
     @objc func didSignInClick() {

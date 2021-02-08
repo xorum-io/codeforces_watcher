@@ -638,11 +638,19 @@
 			path = models;
 			sourceTree = "<group>";
 		};
+		6A14007A25D12F3A00EE48A8 /* signUp */ = {
+			isa = PBXGroup;
+			children = (
+				6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */,
+			);
+			path = signUp;
+			sourceTree = "<group>";
+		};
 		6A69B26325C403AA001D19A9 /* auth */ = {
 			isa = PBXGroup;
 			children = (
+				6A14007A25D12F3A00EE48A8 /* signUp */,
 				6AA4982E25C7F34C0002C16A /* signIn */,
-				6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */,
 			);
 			path = auth;
 			sourceTree = "<group>";
