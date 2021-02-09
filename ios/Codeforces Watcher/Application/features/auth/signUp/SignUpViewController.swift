@@ -20,6 +20,8 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     private let signUpAgreement = SignUpAgreementView()
     private let signUpButton = PrimaryButton().apply {
         $0.setTitle("sign_up".localized.uppercased(), for: .normal)
+        $0.isEnabled = false
+        $0.alpha = 0.5
     }
     private let signInLabel = ActionableLabel(hintText: "sign_in_hint".localized, linkText: "sign_in".localized)
     
@@ -67,6 +69,7 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
         super.viewDidLoad()
         
         setupTextInputs()
+        setupSignUpAgreement()
         setupView()
         
         addKeyboardListeners()
@@ -76,6 +79,23 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
         emailInput.textField.setupKeyboard()
         passwordInput.textField.setupKeyboard()
         confirmInput.textField.setupKeyboard()
+    }
+    
+    private func setupSignUpAgreement() {
+        signUpAgreement.onCheckboxTap = { isSelected in
+            switch isSelected {
+            case true:
+                self.signUpButton.run {
+                    $0.isEnabled = true
+                    $0.alpha = 1.0
+                }
+            case false:
+                self.signUpButton.run {
+                    $0.isEnabled = false
+                    $0.alpha = 0.5
+                }
+            }
+        }
     }
     
     private func setupView() {

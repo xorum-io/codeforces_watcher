@@ -10,15 +10,13 @@ import UIKit
 
 class SignUpAgreementView: UIView {
     
+    var onCheckboxTap: (Bool) -> () = {_ in }
+    
     private let contentView = UIView()
     
-    private let checkBox = UIButton().apply {
+    private let checkbox = CheckboxView().apply {
         $0.height(18)
         $0.width(18)
-        $0.layer.run {
-            $0.borderColor = Palette.black.cgColor
-            $0.borderWidth = 2
-        }
     }
     private let agreementLabel = AgreementTextView().apply {
         $0.height(40)
@@ -33,8 +31,13 @@ class SignUpAgreementView: UIView {
         super.init(coder: aDecoder)
         setupView()
     }
+    
     private func setupView() {
         clipsToBounds = false
+        
+        checkbox.onTap = { isSelected in
+            self.onCheckboxTap(isSelected)
+        }
         
         buildViewTree()
         setConstraints()
@@ -43,19 +46,19 @@ class SignUpAgreementView: UIView {
 
     private func buildViewTree() {
         addSubview(contentView)
-        [checkBox, agreementLabel].forEach(contentView.addSubview)
+        [checkbox, agreementLabel].forEach(contentView.addSubview)
     }
 
     private func setConstraints() {
         contentView.edgesToSuperview()
         
-        checkBox.run {
+        checkbox.run {
             $0.leadingToSuperview()
             $0.centerYToSuperview()
         }
         
         agreementLabel.run {
-            $0.leadingToTrailing(of: checkBox, offset: 12)
+            $0.leadingToTrailing(of: checkbox, offset: 8)
             $0.trailingToSuperview()
             $0.verticalToSuperview()
         }
