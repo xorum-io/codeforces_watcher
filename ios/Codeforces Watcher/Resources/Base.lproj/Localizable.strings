@@ -101,4 +101,4 @@
 "sign_up" = "Sign Up";
 "sign_up_hint" = "Don't have an account yet?";
 
-"agreement_terms_and_privacy" = "I agree with the <terms>Terms and Conditions</terms> and the <privacy>Privacy Policy</privacy>";
+"agreement_terms_and_privacy" = "I agree with the <terms>Terms and Conditions</terms> and the\n<privacy>Privacy Policy</privacy>.";

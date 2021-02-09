@@ -20,11 +20,8 @@ class SignUpAgreementView: UIView {
             $0.borderWidth = 2
         }
     }
-    
-    private let agreementLabel = UILabel().apply {
-        $0.text = "agreement_terms_and_privacy".localized
-        $0.numberOfLines = 0
-        $0.textAlignment = .left
+    private let agreementLabel = AgreementTextView().apply {
+        $0.height(40)
     }
     
     public override init(frame: CGRect) {
