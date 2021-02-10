@@ -10,12 +10,12 @@ import UIKit
 
 class CheckboxView: UIImageView {
     
-    private enum Status {
-        case selected
-        case unselected
-    }
+    private let checkedImage = UIImage(named: "ic_checkbox_checked")
+    private let uncheckedImage = UIImage(named: "ic_checkbox_unchecked")
     
-    private var status: Status = .unselected
+    private var isSelected: Bool = false {
+        didSet { image = isSelected ? checkedImage : uncheckedImage }
+    }
     
     var onTap: (Bool) -> () = {_ in }
     
@@ -38,9 +38,7 @@ class CheckboxView: UIImageView {
     }
     
     private func setupView() {
-        if let image = UIImage(named: "ic_checkbox_unchecked") {
-            self.image = image
-        }
+        image = uncheckedImage
     }
     
     private func setInteractions() {
@@ -48,19 +46,8 @@ class CheckboxView: UIImageView {
     }
     
     @objc private func didTap() {
-        switch status {
-        case .unselected:
-            if let image = UIImage(named: "ic_checkbox_checked") {
-                self.image = image
-            }
-            status = .selected
-        case .selected:
-            if let image = UIImage(named: "ic_checkbox_unchecked") {
-                self.image = image
-            }
-            status = .unselected
-        }
+        isSelected = !isSelected
         
-        onTap(status == .selected)
+        onTap(isSelected)
     }
 }

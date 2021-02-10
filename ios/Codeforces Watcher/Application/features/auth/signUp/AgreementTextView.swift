@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import common
 
 class AgreementTextView: UITextView, UITextViewDelegate {
     
@@ -37,7 +38,7 @@ class AgreementTextView: UITextView, UITextViewDelegate {
     
     private func addTermsProperty() {
         let tag = "terms"
-        let link = "https://docs.google.com/document/d/1hvL5NJ-wEJTEj_lurHkGy0kbtBAwd0w0Q1RIb4fzClg/edit?usp=sharing"
+        let link = Constants().TERMS_AND_CONDITIONS_LINK
         
         let range = agreementText.getRangeAndRemoveTag(tag: tag)
         
@@ -49,7 +50,7 @@ class AgreementTextView: UITextView, UITextViewDelegate {
     
     private func addPrivacyProperty() {
         let tag = "privacy"
-        let link = "https://docs.google.com/document/d/17mkrB4fKU9lS8QBbgo0AzdpkfoFdoPftCtql_dD8iZI/edit?usp=sharing"
+        let link = Constants().PRIVACY_POLICY_LINK
         
         let range = agreementText.getRangeAndRemoveTag(tag: tag)
         

@@ -83,17 +83,9 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private func setupSignUpAgreement() {
         signUpAgreement.onCheckboxTap = { isSelected in
-            switch isSelected {
-            case true:
-                self.signUpButton.run {
-                    $0.isEnabled = true
-                    $0.alpha = 1.0
-                }
-            case false:
-                self.signUpButton.run {
-                    $0.isEnabled = false
-                    $0.alpha = 0.5
-                }
+            self.signUpButton.run {
+                $0.isEnabled = isSelected
+                $0.alpha = (isSelected ? 1.0 : 0.5)
             }
         }
     }
@@ -158,8 +150,9 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     @objc func didSignUpClick() {
         let email = emailInput.textField.text ?? ""
         let password = passwordInput.textField.text ?? ""
-        let confirm = confirmInput.textField.text ?? ""
-        if (password == confirm) {
+        let confirmPassword = confirmInput.textField.text ?? ""
+        
+        if (password == confirmPassword) {
             store.dispatch(action: AuthRequests.SignUp(email: email, password: password))
         }
     }

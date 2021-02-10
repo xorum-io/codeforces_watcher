@@ -10,8 +10,8 @@ import UIKit
 
 class ActionableLabel: UILabel {
     
-    var hintText = NSMutableAttributedString()
-    var linkText = NSMutableAttributedString()
+    private var hintText = NSMutableAttributedString()
+    private var linkText = NSMutableAttributedString()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -27,8 +27,8 @@ class ActionableLabel: UILabel {
     }
     
     private func setupView() {
-        hintText.colorString(color: Palette.darkGray)
-        linkText.colorString(color: Palette.colorPrimary)
+        hintText.colored(with: Palette.darkGray)
+        linkText.colored(with: Palette.colorPrimary)
         
         attributedText = hintText + " ".attributed + linkText
         

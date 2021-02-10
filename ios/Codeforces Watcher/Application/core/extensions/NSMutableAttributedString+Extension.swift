@@ -15,7 +15,7 @@ extension NSMutableAttributedString {
         self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
     }
     
-    func colorString(color: UIColor) -> () {
+    func colored(with color: UIColor) -> () {
         self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: NSRange(location: 0, length: self.length))
     }
     
@@ -29,8 +29,8 @@ extension NSMutableAttributedString {
 }
 
 func + (left: NSMutableAttributedString, right: NSMutableAttributedString) -> NSMutableAttributedString {
-    let result = NSMutableAttributedString()
-    result.append(left)
-    result.append(right)
-    return result
+    return NSMutableAttributedString().apply {
+        $0.append(left)
+        $0.append(right)
+    }
 }

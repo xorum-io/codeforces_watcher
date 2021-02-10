@@ -169,8 +169,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         }
         
         tableAdapter.run {
-            $0.onUserTap = { userId in
-                self.presentModal(UserViewController(userId))
+            $0.onUserTap = { userId in  self.presentModal(UserViewController(userId))
             }
             $0.onLoginTap = {
                 self.presentModal(SignInViewController())

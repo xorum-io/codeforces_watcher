@@ -41,7 +41,6 @@ class SignUpAgreementView: UIView {
         
         buildViewTree()
         setConstraints()
-        setInteractions()
     }
 
     private func buildViewTree() {
@@ -62,9 +61,5 @@ class SignUpAgreementView: UIView {
             $0.trailingToSuperview()
             $0.verticalToSuperview()
         }
-    }
-    
-    private func setInteractions() {
-        
     }
 }
