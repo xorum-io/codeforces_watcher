@@ -12,23 +12,13 @@ import common
 class Prefs: Settings {
 
     func readUserAccount() -> UserAccount? {
-        guard let mappableUserAccount = UserDefaults.standard.value(forKey: "userAccount") as? MappableUserAccount else { return nil }
+        guard let json = UserDefaults.standard.value(forKey: "userAccount") as? String else { return nil }
         
-        return UserAccount(
-            codeforcesUser: mappableUserAccount.codeforcesUser,
-            email: mappableUserAccount.email,
-            token: mappableUserAccount.token
-        )
+        return UserAccount.Companion().fromJson(json: json)
     }
     
     func writeUserAccount(userAccount: UserAccount) {
-        let mappableUserAccount = MappableUserAccount(
-            codeforcesUser: userAccount.codeforcesUser,
-            email: userAccount.email,
-            token: userAccount.token
-        )
-        
-        UserDefaults.standard.setValue(mappableUserAccount, forKey: "userAccount")
+        UserDefaults.standard.setValue(userAccount.toJson(), forKey: "userAccount")
     }
   
     func readContestsFilters() -> Set<String> {
