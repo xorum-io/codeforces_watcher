@@ -122,6 +122,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - ObjectMapper (4.2.0)
   - PKHUD (5.3.0)
   - PromisesObjC (1.2.10)
   - SDWebImage (5.9.0):
@@ -137,6 +138,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Crashlytics
   - MaterialComponents/Buttons
+  - ObjectMapper
   - PKHUD (~> 5.0)
   - SDWebImage (~> 5.0)
   - TinyConstraints
@@ -159,6 +161,7 @@ SPEC REPOS:
     - MDFInternationalization
     - MDFTextAccessibility
     - nanopb
+    - ObjectMapper
     - PKHUD
     - PromisesObjC
     - SDWebImage
@@ -172,7 +175,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
-  common: b488d96f02c83385301e4b1df8634fcebccda734
+  common: f8e23265a08e4f981e7f58fa4cec653e63160419
   Firebase: 658370fa0181826a74b7cfca8d68c5856ca749ae
   FirebaseAnalytics: 0ca9aa2af7cc4dc92392b7a78bfc49feaa2eb60f
   FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c
@@ -186,12 +189,13 @@ SPEC CHECKSUMS:
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 7c8bc3910c5a358e689f19dcc17393ab5c44c1f5
+PODFILE CHECKSUM: 3b982ae0b33c13549973e7bd00741680d45bd4db
 
 COCOAPODS: 1.9.3

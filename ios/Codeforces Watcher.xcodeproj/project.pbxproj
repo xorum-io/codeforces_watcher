@@ -92,6 +92,7 @@
 		6A8BDADE25C2B6C900C63878 /* LoginToIdentifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8BDADD25C2B6C900C63878 /* LoginToIdentifyView.swift */; };
 		6A9B5CAE25D287A2001FC2CA /* AgreementTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */; };
 		6A9B5CB625D2957A001FC2CA /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B5CB525D2957A001FC2CA /* CheckboxView.swift */; };
+		6A9B5D2925D55102001FC2CA /* MappableUserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B5D2825D55102001FC2CA /* MappableUserAccount.swift */; };
 		6A9E0E2F25C816C90014DCAA /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */; };
 		6AA73A5F25CA91AA00A575B2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */; };
 		6AF14F7025B6F4FE00979BB7 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */; };
@@ -210,6 +211,7 @@
 		6A8BDADD25C2B6C900C63878 /* LoginToIdentifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToIdentifyView.swift; sourceTree = "<group>"; };
 		6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementTextView.swift; sourceTree = "<group>"; };
 		6A9B5CB525D2957A001FC2CA /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
+		6A9B5D2825D55102001FC2CA /* MappableUserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappableUserAccount.swift; sourceTree = "<group>"; };
 		6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 		33524334DF2CD89E83BDE8E8 /* users */ = {
 			isa = PBXGroup;
 			children = (
+				6A9B5D2825D55102001FC2CA /* MappableUserAccount.swift */,
 				63B343052449E39600734CC5 /* models */,
 				63B343002448B8BA00734CC5 /* adapters */,
 				63EAA0F72445EAB700C234A8 /* cells */,
@@ -1015,6 +1018,7 @@
 				63EAA0F22445AA3100C234A8 /* SubheadingBigLabel.swift in Sources */,
 				63B343022449C16100734CC5 /* UIViewController+Extension.swift in Sources */,
 				6387BD1425078A5B0048C9E8 /* CrashlyticsError.swift in Sources */,
+				6A9B5D2925D55102001FC2CA /* MappableUserAccount.swift in Sources */,
 				63EAA0EA244474DC00C234A8 /* SubheadingLabel.swift in Sources */,
 				63B343072449E3BE00734CC5 /* ChartMarker.swift in Sources */,
 				33524DD18E818A18FEE9B1E8 /* ContestsRulesCardView.swift in Sources */,
