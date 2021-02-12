@@ -17,7 +17,6 @@ target 'Codeforces Watcher' do
 	  pod 'MaterialComponents/Buttons'
 	  pod 'Toast-Swift', '~> 5.0.1'
 	  pod 'Charts'
-    pod 'ObjectMapper'
 
   	target 'Codeforces WatcherTests' do
     	inherit! :search_paths
