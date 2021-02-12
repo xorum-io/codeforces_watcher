@@ -81,14 +81,19 @@
 		677BE8DE25597A38008691C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 677BE8DD25597A38008691C8 /* GoogleService-Info.plist */; };
 		677BE8E325597C01008691C8 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677BE8E225597C01008691C8 /* VideoTableViewCell.swift */; };
 		677BE8E825597F19008691C8 /* video_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 677BE8E725597F19008691C8 /* video_placeholder.jpg */; };
+		6A07788925CAC97B00CED3E0 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07788825CAC97B00CED3E0 /* PrimaryButton.swift */; };
+		6A07788E25CACBBF00CED3E0 /* ActionableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */; };
 		6A38706125BACBD70092792F /* LoginTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A38706025BACBD70092792F /* LoginTableViewCell.swift */; };
+		6A388C1725D131750021CA5F /* SignUpAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A388C1625D131750021CA5F /* SignUpAgreementView.swift */; };
 		6A69B26525C403D9001D19A9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A69B26425C403D9001D19A9 /* SignInViewController.swift */; };
 		6A69B27225C417BD001D19A9 /* TextInputLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A69B27125C417BD001D19A9 /* TextInputLayout.swift */; };
 		6A8BDAD125C2B60200C63878 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8BDAD025C2B60200C63878 /* LoginView.swift */; };
 		6A8BDAD625C2B68B00C63878 /* GalacticMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8BDAD525C2B68B00C63878 /* GalacticMasterView.swift */; };
 		6A8BDADE25C2B6C900C63878 /* LoginToIdentifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8BDADD25C2B6C900C63878 /* LoginToIdentifyView.swift */; };
+		6A9B5CAE25D287A2001FC2CA /* AgreementTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */; };
+		6A9B5CB625D2957A001FC2CA /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B5CB525D2957A001FC2CA /* CheckboxView.swift */; };
 		6A9E0E2F25C816C90014DCAA /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */; };
-		6AA4982725C7F32D0002C16A /* SwitchToSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4982625C7F32D0002C16A /* SwitchToSignUpView.swift */; };
+		6AA73A5F25CA91AA00A575B2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */; };
 		6AF14F7025B6F4FE00979BB7 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */; };
 		81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */; };
 		B1AB01E525A648FC00DF37C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1AB01E325A648FB00DF37C1 /* LaunchScreen.storyboard */; };
@@ -194,14 +199,19 @@
 		677BE8DD25597A38008691C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		677BE8E225597C01008691C8 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		677BE8E725597F19008691C8 /* video_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = video_placeholder.jpg; sourceTree = "<group>"; };
+		6A07788825CAC97B00CED3E0 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionableLabel.swift; sourceTree = "<group>"; };
 		6A38706025BACBD70092792F /* LoginTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewCell.swift; sourceTree = "<group>"; };
+		6A388C1625D131750021CA5F /* SignUpAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAgreementView.swift; sourceTree = "<group>"; };
 		6A69B26425C403D9001D19A9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6A69B27125C417BD001D19A9 /* TextInputLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputLayout.swift; sourceTree = "<group>"; };
 		6A8BDAD025C2B60200C63878 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		6A8BDAD525C2B68B00C63878 /* GalacticMasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalacticMasterView.swift; sourceTree = "<group>"; };
 		6A8BDADD25C2B6C900C63878 /* LoginToIdentifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToIdentifyView.swift; sourceTree = "<group>"; };
+		6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementTextView.swift; sourceTree = "<group>"; };
+		6A9B5CB525D2957A001FC2CA /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
-		6AA4982625C7F32D0002C16A /* SwitchToSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchToSignUpView.swift; sourceTree = "<group>"; };
+		6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1AB01E425A648FB00DF37C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -372,6 +382,7 @@
 				63EAA0E424445ABB00C234A8 /* CircleImageView.swift */,
 				63EAA0FF2447121500C234A8 /* CommonTextField.swift */,
 				6A69B27125C417BD001D19A9 /* TextInputLayout.swift */,
+				6A9B5CB525D2957A001FC2CA /* CheckboxView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -578,6 +589,7 @@
 				63EAA0ED244476C100C234A8 /* HeadingLabel.swift */,
 				63EAA0E9244474DC00C234A8 /* SubheadingLabel.swift */,
 				63EAA0F12445AA3100C234A8 /* SubheadingBigLabel.swift */,
+				6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */,
 			);
 			path = labels;
 			sourceTree = "<group>";
@@ -606,6 +618,7 @@
 			children = (
 				63EAA1042448554400C234A8 /* CommonButton.swift */,
 				63F02C032462F0B000B1CD2C /* SmallButton.swift */,
+				6A07788825CAC97B00CED3E0 /* PrimaryButton.swift */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -630,10 +643,21 @@
 			path = models;
 			sourceTree = "<group>";
 		};
+		6A14007A25D12F3A00EE48A8 /* signUp */ = {
+			isa = PBXGroup;
+			children = (
+				6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */,
+				6A388C1625D131750021CA5F /* SignUpAgreementView.swift */,
+				6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */,
+			);
+			path = signUp;
+			sourceTree = "<group>";
+		};
 		6A69B26325C403AA001D19A9 /* auth */ = {
 			isa = PBXGroup;
 			children = (
-				6AA4982E25C7F34C0002C16A /* signUp */,
+				6A14007A25D12F3A00EE48A8 /* signUp */,
+				6AA4982E25C7F34C0002C16A /* signIn */,
 			);
 			path = auth;
 			sourceTree = "<group>";
@@ -649,13 +673,12 @@
 			path = login;
 			sourceTree = "<group>";
 		};
-		6AA4982E25C7F34C0002C16A /* signUp */ = {
+		6AA4982E25C7F34C0002C16A /* signIn */ = {
 			isa = PBXGroup;
 			children = (
-				6AA4982625C7F32D0002C16A /* SwitchToSignUpView.swift */,
 				6A69B26425C403D9001D19A9 /* SignInViewController.swift */,
 			);
-			path = signUp;
+			path = signIn;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -934,14 +957,17 @@
 				33524789EFFED3D6CA62DEE5 /* Palette.swift in Sources */,
 				33524FEAE56CD4737349DE6A /* Constants.swift in Sources */,
 				6A38706125BACBD70092792F /* LoginTableViewCell.swift in Sources */,
+				6AA73A5F25CA91AA00A575B2 /* SignUpViewController.swift in Sources */,
 				63EAA0F92445EC9100C234A8 /* UserTableViewCell.swift in Sources */,
 				63736EFD23CF6405001E9AB9 /* ContestsViewController.swift in Sources */,
+				6A07788E25CACBBF00CED3E0 /* ActionableLabel.swift in Sources */,
 				33524D7137C7D47F8BE95703 /* PostWithCommentTableViewCell.swift in Sources */,
 				6AF14F7025B6F4FE00979BB7 /* UserItem.swift in Sources */,
 				63736F2523D1F3EC001E9AB9 /* ProblemsTableViewAdapter.swift in Sources */,
 				63EAA0D0243EFF2500C234A8 /* FilterItem.swift in Sources */,
 				33524585031C11024879680D /* PostTableViewCell.swift in Sources */,
 				63EAA0E524445ABB00C234A8 /* CircleImageView.swift in Sources */,
+				6A9B5CAE25D287A2001FC2CA /* AgreementTextView.swift in Sources */,
 				638C39282437277F00DB33A3 /* Prefs.swift in Sources */,
 				6A69B26525C403D9001D19A9 /* SignInViewController.swift in Sources */,
 				63EAA0FB2446FF6A00C234A8 /* NoItemsTableViewCell.swift in Sources */,
@@ -957,7 +983,7 @@
 				63EB130123CF3F830013A974 /* MainViewController.swift in Sources */,
 				335240BE358E7469D97B1472 /* String+Extension.swift in Sources */,
 				6A8BDAD125C2B60200C63878 /* LoginView.swift in Sources */,
-				6AA4982725C7F32D0002C16A /* SwitchToSignUpView.swift in Sources */,
+				6A9B5CB625D2957A001FC2CA /* CheckboxView.swift in Sources */,
 				33524BC0E57CE4F3A2D1EC04 /* UIColor+Extension.swift in Sources */,
 				3352406FDC5916F705E86498 /* ScopeFunc.swift in Sources */,
 				63EAA0E72444719C00C234A8 /* UIViewControllerWithFab.swift in Sources */,
@@ -979,6 +1005,7 @@
 				335248243065D1A2585B79FE /* NewsTableViewAdapter.swift in Sources */,
 				633B4CF623E078380099EF41 /* FiltersViewController.swift in Sources */,
 				63EAA0EC2444760300C234A8 /* BodyLabel.swift in Sources */,
+				6A07788925CAC97B00CED3E0 /* PrimaryButton.swift in Sources */,
 				63EAA1002447121500C234A8 /* CommonTextField.swift in Sources */,
 				335249EE055A0D7C9B31CE68 /* UITableView+Extension.swift in Sources */,
 				33524AE3A0B0A7C674038501 /* UITableViewCell+Extension.swift in Sources */,
@@ -996,6 +1023,7 @@
 				6A8BDADE25C2B6C900C63878 /* LoginToIdentifyView.swift in Sources */,
 				33524BECFB26356549915B9E /* NSMutableAttributedString+Extension.swift in Sources */,
 				33524D2E524696176F1E52C4 /* StringOccurrence.swift in Sources */,
+				6A388C1725D131750021CA5F /* SignUpAgreementView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

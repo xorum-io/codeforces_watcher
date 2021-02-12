@@ -10,7 +10,7 @@ import UIKit
 
 class LoginTableViewCell: UITableViewCell {
 
-    private let cardView = LoginView()
+    private let loginView = LoginView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,14 +30,14 @@ class LoginTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        addSubview(cardView)
+        addSubview(loginView)
     }
 
     private func setConstraints() {
-        cardView.edgesToSuperview(insets: UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))
+        loginView.edgesToSuperview(insets: UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))
     }
     
-    func bind() {
-        
+    func bind(onClick: @escaping () -> ()) {
+        loginView.bind(onClick: onClick)
     }
 }

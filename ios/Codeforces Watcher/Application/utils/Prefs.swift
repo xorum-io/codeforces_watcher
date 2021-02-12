@@ -12,11 +12,13 @@ import common
 class Prefs: Settings {
 
     func readUserAccount() -> UserAccount? {
-        UserDefaults.standard.value(forKey: "userAccount") as? UserAccount
+        guard let json = UserDefaults.standard.value(forKey: "userAccount") as? String else { return nil }
+        
+        return UserAccount.Companion().fromJson(json: json)
     }
     
     func writeUserAccount(userAccount: UserAccount) {
-        UserDefaults.standard.setValue(userAccount, forKey: "userAccount")
+        UserDefaults.standard.setValue(userAccount.toJson(), forKey: "userAccount")
     }
   
     func readContestsFilters() -> Set<String> {

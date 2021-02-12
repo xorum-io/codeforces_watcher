@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class CircleImageView: UIImageView {
+    
     convenience init() {
         self.init(frame: CGRect.zero)
     }
