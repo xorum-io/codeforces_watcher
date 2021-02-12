@@ -63,7 +63,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     }
     
     private func closeViewController() {
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        self.presentingViewController?.dismiss(animated: true)
     }
     
     override func viewDidLoad() {

@@ -14,6 +14,10 @@ enum UserItem {
     struct LoginItem {
         
     }
+    
+    struct VerifyItem {
+        
+    }
 
     struct UserItem {
         let id: Int
@@ -44,5 +48,6 @@ enum UserItem {
     }
     
     case loginItem(LoginItem)
+    case verifyItem(VerifyItem)
     case userItem(UserItem)
 }

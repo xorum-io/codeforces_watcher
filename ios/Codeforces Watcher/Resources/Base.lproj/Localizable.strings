@@ -90,6 +90,10 @@
 "prompt_to_loginToIdentify" = "And get instant push\n  notifications about\n  rating updates";
 "login_in_42_seconds" = "Login in 42 seconds";
 
+"verify_to_identify" = "Verify account";
+"prompt_to_verifyToIdentify" = "Pass the quick and\n simple verification to\n see your profile here";
+"verify_in_42_seconds" = "Verify in 42 seconds";
+
 "email" = "Email";
 "password" = "Password";
 "confirm_password" = "Confirm password";

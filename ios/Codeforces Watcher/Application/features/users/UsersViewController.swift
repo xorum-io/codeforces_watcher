@@ -176,7 +176,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             }
         }
 
-        [LoginTableViewCell.self, UserTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
+        [LoginTableViewCell.self, VerifyTableViewCell.self, UserTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
 
         refreshControl.run {
             $0.addTarget(self, action: #selector(refreshUsers), for: .valueChanged)
@@ -260,10 +260,14 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         users = state.users
         let sortedUsers = sortUsers(state.sortType)
         
-        if let userAccount = state.userAccount?.codeforcesUser {
-            tableAdapter.users = sortedUsers.mapToItems()
-        } else {
+        if (state.userAccount == nil) {
             tableAdapter.users = [.loginItem(UserItem.LoginItem())] + sortedUsers.mapToItems()
+        } else {
+            if (state.userAccount?.codeforcesUser) == nil {
+                tableAdapter.users = [.verifyItem(UserItem.VerifyItem())] + sortedUsers.mapToItems()
+            } else {
+                tableAdapter.users = [.loginItem(UserItem.LoginItem())] + sortedUsers.mapToItems()
+            }
         }
         
         sortTextField.isHidden = users.isEmpty
