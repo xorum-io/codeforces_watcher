@@ -264,9 +264,9 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         let sortedUsers = sortUsers(userState.sortType)
         
         switch (authState.authStage) {
-        case .notSigned:
+        case .notSignedIn:
             tableAdapter.users = [.loginItem(UserItem.LoginItem())] + sortedUsers.mapToItems()
-        case .signed_:
+        case .signedIn:
             tableAdapter.users = [.verifyItem(UserItem.VerifyItem())] + sortedUsers.mapToItems()
         case .verified:
             // need to open userItem

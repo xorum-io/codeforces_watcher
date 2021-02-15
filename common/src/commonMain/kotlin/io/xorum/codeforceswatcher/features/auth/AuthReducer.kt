@@ -12,7 +12,7 @@ fun authReducer(action: Action, state: AppState): AuthState {
         is AuthRequests.SignIn.Success -> {
             newState = newState.copy(
                     signInStatus = AuthState.Status.DONE,
-                    authStage = AuthState.Stage.SIGNED
+                    authStage = AuthState.Stage.SIGNED_IN
             )
         }
         is AuthRequests.SignIn -> {
@@ -30,7 +30,7 @@ fun authReducer(action: Action, state: AppState): AuthState {
             newState = newState.copy(
                     signUpStatus = AuthState.Status.DONE,
                     signInStatus = AuthState.Status.DONE,
-                    authStage = AuthState.Stage.SIGNED
+                    authStage = AuthState.Stage.SIGNED_IN
             )
         }
         is AuthRequests.SignUp -> {

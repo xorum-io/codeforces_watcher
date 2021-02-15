@@ -56,10 +56,10 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
 
     override fun onNewState(state: AppState) {
         swipeRefreshLayout.isRefreshing = (state.users.status == UsersState.Status.PENDING)
-        val updatedUsersList = state.users.users.sort(state.users.sortType).map { UserItem(it) }
+
         epoxyController.userAccount = state.users.userAccount
         epoxyController.authStage = state.auth.authStage
-        epoxyController.data = updatedUsersList
+        epoxyController.data = state.users.users.sort(state.users.sortType).map { UserItem(it) }
 
         adjustSpinnerSortVisibility(state.users.users.isEmpty())
 
@@ -138,7 +138,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
                 requestModelBuild()
             }
 
-        var authStage: AuthState.Stage = AuthState.Stage.NOT_SIGNED
+        var authStage: AuthState.Stage = AuthState.Stage.NOT_SIGNED_IN
             set(value) {
                 field = value
                 requestModelBuild()

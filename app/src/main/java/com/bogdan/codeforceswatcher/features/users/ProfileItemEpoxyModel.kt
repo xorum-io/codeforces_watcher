@@ -15,8 +15,8 @@ import io.xorum.codeforceswatcher.features.auth.UserAccount
 import kotlinx.android.synthetic.main.no_user_card_layout.view.*
 import kotlinx.android.synthetic.main.view_profile_item.view.*
 
-class ProfileItemEpoxyModel(private val userAccount: UserAccount?, private val authStage: AuthState.Stage) : BaseEpoxyModel(R.layout.view_profile_item) {
-
+class ProfileItemEpoxyModel(private val userAccount: UserAccount?,
+                            private val authStage: AuthState.Stage) : BaseEpoxyModel(R.layout.view_profile_item) {
     init {
         id("ProfileItemEpoxyModel", userAccount.toString(), authStage.toString())
     }
@@ -25,12 +25,12 @@ class ProfileItemEpoxyModel(private val userAccount: UserAccount?, private val a
         super.bind(view)
 
         when (authStage) {
-            AuthState.Stage.NOT_SIGNED -> {
+            AuthState.Stage.NOT_SIGNED_IN -> {
                 showNoUserData(view)
                 profileLayout.visibility = View.GONE
                 showLoginPart(view)
             }
-            AuthState.Stage.SIGNED -> {
+            AuthState.Stage.SIGNED_IN -> {
                 showNoUserData(view)
                 profileLayout.visibility = View.GONE
                 showVerifyPart(view)

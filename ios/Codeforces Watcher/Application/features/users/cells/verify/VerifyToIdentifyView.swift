@@ -15,12 +15,12 @@ class VerifyToIdentifyView: UIView {
     private let contentView = UIView()
     
     private let verifyLabel = UILabel().apply {
-        $0.text = "verify_to_identify".localized
+        $0.text = "verify_account".localized
         $0.textColor = Palette.darkGray
         $0.font = Font.textBody
     }
     private let promptLabel = UILabel().apply {
-        $0.text = "prompt_to_verifyToIdentify".localized
+        $0.text = "verify_account_prompt".localized
         $0.textColor = Palette.darkGray
         $0.font = Font.textSubheading
         $0.numberOfLines = 0
