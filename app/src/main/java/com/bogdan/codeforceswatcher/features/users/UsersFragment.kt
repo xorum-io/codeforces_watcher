@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyController
+import io.xorum.codeforceswatcher.features.auth.AuthState
 import io.xorum.codeforceswatcher.features.auth.UserAccount
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
@@ -21,13 +22,14 @@ import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState.SortType.Companion.getSortType
 import io.xorum.codeforceswatcher.redux.analyticsController
+import io.xorum.codeforceswatcher.redux.states.AppState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.fragment_users.*
 import tw.geothings.rekotlin.StoreSubscriber
 import java.util.*
 
-class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubscriber<UsersState> {
+class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubscriber<AppState> {
 
     private lateinit var spSort: AppCompatSpinner
 
@@ -42,8 +44,8 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
         super.onStart()
         store.subscribe(this) { state ->
             state.skipRepeats { oldState, newState ->
-                oldState.users == newState.users
-            }.select { it.users }
+                oldState.users == newState.users && oldState.auth == newState.auth
+            }
         }
     }
 
@@ -52,15 +54,16 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
         store.unsubscribe(this)
     }
 
-    override fun onNewState(state: UsersState) {
-        swipeRefreshLayout.isRefreshing = (state.status == UsersState.Status.PENDING)
-        val updatedUsersList = state.users.sort(state.sortType).map { UserItem(it) }
-        epoxyController.userAccount = state.userAccount
+    override fun onNewState(state: AppState) {
+        swipeRefreshLayout.isRefreshing = (state.users.status == UsersState.Status.PENDING)
+        val updatedUsersList = state.users.users.sort(state.users.sortType).map { UserItem(it) }
+        epoxyController.userAccount = state.users.userAccount
+        epoxyController.authStage = state.auth.authStage
         epoxyController.data = updatedUsersList
 
-        adjustSpinnerSortVisibility(state.users.isEmpty())
+        adjustSpinnerSortVisibility(state.users.users.isEmpty())
 
-        if (state.addUserStatus == UsersState.Status.DONE) {
+        if (state.users.addUserStatus == UsersState.Status.DONE) {
             store.dispatch(UsersActions.ClearAddUserState())
         }
     }
@@ -135,8 +138,14 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
                 requestModelBuild()
             }
 
+        var authStage: AuthState.Stage = AuthState.Stage.NOT_SIGNED
+            set(value) {
+                field = value
+                requestModelBuild()
+            }
+
         override fun buildModels() {
-            ProfileItemEpoxyModel(userAccount).addTo(this)
+            ProfileItemEpoxyModel(userAccount, authStage).addTo(this)
             data?.forEach { userItem ->
                 UserItemEpoxyModel(userItem).addTo(this)
             }
