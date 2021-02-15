@@ -60,9 +60,9 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         
         store.subscribe(subscriber: self) { subscription in
             subscription.skipRepeats { oldState, newState in
-                return KotlinBoolean(bool: oldState.users == newState.users)
+                return KotlinBoolean(bool: oldState.users == newState.users && oldState.auth == newState.auth)
             }.select { state in
-                return state.users
+                return state
             }
         }
     }
@@ -249,32 +249,37 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
     
     func onNewState(state: Any) {
-        let state = state as! UsersState
+        let state = state as! AppState
         
-        if (state.status == .idle) {
+        let userState = state.users
+        let authState = state.auth
+        
+        if (userState.status == .idle) {
             refreshControl.endRefreshing()
         }
         
-        tableView.refreshControl = state.users.isEmpty ? nil : refreshControl
+        tableView.refreshControl = userState.users.isEmpty ? nil : refreshControl
         
-        users = state.users
-        let sortedUsers = sortUsers(state.sortType)
+        users = userState.users
+        let sortedUsers = sortUsers(userState.sortType)
         
-        if (state.userAccount == nil) {
+        switch (authState.authStage) {
+        case .notSigned:
             tableAdapter.users = [.loginItem(UserItem.LoginItem())] + sortedUsers.mapToItems()
-        } else {
-            if (state.userAccount?.codeforcesUser) == nil {
-                tableAdapter.users = [.verifyItem(UserItem.VerifyItem())] + sortedUsers.mapToItems()
-            } else {
-                tableAdapter.users = [.loginItem(UserItem.LoginItem())] + sortedUsers.mapToItems()
-            }
+        case .signed_:
+            tableAdapter.users = [.verifyItem(UserItem.VerifyItem())] + sortedUsers.mapToItems()
+        case .verified:
+            // need to open userItem
+            tableAdapter.users = sortedUsers.mapToItems()
+        default:
+            break
         }
         
         sortTextField.isHidden = users.isEmpty
         
         tableView.reloadData()
         
-        switch (state.addUserStatus) {
+        switch (userState.addUserStatus) {
         case .done:
             HUD.hide(afterDelay: 0)
             
@@ -287,7 +292,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             break
         }
         
-        let currentOption = pickerAdapter.options[Int(state.sortType.position)]
+        let currentOption = pickerAdapter.options[Int(userState.sortType.position)]
         sortTextField.text = "Sort".localizedFormat(args: currentOption)
     }
 }

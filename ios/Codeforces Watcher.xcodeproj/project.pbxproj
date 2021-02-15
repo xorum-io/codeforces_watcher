@@ -606,7 +606,7 @@
 				6AA344E125D6AFBF00C899D9 /* verify */,
 				6A8BDACF25C2B5EF00C63878 /* login */,
 				63EAA0F82445EC9100C234A8 /* UserTableViewCell.swift */,
-				6A8BDAD525C2B68B00C63878 /* GalacticMasterView.swift */,
+				6A616C2B25DA78D8007F95E0 /* models */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -659,6 +659,14 @@
 				6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */,
 			);
 			path = signUp;
+			sourceTree = "<group>";
+		};
+		6A616C2B25DA78D8007F95E0 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				6A8BDAD525C2B68B00C63878 /* GalacticMasterView.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		6A69B26325C403AA001D19A9 /* auth */ = {

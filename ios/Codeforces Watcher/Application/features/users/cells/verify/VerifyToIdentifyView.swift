@@ -89,4 +89,3 @@ class VerifyToIdentifyView: UIView {
         onVerifyTap = onClick
     }
 }
-
