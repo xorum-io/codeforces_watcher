@@ -10,31 +10,32 @@ import com.bogdan.codeforceswatcher.features.auth.SignInActivity
 import com.bogdan.codeforceswatcher.features.auth.VerificationActivity
 import com.bogdan.codeforceswatcher.util.colorSubstring
 import com.squareup.picasso.Picasso
+import io.xorum.codeforceswatcher.features.auth.AuthState
 import io.xorum.codeforceswatcher.features.auth.UserAccount
 import kotlinx.android.synthetic.main.no_user_card_layout.view.*
 import kotlinx.android.synthetic.main.view_profile_item.view.*
 
-class ProfileItemEpoxyModel(private val userAccount: UserAccount?) : BaseEpoxyModel(R.layout.view_profile_item) {
-
+class ProfileItemEpoxyModel(private val userAccount: UserAccount?,
+                            private val authStage: AuthState.Stage) : BaseEpoxyModel(R.layout.view_profile_item) {
     init {
-        id("ProfileItemEpoxyModel", userAccount.toString())
+        id("ProfileItemEpoxyModel", userAccount.toString(), authStage.toString())
     }
 
     override fun bind(view: View): Unit = with(view) {
         super.bind(view)
 
-        when {
-            userAccount == null -> {
+        when (authStage) {
+            AuthState.Stage.NOT_SIGNED_IN -> {
                 showNoUserData(view)
                 profileLayout.visibility = View.GONE
                 showLoginPart(view)
             }
-            userAccount.codeforcesUser == null -> {
+            AuthState.Stage.SIGNED_IN -> {
                 showNoUserData(view)
                 profileLayout.visibility = View.GONE
                 showVerifyPart(view)
             }
-            else -> {
+            AuthState.Stage.VERIFIED -> {
                 noUserLayout.visibility = View.GONE
                 showUserData(view)
             }

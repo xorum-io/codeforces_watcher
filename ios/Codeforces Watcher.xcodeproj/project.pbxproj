@@ -93,6 +93,9 @@
 		6A9B5CAE25D287A2001FC2CA /* AgreementTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */; };
 		6A9B5CB625D2957A001FC2CA /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B5CB525D2957A001FC2CA /* CheckboxView.swift */; };
 		6A9E0E2F25C816C90014DCAA /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */; };
+		6AA344E325D6AFD700C899D9 /* VerifyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA344E225D6AFD700C899D9 /* VerifyTableViewCell.swift */; };
+		6AA344EB25D6B01B00C899D9 /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA344EA25D6B01B00C899D9 /* VerifyView.swift */; };
+		6AA344F025D6B07700C899D9 /* VerifyToIdentifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA344EF25D6B07700C899D9 /* VerifyToIdentifyView.swift */; };
 		6AA73A5F25CA91AA00A575B2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */; };
 		6AF14F7025B6F4FE00979BB7 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */; };
 		81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */; };
@@ -211,6 +214,9 @@
 		6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementTextView.swift; sourceTree = "<group>"; };
 		6A9B5CB525D2957A001FC2CA /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		6AA344E225D6AFD700C899D9 /* VerifyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyTableViewCell.swift; sourceTree = "<group>"; };
+		6AA344EA25D6B01B00C899D9 /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
+		6AA344EF25D6B07700C899D9 /* VerifyToIdentifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyToIdentifyView.swift; sourceTree = "<group>"; };
 		6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -597,8 +603,10 @@
 		63EAA0F72445EAB700C234A8 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				6AA344E125D6AFBF00C899D9 /* verify */,
 				6A8BDACF25C2B5EF00C63878 /* login */,
 				63EAA0F82445EC9100C234A8 /* UserTableViewCell.swift */,
+				6A616C2B25DA78D8007F95E0 /* models */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -653,6 +661,14 @@
 			path = signUp;
 			sourceTree = "<group>";
 		};
+		6A616C2B25DA78D8007F95E0 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				6A8BDAD525C2B68B00C63878 /* GalacticMasterView.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		6A69B26325C403AA001D19A9 /* auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,10 +683,19 @@
 			children = (
 				6A38706025BACBD70092792F /* LoginTableViewCell.swift */,
 				6A8BDAD025C2B60200C63878 /* LoginView.swift */,
-				6A8BDAD525C2B68B00C63878 /* GalacticMasterView.swift */,
 				6A8BDADD25C2B6C900C63878 /* LoginToIdentifyView.swift */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		6AA344E125D6AFBF00C899D9 /* verify */ = {
+			isa = PBXGroup;
+			children = (
+				6AA344E225D6AFD700C899D9 /* VerifyTableViewCell.swift */,
+				6AA344EA25D6B01B00C899D9 /* VerifyView.swift */,
+				6AA344EF25D6B07700C899D9 /* VerifyToIdentifyView.swift */,
+			);
+			path = verify;
 			sourceTree = "<group>";
 		};
 		6AA4982E25C7F34C0002C16A /* signIn */ = {
@@ -955,6 +980,7 @@
 				63EAA0FE24470BA000C234A8 /* AddUserCardView.swift in Sources */,
 				33524E698A1B05C3FAB1E720 /* Font.swift in Sources */,
 				33524789EFFED3D6CA62DEE5 /* Palette.swift in Sources */,
+				6AA344F025D6B07700C899D9 /* VerifyToIdentifyView.swift in Sources */,
 				33524FEAE56CD4737349DE6A /* Constants.swift in Sources */,
 				6A38706125BACBD70092792F /* LoginTableViewCell.swift in Sources */,
 				6AA73A5F25CA91AA00A575B2 /* SignUpViewController.swift in Sources */,
@@ -991,6 +1017,7 @@
 				6A69B27225C417BD001D19A9 /* TextInputLayout.swift in Sources */,
 				6A8BDAD625C2B68B00C63878 /* GalacticMasterView.swift in Sources */,
 				638C392624361AC200DB33A3 /* IOSToastHandler.swift in Sources */,
+				6AA344EB25D6B01B00C899D9 /* VerifyView.swift in Sources */,
 				63FB270923E1AA50005F19F1 /* WebViewController.swift in Sources */,
 				63EAA1072448749200C234A8 /* UsersPickerViewAdapter.swift in Sources */,
 				633B4CF823E07F150099EF41 /* FiltersTableViewAdapter.swift in Sources */,
@@ -1013,6 +1040,7 @@
 				63736F0923CF67FC001E9AB9 /* ContestsTableViewAdapter.swift in Sources */,
 				63966E6A252C797900F3A447 /* FeedbackTableViewCell.swift in Sources */,
 				63EAA0F22445AA3100C234A8 /* SubheadingBigLabel.swift in Sources */,
+				6AA344E325D6AFD700C899D9 /* VerifyTableViewCell.swift in Sources */,
 				63B343022449C16100734CC5 /* UIViewController+Extension.swift in Sources */,
 				6387BD1425078A5B0048C9E8 /* CrashlyticsError.swift in Sources */,
 				63EAA0EA244474DC00C234A8 /* SubheadingLabel.swift in Sources */,
