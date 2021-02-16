@@ -25,4 +25,6 @@ public class Font {
         UIFont(name: "Roboto-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14)
     public static let textHint =
         UIFont(name: "Roboto-Regular", size: 11) ?? UIFont.systemFont(ofSize: 11)
+    public static let textHintBold =
+        UIFont(name: "Roboto-Medium", size: 11) ?? UIFont.systemFont(ofSize: 11)
 }

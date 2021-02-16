@@ -11,12 +11,16 @@ import UIKit
 
 extension NSMutableAttributedString {
     
-    func colorSubstring(color: UIColor, range: NSRange) -> () {
-        self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+    func colored(with color: UIColor) -> () {
+        addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: NSRange(location: 0, length: self.length))
     }
     
-    func colored(with color: UIColor) -> () {
-        self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: NSRange(location: 0, length: self.length))
+    func colored(with color: UIColor, range: NSRange) -> () {
+        addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+    }
+    
+    func changeFont(with font: UIFont, range: NSRange) {
+        addAttribute(NSAttributedString.Key.font, value: font, range: range)
     }
     
     func addLink(url: String, range: NSRange) {
@@ -25,6 +29,22 @@ extension NSMutableAttributedString {
     
     func addUnderline(range: NSRange) {
         addAttribute(.underlineStyle, value: 1, range: range)
+    }
+    
+    func getRangeAndRemoveTag(tag: String) -> NSRange {
+        let openTag = "<\(tag)>"
+        let closeTag = "</\(tag)>"
+        
+        guard let rangeOpenTag = string.range(of: openTag) else { fatalError() }
+        guard let rangeCloseTag = string.range(of: closeTag) else { fatalError() }
+        
+        let indexFirstEntry = rangeOpenTag.upperBound.utf16Offset(in: string) - openTag.count
+        let indexLastEntry = rangeCloseTag.lowerBound.utf16Offset(in: string) - 1 - openTag.count
+        
+        deleteCharacters(in: NSRange(rangeCloseTag, in: string))
+        deleteCharacters(in: NSRange(rangeOpenTag, in: string))
+        
+        return NSRange(location: indexFirstEntry, length: indexLastEntry - indexFirstEntry + 1)
     }
 }
 

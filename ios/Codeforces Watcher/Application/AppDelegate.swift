@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: false, language: "locale".localized))
         store.dispatch(action: UsersRequests.FetchUsers(source: Source.background, language: "locale".localized))
         store.dispatch(action: ProblemsRequests.FetchProblems(isInitializedByUser: false))
+        store.dispatch(action: AuthRequests.FetchUserAccount())
     }
 
     private func initAppStyle() {

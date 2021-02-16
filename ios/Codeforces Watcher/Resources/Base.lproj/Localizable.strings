@@ -105,4 +105,13 @@
 "sign_up" = "Sign Up";
 "sign_up_hint" = "Don't have an account yet?";
 
+// <terms> </terms>
+// <privacy> </privacy>
 "agreement_terms_and_privacy" = "I agree with the <terms>Terms and Conditions</terms> and the\n<privacy>Privacy Policy</privacy>.";
+
+"verify_codeforces_account" = "Verify Codeforces Account";
+"codeforces_handle" = "Codeforces handle";
+
+// <bold> </bold>
+"verify_instruction" = "To verify that account belongs to you, please, change your English\n”Last name” in your <bold>Profile - Settings - Social</bold> to this value:";
+"verify_change_it_back" = "Right after successful login you can change it back.";

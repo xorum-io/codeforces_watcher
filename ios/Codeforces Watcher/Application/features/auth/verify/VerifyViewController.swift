@@ -15,6 +15,13 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
     private let contentView = UIView()
     
     private let handleInput = TextInputLayout(hint: "codeforces_handle".localized, type: .email)
+    private let instructionLabel = VerifyInstructionLabel(text: "verify_instruction".localized)
+    private let verificationCodeLabel = UILabel().apply {
+        $0.textAlignment = .center
+    }
+    private let hintLabel = HintLabel().apply {
+        $0.text = "verify_change_it_back".localized;
+    }
     private let verifyButton = PrimaryButton().apply {
         $0.setTitle("verify".localized.uppercased(), for: .normal)
     }
@@ -45,6 +52,8 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
         default:
             return
         }
+        
+        verificationCodeLabel.text =  state.verificationCode
     }
     
     private func showLoading() {
@@ -62,8 +71,14 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchData()
+        
         setupTextInputs()
         setupView()
+    }
+    
+    private func fetchData() {
+        store.dispatch(action: VerificationRequests.FetchVerificationCode())
     }
     
     private func setupTextInputs() {
@@ -73,7 +88,7 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
     private func setupView() {
         view.backgroundColor = .white
         
-        title = "verify".localized
+        title = "verify_codeforces_account".localized
         
         buildViewTree()
         setConstraints()
@@ -82,7 +97,7 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
 
     private func buildViewTree() {
         view.addSubview(contentView)
-        [handleInput, verifyButton].forEach(contentView.addSubview)
+        [handleInput, instructionLabel, verificationCodeLabel, hintLabel, verifyButton].forEach(contentView.addSubview)
     }
     
     private func setConstraints() {
@@ -93,9 +108,24 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
             $0.horizontalToSuperview()
         }
         
+        instructionLabel.run {
+            $0.topToBottom(of: handleInput, offset: 16)
+            $0.horizontalToSuperview()
+        }
+        
+        verificationCodeLabel.run {
+            $0.topToBottom(of: instructionLabel, offset: 8)
+            $0.horizontalToSuperview()
+        }
+        
+        hintLabel.run {
+            $0.topToBottom(of: verificationCodeLabel, offset: 8)
+            $0.horizontalToSuperview()
+        }
+        
         verifyButton.run {
             $0.height(36)
-            $0.topToBottom(of: handleInput, offset: 16)
+            $0.topToBottom(of: hintLabel, offset: 16)
             $0.horizontalToSuperview()
         }
     }

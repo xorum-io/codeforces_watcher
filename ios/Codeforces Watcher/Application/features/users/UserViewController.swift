@@ -257,7 +257,7 @@ fileprivate extension User {
         if let contributionRange = text.firstOccurrence(string: contributionSubstring), let contribution = contribution {
             let colorOfContribution = (contribution.intValue >= 0 ? Palette.brightGreen : Palette.red)
             
-            attributedText.colorSubstring(color: colorOfContribution, range: contributionRange)
+            attributedText.colored(with: colorOfContribution, range: contributionRange)
         }
 
         return attributedText
@@ -272,12 +272,12 @@ fileprivate extension User {
         if let rating = rating, let maxRating = maxRating {
             let searchCurrent = "\(rating)"
             if let rangeCurrent = text.firstOccurrence(string: searchCurrent) {
-                attributedText.colorSubstring(color: colorCurrent, range: rangeCurrent)
+                attributedText.colored(with: colorCurrent, range: rangeCurrent)
             }
 
             let searchMaximum = "\(maxRating)"
             if let rangeMaximum = text.lastOccurrence(string: searchMaximum) {
-                attributedText.colorSubstring(color: colorMaximum, range: rangeMaximum)
+                attributedText.colored(with: colorMaximum, range: rangeMaximum)
             }
         }
         
