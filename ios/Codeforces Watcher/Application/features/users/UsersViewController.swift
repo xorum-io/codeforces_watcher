@@ -174,6 +174,9 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.onLoginTap = {
                 self.presentModal(SignInViewController())
             }
+            $0.onVerifyTap = {
+                self.presentModal(VerifyViewController())
+            }
         }
 
         [LoginTableViewCell.self, VerifyTableViewCell.self, UserTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
