@@ -12,7 +12,7 @@ fun authReducer(action: Action, state: AppState): AuthState {
         is AuthRequests.SignIn.Success -> {
             newState = newState.copy(
                     signInStatus = AuthState.Status.DONE,
-                    authStage = AuthState.Stage.SIGNED_IN
+                    authStage = action.authStage
             )
         }
         is AuthRequests.SignIn -> {
@@ -49,17 +49,10 @@ fun authReducer(action: Action, state: AppState): AuthState {
             )
         }
         is AuthRequests.FetchUserAccount.Success -> {
-            if (action.userAccount?.codeforcesUser != null) {
-                newState = newState.copy(
-                        signInStatus = AuthState.Status.DONE,
-                        authStage = AuthState.Stage.VERIFIED
-                )
-            } else {
-                newState = newState.copy(
-                        signInStatus = AuthState.Status.DONE,
-                        authStage = AuthState.Stage.SIGNED_IN
-                )
-            }
+            newState = newState.copy(
+                    signInStatus = action.signInStatus,
+                    authStage = action.authStage
+            )
         }
     }
 
