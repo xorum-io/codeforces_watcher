@@ -43,7 +43,7 @@ class VerifyInstructionLabel: UILabel {
         
         instructionText.run {
             $0.colored(with: Palette.black, range: range)
-            $0.changeFont(with: Font.textHintBold, range: range)
+            $0.fonted(with: Font.textHintBold, range: range)
         }
     }
 }

@@ -11,16 +11,12 @@ import UIKit
 
 extension NSMutableAttributedString {
     
-    func colored(with color: UIColor) -> () {
-        addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: NSRange(location: 0, length: self.length))
+    func colored(with color: UIColor, range: NSRange? = nil) -> () {
+        addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range ?? NSRange(location: 0, length: self.length))
     }
     
-    func colored(with color: UIColor, range: NSRange) -> () {
-        addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
-    }
-    
-    func changeFont(with font: UIFont, range: NSRange) {
-        addAttribute(NSAttributedString.Key.font, value: font, range: range)
+    func fonted(with font: UIFont, range: NSRange? = nil) {
+        addAttribute(NSAttributedString.Key.font, value: font, range: range ?? NSRange(location: 0, length: self.length))
     }
     
     func addLink(url: String, range: NSRange) {

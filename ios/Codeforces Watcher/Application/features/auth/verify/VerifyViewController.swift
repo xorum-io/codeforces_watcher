@@ -31,9 +31,9 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
         
         store.subscribe(subscriber: self) { subscription in
             subscription.skipRepeats { oldState, newState in
-                return KotlinBoolean(bool: oldState.verification == newState.verification)
+                KotlinBoolean(bool: oldState.verification == newState.verification)
             }.select { state in
-                return state.verification
+                state.verification
             }
         }
     }
@@ -42,18 +42,18 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
         let state = state as! VerificationState
         
         switch (state.status) {
+        case .idle:
+            hideLoading()
+        case .pending:
+            showLoading()
         case .done:
             hideLoading()
             closeViewController()
-        case .pending:
-            showLoading()
-        case .idle:
-            hideLoading()
         default:
             return
         }
         
-        verificationCodeLabel.text =  state.verificationCode
+        verificationCodeLabel.text = state.verificationCode
     }
     
     private func showLoading() {
@@ -72,8 +72,6 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
         super.viewDidLoad()
         
         fetchData()
-        
-        setupTextInputs()
         setupView()
     }
     
@@ -81,14 +79,12 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
         store.dispatch(action: VerificationRequests.FetchVerificationCode())
     }
     
-    private func setupTextInputs() {
-        handleInput.textField.setupKeyboard()
-    }
-    
     private func setupView() {
         view.backgroundColor = .white
         
         title = "verify_codeforces_account".localized
+        
+        handleInput.textField.setupKeyboard()
         
         buildViewTree()
         setConstraints()
