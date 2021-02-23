@@ -83,6 +83,9 @@
 		677BE8E825597F19008691C8 /* video_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 677BE8E725597F19008691C8 /* video_placeholder.jpg */; };
 		6A07788925CAC97B00CED3E0 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07788825CAC97B00CED3E0 /* PrimaryButton.swift */; };
 		6A07788E25CACBBF00CED3E0 /* ActionableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */; };
+		6A2A4A0C25DBCCDB00D273C0 /* VerifyInstructionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2A4A0B25DBCCDB00D273C0 /* VerifyInstructionLabel.swift */; };
+		6A2A4A1125DBE63A00D273C0 /* NSRange+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2A4A1025DBE63A00D273C0 /* NSRange+Extension.swift */; };
+		6A2A4A1625DBEE6500D273C0 /* HintLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2A4A1525DBEE6500D273C0 /* HintLabel.swift */; };
 		6A38706125BACBD70092792F /* LoginTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A38706025BACBD70092792F /* LoginTableViewCell.swift */; };
 		6A388C1725D131750021CA5F /* SignUpAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A388C1625D131750021CA5F /* SignUpAgreementView.swift */; };
 		6A69B26525C403D9001D19A9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A69B26425C403D9001D19A9 /* SignInViewController.swift */; };
@@ -97,6 +100,7 @@
 		6AA344EB25D6B01B00C899D9 /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA344EA25D6B01B00C899D9 /* VerifyView.swift */; };
 		6AA344F025D6B07700C899D9 /* VerifyToIdentifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA344EF25D6B07700C899D9 /* VerifyToIdentifyView.swift */; };
 		6AA73A5F25CA91AA00A575B2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */; };
+		6AE798EA25DA979900B956B4 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE798E925DA979900B956B4 /* VerifyViewController.swift */; };
 		6AF14F7025B6F4FE00979BB7 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */; };
 		81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */; };
 		B1AB01E525A648FC00DF37C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1AB01E325A648FB00DF37C1 /* LaunchScreen.storyboard */; };
@@ -204,6 +208,9 @@
 		677BE8E725597F19008691C8 /* video_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = video_placeholder.jpg; sourceTree = "<group>"; };
 		6A07788825CAC97B00CED3E0 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionableLabel.swift; sourceTree = "<group>"; };
+		6A2A4A0B25DBCCDB00D273C0 /* VerifyInstructionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyInstructionLabel.swift; sourceTree = "<group>"; };
+		6A2A4A1025DBE63A00D273C0 /* NSRange+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRange+Extension.swift"; sourceTree = "<group>"; };
+		6A2A4A1525DBEE6500D273C0 /* HintLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintLabel.swift; sourceTree = "<group>"; };
 		6A38706025BACBD70092792F /* LoginTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewCell.swift; sourceTree = "<group>"; };
 		6A388C1625D131750021CA5F /* SignUpAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAgreementView.swift; sourceTree = "<group>"; };
 		6A69B26425C403D9001D19A9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +225,7 @@
 		6AA344EA25D6B01B00C899D9 /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
 		6AA344EF25D6B07700C899D9 /* VerifyToIdentifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyToIdentifyView.swift; sourceTree = "<group>"; };
 		6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6AE798E925DA979900B956B4 /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1AB01E425A648FB00DF37C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -300,6 +308,7 @@
 				335248DC66E099A4EF3D47FD /* NSMutableAttributedString+Extension.swift */,
 				3352475317FAF15F8D51972A /* StringOccurrence.swift */,
 				6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */,
+				6A2A4A1025DBE63A00D273C0 /* NSRange+Extension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -596,6 +605,7 @@
 				63EAA0E9244474DC00C234A8 /* SubheadingLabel.swift */,
 				63EAA0F12445AA3100C234A8 /* SubheadingBigLabel.swift */,
 				6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */,
+				6A2A4A1525DBEE6500D273C0 /* HintLabel.swift */,
 			);
 			path = labels;
 			sourceTree = "<group>";
@@ -672,6 +682,7 @@
 		6A69B26325C403AA001D19A9 /* auth */ = {
 			isa = PBXGroup;
 			children = (
+				6AE798E825DA969600B956B4 /* verify */,
 				6A14007A25D12F3A00EE48A8 /* signUp */,
 				6AA4982E25C7F34C0002C16A /* signIn */,
 			);
@@ -704,6 +715,15 @@
 				6A69B26425C403D9001D19A9 /* SignInViewController.swift */,
 			);
 			path = signIn;
+			sourceTree = "<group>";
+		};
+		6AE798E825DA969600B956B4 /* verify */ = {
+			isa = PBXGroup;
+			children = (
+				6AE798E925DA979900B956B4 /* VerifyViewController.swift */,
+				6A2A4A0B25DBCCDB00D273C0 /* VerifyInstructionLabel.swift */,
+			);
+			path = verify;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1011,6 +1031,7 @@
 				6A8BDAD125C2B60200C63878 /* LoginView.swift in Sources */,
 				6A9B5CB625D2957A001FC2CA /* CheckboxView.swift in Sources */,
 				33524BC0E57CE4F3A2D1EC04 /* UIColor+Extension.swift in Sources */,
+				6A2A4A1625DBEE6500D273C0 /* HintLabel.swift in Sources */,
 				3352406FDC5916F705E86498 /* ScopeFunc.swift in Sources */,
 				63EAA0E72444719C00C234A8 /* UIViewControllerWithFab.swift in Sources */,
 				63EAA1052448554400C234A8 /* CommonButton.swift in Sources */,
@@ -1020,11 +1041,13 @@
 				6AA344EB25D6B01B00C899D9 /* VerifyView.swift in Sources */,
 				63FB270923E1AA50005F19F1 /* WebViewController.swift in Sources */,
 				63EAA1072448749200C234A8 /* UsersPickerViewAdapter.swift in Sources */,
+				6A2A4A0C25DBCCDB00D273C0 /* VerifyInstructionLabel.swift in Sources */,
 				633B4CF823E07F150099EF41 /* FiltersTableViewAdapter.swift in Sources */,
 				63EAA0F62445EA6600C234A8 /* UsersTableViewAdapter.swift in Sources */,
 				335240DCD1989E341210D5E1 /* TimeInterval+Extension.swift in Sources */,
 				633B4CFA23E083A10099EF41 /* FilterTableViewCell.swift in Sources */,
 				63B342FF2448B8AB00734CC5 /* UserViewController.swift in Sources */,
+				6AE798EA25DA979900B956B4 /* VerifyViewController.swift in Sources */,
 				63B343042449C31C00734CC5 /* UIViewControllerWithCross.swift in Sources */,
 				63EAA0DB244051F100C234A8 /* UsersViewController.swift in Sources */,
 				63D5114325063CFA0031660B /* PinnedPostTableViewCell.swift in Sources */,
@@ -1034,6 +1057,7 @@
 				63EAA0EC2444760300C234A8 /* BodyLabel.swift in Sources */,
 				6A07788925CAC97B00CED3E0 /* PrimaryButton.swift in Sources */,
 				63EAA1002447121500C234A8 /* CommonTextField.swift in Sources */,
+				6A2A4A1125DBE63A00D273C0 /* NSRange+Extension.swift in Sources */,
 				335249EE055A0D7C9B31CE68 /* UITableView+Extension.swift in Sources */,
 				33524AE3A0B0A7C674038501 /* UITableViewCell+Extension.swift in Sources */,
 				63736F0023CF6557001E9AB9 /* ContestTableViewCell.swift in Sources */,
