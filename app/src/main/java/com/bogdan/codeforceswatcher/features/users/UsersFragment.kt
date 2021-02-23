@@ -138,7 +138,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
                 requestModelBuild()
             }
 
-        var authStage: AuthState.Stage = AuthState.Stage.NOT_SIGNED_IN
+        var authStage: AuthState.Stage = store.state.auth.authStage
             set(value) {
                 field = value
                 requestModelBuild()

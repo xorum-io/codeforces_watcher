@@ -19,8 +19,7 @@ class AuthRequests {
 
                     val authStage = if (userAccount?.codeforcesUser != null) {
                         AuthState.Stage.VERIFIED
-                    }
-                    else {
+                    } else {
                         AuthState.Stage.SIGNED_IN
                     }
 
@@ -33,8 +32,11 @@ class AuthRequests {
             }
         }
 
-        data class Success(val userAccount: UserAccount,
-                           val authStage: AuthState.Stage) : Action
+        data class Success(
+                val userAccount: UserAccount,
+                val authStage: AuthState.Stage
+        ) : Action
+
         data class Failure(override val message: Message) : ToastAction
     }
 
@@ -64,25 +66,27 @@ class AuthRequests {
         override suspend fun execute() {
             val userAccount = settings.readUserAccount()
 
-            var authStage = AuthState.Stage.NOT_SIGNED_IN
-            var signInStatus = AuthState.Status.IDLE
-
-            userAccount?.let {
-                signInStatus = AuthState.Status.DONE
-                if (it.codeforcesUser != null) {
-                    authStage = AuthState.Stage.VERIFIED
-                } else {
-                    authStage = AuthState.Stage.SIGNED_IN
-                }
-            } ?: run {
-                authStage = AuthState.Stage.NOT_SIGNED_IN
-            }
+            val signInStatus = userAccount.signInStatus()
+            val authStage = userAccount.authStage()
 
             store.dispatch(Success(userAccount, authStage, signInStatus))
         }
 
-        data class Success(val userAccount: UserAccount?,
-                           val authStage: AuthState.Stage,
-                           val signInStatus: AuthState.Status) : Action
+        private fun UserAccount?.signInStatus() = when {
+            this != null -> AuthState.Status.DONE
+            else -> AuthState.Status.IDLE
+        }
+
+        private fun UserAccount?.authStage() = when {
+            this?.codeforcesUser != null -> AuthState.Stage.VERIFIED
+            this != null -> AuthState.Stage.SIGNED_IN
+            else -> AuthState.Stage.NOT_SIGNED_IN
+        }
+
+        data class Success(
+                val userAccount: UserAccount?,
+                val authStage: AuthState.Stage,
+                val signInStatus: AuthState.Status
+        ) : Action
     }
 }

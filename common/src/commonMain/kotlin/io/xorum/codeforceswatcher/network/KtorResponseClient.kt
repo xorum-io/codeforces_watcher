@@ -39,10 +39,8 @@ class KtorResponseClient {
         return try {
             Response.Success(result = backendApiClient.get(path = path, block = block))
         } catch (clientRequestException: ClientRequestException) {
-            println(clientRequestException)
             Response.Failure(getError(clientRequestException.response.content)?.error)
         } catch (e: Throwable) {
-            println(e)
             analyticsController.logError(e.stringify())
 
             Response.Failure(null)
@@ -56,10 +54,8 @@ class KtorResponseClient {
         return try {
             Response.Success(result = backendApiClient.put(path = path, block = block))
         } catch (clientRequestException: ClientRequestException) {
-            println(clientRequestException)
             Response.Failure(getError(clientRequestException.response.content)?.error)
         } catch (e: Throwable) {
-            println(e)
             analyticsController.logError(e.stringify())
 
             Response.Failure(null)
