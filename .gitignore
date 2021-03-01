@@ -6,3 +6,5 @@
 /build
 /captures
 .externalNativeBuild
+google-services.json
+GoogleService-Info.plist
