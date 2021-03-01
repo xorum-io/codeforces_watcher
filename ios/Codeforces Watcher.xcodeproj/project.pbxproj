@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		289E9EF0F94542029D0840C4 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */; };
+		2A70CC9A18F5F1209C6D0F53 /* Pods_Codeforces_Watcher_Debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8B70B4615EC70A03E9C2A7 /* Pods_Codeforces_Watcher_Debug.framework */; };
 		3352406FDC5916F705E86498 /* ScopeFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335245D036E21019422CD972 /* ScopeFunc.swift */; };
 		335240BE358E7469D97B1472 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335242ABCB38C7140414CEC3 /* String+Extension.swift */; };
 		335240DCD1989E341210D5E1 /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335242CD59B4556413229680 /* TimeInterval+Extension.swift */; };
@@ -29,6 +29,7 @@
 		33524E698A1B05C3FAB1E720 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335243CB89037FB5B889F9CD /* Font.swift */; };
 		33524EA5619D62409125FD81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33524D79129AF7DA2C68A75C /* AppDelegate.swift */; };
 		33524FEAE56CD4737349DE6A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3352491960327B2FC4E36E63 /* Constants.swift */; };
+		4B9A8E60E8131F1D195B020B /* Pods_Codeforces_Watcher_Release.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D83E3214FC5437370395AA6 /* Pods_Codeforces_Watcher_Release.framework */; };
 		633B4CF623E078380099EF41 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B4CF523E078380099EF41 /* FiltersViewController.swift */; };
 		633B4CF823E07F150099EF41 /* FiltersTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B4CF723E07F150099EF41 /* FiltersTableViewAdapter.swift */; };
 		633B4CFA23E083A10099EF41 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B4CF923E083A10099EF41 /* FilterTableViewCell.swift */; };
@@ -101,7 +102,6 @@
 		6AA73A5F25CA91AA00A575B2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */; };
 		6AE798EA25DA979900B956B4 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE798E925DA979900B956B4 /* VerifyViewController.swift */; };
 		6AF14F7025B6F4FE00979BB7 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */; };
-		81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */; };
 		B10644F725E837770028DA34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B10644F325E837770028DA34 /* GoogleService-Info.plist */; };
 		B10644F825E837770028DA34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B10644F525E837770028DA34 /* GoogleService-Info.plist */; };
 		B14B5FFE25E836200073D091 /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D51144250651290031660B /* AnalyticsController.swift */; };
@@ -186,7 +186,6 @@
 		B14B604D25E836200073D091 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335248DC66E099A4EF3D47FD /* NSMutableAttributedString+Extension.swift */; };
 		B14B604E25E836200073D091 /* StringOccurrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3352475317FAF15F8D51972A /* StringOccurrence.swift */; };
 		B14B604F25E836200073D091 /* SignUpAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A388C1625D131750021CA5F /* SignUpAgreementView.swift */; };
-		B14B605125E836200073D091 /* Pods_Codeforces_Watcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */; };
 		B14B605325E836200073D091 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 335240C0BF4B6E64B855CE0C /* Localizable.strings */; };
 		B14B605425E836200073D091 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1AB01E325A648FB00DF37C1 /* LaunchScreen.storyboard */; };
 		B14B605525E836200073D091 /* no-image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 33524E5965FC1E035C33B136 /* no-image.jpg */; };
@@ -195,7 +194,6 @@
 		B14B605825E836200073D091 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1E1B3F323C91D51006A7347 /* Assets.xcassets */; };
 		B14B605925E836200073D091 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 335242613B8CB2FCFF5CD07A /* Roboto-Regular.ttf */; };
 		B1AB01E525A648FC00DF37C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1AB01E325A648FB00DF37C1 /* LaunchScreen.storyboard */; };
-		B1E1B3EB23C9040C006A7347 /* Pods_Codeforces_Watcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */; };
 		B1E1B3F423C91D51006A7347 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1E1B3F323C91D51006A7347 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -217,8 +215,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		24B599C93F574D973F8BE91E /* Pods-Codeforces Watcher-Codeforces WatcherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces Watcher-Codeforces WatcherUITests.debug.xcconfig"; path = "Target Support Files/Pods-Codeforces Watcher-Codeforces WatcherUITests/Pods-Codeforces Watcher-Codeforces WatcherUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_WatcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		335241B8E54D2F60B3D7E581 /* ContestsRulesCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestsRulesCardView.swift; sourceTree = "<group>"; };
 		335242613B8CB2FCFF5CD07A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		335242ABCB38C7140414CEC3 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -240,6 +236,7 @@
 		33524E1ACEE6A061F4A33389 /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		33524E5965FC1E035C33B136 /* no-image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "no-image.jpg"; sourceTree = "<group>"; };
 		33524EC038A57660683B8BFC /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		5B8B70B4615EC70A03E9C2A7 /* Pods_Codeforces_Watcher_Debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		633B4CF523E078380099EF41 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		633B4CF723E07F150099EF41 /* FiltersTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersTableViewAdapter.swift; sourceTree = "<group>"; };
 		633B4CF923E083A10099EF41 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
@@ -317,20 +314,17 @@
 		6AA73A5E25CA91AA00A575B2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6AE798E925DA979900B956B4 /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		6AF14F6F25B6F4FE00979BB7 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
-		AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F64AC37B3C01624BE41BCC8 /* Pods-Codeforces Watcher Release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces Watcher Release.debug.xcconfig"; path = "Target Support Files/Pods-Codeforces Watcher Release/Pods-Codeforces Watcher Release.debug.xcconfig"; sourceTree = "<group>"; };
+		7D83E3214FC5437370395AA6 /* Pods_Codeforces_Watcher_Release.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codeforces_Watcher_Release.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88355DEC9A41591425E2C17C /* Pods-Codeforces Watcher Debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces Watcher Debug.debug.xcconfig"; path = "Target Support Files/Pods-Codeforces Watcher Debug/Pods-Codeforces Watcher Debug.debug.xcconfig"; sourceTree = "<group>"; };
+		91F035F22FF4FA89F5E2BA90 /* Pods-Codeforces Watcher Release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces Watcher Release.release.xcconfig"; path = "Target Support Files/Pods-Codeforces Watcher Release/Pods-Codeforces Watcher Release.release.xcconfig"; sourceTree = "<group>"; };
 		B10644F325E837770028DA34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B10644F525E837770028DA34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B14B605F25E836200073D091 /* Codeforces Watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Codeforces Watcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1AB01E425A648FB00DF37C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1D1FA5A25152B1C0025D8CD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "Codeforces Watcher/Resources/fr.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
-		B1E1B3E723C9033A006A7347 /* Pods_Codeforces_Watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Codeforces_Watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Codeforces_Watcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E1B3F323C91D51006A7347 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C49F341E5A0DE5F18995C4B2 /* Pods-Codeforces Watcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces Watcher.release.xcconfig"; path = "Target Support Files/Pods-Codeforces Watcher/Pods-Codeforces Watcher.release.xcconfig"; sourceTree = "<group>"; };
-		D2AFDC797637A39319298A16 /* Pods-Codeforces WatcherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces WatcherTests.debug.xcconfig"; path = "Target Support Files/Pods-Codeforces WatcherTests/Pods-Codeforces WatcherTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DD2B51C23F440C8D7D81F669 /* Pods-Codeforces WatcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces WatcherTests.release.xcconfig"; path = "Target Support Files/Pods-Codeforces WatcherTests/Pods-Codeforces WatcherTests.release.xcconfig"; sourceTree = "<group>"; };
-		EC11D9D95EDB6739ECB3CF80 /* Pods-Codeforces Watcher-Codeforces WatcherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces Watcher-Codeforces WatcherUITests.release.xcconfig"; path = "Target Support Files/Pods-Codeforces Watcher-Codeforces WatcherUITests/Pods-Codeforces Watcher-Codeforces WatcherUITests.release.xcconfig"; sourceTree = "<group>"; };
-		F8482A7E5F2C02DC16FE0A9D /* Pods-Codeforces Watcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces Watcher.debug.xcconfig"; path = "Target Support Files/Pods-Codeforces Watcher/Pods-Codeforces Watcher.debug.xcconfig"; sourceTree = "<group>"; };
+		C7C7B2EDE9F76F43A745A03F /* Pods-Codeforces Watcher Debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeforces Watcher Debug.release.xcconfig"; path = "Target Support Files/Pods-Codeforces Watcher Debug/Pods-Codeforces Watcher Debug.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,7 +332,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1E1B3EB23C9040C006A7347 /* Pods_Codeforces_Watcher.framework in Frameworks */,
+				2A70CC9A18F5F1209C6D0F53 /* Pods_Codeforces_Watcher_Debug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +340,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81D54EFD7E15F2074176AB51 /* Pods_Codeforces_WatcherTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +347,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				289E9EF0F94542029D0840C4 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +354,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B14B605125E836200073D091 /* Pods_Codeforces_Watcher.framework in Frameworks */,
+				4B9A8E60E8131F1D195B020B /* Pods_Codeforces_Watcher_Release.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,10 +364,8 @@
 		0926DF38F34276834EAE2D54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1E1B3EA23C9040C006A7347 /* Pods_Codeforces_Watcher.framework */,
-				B1E1B3E723C9033A006A7347 /* Pods_Codeforces_Watcher.framework */,
-				AD211ABD1A4E948672A26359 /* Pods_Codeforces_Watcher_Codeforces_WatcherUITests.framework */,
-				297CD9C414FA273DDE07E54F /* Pods_Codeforces_WatcherTests.framework */,
+				5B8B70B4615EC70A03E9C2A7 /* Pods_Codeforces_Watcher_Debug.framework */,
+				7D83E3214FC5437370395AA6 /* Pods_Codeforces_Watcher_Release.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -526,12 +516,10 @@
 		517BB89DF300DA84D1E7F296 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F8482A7E5F2C02DC16FE0A9D /* Pods-Codeforces Watcher.debug.xcconfig */,
-				C49F341E5A0DE5F18995C4B2 /* Pods-Codeforces Watcher.release.xcconfig */,
-				24B599C93F574D973F8BE91E /* Pods-Codeforces Watcher-Codeforces WatcherUITests.debug.xcconfig */,
-				EC11D9D95EDB6739ECB3CF80 /* Pods-Codeforces Watcher-Codeforces WatcherUITests.release.xcconfig */,
-				D2AFDC797637A39319298A16 /* Pods-Codeforces WatcherTests.debug.xcconfig */,
-				DD2B51C23F440C8D7D81F669 /* Pods-Codeforces WatcherTests.release.xcconfig */,
+				88355DEC9A41591425E2C17C /* Pods-Codeforces Watcher Debug.debug.xcconfig */,
+				C7C7B2EDE9F76F43A745A03F /* Pods-Codeforces Watcher Debug.release.xcconfig */,
+				6F64AC37B3C01624BE41BCC8 /* Pods-Codeforces Watcher Release.debug.xcconfig */,
+				91F035F22FF4FA89F5E2BA90 /* Pods-Codeforces Watcher Release.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -880,7 +868,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6394362A23BA116000B302A3 /* Build configuration list for PBXNativeTarget "Codeforces WatcherTests" */;
 			buildPhases = (
-				93A30BA90041DEC15E88A689 /* [CP] Check Pods Manifest.lock */,
 				6394360F23BA116000B302A3 /* Sources */,
 				6394361023BA116000B302A3 /* Frameworks */,
 				6394361123BA116000B302A3 /* Resources */,
@@ -899,11 +886,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6394362D23BA116000B302A3 /* Build configuration list for PBXNativeTarget "Codeforces WatcherUITests" */;
 			buildPhases = (
-				C539FB4271C830DEDE4274ED /* [CP] Check Pods Manifest.lock */,
 				6394361A23BA116000B302A3 /* Sources */,
 				6394361B23BA116000B302A3 /* Frameworks */,
 				6394361C23BA116000B302A3 /* Resources */,
-				DD6285D1419A686B2B87CE11 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1046,7 +1031,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Codeforces Watcher-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Codeforces Watcher Debug-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1072,28 +1057,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		93A30BA90041DEC15E88A689 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Codeforces WatcherTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B14B5FFC25E836200073D091 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1109,7 +1072,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Codeforces Watcher-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Codeforces Watcher Release-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1122,15 +1085,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher/Pods-Codeforces Watcher-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher Release/Pods-Codeforces Watcher Release-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher/Pods-Codeforces Watcher-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher Release/Pods-Codeforces Watcher Release-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher/Pods-Codeforces Watcher-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher Release/Pods-Codeforces Watcher Release-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B14B605B25E836200073D091 /* ShellScript */ = {
@@ -1158,54 +1121,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher/Pods-Codeforces Watcher-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher Debug/Pods-Codeforces Watcher Debug-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher/Pods-Codeforces Watcher-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher Debug/Pods-Codeforces Watcher Debug-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher/Pods-Codeforces Watcher-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C539FB4271C830DEDE4274ED /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Codeforces Watcher-Codeforces WatcherUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DD6285D1419A686B2B87CE11 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher-Codeforces WatcherUITests/Pods-Codeforces Watcher-Codeforces WatcherUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher-Codeforces WatcherUITests/Pods-Codeforces Watcher-Codeforces WatcherUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher-Codeforces WatcherUITests/Pods-Codeforces Watcher-Codeforces WatcherUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Codeforces Watcher Debug/Pods-Codeforces Watcher Debug-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1566,7 +1490,7 @@
 		};
 		6394362823BA116000B302A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8482A7E5F2C02DC16FE0A9D /* Pods-Codeforces Watcher.debug.xcconfig */;
+			baseConfigurationReference = 88355DEC9A41591425E2C17C /* Pods-Codeforces Watcher Debug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1591,7 +1515,7 @@
 		};
 		6394362923BA116000B302A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C49F341E5A0DE5F18995C4B2 /* Pods-Codeforces Watcher.release.xcconfig */;
+			baseConfigurationReference = C7C7B2EDE9F76F43A745A03F /* Pods-Codeforces Watcher Debug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1616,7 +1540,6 @@
 		};
 		6394362B23BA116000B302A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2AFDC797637A39319298A16 /* Pods-Codeforces WatcherTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1638,7 +1561,6 @@
 		};
 		6394362C23BA116000B302A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD2B51C23F440C8D7D81F669 /* Pods-Codeforces WatcherTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1660,7 +1582,6 @@
 		};
 		6394362E23BA116000B302A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24B599C93F574D973F8BE91E /* Pods-Codeforces Watcher-Codeforces WatcherUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1680,7 +1601,6 @@
 		};
 		6394362F23BA116000B302A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC11D9D95EDB6739ECB3CF80 /* Pods-Codeforces Watcher-Codeforces WatcherUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1700,7 +1620,7 @@
 		};
 		B14B605D25E836200073D091 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8482A7E5F2C02DC16FE0A9D /* Pods-Codeforces Watcher.debug.xcconfig */;
+			baseConfigurationReference = 6F64AC37B3C01624BE41BCC8 /* Pods-Codeforces Watcher Release.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1725,7 +1645,7 @@
 		};
 		B14B605E25E836200073D091 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C49F341E5A0DE5F18995C4B2 /* Pods-Codeforces Watcher.release.xcconfig */;
+			baseConfigurationReference = 91F035F22FF4FA89F5E2BA90 /* Pods-Codeforces Watcher Release.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

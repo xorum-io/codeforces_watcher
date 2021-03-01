@@ -1,30 +1,29 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '13.2'
 
-target 'Codeforces Watcher' do
-  	# Comment the next line if you don't want to use dynamic frameworks
-  	use_frameworks!
-
-  	# Pods for Codeforces Watcher
+def shared_pods
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
   
-  	pod 'common', :path => '../common'
-  	pod 'Alamofire', '~> 4.9.1'
-  	pod 'TinyConstraints'
-  	pod 'SDWebImage', '~> 5.0'
-  	pod 'Firebase/Crashlytics'
-  	pod 'Firebase/Analytics'
-  	pod 'PKHUD', '~> 5.0'
-	  pod 'MaterialComponents/Buttons'
-	  pod 'Toast-Swift', '~> 5.0.1'
-	  pod 'Charts'
+  # Pods for Codeforces Watcher
+  
+	pod 'common', :path => '../common'
+	pod 'Alamofire', '~> 4.9.1'
+	pod 'TinyConstraints'
+	pod 'SDWebImage', '~> 5.0'
+	pod 'Firebase/Crashlytics'
+	pod 'Firebase/Analytics'
+	pod 'PKHUD', '~> 5.0'
+  pod 'MaterialComponents/Buttons'
+  pod 'Toast-Swift', '~> 5.0.1'
+  pod 'Charts'
+  
+end
 
-  	target 'Codeforces WatcherTests' do
-    	inherit! :search_paths
-    		# Pods for testing
-  	end
+target 'Codeforces Watcher Debug' do
+  shared_pods
+end
 
-  	target 'Codeforces WatcherUITests' do
-    		# Pods for testing
-  	end
-
+target 'Codeforces Watcher Release' do
+  shared_pods
 end
