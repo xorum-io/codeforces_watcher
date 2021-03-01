@@ -23,6 +23,8 @@ internal val codeforcesRepository = CodeforcesRepository()
 internal val kontestsRepository = KontestsRepository()
 internal val backendRepository = BackendRepository()
 
+lateinit var getLang: () -> String
+
 val store by lazy {
     Store(
             reducer = ::appReducer,

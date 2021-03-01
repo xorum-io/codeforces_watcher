@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
 
         FeedbackController.feedbackController = FeedbackController(this@MainActivity)
         FeedbackController.get().updateCountOpeningScreen()
-        store.dispatch(AuthRequests.FetchUserAccount())
 
         initViews()
     }

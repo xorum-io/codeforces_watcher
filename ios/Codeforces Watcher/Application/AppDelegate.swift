@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         initAppStyle()
         fetchData()
+        initGetLang()
 
         return true
     }
@@ -57,9 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setBackendLink() {
         #if DEBUG
-        BackendRepositoryKt.backendLink = BackendRepositoryKt.BACKEND_STAGING_LINK
+        KtorResponseClientKt.backendLink = KtorResponseClientKt.BACKEND_STAGING_LINK
         #else
-        BackendRepositoryKt.backendLink = BackendRepositoryKt.BACKEND_PROD_LINK
+        KtorResponseClientKt.backendLink = KtorResponseClientKt.BACKEND_PROD_LINK
         #endif
     }
 
@@ -69,6 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         store.dispatch(action: UsersRequests.FetchUsers(source: Source.background, language: "locale".localized))
         store.dispatch(action: ProblemsRequests.FetchProblems(isInitializedByUser: false))
         store.dispatch(action: AuthRequests.FetchUserAccount())
+    }
+    
+    private func initGetLang() {
+        AppStoreKt.getLang = { "locale".localized }
     }
 
     private func initAppStyle() {
