@@ -3,17 +3,17 @@ platform :ios, '13.2'
 
 def shared_pods
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+    use_frameworks!
     
   # Pods for Codeforces Watcher
     
-	pod 'common', :path => '../common'
-	pod 'Alamofire', '~> 4.9.1'
-	pod 'TinyConstraints'
-	pod 'SDWebImage', '~> 5.0'
-	pod 'Firebase/Crashlytics'
-	pod 'Firebase/Analytics'
-	pod 'PKHUD', '~> 5.0'
+    pod 'common', :path => '../common'
+    pod 'Alamofire', '~> 4.9.1'
+    pod 'TinyConstraints'
+    pod 'SDWebImage', '~> 5.0'
+    pod 'Firebase/Crashlytics'
+    pod 'Firebase/Analytics'
+    pod 'PKHUD', '~> 5.0'
     pod 'MaterialComponents/Buttons'
     pod 'Toast-Swift', '~> 5.0.1'
     pod 'Charts'
