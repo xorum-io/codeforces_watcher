@@ -3,7 +3,8 @@ package io.xorum.codeforceswatcher.network
 import io.ktor.client.request.parameter
 import io.xorum.codeforceswatcher.features.auth.UserAccount
 import io.xorum.codeforceswatcher.features.verification.VerificationCodeResponse
-import io.xorum.codeforceswatcher.network.responses.NewsResponse
+import io.xorum.codeforceswatcher.network.responses.backend.KtorResponseClient
+import io.xorum.codeforceswatcher.network.responses.backend.NewsResponse
 
 internal class BackendRepository {
 

@@ -1,7 +1,6 @@
-package io.xorum.codeforceswatcher.network.responses
+package io.xorum.codeforceswatcher.network.responses.codeforces
 
 import io.xorum.codeforceswatcher.features.users.models.User
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable

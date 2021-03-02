@@ -12,7 +12,7 @@ import com.bogdan.codeforceswatcher.features.news.models.NewsItem
 import com.bogdan.codeforceswatcher.util.FeedbackController
 import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
 import io.xorum.codeforceswatcher.features.news.redux.states.NewsState
-import io.xorum.codeforceswatcher.network.responses.News
+import io.xorum.codeforceswatcher.features.news.News
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents

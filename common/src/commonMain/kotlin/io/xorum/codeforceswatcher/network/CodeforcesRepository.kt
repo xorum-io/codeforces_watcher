@@ -11,7 +11,10 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.http.URLProtocol
-import io.xorum.codeforceswatcher.network.responses.*
+import io.xorum.codeforceswatcher.network.responses.codeforces.CodeforcesContestsResponse
+import io.xorum.codeforceswatcher.network.responses.codeforces.ProblemsResponse
+import io.xorum.codeforceswatcher.network.responses.codeforces.RatingChangeResponse
+import io.xorum.codeforceswatcher.network.responses.codeforces.UsersResponse
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.util.stringify
 

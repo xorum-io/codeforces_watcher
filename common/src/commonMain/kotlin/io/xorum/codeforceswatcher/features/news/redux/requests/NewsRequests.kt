@@ -1,7 +1,7 @@
 package io.xorum.codeforceswatcher.features.news.redux.requests
 
-import io.xorum.codeforceswatcher.network.responses.News
-import io.xorum.codeforceswatcher.network.responses.Response
+import io.xorum.codeforceswatcher.features.news.News
+import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import io.xorum.codeforceswatcher.util.defineLang

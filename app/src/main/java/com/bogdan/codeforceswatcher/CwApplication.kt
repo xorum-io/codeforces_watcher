@@ -16,9 +16,9 @@ import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsReque
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
-import io.xorum.codeforceswatcher.network.BACKEND_PROD_LINK
-import io.xorum.codeforceswatcher.network.BACKEND_STAGING_LINK
-import io.xorum.codeforceswatcher.network.backendLink
+import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_PROD_LINK
+import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_STAGING_LINK
+import io.xorum.codeforceswatcher.network.responses.backend.backendLink
 
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.redux.middlewares.notificationHandler

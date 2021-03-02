@@ -1,6 +1,6 @@
 package io.xorum.codeforceswatcher.features.auth
 
-import io.xorum.codeforceswatcher.network.responses.Response
+import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.settings
 import tw.geothings.rekotlin.Action
