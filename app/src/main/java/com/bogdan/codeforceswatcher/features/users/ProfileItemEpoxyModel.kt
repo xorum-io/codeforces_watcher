@@ -35,6 +35,7 @@ class ProfileItemEpoxyModel(
             AuthState.Stage.NOT_SIGNED_IN -> {
                 showNoUserData(view)
                 profileLayout.visibility = View.GONE
+                setOnClickListener {  }
                 showLoginPart(view)
             }
             AuthState.Stage.SIGNED_IN -> {
@@ -73,7 +74,7 @@ class ProfileItemEpoxyModel(
             .setMessage(context.getString(R.string.do_you_want_to_log_out))
             .setCancelable(false)
             .setPositiveButton(context.getString(R.string.stay_logged_in), null)
-            .setNegativeButton(context.getString(R.string.log_out)) { _, _ -> store.dispatch(AuthRequests.LogOut()) }
+            .setNegativeButton(context.getString(R.string.log_out)) { _, _ -> store.dispatch(AuthRequests.LogOut) }
             .create()
             .show()
 
