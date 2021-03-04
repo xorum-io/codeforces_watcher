@@ -29,3 +29,6 @@ SELECT last_insert_rowid();
 
 delete:
 DELETE FROM DbUser WHERE id = ?;
+
+deleteAll:
+DELETE FROM DbContest;

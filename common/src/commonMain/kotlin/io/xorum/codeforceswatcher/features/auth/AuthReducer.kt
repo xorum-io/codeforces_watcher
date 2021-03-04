@@ -54,6 +54,9 @@ fun authReducer(action: Action, state: AppState): AuthState {
                     authStage = action.authStage
             )
         }
+        is AuthRequests.LogOut -> {
+            newState = newState.copy(authStage = AuthState.Stage.NOT_SIGNED_IN)
+        }
     }
 
     return newState

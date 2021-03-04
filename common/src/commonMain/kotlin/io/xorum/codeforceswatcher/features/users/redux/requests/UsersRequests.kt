@@ -101,4 +101,11 @@ class UsersRequests {
 
         data class Failure(override val message: Message) : ToastAction
     }
+
+    class Destroy : Request() {
+
+        override suspend fun execute() {
+            // TODO DatabaseQueries.Users.deleteAll()
+        }
+    }
 }

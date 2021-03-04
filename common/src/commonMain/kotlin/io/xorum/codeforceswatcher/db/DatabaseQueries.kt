@@ -34,6 +34,7 @@ internal object DatabaseQueries {
         }
 
         fun delete(userId: Long) = database.userQueries.delete(userId)
+        fun deleteAll() = database.userQueries.deleteAll()
     }
 
     internal object Contests {

@@ -1,10 +1,8 @@
 package io.xorum.codeforceswatcher.features.verification
 
 import io.xorum.codeforceswatcher.features.auth.UserAccount
-import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.network.responses.Response
 import io.xorum.codeforceswatcher.redux.*
-import io.xorum.codeforceswatcher.redux.backendRepository
 import io.xorum.codeforceswatcher.util.settings
 import tw.geothings.rekotlin.Action
 

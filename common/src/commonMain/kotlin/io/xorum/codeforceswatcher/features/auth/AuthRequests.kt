@@ -89,4 +89,11 @@ class AuthRequests {
                 val signInStatus: AuthState.Status
         ) : Action
     }
+
+    class LogOut : Request() {
+
+        override suspend fun execute() {
+            settings.writeUserAccount(null)
+        }
+    }
 }
