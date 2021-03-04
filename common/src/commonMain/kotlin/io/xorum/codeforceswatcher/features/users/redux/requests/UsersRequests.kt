@@ -56,6 +56,22 @@ class UsersRequests {
         data class Failure(override val message: Message) : ToastAction
     }
 
+    class FetchUser(val handle: String): Request() {
+        override suspend fun execute() {
+            val result = when(val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = true)) {
+                is Response.Success -> {
+                    val user = response.result.first()
+                    DatabaseQueries.Users.update(user)
+                    Success(user)
+                }
+                is Response.Failure -> Success(DatabaseQueries.Users.get(handle))
+            }
+            store.dispatch(result)
+        }
+
+        data class Success(val user: User) : Action
+    }
+
     class DeleteUser(val user: User) : Request() {
 
         override suspend fun execute() {
@@ -89,4 +105,6 @@ class UsersRequests {
 
         data class Failure(override val message: Message) : ToastAction
     }
+
+    object ClearCurrentUser: Action
 }

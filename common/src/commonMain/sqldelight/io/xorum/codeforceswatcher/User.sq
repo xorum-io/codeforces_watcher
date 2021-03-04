@@ -15,6 +15,9 @@ CREATE TABLE DbUser (
 getById:
 SELECT * FROM DbUser WHERE id = ?;
 
+getByHandle:
+SELECT * FROM DbUser WHERE handle = ?;
+
 getAll:
 SELECT * FROM DbUser;
 

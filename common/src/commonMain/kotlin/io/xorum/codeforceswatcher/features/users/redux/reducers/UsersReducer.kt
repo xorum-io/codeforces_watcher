@@ -1,5 +1,6 @@
 package io.xorum.codeforceswatcher.features.users.redux.reducers
 
+import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
@@ -26,6 +27,19 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         }
         is UsersRequests.FetchUsers.Failure -> {
             newState = newState.copy(status = UsersState.Status.IDLE)
+        }
+        is UsersRequests.FetchUser -> {
+            newState = newState.copy(
+                    status = UsersState.Status.PENDING,
+                    currentUser = state.users.users.find { it.handle == action.handle }
+            )
+        }
+        is UsersRequests.FetchUser.Success -> {
+            newState = newState.copy(
+                    status = UsersState.Status.IDLE,
+                    currentUser = action.user,
+                    users = state.users.users.map { if (it.handle == action.user.handle) action.user else it }
+            )
         }
         is UsersRequests.DeleteUser -> {
             newState = newState.copy(users = state.users.users.minus(action.user))
@@ -57,6 +71,9 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         }
         is VerificationRequests.Verify.Success -> {
             newState = newState.copy(userAccount = action.userAccount)
+        }
+        is UsersRequests.ClearCurrentUser -> {
+            newState = newState.copy(currentUser = null)
         }
     }
 
