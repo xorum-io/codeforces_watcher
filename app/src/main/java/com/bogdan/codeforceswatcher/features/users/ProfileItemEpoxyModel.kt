@@ -15,8 +15,10 @@ import com.squareup.picasso.Picasso
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.AuthState
 import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.no_user_card_layout.view.*
+import kotlinx.android.synthetic.main.user_profile_layout.view.*
 import kotlinx.android.synthetic.main.view_profile_item.view.*
 
 class ProfileItemEpoxyModel(
@@ -35,7 +37,7 @@ class ProfileItemEpoxyModel(
             AuthState.Stage.NOT_SIGNED_IN -> {
                 showNoUserData(view)
                 profileLayout.visibility = View.GONE
-                setOnClickListener {  }
+                setOnClickListener { }
                 showLoginPart(view)
             }
             AuthState.Stage.SIGNED_IN -> {
@@ -64,9 +66,40 @@ class ProfileItemEpoxyModel(
             tvRank.text = buildRank()
             tvHandle.text = buildHandle()
             tvName.text = buildFullName()
+
+            tvRating.text = buildRating(context)
+            tvMaxRating.text = buildMaxRating(context)
+            tvContribution.text = buildContribution()
         }
 
-        // TODO add remain UI components
+        // TODO add chart
+        // TODO add redirecting to UserActivity by clicking
+    }
+
+    private fun User.buildRating(context: Context) = SpannableString(
+            context.getString(
+                    R.string.rating_only,
+                    rating?.toString() ?: context.getString(R.string.none)
+            )
+    ).apply {
+        rating?.let {
+            val startIndex = indexOf(it.toString())
+            val color = getColorByUserRank(rank)
+            colorSubstring(startIndex, startIndex + it.toString().length, color)
+        }
+    }
+
+    private fun User.buildMaxRating(context: Context) = SpannableString(
+            context.getString(
+                    R.string.max_rating_only,
+                    maxRating?.toString() ?: context.getString(R.string.none)
+            )
+    ).apply {
+        maxRating?.let {
+            val startIndex = indexOf(it.toString())
+            val color = getColorByUserRank(rank)
+            colorSubstring(startIndex, startIndex + it.toString().length, color)
+        }
     }
 
     private fun showLogout(context: Context) = AlertDialog.Builder(context)

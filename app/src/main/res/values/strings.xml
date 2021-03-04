@@ -70,6 +70,9 @@ Download it now on Google Play - https://play.google.com/store/apps/details?id=c
   <string name="ok">OK</string>
 
   <string name="rating">Rating: %1$s (max. %2$s)</string>
+  <string name="rating_only">Rating: %1$s</string>
+  <string name="max_rating_only">Max Rating: %1$s</string>
+
   <string name="contribution">Contribution: %1$s</string>
 
   <string name="see_all_comments">See all comments</string>

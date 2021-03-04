@@ -89,17 +89,6 @@ class UserActivity : AppCompatActivity() {
         }
     }
 
-    private fun User.buildContribution() = contribution?.let { contribution ->
-        val contributionString = if (contribution > 0) "+$contribution" else contribution.toString()
-        SpannableString(
-                getString(R.string.contribution, contributionString)
-        ).apply {
-            val startIndex = indexOf(contributionString)
-            val color = if (contribution >= 0) R.color.bright_green else R.color.red
-            colorSubstring(startIndex, startIndex + contributionString.length, color)
-        }
-    } ?: getString(R.string.none)
-
     private fun displayChart() {
         val xAxis = chart.xAxis
         chart.setTouchEnabled(true)
@@ -176,3 +165,14 @@ fun User.buildFullName() = when {
     lastName == null -> firstName.orEmpty()
     else -> "$firstName $lastName"
 }
+
+fun User.buildContribution() = contribution?.let { contribution ->
+    val contributionString = if (contribution > 0) "+$contribution" else contribution.toString()
+    SpannableString(
+            CwApp.app.getString(R.string.contribution, contributionString)
+    ).apply {
+        val startIndex = indexOf(contributionString)
+        val color = if (contribution >= 0) R.color.bright_green else R.color.red
+        colorSubstring(startIndex, startIndex + contributionString.length, color)
+    }
+} ?: CwApp.app.getString(R.string.none)
