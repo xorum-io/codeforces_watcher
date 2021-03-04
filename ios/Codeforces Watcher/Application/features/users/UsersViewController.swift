@@ -188,7 +188,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
     
     @objc func refreshUsers() {
-        store.dispatch(action: UsersRequests.FetchUsers(source: Source.user, language: "locale".localized))
+        store.dispatch(action: UsersRequests.FetchUsers(source: Source.user))
         analyticsControler.logEvent(eventName: AnalyticsEvents().USERS_REFRESH, params: [:])
     }
     
@@ -201,7 +201,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         HUD.show(.progress, onView: UIApplication.shared.windows.last)
         
         let handle = bottomInputCardView.textField.text ?? ""
-        store.dispatch(action: UsersRequests.AddUser(handle: handle, language: "locale".localized))
+        store.dispatch(action: UsersRequests.AddUser(handle: handle))
     }
     
     private func showBottomInputView() {
@@ -261,7 +261,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             refreshControl.endRefreshing()
         }
         
-        tableView.refreshControl = userState.users.isEmpty ? nil : refreshControl
+        tableView.refreshControl = !userState.users.isEmpty || authState.authStage == .verified ? refreshControl : nil
         
         users = userState.users
         let sortedUsers = sortUsers(userState.sortType)

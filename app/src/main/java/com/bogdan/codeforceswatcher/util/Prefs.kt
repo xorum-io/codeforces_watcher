@@ -11,7 +11,7 @@ import io.xorum.codeforceswatcher.util.Settings
 
 class Prefs(private val context: Context) : Settings {
 
-    override fun writeUserAccount(userAccount: UserAccount) {
+    override fun writeUserAccount(userAccount: UserAccount?) {
         val editor = getDefaultPrefs().edit()
         editor.putString(KEY_USER_ACCOUNT, Gson().toJson(userAccount))
         editor.apply()

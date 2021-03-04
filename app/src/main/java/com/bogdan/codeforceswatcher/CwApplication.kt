@@ -84,7 +84,7 @@ class CwApp : Application() {
     private fun fetchData() {
         store.dispatch(NewsRequests.FetchNews(false, Locale.getDefault().language))
         store.dispatch(ContestsRequests.FetchContests(false, Locale.getDefault().language))
-        store.dispatch(UsersRequests.FetchUsers(Source.BACKGROUND, Locale.getDefault().language))
+        store.dispatch(UsersRequests.FetchUsers(Source.BACKGROUND))
         store.dispatch(ProblemsRequests.FetchProblems(false))
         store.dispatch(AuthRequests.FetchUserAccount())
     }

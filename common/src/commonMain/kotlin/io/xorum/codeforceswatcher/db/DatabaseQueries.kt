@@ -14,15 +14,24 @@ internal object DatabaseQueries {
 
         fun getAll() = database.userQueries.getAll().executeAsList().map { User.fromDB(it) }
 
-        fun insert(user: User): Long {
+        fun insert(user: User) {
             val serializer = Json(from = Json.Default) { ignoreUnknownKeys = true }
             val ratingChangesJson = serializer.encodeToString(ListSerializer(RatingChange.serializer()), user.ratingChanges)
-            if (user.id == 0L) {
-                database.userQueries.insert(user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank, user.contribution)
-            } else {
-                database.userQueries.update(user.id, user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank, user.contribution)
+            database.userQueries.insert(user.id, user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank, user.contribution)
+        }
+
+        fun update(user: User) {
+            val serializer = Json(from = Json.Default) { ignoreUnknownKeys = true }
+            val ratingChangesJson = serializer.encodeToString(ListSerializer(RatingChange.serializer()), user.ratingChanges)
+            database.userQueries.update(user.id, user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank, user.contribution)
+        }
+
+        fun update(users: List<User>) {
+            database.userQueries.transaction {
+                users.forEach { user ->
+                    update(user)
+                }
             }
-            return database.userQueries.getIndex().executeAsOne()
         }
 
         fun insert(users: List<User>) {

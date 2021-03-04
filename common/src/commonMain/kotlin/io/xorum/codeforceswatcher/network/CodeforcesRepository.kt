@@ -24,30 +24,6 @@ internal class CodeforcesRepository {
 
     private val codeforcesApiClient = makeCodeforcesApiClient()
 
-    suspend fun getUsers(handles: String, lang: String) = try {
-        codeforcesApiClient.get<UsersResponse>(path = "user.info") {
-            parameter("handles", handles)
-            parameter("lang", lang)
-        }
-    } catch (e: Throwable) {
-        analyticsController.logError(e.stringify())
-        e.printStackTrace()
-
-        null
-    }
-
-    suspend fun getRating(handle: String, lang: String) = try {
-        codeforcesApiClient.get<RatingChangeResponse>(path = "user.rating") {
-            parameter("handle", handle)
-            parameter("lang", lang)
-        }
-    } catch (e: Throwable) {
-        analyticsController.logError(e.stringify())
-        e.printStackTrace()
-
-        null
-    }
-
     suspend fun getCodeforcesContests(lang: String) = try {
         codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list") {
             parameter("lang", lang)

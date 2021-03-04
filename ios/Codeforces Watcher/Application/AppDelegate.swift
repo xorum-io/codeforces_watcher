@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func fetchData() {
         store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: false, language: "locale".localized))
         store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: false, language: "locale".localized))
-        store.dispatch(action: UsersRequests.FetchUsers(source: Source.background, language: "locale".localized))
+        store.dispatch(action: UsersRequests.FetchUsers(source: Source.background))
         store.dispatch(action: ProblemsRequests.FetchProblems(isInitializedByUser: false))
         store.dispatch(action: AuthRequests.FetchUserAccount())
     }
