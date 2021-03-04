@@ -1,42 +1,42 @@
 <resources>
-    <string name="app_name" translatable="false">Codeforces WatchR</string>
-    <string name="last_rating_update">Last rating update: %1$s</string>
-    <string name="no_rating_update">No rating update</string>
-    <string name="none">None</string>
-    <string name="no_connection">No connection</string>
-    <string name="rating_changes">Rating Changes</string>
-    <string name="ratings_have_been_updated">Ratings have been updated</string>
-    <string name="ratings_update">Rating updates</string>
-    <string name="user_already_added">User already added</string>
-    <string name="failed_to_fetch_users">Failed to fetch user(s)! Wait or check handle(s)…</string>
-    <string name="sort_by">Sort by</string>
-    <string name="by_default">default</string>
-    <string name="by_descending_rating">↓ rating</string>
-    <string name="by_ascending_rating">↑ rating</string>
-    <string name="by_descending_update">↓ update</string>
-    <string name="by_ascending_update">↑ update</string>
-    <string name="add_user">Add user</string>
-    <string name="enter_handle">Enter user handle</string>
+  <string name="app_name" translatable="false">Codeforces WatchR</string>
+  <string name="last_rating_update">Last rating update: %1$s</string>
+  <string name="no_rating_update">No rating update</string>
+  <string name="none">None</string>
+  <string name="no_connection">No connection</string>
+  <string name="rating_changes">Rating Changes</string>
+  <string name="ratings_have_been_updated">Ratings have been updated</string>
+  <string name="ratings_update">Rating updates</string>
+  <string name="user_already_added">User already added</string>
+  <string name="failed_to_fetch_users">Failed to fetch user(s)! Wait or check handle(s)…</string>
+  <string name="sort_by">Sort by</string>
+  <string name="by_default">default</string>
+  <string name="by_descending_rating">↓ rating</string>
+  <string name="by_ascending_rating">↑ rating</string>
+  <string name="by_descending_update">↓ update</string>
+  <string name="by_ascending_update">↑ update</string>
+  <string name="add_user">Add user</string>
+  <string name="enter_handle">Enter user handle</string>
 
-    <string name="users">Users</string>
-    <string name="contests">Contests</string>
-    <string name="news">News</string>
-    <string name="problems">Problems</string>
+  <string name="users">Users</string>
+  <string name="contests">Contests</string>
+  <string name="news">News</string>
+  <string name="problems">Problems</string>
 
-    <string name="empty" translatable="false" />
-    <string name="google_calendar_not_found">Sorry, but no Google Calendar found on this device</string>
-    <string name="commented_by">"Commented by %1$s"</string>
-    <string name="feature_isn_t_available_yet">This feature isn’t available yet.</string>
-    <string name="share_with_friends">Share with friends</string>
-    <string name="shared_through_cw">Shared through Codeforces WatchR. Find it on Google Play.</string>
-    <string name="no_users">You don’t have any users to watch yet.\nAdd the first one using «+» at the bottom of the screen.</string>
-    <string name="no_favourite_problems">You don’t have any favourite problems yet.\nAdd the first one using «∞» at the bottom of the screen.</string>
+  <string name="empty" translatable="false" />
+  <string name="google_calendar_not_found">Sorry, but no Google Calendar found on this device</string>
+  <string name="commented_by">"Commented by %1$s"</string>
+  <string name="feature_isn_t_available_yet">This feature isn’t available yet.</string>
+  <string name="share_with_friends">Share with friends</string>
+  <string name="shared_through_cw">Shared through Codeforces WatchR. Find it on Google Play.</string>
+  <string name="no_users">You don’t have any users to watch yet.\nAdd the first one using «+» at the bottom of the screen.</string>
+  <string name="no_favourite_problems">You don’t have any favourite problems yet.\nAdd the first one using «∞» at the bottom of the screen.</string>
 
-    <string name="share_cw">Share Codeforces WatchR</string>
-    <string name="help_cw_make_more_social">Help us make Codeforces and Codeforces WatchR more social by sharing it with your friends.</string>
-    <string name="share">Share</string>
-    <string name="cancel">Cancel</string>
-    <string name="share_cw_message">"I'm using Codeforces WatchR - open-source, free Android application, which leverages Codeforces API to bring more competitive programming to your Android device.
+  <string name="share_cw">Share Codeforces WatchR</string>
+  <string name="help_cw_make_more_social">Help us make Codeforces and Codeforces WatchR more social by sharing it with your friends.</string>
+  <string name="share">Share</string>
+  <string name="cancel">Cancel</string>
+  <string name="share_cw_message">"I'm using Codeforces WatchR - open-source, free Android application, which leverages Codeforces API to bring more competitive programming to your Android device.
 Codeforces WatchR allows:
 
 1. Shortlist and register for upcoming Competitive Programming contests: Codeforces, LeetCode, HackerEarth, AtCoder, TopCoder, CS Academy, CodeChef, Kick Start.
@@ -46,67 +46,70 @@ Codeforces WatchR allows:
 5. Sort users by rating and last participation date.
 
 Download it now on Google Play - https://play.google.com/store/apps/details?id=com.bogdan.codeforceswatcher"</string>
-    <string name="news_on_the_way">Recent news on the way to your device…</string>
-    <string name="problems_on_the_way">Problems on the way to your device…</string>
-    <string name="search_for_problems">Search for problems…</string>
-    <string name="no_browser_has_been_found">No browser has been found, try to install one.</string>
-    <string name="filters">Filters</string>
-    <string name="no_contests_found">No contests found</string>
-    <string name="click_to_see_details">Click to see details</string>
+  <string name="news_on_the_way">Recent news on the way to your device…</string>
+  <string name="problems_on_the_way">Problems on the way to your device…</string>
+  <string name="search_for_problems">Search for problems…</string>
+  <string name="no_browser_has_been_found">No browser has been found, try to install one.</string>
+  <string name="filters">Filters</string>
+  <string name="no_contests_found">No contests found</string>
+  <string name="click_to_see_details">Click to see details</string>
 
-    <string name="yes">YES!</string>
-    <string name="rate_us_first_title">Enjoying our Codeforces WatchR App?</string>
-    <string name="rate_us_second_title">Would you mind giving us some feedback?</string>
-    <string name="rate_us_third_title">How about a rating on Google Play, then?</string>
-    <string name="not_really">Not really</string>
-    <string name="no_thanks">No, thanks</string>
+  <string name="yes">YES!</string>
+  <string name="rate_us_first_title">Enjoying our Codeforces WatchR App?</string>
+  <string name="rate_us_second_title">Would you mind giving us some feedback?</string>
+  <string name="rate_us_third_title">How about a rating on Google Play, then?</string>
+  <string name="not_really">Not really</string>
+  <string name="no_thanks">No, thanks</string>
 
-    <string name="chart_info">" = %1$s (%2$s) \n Rank: %3$s \n %4$s \n %5$s "</string>
-    <string name="contest_date_format">HH:mm MMM d, EEEE</string>
-    <string name="user_date_format">MMM d, yyyy</string>
+  <string name="chart_info">" = %1$s (%2$s) \n Rank: %3$s \n %4$s \n %5$s "</string>
+  <string name="contest_date_format">HH:mm MMM d, EEEE</string>
+  <string name="user_date_format">MMM d, yyyy</string>
 
-    <string name="delete_user">Delete user</string>
-    <string name="delete_user_explanation">"Are you sure you want to delete %1$s?"</string>
-    <string name="ok">OK</string>
+  <string name="delete_user">Delete user</string>
+  <string name="delete_user_explanation">"Are you sure you want to delete %1$s?"</string>
+  <string name="ok">OK</string>
 
-    <string name="rating">Rating: %1$s (max. %2$s)</string>
-    <string name="contribution">Contribution: %1$s</string>
+  <string name="rating">Rating: %1$s (max. %2$s)</string>
+  <string name="contribution">Contribution: %1$s</string>
 
-    <string name="see_all_comments">See all comments</string>
-    <string name="be_first_to_comment">Be the first to comment</string>
+  <string name="see_all_comments">See all comments</string>
+  <string name="be_first_to_comment">Be the first to comment</string>
 
-    <string name="modified">modified</string>
-    <string name="created">created</string>
+  <string name="modified">modified</string>
+  <string name="created">created</string>
 
-    <string name="watch_video">Watch video</string>
-    <string name="upcoming_contests">Upcoming contests</string>
-    <string name="login_in_42_seconds">Login in 42 seconds</string>
-    <string name="galactic_master">Galactic master</string>
-    <string name="form_of_life">form_of_life</string>
-    <string name="unknown">Unknown</string>
-    <string name="never_updated">Never updated</string>
-    <string name="login_to_identify">Login to identify</string>
-    <string name="verify_account">Verify account</string>
-    <string name="pass_quick_verification">Pass the quick and simple verification to see your profile here</string>
-    <string name="verify_in_42_seconds">Verify in 42 seconds</string>
-    <string name="get_instant_notifications">And get instant push notifications about rating updates</string>
-    <string name="forgot_password">Forgot password?</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="sign_in">Sign In</string>
-    <string name="dont_have_an_account_yet"><![CDATA[Don\'t have an account yet? <link>Sign Up</link>]]></string>
-    <string name="already_have_an_account"><![CDATA[Already have an account? <link>Sign In</link>]]></string>
-    <string name="sign_up">Sign up</string>
-    <string name="confirm_password">Confirm password</string>
-    <string name="passwords_do_not_match">Passwords don\'t match</string>
-    <string name="agree_to_the_privacy_policy">Agree to the privacy policy</string>
-    <string name="agree_with_the_conditions_and_privacy_policy"><![CDATA[I agree with the <link>Terms and Conditions</link> and the <link>Privacy Policy</link>]]></string>
-    <string name="terms_and_conditions">Terms and Conditions</string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="verify_codeforces_account">Verify Codeforces account</string>
-    <string name="verify">Verify</string>
-    <string name="to_verify_please_change_your_last_name">To verify that account belongs to you, please, change your English ”Last name” in your <b>Profile - Settings - Social</b> to this value:</string>
-    <string name="after_successful_login_you_can_change_it_back">Right after successful login you can change it back.</string>
-    <string name="codeforces_handle">Codeforces handle</string>
-    <string name="code_copied_to_clipboard">Code copied to clipboard</string>
+  <string name="watch_video">Watch video</string>
+  <string name="upcoming_contests">Upcoming contests</string>
+  <string name="login_in_42_seconds">Login in 42 seconds</string>
+  <string name="galactic_master">Galactic master</string>
+  <string name="form_of_life">form_of_life</string>
+  <string name="unknown">Unknown</string>
+  <string name="never_updated">Never updated</string>
+  <string name="login_to_identify">Login to identify</string>
+  <string name="verify_account">Verify account</string>
+  <string name="pass_quick_verification">Pass the quick and simple verification to see your profile here</string>
+  <string name="verify_in_42_seconds">Verify in 42 seconds</string>
+  <string name="get_instant_notifications">And get instant push notifications about rating updates</string>
+  <string name="forgot_password">Forgot password?</string>
+  <string name="email">Email</string>
+  <string name="password">Password</string>
+  <string name="sign_in">Sign In</string>
+  <string name="dont_have_an_account_yet"><![CDATA[Don\'t have an account yet? <link>Sign Up</link>]]></string>
+  <string name="already_have_an_account"><![CDATA[Already have an account? <link>Sign In</link>]]></string>
+  <string name="sign_up">Sign up</string>
+  <string name="confirm_password">Confirm password</string>
+  <string name="passwords_do_not_match">Passwords don\'t match</string>
+  <string name="agree_to_the_privacy_policy">Agree to the privacy policy</string>
+  <string name="agree_with_the_conditions_and_privacy_policy"><![CDATA[I agree with the <link>Terms and Conditions</link> and the <link>Privacy Policy</link>]]></string>
+  <string name="terms_and_conditions">Terms and Conditions</string>
+  <string name="privacy_policy">Privacy Policy</string>
+  <string name="verify_codeforces_account">Verify Codeforces account</string>
+  <string name="verify">Verify</string>
+  <string name="to_verify_please_change_your_last_name">To verify that account belongs to you, please, change your English ”Last name” in your <b>Profile - Settings - Social</b> to this value:</string>
+  <string name="after_successful_login_you_can_change_it_back">Right after successful login you can change it back.</string>
+  <string name="codeforces_handle">Codeforces handle</string>
+  <string name="code_copied_to_clipboard">Code copied to clipboard</string>
+  <string name="log_out">Log out</string>
+  <string name="do_you_want_to_log_out">Do you want to log out?</string>
+  <string name="stay_logged_in">Stay logged in</string>
 </resources>

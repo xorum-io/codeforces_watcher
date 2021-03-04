@@ -1,7 +1,6 @@
 package io.xorum.codeforceswatcher.features.auth
 
 import io.xorum.codeforceswatcher.features.verification.VerificationRequests
-import io.xorum.codeforceswatcher.features.verification.VerificationState
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
 
@@ -50,8 +49,16 @@ fun authReducer(action: Action, state: AppState): AuthState {
         }
         is AuthRequests.FetchUserAccount.Success -> {
             newState = newState.copy(
-                    signInStatus = action.signInStatus,
                     authStage = action.authStage
+            )
+        }
+        is AuthRequests.LogOut -> {
+            newState = newState.copy(authStage = AuthState.Stage.NOT_SIGNED_IN)
+        }
+        is AuthRequests.DestroyStatus -> {
+            newState = newState.copy(
+                    signInStatus = AuthState.Status.IDLE,
+                    signUpStatus = AuthState.Status.IDLE
             )
         }
     }

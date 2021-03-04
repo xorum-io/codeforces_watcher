@@ -57,6 +57,12 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         is AuthRequests.FetchUserAccount.Success -> {
             newState = newState.copy(userAccount = action.userAccount)
         }
+        is UsersRequests.Destroy -> {
+            newState = newState.copy(
+                    userAccount = null,
+                    users = listOf()
+            )
+        }
     }
 
     return newState

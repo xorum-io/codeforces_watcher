@@ -25,8 +25,6 @@ import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.avatar
 import kotlinx.android.synthetic.main.activity_user.*
-import kotlinx.android.synthetic.main.activity_user.tvUserHandle
-import java.lang.IllegalStateException
 import java.text.SimpleDateFormat
 import java.util.*
 

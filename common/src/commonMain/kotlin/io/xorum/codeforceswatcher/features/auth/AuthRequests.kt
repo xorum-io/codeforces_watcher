@@ -17,13 +17,13 @@ class AuthRequests {
                 is Response.Success -> {
                     val userAccount = response.result
 
-                    val authStage = if (userAccount?.codeforcesUser != null) {
+                    val authStage = if (userAccount.codeforcesUser != null) {
                         AuthState.Stage.VERIFIED
                     } else {
                         AuthState.Stage.SIGNED_IN
                     }
 
-                    store.dispatch(SignIn.Success(userAccount, authStage))
+                    store.dispatch(Success(userAccount, authStage))
                     settings.writeUserAccount(userAccount)
                 }
                 is Response.Failure -> {
@@ -65,16 +65,9 @@ class AuthRequests {
 
         override suspend fun execute() {
             val userAccount = settings.readUserAccount()
-
-            val signInStatus = userAccount.signInStatus()
             val authStage = userAccount.authStage()
 
-            store.dispatch(Success(userAccount, authStage, signInStatus))
-        }
-
-        private fun UserAccount?.signInStatus() = when {
-            this != null -> AuthState.Status.DONE
-            else -> AuthState.Status.IDLE
+            store.dispatch(Success(userAccount, authStage))
         }
 
         private fun UserAccount?.authStage() = when {
@@ -85,8 +78,10 @@ class AuthRequests {
 
         data class Success(
                 val userAccount: UserAccount?,
-                val authStage: AuthState.Stage,
-                val signInStatus: AuthState.Status
+                val authStage: AuthState.Stage
         ) : Action
     }
+
+    object DestroyStatus : Action
+    object LogOut : Action
 }
