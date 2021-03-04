@@ -86,7 +86,6 @@ class CwApp : Application() {
         store.dispatch(ContestsRequests.FetchContests(false, Locale.getDefault().language))
         store.dispatch(UsersRequests.FetchUsers(Source.BACKGROUND))
         store.dispatch(ProblemsRequests.FetchProblems(false))
-        store.dispatch(AuthRequests.FetchUserAccount())
     }
 
     private fun initGetLang() {

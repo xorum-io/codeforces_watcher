@@ -48,12 +48,6 @@ fun authReducer(action: Action, state: AppState): AuthState {
                     authStage = AuthState.Stage.VERIFIED
             )
         }
-        is AuthRequests.FetchUserAccount.Success -> {
-            newState = newState.copy(
-                    signInStatus = action.signInStatus,
-                    authStage = action.authStage
-            )
-        }
     }
 
     return newState

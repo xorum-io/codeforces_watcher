@@ -58,9 +58,6 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         is VerificationRequests.Verify.Success -> {
             newState = newState.copy(userAccount = action.userAccount)
         }
-        is AuthRequests.FetchUserAccount.Success -> {
-            newState = newState.copy(userAccount = action.userAccount)
-        }
     }
 
     return newState
