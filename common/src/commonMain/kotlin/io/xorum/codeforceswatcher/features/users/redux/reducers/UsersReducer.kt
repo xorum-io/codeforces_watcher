@@ -1,6 +1,5 @@
 package io.xorum.codeforceswatcher.features.users.redux.reducers
 
-import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
@@ -74,6 +73,12 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         }
         is UsersRequests.ClearCurrentUser -> {
             newState = newState.copy(currentUser = null)
+        }
+        is UsersRequests.Destroy -> {
+            newState = newState.copy(
+                    userAccount = null,
+                    users = listOf()
+            )
         }
     }
 

@@ -13,13 +13,17 @@ class Prefs(private val context: Context) : Settings {
 
     override fun writeUserAccount(userAccount: UserAccount?) {
         val editor = getDefaultPrefs().edit()
-        editor.putString(KEY_USER_ACCOUNT, Gson().toJson(userAccount))
+
+        userAccount?.let {
+            editor.putString(KEY_USER_ACCOUNT, Gson().toJson(it))
+        } ?: editor.remove(KEY_USER_ACCOUNT)
+
         editor.apply()
     }
 
     override fun readUserAccount(): UserAccount? {
         val defaultPrefs = getDefaultPrefs()
-        return Gson().fromJson<UserAccount?>(
+        return Gson().fromJson(
                 defaultPrefs.getString(KEY_USER_ACCOUNT, null),
                 UserAccount::class.java
         )

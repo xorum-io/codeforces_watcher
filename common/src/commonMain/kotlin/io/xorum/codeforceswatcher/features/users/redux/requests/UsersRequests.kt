@@ -107,4 +107,11 @@ class UsersRequests {
     }
 
     object ClearCurrentUser: Action
+
+    class Destroy : Request() {
+
+        override suspend fun execute() {
+            DatabaseQueries.Users.deleteAll()
+        }
+    }
 }

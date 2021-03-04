@@ -17,13 +17,13 @@ class AuthRequests {
                 is Response.Success -> {
                     val userAccount = response.result
 
-                    val authStage = if (userAccount?.codeforcesUser != null) {
+                    val authStage = if (userAccount.codeforcesUser != null) {
                         AuthState.Stage.VERIFIED
                     } else {
                         AuthState.Stage.SIGNED_IN
                     }
 
-                    store.dispatch(SignIn.Success(userAccount, authStage))
+                    store.dispatch(Success(userAccount, authStage))
                     settings.writeUserAccount(userAccount)
                 }
                 is Response.Failure -> {
@@ -60,4 +60,7 @@ class AuthRequests {
         data class Success(val userAccount: UserAccount) : Action
         data class Failure(override val message: Message) : ToastAction
     }
+
+    object DestroyStatus : Action
+    object LogOut : Action
 }
