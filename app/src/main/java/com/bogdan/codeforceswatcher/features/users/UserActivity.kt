@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -22,17 +23,19 @@ import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
+import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.avatar
 import kotlinx.android.synthetic.main.activity_user.*
 import kotlinx.android.synthetic.main.activity_user.tvUserHandle
-import java.lang.IllegalStateException
+import tw.geothings.rekotlin.StoreSubscriber
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UserActivity : AppCompatActivity() {
+class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
-    private var userId: Long = -1
+    private val handle
+        get() = intent.getStringExtra(HANDLE)
     private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,22 +45,19 @@ class UserActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        userId = intent.getLongExtra(ID, -1)
+        setupChart()
 
-        user = store.state.users.users.find { it.id == userId } ?: throw IllegalStateException()
-
-        displayUser()
-
-        if (user.ratingChanges.isNotEmpty()) {
-            displayChart()
-        } else {
-            tvRatingChanges.text = ""
-        }
+        store.dispatch(UsersRequests.FetchUser(handle))
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        store.dispatch(UsersRequests.ClearCurrentUser)
     }
 
     private fun displayUser() {
@@ -102,7 +102,7 @@ class UserActivity : AppCompatActivity() {
         }
     } ?: getString(R.string.none)
 
-    private fun displayChart() {
+    private fun setupChart() {
         val xAxis = chart.xAxis
         chart.setTouchEnabled(true)
         chart.markerView = CustomMarkerView(this, R.layout.chart)
@@ -118,7 +118,9 @@ class UserActivity : AppCompatActivity() {
             val dateFormat = SimpleDateFormat("MMM yyyy", Locale.getDefault())
             dateFormat.format(Date(value.toLong() * 1000)).toString()
         }
+    }
 
+    private fun displayChart() {
         val entries = user.ratingChanges.map {
             Entry(it.ratingUpdateTimeSeconds.toFloat(), it.newRating.toFloat(), it.toChartItem())
         }
@@ -126,6 +128,7 @@ class UserActivity : AppCompatActivity() {
         val lineDataSet = LineDataSet(entries, user.handle)
         lineDataSet.setDrawValues(false)
         chart.data = LineData(lineDataSet)
+        chart.invalidate()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -157,13 +160,42 @@ class UserActivity : AppCompatActivity() {
 
     companion object {
 
-        private const val ID = "id"
+        private const val HANDLE = "handle"
 
-        fun newIntent(context: Context, userId: Long): Intent {
+        fun newIntent(context: Context, handle: String): Intent {
             val intent = Intent(context, UserActivity::class.java)
-            intent.putExtra(ID, userId)
+            intent.putExtra(HANDLE, handle)
             return intent
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        store.subscribe(this) { state ->
+            state.skipRepeats { oldState, newState ->
+                oldState.users == newState.users
+            }.select { it.users }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        store.unsubscribe(this)
+    }
+
+    override fun onNewState(state: UsersState) {
+        user = state.currentUser ?: return
+
+        displayUser()
+
+        if (user.ratingChanges.isNotEmpty()) {
+            displayChart()
+            tvRatingChanges.visibility = View.VISIBLE
+        } else {
+            tvRatingChanges.visibility = View.INVISIBLE
+        }
+
+        spinner.visibility = if (state.status == UsersState.Status.PENDING) View.VISIBLE else View.INVISIBLE
     }
 }
 
