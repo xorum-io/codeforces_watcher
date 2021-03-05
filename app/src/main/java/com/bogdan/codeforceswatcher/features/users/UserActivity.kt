@@ -184,6 +184,7 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
     override fun onNewState(state: UsersState) {
         user = state.currentUser ?: return
+        println("here ${user.ratingChanges}")
 
         displayUser()
 

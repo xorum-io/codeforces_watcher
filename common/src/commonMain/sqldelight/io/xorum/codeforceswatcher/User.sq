@@ -22,10 +22,12 @@ getAll:
 SELECT * FROM DbUser;
 
 insert:
-INSERT OR REPLACE INTO DbUser(id, avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank, contribution) VALUES(?,?,?,?,?,?,?,?,?,?,?);
+INSERT INTO DbUser(id, avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank, contribution) VALUES(?,?,?,?,?,?,?,?,?,?,?);
 
 update:
-INSERT OR REPLACE INTO DbUser(id, avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank, contribution) VALUES(?,?,?,?,?,?,?,?,?,?,?);
+UPDATE DbUser
+SET avatar = ?, rank = ?, rating = ?, maxRating = ?, firstName = ?, lastName = ?, ratingChanges = ?, maxRank = ?, contribution = ?
+WHERE handle = ?;
 
 delete:
 DELETE FROM DbUser WHERE id = ?;

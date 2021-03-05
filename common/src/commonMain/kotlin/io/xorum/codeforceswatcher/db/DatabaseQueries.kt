@@ -43,22 +43,21 @@ internal object DatabaseQueries {
         fun update(user: User) {
             val oldUser = get(user.handle)
             val mergedUser = merge(oldUser, user)
-
+            
             val serializer = Json(from = Json.Default) { ignoreUnknownKeys = true }
             val ratingChangesJson = serializer.encodeToString(ListSerializer(RatingChange.serializer()), mergedUser.ratingChanges)
 
             database.userQueries.update(
-                    user.id,
                     user.avatar,
                     user.rank,
-                    user.handle,
                     user.rating?.toLong(),
                     user.maxRating?.toLong(),
                     user.firstName,
                     user.lastName,
                     ratingChangesJson,
                     user.maxRank,
-                    user.contribution
+                    user.contribution,
+                    user.handle
             )
         }
 
