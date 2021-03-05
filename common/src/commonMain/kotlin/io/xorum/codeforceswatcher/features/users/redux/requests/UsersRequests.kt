@@ -83,7 +83,7 @@ class UsersRequests {
 
         override suspend fun execute() {
             when (val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = false)) {
-                is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) }
+                is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) } ?: store.dispatch(Failure(null.toMessage()))
                 is Response.Failure -> store.dispatch(Failure(response.error.toMessage()))
             }
         }
