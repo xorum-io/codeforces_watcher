@@ -11,6 +11,10 @@ import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyModel
 import com.bogdan.codeforceswatcher.features.auth.SignInActivity
 import com.bogdan.codeforceswatcher.features.auth.VerificationActivity
 import com.bogdan.codeforceswatcher.util.colorSubstring
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.squareup.picasso.Picasso
 import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.AuthState
@@ -20,6 +24,8 @@ import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.no_user_card_layout.view.*
 import kotlinx.android.synthetic.main.user_profile_layout.view.*
 import kotlinx.android.synthetic.main.view_profile_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProfileItemEpoxyModel(
         private val userAccount: UserAccount?,
@@ -70,10 +76,47 @@ class ProfileItemEpoxyModel(
             tvRating.text = buildRating(context)
             tvMaxRating.text = buildMaxRating(context)
             tvContribution.text = buildContribution()
+            tvLastUpdate.text = buildLastUpdate(context)
+            displayChart(view)
         }
 
-        // TODO add chart
         // TODO add redirecting to UserActivity by clicking
+    }
+
+    private fun buildLastUpdate(context: Context) = userAccount?.codeforcesUser?.ratingChanges?.lastOrNull()?.let { ratingChange ->
+        context.getString(
+                R.string.updated_on,
+                SimpleDateFormat(context.getString(R.string.user_date_format), Locale.getDefault()).format(
+                        Date(ratingChange.ratingUpdateTimeSeconds * 1000)
+                )
+        )
+    } ?: context.getString(R.string.no_rating_update)
+
+    private fun displayChart(view: View) = with(view.chart) {
+        setTouchEnabled(false)
+        isDragEnabled = false
+        setViewPortOffsets(0f, 0f, 0f, 0f)
+
+        axisLeft.setDrawLabels(false)
+        axisRight.setDrawLabels(false)
+
+        xAxis.setDrawLabels(false)
+        xAxis.setDrawAxisLine(true)
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+
+        description.isEnabled = false
+        legend.isEnabled = false
+
+        val entries = userAccount?.codeforcesUser?.ratingChanges?.map {
+            Entry(it.ratingUpdateTimeSeconds.toFloat(), it.newRating.toFloat(), it.toChartItem())
+        }
+
+        val lineDataSet = LineDataSet(entries, userAccount?.codeforcesUser?.handle).apply {
+            setDrawCircles(false)
+            setDrawValues(false)
+        }
+
+        chart.data = LineData(lineDataSet)
     }
 
     private fun User.buildRating(context: Context) = SpannableString(

@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name" translatable="false">Codeforces WatchR</string>
   <string name="last_rating_update">Last rating update: %1$s</string>
+  <string name="updated_on">Updated on %1$s</string>
   <string name="no_rating_update">No rating update</string>
   <string name="none">None</string>
   <string name="no_connection">No connection</string>

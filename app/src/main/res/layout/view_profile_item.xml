@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:textColor="@color/gray"
-            android:textSize="10sp"
+            android:textSize="12sp"
             card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
             card_view:layout_constraintStart_toStartOf="@id/ivProfile"
             card_view:layout_constraintTop_toBottomOf="@id/tvName"
