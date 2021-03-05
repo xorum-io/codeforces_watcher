@@ -28,8 +28,8 @@ class UsersRequests {
                 allUsersResponse is Response.Failure -> Failure(allUsersResponse.error.toMessage())
                 userAccountCfUserResponse is Response.Failure -> Failure(userAccountCfUserResponse.error.toMessage())
                 allUsersResponse is Response.Success && userAccountCfUserResponse is Response.Success -> {
-                    val newUsers = allUsersResponse.result
-                    saveUsers(newUsers)
+                    saveUsers(allUsersResponse.result)
+                    val newUsers = DatabaseQueries.Users.getAll()
                     Success(newUsers, userAccountCfUserResponse.result.firstOrNull(), source)
                 }
                 else -> throw IllegalStateException()
