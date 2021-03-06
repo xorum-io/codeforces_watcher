@@ -2,8 +2,10 @@ package io.xorum.codeforceswatcher.network
 
 import io.ktor.client.request.parameter
 import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.verification.VerificationCodeResponse
-import io.xorum.codeforceswatcher.network.responses.NewsResponse
+import io.xorum.codeforceswatcher.network.responses.backend.KtorResponseClient
+import io.xorum.codeforceswatcher.network.responses.backend.NewsResponse
 
 internal class BackendRepository {
 
@@ -33,4 +35,10 @@ internal class BackendRepository {
     suspend fun verifyCodeforcesAccount(handle: String) = ktorResponseClient.post<UserAccount>("user/verify/codeforces") {
         parameter("handle", handle)
     }
+
+    suspend fun fetchUsers(handles: String, isAllRatingChangesNeeded: Boolean) =
+            ktorResponseClient.get<List<User>>("users") {
+                parameter("handles", handles)
+                parameter("isAllRatingChangesNeeded", isAllRatingChangesNeeded.toString())
+            }
 }

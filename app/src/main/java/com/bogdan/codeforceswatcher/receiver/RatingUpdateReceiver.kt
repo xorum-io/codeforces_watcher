@@ -11,6 +11,6 @@ import java.util.*
 class RatingUpdateReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
-        store.dispatch(UsersRequests.FetchUsers(Source.BROADCAST, Locale.getDefault().language))
+        store.dispatch(UsersRequests.FetchUsers(Source.BROADCAST))
     }
 }

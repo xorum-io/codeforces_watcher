@@ -57,6 +57,7 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
     }
     
     private func showLoading() {
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
         HUD.show(.progress, onView: UIApplication.shared.windows.last)
     }
     

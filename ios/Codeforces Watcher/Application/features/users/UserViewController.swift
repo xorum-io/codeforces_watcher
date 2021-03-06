@@ -9,8 +9,9 @@
 import UIKit
 import common
 import Charts
+import PKHUD
 
-class UserViewController: ClosableViewController {
+class UserViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private let userImage = CircleImageView()
     private let rankLabel = BodyLabel()
@@ -30,12 +31,11 @@ class UserViewController: ClosableViewController {
     }
     private let lineChartView = LineChartView()
     
-    private let user: User
+    private var handle: String
+    private var user: User!
     
-    init(_ userId: Int) {
-        guard let user = store.state.users.users.first(where: {$0.id == userId}) else { fatalError() }
-        self.user = user
-        
+    init(_ handle: String) {
+        self.handle = handle
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -48,6 +48,7 @@ class UserViewController: ClosableViewController {
 
         setupView()
         setupChart()
+        store.dispatch(action: UsersRequests.FetchUser(handle: handle))
     }
     
     private func setupView() {
@@ -62,10 +63,9 @@ class UserViewController: ClosableViewController {
         
         buildViewTree()
         setConstraints()
-        bind()
     }
     
-    @objc func showDeleteUserAlert() {
+    @objc private func showDeleteUserAlert() {
         let alertController = UIAlertController(
             title: "Delete user".localized,
             message: "delete_user_explanation".localizedFormat(args: user.handle),
@@ -89,8 +89,6 @@ class UserViewController: ClosableViewController {
     }
     
     private func setupChart() {
-        guard !user.ratingChanges.isEmpty else { return }
-        
         let markerView = ChartMarker().apply {
             $0.chartView = lineChartView
         }
@@ -106,27 +104,6 @@ class UserViewController: ClosableViewController {
             $0.drawMarkers = true
             $0.marker = markerView
         }
-        
-        let dataEntries = user.ratingChanges.map {
-            ChartDataEntry(
-                x: Double($0.ratingUpdateTimeSeconds),
-                y: Double($0.newRating),
-                data: $0.toChartItem()
-            )
-        }
-        
-        let dataSet = LineChartDataSet(entries: dataEntries).apply {
-            $0.lineWidth = 1.3
-            $0.circleRadius = 3.5
-            $0.circleHoleRadius = 2
-            $0.circleHoleColor = Palette.white
-        }
-        
-        let data = LineChartData(dataSet: dataSet).apply {
-            $0.setDrawValues(false)
-        }
-        
-        lineChartView.data = data
     }
     
     private func buildViewTree() {
@@ -201,6 +178,74 @@ class UserViewController: ClosableViewController {
         handleLabel.attributedText = user.handleText
         ratingLabel.attributedText = user.ratingText
         contributionLabel.attributedText = user.contributionText
+        
+        displayChart()
+    }
+    
+    private func displayChart() {
+        guard !user.ratingChanges.isEmpty else { return }
+        
+        let dataEntries = user.ratingChanges.map {
+            ChartDataEntry(
+                x: Double($0.ratingUpdateTimeSeconds),
+                y: Double($0.newRating),
+                data: $0.toChartItem()
+            )
+        }
+        
+        let dataSet = LineChartDataSet(entries: dataEntries).apply {
+            $0.lineWidth = 1.3
+            $0.circleRadius = 3.5
+            $0.circleHoleRadius = 2
+            $0.circleHoleColor = Palette.white
+        }
+        
+        let data = LineChartData(dataSet: dataSet).apply {
+            $0.setDrawValues(false)
+        }
+        
+        lineChartView.data = data
+    }
+    
+    func onNewState(state: Any) {
+        let state = state as! UsersState
+        switch(state.status) {
+        case .pending:
+            showLoading()
+        default:
+            hideLoading()
+        }
+        
+        guard let user = state.currentUser else { return }
+        self.user = user
+        
+        bind()
+    }
+    
+    private func showLoading() {
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = false
+        HUD.show(.progress, onView: UIApplication.shared.windows.last)
+    }
+    
+    private func hideLoading() {
+        HUD.hide(afterDelay: 0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        store.subscribe(subscriber: self) { subscription in
+            subscription.skipRepeats { oldState, newState in
+                return KotlinBoolean(bool: oldState.users == newState.users)
+            }.select { state in
+                return state.users
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        store.unsubscribe(subscriber: self)
     }
 }
 

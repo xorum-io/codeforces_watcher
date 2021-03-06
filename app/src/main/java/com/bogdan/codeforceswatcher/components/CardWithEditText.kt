@@ -74,7 +74,7 @@ class AddUserBottomSheet : BottomSheetDialogFragment(), StoreSubscriber<UsersSta
     }
 
     private fun addUser(handle: String) {
-        store.dispatch(UsersRequests.AddUser(handle, Locale.getDefault().language))
+        store.dispatch(UsersRequests.AddUser(handle))
     }
 
     override fun onResume() {

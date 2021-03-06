@@ -11,14 +11,6 @@ import UIKit
 
 enum UserItem {
     
-    struct LoginItem {
-        
-    }
-    
-    struct VerifyItem {
-        
-    }
-
     struct UserItem {
         let id: Int
         let avatar: String
@@ -47,7 +39,7 @@ enum UserItem {
         }
     }
     
-    case loginItem(LoginItem)
-    case verifyItem(VerifyItem)
+    case loginItem
+    case verifyItem
     case userItem(UserItem)
 }

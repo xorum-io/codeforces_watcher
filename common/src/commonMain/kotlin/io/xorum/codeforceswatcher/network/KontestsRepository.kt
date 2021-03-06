@@ -10,7 +10,7 @@ import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.http.URLProtocol
-import io.xorum.codeforceswatcher.network.responses.ContestResponse
+import io.xorum.codeforceswatcher.network.responses.kontests.ContestResponse
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.util.stringify
 

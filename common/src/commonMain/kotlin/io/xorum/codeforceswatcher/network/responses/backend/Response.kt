@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.network.responses
+package io.xorum.codeforceswatcher.network.responses.backend
 
 sealed class Response<T> {
 

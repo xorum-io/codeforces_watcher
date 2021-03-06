@@ -5,7 +5,7 @@ import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.features.users.colorTextByUserRank
 import com.bogdan.codeforceswatcher.features.users.getColorByUserRank
-import io.xorum.codeforceswatcher.network.responses.News
+import io.xorum.codeforceswatcher.features.news.News
 import io.xorum.codeforceswatcher.util.FeedUIModel
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
