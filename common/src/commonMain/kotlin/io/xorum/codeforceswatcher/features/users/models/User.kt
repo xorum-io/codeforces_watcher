@@ -19,6 +19,7 @@ data class User(
         val ratingChanges: List<RatingChange> = listOf(),
         val contribution: Long?
 ) {
+
     companion object {
 
         fun fromDB(dbUser: DbUser): User {

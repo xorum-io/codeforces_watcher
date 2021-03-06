@@ -75,7 +75,7 @@ class UsersRequests {
     class DeleteUser(val user: User) : Request() {
 
         override suspend fun execute() {
-            DatabaseQueries.Users.delete(user.id)
+            DatabaseQueries.Users.delete(user.handle)
         }
     }
 

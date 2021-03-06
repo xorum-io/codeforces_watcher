@@ -30,7 +30,7 @@ SET avatar = ?, rank = ?, rating = ?, maxRating = ?, firstName = ?, lastName = ?
 WHERE handle = ?;
 
 delete:
-DELETE FROM DbUser WHERE id = ?;
+DELETE FROM DbUser WHERE handle = ?;
 
 deleteAll:
 DELETE FROM DbUser;

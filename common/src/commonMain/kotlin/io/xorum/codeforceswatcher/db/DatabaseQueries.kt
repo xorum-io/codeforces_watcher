@@ -77,7 +77,7 @@ internal object DatabaseQueries {
             }
         }
 
-        fun delete(userId: Long) = database.userQueries.delete(userId)
+        fun delete(handle: String) = database.userQueries.delete(handle)
         fun deleteAll() = database.userQueries.deleteAll()
     }
 
