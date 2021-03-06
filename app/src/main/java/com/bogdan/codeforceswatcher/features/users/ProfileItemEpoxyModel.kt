@@ -77,6 +77,8 @@ class ProfileItemEpoxyModel(
             tvMaxRating.text = buildMaxRating(context)
             tvContribution.text = buildContribution()
             tvLastUpdate.text = buildLastUpdate(context)
+
+            ivProfile.borderColor = ContextCompat.getColor(context, getColorByUserRank(rank))
             displayChart(view)
         }
 
