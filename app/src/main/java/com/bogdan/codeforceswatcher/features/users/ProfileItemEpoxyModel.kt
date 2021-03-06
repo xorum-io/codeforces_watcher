@@ -140,7 +140,7 @@ class ProfileItemEpoxyModel(
     ).apply {
         maxRating?.let {
             val startIndex = indexOf(it.toString())
-            val color = getColorByUserRank(rank)
+            val color = getColorByUserRank(maxRank)
             colorSubstring(startIndex, startIndex + it.toString().length, color)
         }
     }

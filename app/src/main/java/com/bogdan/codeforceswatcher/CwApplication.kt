@@ -19,7 +19,6 @@ import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.network.BACKEND_PROD_LINK
 import io.xorum.codeforceswatcher.network.BACKEND_STAGING_LINK
 import io.xorum.codeforceswatcher.network.backendLink
-
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.redux.middlewares.notificationHandler
 import io.xorum.codeforceswatcher.redux.middlewares.toastHandlers

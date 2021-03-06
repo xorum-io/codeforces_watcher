@@ -23,6 +23,8 @@
             android:id="@+id/ivProfile"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width="1dp"
             android:src="@color/black"
             app:layout_constraintEnd_toEndOf="@id/divider"
             app:layout_constraintStart_toStartOf="parent"
