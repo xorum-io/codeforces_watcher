@@ -47,11 +47,6 @@ fun authReducer(action: Action, state: AppState): AuthState {
                     authStage = AuthState.Stage.VERIFIED
             )
         }
-        is AuthRequests.FetchUserAccount.Success -> {
-            newState = newState.copy(
-                    authStage = action.authStage
-            )
-        }
         is AuthRequests.LogOut -> {
             newState = newState.copy(authStage = AuthState.Stage.NOT_SIGNED_IN)
         }

@@ -7,18 +7,19 @@ import kotlinx.serialization.json.Json
 
 @Serializable
 data class User(
-        var id: Long = 0,
+        val id: Long,
         val avatar: String,
-        val rank: String? = null,
-        val maxRank: String? = null,
+        val rank: String?,
+        val maxRank: String?,
         val handle: String,
-        val rating: Int? = null,
-        val maxRating: Int? = null,
-        val firstName: String? = null,
-        val lastName: String? = null,
-        var ratingChanges: List<RatingChange> = listOf(),
-        val contribution: Long? = null
+        val rating: Int?,
+        val maxRating: Int?,
+        val firstName: String?,
+        val lastName: String?,
+        val ratingChanges: List<RatingChange> = listOf(),
+        val contribution: Long?
 ) {
+
     companion object {
 
         fun fromDB(dbUser: DbUser): User {

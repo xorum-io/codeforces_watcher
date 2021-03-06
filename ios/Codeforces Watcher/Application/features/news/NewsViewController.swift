@@ -89,7 +89,6 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
 
     func onNewState(state: Any) {
         let state = state as! NewsState
-        
         var items: [NewsItem] = []
         
         if (state.status == .idle) {

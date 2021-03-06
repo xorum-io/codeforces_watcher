@@ -1,6 +1,6 @@
 package io.xorum.codeforceswatcher.features.news.redux.states
 
-import io.xorum.codeforceswatcher.network.responses.News
+import io.xorum.codeforceswatcher.features.news.News
 import tw.geothings.rekotlin.StateType
 
 data class NewsState(

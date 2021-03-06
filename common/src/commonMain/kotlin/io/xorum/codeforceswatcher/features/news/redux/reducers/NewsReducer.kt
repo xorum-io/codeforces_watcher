@@ -2,7 +2,7 @@ package io.xorum.codeforceswatcher.features.news.redux.reducers
 
 import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
 import io.xorum.codeforceswatcher.features.news.redux.states.NewsState
-import io.xorum.codeforceswatcher.network.responses.News
+import io.xorum.codeforceswatcher.features.news.News
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
 

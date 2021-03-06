@@ -14,15 +14,59 @@ internal object DatabaseQueries {
 
         fun getAll() = database.userQueries.getAll().executeAsList().map { User.fromDB(it) }
 
-        fun insert(user: User): Long {
+        fun get(handle: String) = database.userQueries.getByHandle(handle).executeAsList().map { User.fromDB(it) }.first()
+
+        fun insert(user: User) {
             val serializer = Json(from = Json.Default) { ignoreUnknownKeys = true }
             val ratingChangesJson = serializer.encodeToString(ListSerializer(RatingChange.serializer()), user.ratingChanges)
-            if (user.id == 0L) {
-                database.userQueries.insert(user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank, user.contribution)
-            } else {
-                database.userQueries.update(user.id, user.avatar, user.rank, user.handle, user.rating?.toLong(), user.maxRating?.toLong(), user.firstName, user.lastName, ratingChangesJson, user.maxRank, user.contribution)
+
+            database.userQueries.insert(
+                    user.id,
+                    user.avatar,
+                    user.rank,
+                    user.handle,
+                    user.rating?.toLong(),
+                    user.maxRating?.toLong(),
+                    user.firstName,
+                    user.lastName,
+                    ratingChangesJson,
+                    user.maxRank,
+                    user.contribution
+            )
+        }
+
+        private fun merge(oldUser: User, newUser: User): User {
+            val ratingChanges = (oldUser.ratingChanges + newUser.ratingChanges).distinct().sortedBy { it.ratingUpdateTimeSeconds }
+            return newUser.copy(ratingChanges = ratingChanges)
+        }
+
+        fun update(user: User) {
+            val oldUser = get(user.handle)
+            val mergedUser = merge(oldUser, user)
+            
+            val serializer = Json(from = Json.Default) { ignoreUnknownKeys = true }
+            val ratingChangesJson = serializer.encodeToString(ListSerializer(RatingChange.serializer()), mergedUser.ratingChanges)
+
+            database.userQueries.update(
+                    user.avatar,
+                    user.rank,
+                    user.rating?.toLong(),
+                    user.maxRating?.toLong(),
+                    user.firstName,
+                    user.lastName,
+                    ratingChangesJson,
+                    user.maxRank,
+                    user.contribution,
+                    user.handle
+            )
+        }
+
+        fun update(users: List<User>) {
+            database.userQueries.transaction {
+                users.forEach { user ->
+                    update(user)
+                }
             }
-            return database.userQueries.getIndex().executeAsOne()
         }
 
         fun insert(users: List<User>) {
@@ -33,7 +77,7 @@ internal object DatabaseQueries {
             }
         }
 
-        fun delete(userId: Long) = database.userQueries.delete(userId)
+        fun delete(handle: String) = database.userQueries.delete(handle)
         fun deleteAll() = database.userQueries.deleteAll()
     }
 

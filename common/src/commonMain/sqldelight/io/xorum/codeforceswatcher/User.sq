@@ -1,5 +1,5 @@
 CREATE TABLE DbUser (
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    id INTEGER PRIMARY KEY NOT NULL,
     avatar TEXT NOT NULL,
     rank TEXT,
     handle TEXT NOT NULL,
@@ -15,20 +15,22 @@ CREATE TABLE DbUser (
 getById:
 SELECT * FROM DbUser WHERE id = ?;
 
+getByHandle:
+SELECT * FROM DbUser WHERE handle = ?;
+
 getAll:
 SELECT * FROM DbUser;
 
 insert:
-INSERT OR REPLACE INTO DbUser(avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank, contribution) VALUES(?,?,?,?,?,?,?,?,?,?);
+INSERT INTO DbUser(id, avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank, contribution) VALUES(?,?,?,?,?,?,?,?,?,?,?);
 
 update:
-INSERT OR REPLACE INTO DbUser(id, avatar, rank, handle, rating, maxRating, firstName, lastName, ratingChanges, maxRank, contribution) VALUES(?,?,?,?,?,?,?,?,?,?,?);
-
-getIndex:
-SELECT last_insert_rowid();
+UPDATE DbUser
+SET avatar = ?, rank = ?, rating = ?, maxRating = ?, firstName = ?, lastName = ?, ratingChanges = ?, maxRank = ?, contribution = ?
+WHERE handle = ?;
 
 delete:
-DELETE FROM DbUser WHERE id = ?;
+DELETE FROM DbUser WHERE handle = ?;
 
 deleteAll:
-DELETE FROM DbContest;
+DELETE FROM DbUser;

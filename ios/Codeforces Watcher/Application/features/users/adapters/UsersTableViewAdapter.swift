@@ -13,7 +13,7 @@ import common
 class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
 
     var users: [UserItem] = []
-    var onUserTap: ((Int) -> ())?
+    var onUserTap: ((String) -> ())?
     
     var onLoginTap: () -> () = {}
     var onVerifyTap: () -> () = {}
@@ -58,7 +58,7 @@ class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSourc
         case .verifyItem:
             break
         case .userItem(let item):
-            onUserTap?(item.id)
+            onUserTap?(item.handle)
             break
         }
     }

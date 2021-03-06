@@ -11,7 +11,8 @@ class PersistenceController : StoreSubscriber<AppState> {
             it.skipRepeats { oldState, newState ->
                 oldState.users.sortType == newState.users.sortType &&
                         oldState.problems.isFavourite == newState.problems.isFavourite &&
-                        oldState.contests.filters == newState.contests.filters
+                        oldState.contests.filters == newState.contests.filters &&
+                        oldState.users.userAccount == newState.users.userAccount
             }
         }
     }
@@ -20,5 +21,6 @@ class PersistenceController : StoreSubscriber<AppState> {
         settings.writeSpinnerSortPosition(state.users.sortType.position)
         settings.writeProblemsIsFavourite(state.problems.isFavourite)
         settings.writeContestsFilters(state.contests.filters.map { it.toString() }.toSet())
+        settings.writeUserAccount(state.users.userAccount)
     }
 }

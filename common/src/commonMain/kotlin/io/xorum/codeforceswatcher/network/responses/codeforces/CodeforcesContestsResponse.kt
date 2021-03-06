@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.network.responses
+package io.xorum.codeforceswatcher.network.responses.codeforces
 
 import io.xorum.codeforceswatcher.features.contests.models.Contest
 import kotlinx.serialization.Serializable

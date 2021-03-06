@@ -91,8 +91,7 @@ class UserTableViewCell: UITableViewCell {
         userImage.layer.borderColor = getColorByUserRank(user.rank).cgColor
 
         handleLabel.attributedText = colorTextByUserRank(text: user.handle, rank: user.rank)
-
-        if let rating = user.ratingChanges.last?.newRating {
+        if let rating = user.rating {
             ratingLabel.attributedText = colorTextByUserRank(text: String(rating), rank: user.rank)
         }
 

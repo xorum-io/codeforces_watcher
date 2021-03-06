@@ -36,7 +36,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
     private val epoxyController by lazy { EpoxyController() }
 
     override fun onRefresh() {
-        store.dispatch(UsersRequests.FetchUsers(Source.USER, Locale.getDefault().language))
+        store.dispatch(UsersRequests.FetchUsers(Source.USER))
         analyticsController.logEvent(AnalyticsEvents.USERS_REFRESH)
     }
 
@@ -62,6 +62,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
         epoxyController.data = state.users.users.sort(state.users.sortType).map { UserItem(it) }
 
         adjustSpinnerSortVisibility(state.users.users.isEmpty())
+        swipeRefreshLayout.isEnabled = state.users.users.isNotEmpty() || state.auth.authStage == AuthState.Stage.VERIFIED
 
         if (state.users.addUserStatus == UsersState.Status.DONE) {
             store.dispatch(UsersActions.ClearAddUserState())
@@ -72,7 +73,6 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
         spSort.visibility = if (isUsersListEmpty) View.GONE else View.VISIBLE
         requireActivity().findViewById<TextView>(R.id.tvSortBy).visibility =
                 if (isUsersListEmpty) View.GONE else View.VISIBLE
-        swipeRefreshLayout.isEnabled = !isUsersListEmpty
     }
 
     override fun onCreateView(

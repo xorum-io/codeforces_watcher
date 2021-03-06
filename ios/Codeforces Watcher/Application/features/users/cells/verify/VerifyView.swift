@@ -78,8 +78,6 @@ private extension UIView {
             $0.lineDashPattern = [2,3]
         }
 
-        print(self.frame.height)
-        
         let path = CGMutablePath()
         path.addLines(between: [CGPoint(x: 0, y: 8),
                                 CGPoint(x: 0, y: height - 8)])

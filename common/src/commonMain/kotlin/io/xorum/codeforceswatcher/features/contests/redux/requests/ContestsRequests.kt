@@ -3,7 +3,7 @@ package io.xorum.codeforceswatcher.features.contests.redux.requests
 import com.soywiz.klock.DateTime
 import io.xorum.codeforceswatcher.features.contests.models.Contest
 import io.xorum.codeforceswatcher.features.contests.models.Platform
-import io.xorum.codeforceswatcher.network.responses.ContestResponse
+import io.xorum.codeforceswatcher.network.responses.kontests.ContestResponse
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.defineLang
 import tw.geothings.rekotlin.Action
