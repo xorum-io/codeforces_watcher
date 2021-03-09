@@ -31,7 +31,7 @@ data class UserItemEpoxyModel(
         showLastRatingUpdate(userItem.update, this)
 
         setOnClickListener {
-            context.startActivity(UserActivity.newIntent(context, userItem.id))
+            context.startActivity(UserActivity.newIntent(context, userItem.handle.toString()))
         }
     }
 

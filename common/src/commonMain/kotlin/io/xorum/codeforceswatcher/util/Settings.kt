@@ -6,7 +6,7 @@ lateinit var settings: Settings
 
 interface Settings {
 
-    fun writeUserAccount(userAccount: UserAccount)
+    fun writeUserAccount(userAccount: UserAccount?)
 
     fun readUserAccount(): UserAccount?
 

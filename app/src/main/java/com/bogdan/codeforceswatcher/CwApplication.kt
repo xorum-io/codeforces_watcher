@@ -10,18 +10,20 @@ import com.bogdan.codeforceswatcher.util.Prefs
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import io.xorum.codeforceswatcher.CWDatabase
+import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
 import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
-import io.xorum.codeforceswatcher.network.BACKEND_PROD_LINK
-import io.xorum.codeforceswatcher.network.BACKEND_STAGING_LINK
-import io.xorum.codeforceswatcher.network.backendLink
+import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_PROD_LINK
+import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_STAGING_LINK
+import io.xorum.codeforceswatcher.network.responses.backend.backendLink
 
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.redux.middlewares.notificationHandler
 import io.xorum.codeforceswatcher.redux.middlewares.toastHandlers
+import io.xorum.codeforceswatcher.util.defineLang
 import io.xorum.codeforceswatcher.util.settings
 import java.util.*
 
@@ -45,6 +47,7 @@ class CwApp : Application() {
 
         setBackendLink()
         fetchData()
+        initGetLang()
 
         if (Prefs.get().readAlarm().isEmpty()) {
             startAlarm()
@@ -81,8 +84,14 @@ class CwApp : Application() {
     private fun fetchData() {
         store.dispatch(NewsRequests.FetchNews(false, Locale.getDefault().language))
         store.dispatch(ContestsRequests.FetchContests(false, Locale.getDefault().language))
-        store.dispatch(UsersRequests.FetchUsers(Source.BACKGROUND, Locale.getDefault().language))
+        store.dispatch(UsersRequests.FetchUsers(Source.BACKGROUND))
         store.dispatch(ProblemsRequests.FetchProblems(false))
+    }
+
+    private fun initGetLang() {
+        getLang = {
+            (Locale.getDefault().language).defineLang()
+        }
     }
 
     private fun startAlarm() {

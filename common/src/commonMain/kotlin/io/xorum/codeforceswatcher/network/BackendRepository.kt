@@ -1,29 +1,16 @@
 package io.xorum.codeforceswatcher.network
 
-import io.ktor.client.HttpClient
-import io.ktor.client.features.defaultRequest
-import io.ktor.client.features.json.Json
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.DEFAULT
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
-import io.ktor.client.request.header
 import io.ktor.client.request.parameter
-import io.ktor.http.URLProtocol
 import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.verification.VerificationCodeResponse
-import io.xorum.codeforceswatcher.network.responses.NewsResponse
-import io.xorum.codeforceswatcher.redux.store
-
-const val BACKEND_PROD_LINK = "algoris-me-backend.herokuapp.com"
-const val BACKEND_STAGING_LINK = "algoris-me-backend-staging.herokuapp.com"
-
-lateinit var backendLink: String
+import io.xorum.codeforceswatcher.network.responses.backend.KtorResponseClient
+import io.xorum.codeforceswatcher.network.responses.backend.NewsResponse
 
 internal class BackendRepository {
 
-    private val ktorResponseClient = KtorResponseClient()
+    private val ktorResponseClient
+        get() = KtorResponseClient()
 
     suspend fun getNews(lang: String) =
             ktorResponseClient.get<NewsResponse>(path = "news") {
@@ -48,32 +35,10 @@ internal class BackendRepository {
     suspend fun verifyCodeforcesAccount(handle: String) = ktorResponseClient.post<UserAccount>("user/verify/codeforces") {
         parameter("handle", handle)
     }
-}
 
-internal fun makeBackendApiClient(): HttpClient = HttpClient {
-    defaultRequest {
-        url {
-            host = backendLink
-            protocol = URLProtocol.HTTPS
-            header("token", userToken)
-        }
-    }
-    Json {
-        serializer = KotlinxSerializer(
-            kotlinx.serialization.json.Json(from = kotlinx.serialization.json.Json.Default) {
-                isLenient = true
-                ignoreUnknownKeys = true
-                allowSpecialFloatingPointValues = true
-                useArrayPolymorphism = true
-                encodeDefaults = true
+    suspend fun fetchUsers(handles: String, isAllRatingChangesNeeded: Boolean) =
+            ktorResponseClient.get<List<User>>("users") {
+                parameter("handles", handles)
+                parameter("isAllRatingChangesNeeded", isAllRatingChangesNeeded.toString())
             }
-        )
-    }
-    Logging {
-        logger = Logger.DEFAULT
-        level = LogLevel.INFO
-    }
 }
-
-private val userToken: String?
-    get() = store.state.users.userAccount?.token

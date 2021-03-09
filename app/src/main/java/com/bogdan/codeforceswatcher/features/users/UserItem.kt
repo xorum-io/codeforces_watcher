@@ -17,8 +17,7 @@ data class UserItem(private val user: io.xorum.codeforceswatcher.features.users.
     val avatarLink: String = user.avatar
     var update: Update = Update.NULL
     val handle: SpannableString = colorTextByUserRank(user.handle, user.rank)
-    val rating: SpannableString = colorTextByUserRank(user.rating?.toString()
-            ?: user.ratingChanges.lastOrNull()?.newRating?.toString().orEmpty(), user.rank)
+    val rating: SpannableString = colorTextByUserRank(user.rating?.toString().orEmpty(), user.rank)
     var lastRatingUpdate: String = ""
     var dateOfLastRatingUpdate: String = CwApp.app.getString(R.string.no_rating_update)
     val rankColor: Int = getColorByUserRank(user.rank)
@@ -39,6 +38,9 @@ data class UserItem(private val user: io.xorum.codeforceswatcher.features.users.
         val dateFormat = SimpleDateFormat(CwApp.app.getString(R.string.user_date_format), Locale.getDefault())
         return dateFormat.format(Date(seconds * 1000)).toString()
     }
+
+    // Needed for disable flicking of epoxy model when all ratingChanges fetched
+    override fun toString() = "$avatarLink$update$handle$rating$lastRatingUpdate$dateOfLastRatingUpdate$rankColor"
 }
 
 fun getColorByUserRank(rank: String?) = when (rank) {
@@ -79,7 +81,7 @@ fun getColorByUserRank(rank: String?) = when (rank) {
 
 fun colorTextByUserRank(text: String, rank: String?) = if (listOf("legendary grandmaster", "легендарный гроссмейстер").contains(rank)) {
     val colorText = "<font color=black>${text[0]}</font><font color=red>${
-    text.subSequence(1, text.length)
+        text.subSequence(1, text.length)
     }</font>"
     SpannableString(HtmlCompat.fromHtml(colorText, HtmlCompat.FROM_HTML_MODE_LEGACY))
 } else SpannableString(text).apply {

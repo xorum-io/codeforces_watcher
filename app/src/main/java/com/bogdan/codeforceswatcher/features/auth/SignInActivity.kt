@@ -6,7 +6,6 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.bogdan.codeforceswatcher.CwApp
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
 import com.bogdan.codeforceswatcher.util.AnalyticsController
@@ -84,6 +83,11 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
         val email = ifEmail.editText.text.trim().toString()
         val password = ifPassword.editText.text.toString()
         store.dispatch(AuthRequests.SignIn(email, password))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        store.dispatch(AuthRequests.DestroyStatus)
     }
 
     override fun onNewState(state: AuthState) {

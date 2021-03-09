@@ -17,8 +17,8 @@ class Prefs: Settings {
         return UserAccount.Companion().fromJson(json: json)
     }
     
-    func writeUserAccount(userAccount: UserAccount) {
-        UserDefaults.standard.setValue(userAccount.toJson(), forKey: "userAccount")
+    func writeUserAccount(userAccount: UserAccount?) {
+        UserDefaults.standard.setValue(userAccount?.toJson(), forKey: "userAccount")
     }
   
     func readContestsFilters() -> Set<String> {

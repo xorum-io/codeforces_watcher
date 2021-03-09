@@ -18,7 +18,13 @@ val notificationMiddleware: Middleware<StateType> = { _, _ ->
             when (action) {
                 is UsersRequests.FetchUsers.Success -> {
                     if (action.source == Source.BROADCAST) {
-                        notificationHandler?.handle(action.notificationData)
+                        val notificationData = action.users.mapNotNull {
+                            it.ratingChanges.lastOrNull()?.let { ratingChange ->
+                                val delta = ratingChange.newRating - ratingChange.oldRating
+                                Pair(it.handle, delta)
+                            }
+                        }
+                        notificationHandler?.handle(notificationData)
                     }
                 }
             }

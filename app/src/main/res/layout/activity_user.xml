@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
+
+  <ProgressBar
+      android:id="@+id/spinner"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:elevation="10dp"
+      android:indeterminate="true"
+      android:indeterminateTint="@color/colorAccent"
+      android:indeterminateTintMode="src_atop"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/white"
+      android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,71 +33,71 @@
         android:layout_margin="16dp"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivUserAvatar"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:civ_border_width="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+      <de.hdodenhof.circleimageview.CircleImageView
+          android:id="@+id/ivUserAvatar"
+          android:layout_width="80dp"
+          android:layout_height="80dp"
+          app:civ_border_width="1dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvRank"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Master"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/ivUserAvatar"
-            app:layout_constraintTop_toTopOf="parent" />
+      <TextView
+          android:id="@+id/tvRank"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:textSize="14sp"
+          app:layout_constraintStart_toEndOf="@id/ivUserAvatar"
+          app:layout_constraintTop_toTopOf="parent"
+          tools:text="Master" />
 
-        <TextView
-            android:id="@+id/tvUserHandle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Karavaev1101"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@id/tvRank"
-            app:layout_constraintTop_toBottomOf="@id/tvRank" />
+      <TextView
+          android:id="@+id/tvUserHandle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="18sp"
+          app:layout_constraintStart_toStartOf="@id/tvRank"
+          app:layout_constraintTop_toBottomOf="@id/tvRank"
+          tools:text="Karavaev1101" />
 
-        <ImageView
-            android:id="@+id/ivRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_rating"
-            app:layout_constraintBottom_toTopOf="@id/ivStar"
-            app:layout_constraintStart_toStartOf="@id/ivStar" />
+      <ImageView
+          android:id="@+id/ivRating"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:src="@drawable/ic_rating"
+          app:layout_constraintBottom_toTopOf="@id/ivStar"
+          app:layout_constraintStart_toStartOf="@id/ivStar" />
 
-        <TextView
-            android:id="@+id/tvUserRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/rating"
-            app:layout_constraintBottom_toBottomOf="@id/ivRating"
-            app:layout_constraintStart_toEndOf="@id/ivRating"
-            app:layout_constraintTop_toTopOf="@id/ivRating" />
+      <TextView
+          android:id="@+id/tvUserRating"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="4dp"
+          android:text="@string/rating"
+          app:layout_constraintBottom_toBottomOf="@id/ivRating"
+          app:layout_constraintStart_toEndOf="@id/ivRating"
+          app:layout_constraintTop_toTopOf="@id/ivRating" />
 
-        <ImageView
-            android:id="@+id/ivStar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="6dp"
-            android:src="@drawable/ic_contribution"
-            app:layout_constraintBottom_toBottomOf="@id/ivUserAvatar"
-            app:layout_constraintStart_toEndOf="@id/ivUserAvatar" />
+      <ImageView
+          android:id="@+id/ivStar"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="6dp"
+          android:src="@drawable/ic_contribution"
+          app:layout_constraintBottom_toBottomOf="@id/ivUserAvatar"
+          app:layout_constraintStart_toEndOf="@id/ivUserAvatar" />
 
-        <TextView
-            android:id="@+id/tvContribution"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/contribution"
-            app:layout_constraintBottom_toBottomOf="@id/ivStar"
-            app:layout_constraintStart_toEndOf="@id/ivStar"
-            app:layout_constraintTop_toTopOf="@id/ivStar" />
+      <TextView
+          android:id="@+id/tvContribution"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="4dp"
+          android:text="@string/contribution"
+          app:layout_constraintBottom_toBottomOf="@id/ivStar"
+          app:layout_constraintStart_toEndOf="@id/ivStar"
+          app:layout_constraintTop_toTopOf="@id/ivStar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -98,4 +119,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp" />
-</LinearLayout>
+  </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

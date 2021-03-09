@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.network.responses
+package io.xorum.codeforceswatcher.network.responses.kontests
 
 import com.soywiz.klock.DateFormat
 import com.soywiz.klock.parse
