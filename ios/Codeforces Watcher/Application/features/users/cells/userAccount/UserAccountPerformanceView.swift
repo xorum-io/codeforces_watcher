@@ -10,6 +10,8 @@ import UIKit
 
 class UserAccountPerformanceView: UIView {
     
+    private let smth = UILabel()
+    
     private let contentView = UIView()
 
     private let galacticIcon = UIImageView(image: UIImage(named: "galacticIcon"))
@@ -33,6 +35,13 @@ class UserAccountPerformanceView: UIView {
         $0.font = Font.textSubheading
     }
     
+    struct UIModel {
+        let rating: Int?
+        let maxRating: Int?
+    }
+    
+    private var uiModel: UserAccountPerformanceView.UIModel?
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -51,11 +60,13 @@ class UserAccountPerformanceView: UIView {
 
     private func buildViewTree() {
         addSubview(contentView)
-        [galacticIcon, galacticMasterLabel, formOfLifeLabel, nameLabel, updatingLabel].forEach(contentView.addSubview)
+        [smth, galacticIcon, galacticMasterLabel, formOfLifeLabel, nameLabel, updatingLabel].forEach(contentView.addSubview)
     }
 
     private func setConstraints() {
         contentView.edgesToSuperview()
+        
+        smth.edgesToSuperview(excluding: .bottom)
         
         galacticIcon.run {
             $0.topToSuperview(offset: 16)
@@ -82,5 +93,11 @@ class UserAccountPerformanceView: UIView {
             $0.centerXToSuperview()
             $0.bottomToSuperview(offset: -8)
         }
+    }
+    
+    func bind(_ uiModel: UserAccountPerformanceView.UIModel) {
+        self.uiModel = uiModel
+        
+        smth.text = "\(uiModel.rating)"
     }
 }

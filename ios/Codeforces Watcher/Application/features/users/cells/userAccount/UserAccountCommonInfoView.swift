@@ -10,6 +10,8 @@ import UIKit
 
 class UserAccountCommonInfoView: UIView {
     
+    private let smth = UILabel()
+    
     private let contentView = UIView()
 
     private let galacticIcon = UIImageView(image: UIImage(named: "galacticIcon"))
@@ -33,6 +35,13 @@ class UserAccountCommonInfoView: UIView {
         $0.font = Font.textSubheading
     }
     
+    struct UIModel {
+        let handle: String
+        let rank: String?
+    }
+    
+    private var uiModel: UserAccountCommonInfoView.UIModel?
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -51,11 +60,13 @@ class UserAccountCommonInfoView: UIView {
 
     private func buildViewTree() {
         addSubview(contentView)
-        [galacticIcon, galacticMasterLabel, formOfLifeLabel, nameLabel, updatingLabel].forEach(contentView.addSubview)
+        [smth, galacticIcon, galacticMasterLabel, formOfLifeLabel, nameLabel, updatingLabel].forEach(contentView.addSubview)
     }
 
     private func setConstraints() {
         contentView.edgesToSuperview()
+        
+        smth.edgesToSuperview(excluding: .bottom)
         
         galacticIcon.run {
             $0.topToSuperview(offset: 16)
@@ -83,5 +94,10 @@ class UserAccountCommonInfoView: UIView {
             $0.bottomToSuperview(offset: -8)
         }
     }
+    
+    func bind(_ uiModel: UserAccountCommonInfoView.UIModel) {
+        self.uiModel = uiModel
+        
+        smth.text = uiModel.handle
+    }
 }
-

@@ -39,10 +39,6 @@ class UserAccountTableViewCell: UITableViewCell {
     }
     
     func bind(_ user: UserItem.UserAccountItem) {
-        let uiModel = UserAccountView.UIModel(
-            handle: user.handle,
-            rank: user.rank
-        )
-        userAccountView.bind(uiModel)
+        userAccountView.bind(user)
     }
 }

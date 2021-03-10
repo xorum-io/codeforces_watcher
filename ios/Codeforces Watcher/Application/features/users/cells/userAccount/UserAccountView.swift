@@ -17,12 +17,7 @@ class UserAccountView: UIView {
     
     private let dashedLineView = UIView()
     
-    struct UIModel {
-        let handle: String
-        let rank: String?
-    }
-    
-    private var uiModel: UserAccountView.UIModel? = nil
+    private var user: UserItem.UserAccountItem?
     
     public override init(frame: CGRect) {
 
@@ -64,8 +59,33 @@ class UserAccountView: UIView {
         }
     }
     
-    func bind(_ uiModel: UserAccountView.UIModel) {
-        self.uiModel = uiModel
+    func bind(_ user: UserItem.UserAccountItem) {
+        self.user = user
+        
+        initCommonInfo()
+        initPerformance()
+    }
+    
+    func initCommonInfo() {
+        guard let user = user else { fatalError() }
+    
+        let uiModel = UserAccountCommonInfoView.UIModel(
+            handle: user.handle,
+            rank: user.rank
+        )
+        
+        commonInfoView.bind(uiModel)
+    }
+    
+    func initPerformance() {
+        guard let user = user else { fatalError() }
+    
+        let uiModel = UserAccountPerformanceView.UIModel(
+            rating: user.rating,
+            maxRating: user.maxRating
+        )
+        
+        performanceView.bind(uiModel)
     }
 
     override func layoutSubviews() {
