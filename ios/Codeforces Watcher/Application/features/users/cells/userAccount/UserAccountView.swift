@@ -12,10 +12,8 @@ class UserAccountView: UIView {
 
     private let contentView = CardView()
     
-    private let smth = UILabel()
-    
-    private let galacticMasterView = GalacticMasterView()
-    private let verifyToIdentifyView = VerifyToIdentifyView()
+    private let commonInfoView = UserAccountCommonInfoView()
+    private let performanceView = UserAccountPerformanceView()
     
     private let dashedLineView = UIView()
     
@@ -25,18 +23,6 @@ class UserAccountView: UIView {
     }
     
     private var uiModel: UserAccountView.UIModel? = nil
-    
-//    init(_ uiModel: UserAccountView.UIModel) {
-//        self.uiModel = uiModel
-//
-//        super.init(frame: CGRect.zero)
-//
-//        setupView()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     public override init(frame: CGRect) {
 
@@ -57,24 +43,22 @@ class UserAccountView: UIView {
     private func buildViewTree() {
         addSubview(contentView)
 
-        [smth, galacticMasterView, dashedLineView, verifyToIdentifyView].forEach(contentView.addSubview)
+        [commonInfoView, dashedLineView, performanceView].forEach(contentView.addSubview)
     }
 
     private func setConstraints() {
         contentView.edgesToSuperview()
         
-        smth.edgesToSuperview(excluding: .bottom)
-        
-        galacticMasterView.edgesToSuperview(excluding: .trailing)
+        commonInfoView.edgesToSuperview(excluding: .trailing)
         
         dashedLineView.run {
             $0.width(2)
-            $0.leadingToTrailing(of: galacticMasterView)
+            $0.leadingToTrailing(of: commonInfoView)
             $0.verticalToSuperview()
         }
         
-        verifyToIdentifyView.run {
-            $0.width(to: galacticMasterView)
+        performanceView.run {
+            $0.width(to: commonInfoView)
             $0.edgesToSuperview(excluding: .leading)
             $0.leadingToTrailing(of: dashedLineView)
         }
@@ -82,8 +66,6 @@ class UserAccountView: UIView {
     
     func bind(_ uiModel: UserAccountView.UIModel) {
         self.uiModel = uiModel
-        
-        smth.text = uiModel.handle
     }
 
     override func layoutSubviews() {
