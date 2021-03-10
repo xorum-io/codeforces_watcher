@@ -96,6 +96,8 @@
 		6A9B5CAE25D287A2001FC2CA /* AgreementTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */; };
 		6A9B5CB625D2957A001FC2CA /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9B5CB525D2957A001FC2CA /* CheckboxView.swift */; };
 		6A9E0E2F25C816C90014DCAA /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */; };
+		6AA2EBE125F8B1D100AD4846 /* UserAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EBE025F8B1D100AD4846 /* UserAccountTableViewCell.swift */; };
+		6AA2EBE225F8B1D100AD4846 /* UserAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EBE025F8B1D100AD4846 /* UserAccountTableViewCell.swift */; };
 		6AA344E325D6AFD700C899D9 /* VerifyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA344E225D6AFD700C899D9 /* VerifyTableViewCell.swift */; };
 		6AA344EB25D6B01B00C899D9 /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA344EA25D6B01B00C899D9 /* VerifyView.swift */; };
 		6AA344F025D6B07700C899D9 /* VerifyToIdentifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA344EF25D6B07700C899D9 /* VerifyToIdentifyView.swift */; };
@@ -308,6 +310,7 @@
 		6A9B5CAD25D287A2001FC2CA /* AgreementTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementTextView.swift; sourceTree = "<group>"; };
 		6A9B5CB525D2957A001FC2CA /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		6A9E0E2E25C816C90014DCAA /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		6AA2EBE025F8B1D100AD4846 /* UserAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountTableViewCell.swift; sourceTree = "<group>"; };
 		6AA344E225D6AFD700C899D9 /* VerifyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyTableViewCell.swift; sourceTree = "<group>"; };
 		6AA344EA25D6B01B00C899D9 /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
 		6AA344EF25D6B07700C899D9 /* VerifyToIdentifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyToIdentifyView.swift; sourceTree = "<group>"; };
@@ -706,6 +709,7 @@
 				6AA344E125D6AFBF00C899D9 /* verify */,
 				6A8BDACF25C2B5EF00C63878 /* login */,
 				63EAA0F82445EC9100C234A8 /* UserTableViewCell.swift */,
+				6AA2EBE025F8B1D100AD4846 /* UserAccountTableViewCell.swift */,
 				6A616C2B25DA78D8007F95E0 /* models */,
 			);
 			path = cells;
@@ -1208,6 +1212,7 @@
 				63736F0023CF6557001E9AB9 /* ContestTableViewCell.swift in Sources */,
 				63736F0923CF67FC001E9AB9 /* ContestsTableViewAdapter.swift in Sources */,
 				63966E6A252C797900F3A447 /* FeedbackTableViewCell.swift in Sources */,
+				6AA2EBE125F8B1D100AD4846 /* UserAccountTableViewCell.swift in Sources */,
 				63EAA0F22445AA3100C234A8 /* SubheadingBigLabel.swift in Sources */,
 				6AA344E325D6AFD700C899D9 /* VerifyTableViewCell.swift in Sources */,
 				63B343022449C16100734CC5 /* UIViewController+Extension.swift in Sources */,
@@ -1317,6 +1322,7 @@
 				B14B604025E836200073D091 /* ContestTableViewCell.swift in Sources */,
 				B14B604125E836200073D091 /* ContestsTableViewAdapter.swift in Sources */,
 				B14B604225E836200073D091 /* FeedbackTableViewCell.swift in Sources */,
+				6AA2EBE225F8B1D100AD4846 /* UserAccountTableViewCell.swift in Sources */,
 				B14B604325E836200073D091 /* SubheadingBigLabel.swift in Sources */,
 				B14B604425E836200073D091 /* VerifyTableViewCell.swift in Sources */,
 				B14B604525E836200073D091 /* UIViewController+Extension.swift in Sources */,
