@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.bogdan.codeforceswatcher.features.users.UserActivity">
+    <item
+        android:id="@+id/action_log_out"
+        android:icon="@drawable/ic_log_out"
+        android:title=""
+        app:showAsAction="ifRoom" />
+</menu>
