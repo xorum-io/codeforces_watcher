@@ -35,7 +35,8 @@ import kotlin.properties.Delegates
 
 class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
-    private val handle get() = intent.getStringExtra(HANDLE)
+    private val handle
+        get() = intent.getStringExtra(HANDLE)
     private lateinit var user: User
     private var menuItemId by Delegates.notNull<Int>()
 
@@ -53,7 +54,7 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
         } else {
             R.menu.menu_user_activity_delete
         }
-        // println("Here handle : ${handle}")
+
         store.dispatch(UsersRequests.FetchUser(handle))
     }
 
@@ -163,7 +164,7 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
         private const val HANDLE = "handle"
 
-        fun newIntent(context: Context, handle: String?): Intent {
+        fun newIntent(context: Context, handle: String): Intent {
             val intent = Intent(context, UserActivity::class.java)
             intent.putExtra(HANDLE, handle)
             return intent

@@ -50,7 +50,7 @@ class UsersRequests {
         data class Success(
                 val users: List<User>,
                 val userAccountCfUser: User?,
-                val source: Source,
+                val source: Source
         ) : Action
 
         data class Failure(override val message: Message) : ToastAction
