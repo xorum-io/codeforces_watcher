@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.auth
+package io.xorum.codeforceswatcher.features.auth.redux
 
 import io.xorum.codeforceswatcher.features.verification.VerificationRequests
 import io.xorum.codeforceswatcher.redux.states.AppState

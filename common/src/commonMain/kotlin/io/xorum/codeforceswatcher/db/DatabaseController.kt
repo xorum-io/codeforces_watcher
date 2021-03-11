@@ -1,6 +1,6 @@
 package io.xorum.codeforceswatcher.db
 
-import io.xorum.codeforceswatcher.features.auth.AuthState
+import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.auth.UserAccount
 import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState

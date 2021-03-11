@@ -12,8 +12,8 @@ import com.bogdan.codeforceswatcher.features.auth.SignInActivity
 import com.bogdan.codeforceswatcher.features.auth.VerificationActivity
 import com.bogdan.codeforceswatcher.util.colorSubstring
 import com.squareup.picasso.Picasso
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
-import io.xorum.codeforceswatcher.features.auth.AuthState
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
+import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.auth.UserAccount
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.no_user_card_layout.view.*

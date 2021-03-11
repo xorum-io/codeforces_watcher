@@ -15,8 +15,8 @@ import com.bogdan.codeforceswatcher.components.WebViewActivity
 import com.bogdan.codeforceswatcher.util.disable
 import com.bogdan.codeforceswatcher.util.enable
 import com.bogdan.codeforceswatcher.util.linked
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
-import io.xorum.codeforceswatcher.features.auth.AuthState
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
+import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.redux.toMessage
 import io.xorum.codeforceswatcher.util.Constants.PRIVACY_POLICY_LINK

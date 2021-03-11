@@ -1,6 +1,6 @@
 package io.xorum.codeforceswatcher.redux.middlewares
 
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.redux.Request
 import io.xorum.codeforceswatcher.redux.store
