@@ -21,6 +21,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import io.xorum.codeforceswatcher.features.auth.AuthRequests
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
@@ -30,12 +31,13 @@ import kotlinx.android.synthetic.main.activity_user.*
 import tw.geothings.rekotlin.StoreSubscriber
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.properties.Delegates
 
 class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
-    private val handle
-        get() = intent.getStringExtra(HANDLE)
+    private val handle get() = intent.getStringExtra(HANDLE)
     private lateinit var user: User
+    private var menuItemId by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +48,12 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
         setupChart()
 
+        menuItemId = if (handle == store.state.users.userAccount?.codeforcesUser?.handle) {
+            R.menu.menu_user_activity_log_out
+        } else {
+            R.menu.menu_user_activity_delete
+        }
+        // println("Here handle : ${handle}")
         store.dispatch(UsersRequests.FetchUser(handle))
     }
 
@@ -120,7 +128,7 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_user_activity, menu)
+        menuInflater.inflate(menuItemId, menu)
         return true
     }
 
@@ -137,7 +145,12 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
                         .create()
                         .show()
             }
+            R.id.action_log_out -> {
+                store.dispatch(AuthRequests.LogOut)
+                finish()
+            }
         }
+
         return super.onOptionsItemSelected(item)
     }
 
@@ -150,7 +163,7 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
         private const val HANDLE = "handle"
 
-        fun newIntent(context: Context, handle: String): Intent {
+        fun newIntent(context: Context, handle: String?): Intent {
             val intent = Intent(context, UserActivity::class.java)
             intent.putExtra(HANDLE, handle)
             return intent

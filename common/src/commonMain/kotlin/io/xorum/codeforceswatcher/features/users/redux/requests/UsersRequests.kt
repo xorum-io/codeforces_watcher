@@ -50,23 +50,29 @@ class UsersRequests {
         data class Success(
                 val users: List<User>,
                 val userAccountCfUser: User?,
-                val source: Source
+                val source: Source,
         ) : Action
 
         data class Failure(override val message: Message) : ToastAction
     }
 
-    class FetchUser(val handle: String): Request() {
+    class FetchUser(val handle: String) : Request() {
         override suspend fun execute() {
-            val result = when(val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = true)) {
-                is Response.Success -> {
-                    val user = response.result.first()
-                    DatabaseQueries.Users.update(user)
-                    Success(user)
+            val profileUser = store.state.users.userAccount?.codeforcesUser
+
+            if (handle == profileUser?.handle) {
+                store.dispatch(Success(profileUser))
+            } else {
+                val result = when (val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = true)) {
+                    is Response.Success -> {
+                        val user = response.result.first()
+                        DatabaseQueries.Users.update(user)
+                        Success(user)
+                    }
+                    is Response.Failure -> Success(DatabaseQueries.Users.get(handle))
                 }
-                is Response.Failure -> Success(DatabaseQueries.Users.get(handle))
+                store.dispatch(result)
             }
-            store.dispatch(result)
         }
 
         data class Success(val user: User) : Action
@@ -83,7 +89,8 @@ class UsersRequests {
 
         override suspend fun execute() {
             when (val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = false)) {
-                is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) } ?: store.dispatch(Failure(null.toMessage()))
+                is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) }
+                        ?: store.dispatch(Failure(null.toMessage()))
                 is Response.Failure -> store.dispatch(Failure(response.error.toMessage()))
             }
         }
@@ -106,7 +113,7 @@ class UsersRequests {
         data class Failure(override val message: Message) : ToastAction
     }
 
-    object ClearCurrentUser: Action
+    object ClearCurrentUser : Action
 
     class Destroy : Request() {
 

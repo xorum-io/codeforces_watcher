@@ -58,7 +58,7 @@ class ProfileItemEpoxyModel(
                 noUserLayout.visibility = View.GONE
                 showUserData(view)
                 setOnClickListener {
-                    showLogout(context)
+                    context.startActivity(UserActivity.newIntent(context, userAccount?.codeforcesUser?.handle))
                 }
             }
         }
@@ -81,8 +81,6 @@ class ProfileItemEpoxyModel(
             ivProfile.borderColor = ContextCompat.getColor(context, getColorByUserRank(rank))
             displayChart(view)
         }
-
-        // TODO add redirecting to UserActivity by clicking
     }
 
     private fun buildLastUpdate(context: Context) = userAccount?.codeforcesUser?.ratingChanges?.lastOrNull()?.let { ratingChange ->
