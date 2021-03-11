@@ -7,37 +7,39 @@
 //
 
 import UIKit
+import common
 
 class UserAccountCommonInfoView: UIView {
     
-    private let smth = UILabel()
-    
     private let contentView = UIView()
 
-    private let galacticIcon = UIImageView(image: UIImage(named: "galacticIcon"))
-    private let galacticMasterLabel = UILabel().apply {
-        $0.text = "galactic_master".localized
+    private let avatarImage = CircleImageView().apply {
+        $0.width(48)
+        $0.height(48)
+    }
+    private let rankLabel = UILabel().apply {
         $0.textColor = Palette.colorPrimary
         $0.font = Font.textSubheadingBig
     }
-    private let formOfLifeLabel = UILabel().apply {
-        $0.text = "form_of_life".localized
+    private let handleLabel = UILabel().apply {
         $0.textColor = Palette.colorPrimary
         $0.font = Font.textBody
     }
     private let nameLabel = UILabel().apply {
-        $0.text = "unknown".localized
         $0.font = Font.textSubheadingBig
     }
-    private let updatingLabel = UILabel().apply {
-        $0.text = "never_updated".localized
+    private let lastUpdateLabel = UILabel().apply {
         $0.textColor = Palette.gray
         $0.font = Font.textSubheading
     }
     
     struct UIModel {
-        let handle: String
+        let avatar: String
         let rank: String?
+        let handle: String
+        let firstName: String?
+        let lastName: String?
+        let lastUpdate: Int64?
     }
     
     private var uiModel: UserAccountCommonInfoView.UIModel?
@@ -60,35 +62,33 @@ class UserAccountCommonInfoView: UIView {
 
     private func buildViewTree() {
         addSubview(contentView)
-        [smth, galacticIcon, galacticMasterLabel, formOfLifeLabel, nameLabel, updatingLabel].forEach(contentView.addSubview)
+        [avatarImage, rankLabel, handleLabel, nameLabel, lastUpdateLabel].forEach(contentView.addSubview)
     }
 
     private func setConstraints() {
         contentView.edgesToSuperview()
         
-        smth.edgesToSuperview(excluding: .bottom)
-        
-        galacticIcon.run {
+        avatarImage.run {
             $0.topToSuperview(offset: 16)
             $0.centerXToSuperview()
         }
         
-        galacticMasterLabel.run {
-            $0.topToBottom(of: galacticIcon, offset: 8)
+        rankLabel.run {
+            $0.topToBottom(of: avatarImage, offset: 8)
             $0.centerXToSuperview()
         }
         
-        formOfLifeLabel.run {
-            $0.topToBottom(of: galacticMasterLabel, offset: 4)
+        handleLabel.run {
+            $0.topToBottom(of: rankLabel, offset: 4)
             $0.centerXToSuperview()
         }
         
         nameLabel.run {
-            $0.topToBottom(of: formOfLifeLabel, offset: 8)
+            $0.topToBottom(of: handleLabel, offset: 8)
             $0.centerXToSuperview()
         }
         
-        updatingLabel.run {
+        lastUpdateLabel.run {
             $0.topToBottom(of: nameLabel, offset: 12)
             $0.centerXToSuperview()
             $0.bottomToSuperview(offset: -8)
@@ -98,6 +98,51 @@ class UserAccountCommonInfoView: UIView {
     func bind(_ uiModel: UserAccountCommonInfoView.UIModel) {
         self.uiModel = uiModel
         
-        smth.text = uiModel.handle
+        let avatar = LinkValidatorKt.avatar(avatarLink: uiModel.avatar)
+        avatarImage.run {
+            $0.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
+            $0.layer.borderColor = getColorByUserRank(uiModel.rank).cgColor
+        }
+        
+        rankLabel.attributedText = uiModel.rankText
+        handleLabel.attributedText = uiModel.handleText
+        nameLabel.text = uiModel.nameText
+        lastUpdateLabel.text = uiModel.lastUpdateText
+    }
+}
+
+fileprivate extension UserAccountCommonInfoView.UIModel {
+    
+    private var none: NSAttributedString {
+        return NSAttributedString(string: "None".localized)
+    }
+    
+    var rankText: NSAttributedString {
+        if let rank = rank {
+            return colorTextByUserRank(text: rank.capitalized, rank: rank)
+        } else {
+            return none
+        }
+    }
+    
+    var handleText: NSAttributedString {
+        return colorTextByUserRank(text: handle, rank: rank)
+    }
+    
+    var nameText: String {
+        let name = "\(firstName ?? "") \(lastName ?? "")"
+        if name != "" {
+            return name
+        } else {
+            return "None".localized
+        }
+    }
+
+    var lastUpdateText: String {
+        if let lastUpdate = lastUpdate {
+            return "rating_updated_on".localizedFormat(args: Double(lastUpdate).secondsToUserUpdateDateString())
+        } else {
+            return "None".localized
+        }
     }
 }

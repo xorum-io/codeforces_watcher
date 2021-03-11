@@ -70,8 +70,12 @@ class UserAccountView: UIView {
         guard let user = user else { fatalError() }
     
         let uiModel = UserAccountCommonInfoView.UIModel(
+            avatar: user.avatar,
+            rank: user.rank,
             handle: user.handle,
-            rank: user.rank
+            firstName: user.firstName,
+            lastName: user.lastName,
+            lastUpdate: user.ratingChanges.last?.ratingUpdateTimeSeconds
         )
         
         commonInfoView.bind(uiModel)
