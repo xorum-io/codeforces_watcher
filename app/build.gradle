@@ -76,6 +76,7 @@ allprojects {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation platform('com.google.firebase:firebase-bom:26.6.0')
     // use 1.0.2 version because in 1.1.0 version WebView crashes in API 21
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
@@ -90,6 +91,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
+    implementation 'com.google.firebase:firebase-auth'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     implementation 'androidx.cardview:cardview:1.0.0'
