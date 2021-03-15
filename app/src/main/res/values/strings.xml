@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name" translatable="false">Codeforces WatchR</string>
   <string name="last_rating_update">Last rating update: %1$s</string>
+  <string name="updated_on">Updated on %1$s</string>
   <string name="no_rating_update">No rating update</string>
   <string name="none">None</string>
   <string name="no_connection">No connection</string>
@@ -70,6 +71,9 @@ Download it now on Google Play - https://play.google.com/store/apps/details?id=c
   <string name="ok">OK</string>
 
   <string name="rating">Rating: %1$s (max. %2$s)</string>
+  <string name="rating_only">Rating: %1$s</string>
+  <string name="max_rating_only">Max Rating: %1$s</string>
+
   <string name="contribution">Contribution: %1$s</string>
 
   <string name="see_all_comments">See all comments</string>
