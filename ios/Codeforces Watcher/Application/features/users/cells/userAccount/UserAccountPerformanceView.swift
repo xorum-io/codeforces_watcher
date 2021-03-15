@@ -35,7 +35,9 @@ class UserAccountPerformanceView: UIView {
         $0.textColor = Palette.darkGray
     }
     
-    private let lineChartView = LineChartView()
+    private let lineChartView = LineChartView().apply {
+        $0.isUserInteractionEnabled = false
+    }
     
     struct UIModel {
         let rating: Int?
@@ -59,21 +61,31 @@ class UserAccountPerformanceView: UIView {
     }
 
     private func setupView() {
-        setupChart()
+        setupLineChart()
         
         buildViewTree()
         setConstraints()
     }
     
-    private func setupChart() {
+    private func setupLineChart() {
         lineChartView.run {
-            $0.rightAxis.enabled = false
+            $0.scaleXEnabled = false
+            $0.scaleYEnabled = false
+            $0.dragEnabled = false
             $0.legend.enabled = false
-            $0.xAxis.run {
-                $0.labelPosition = .bottom
-                $0.valueFormatter = xAxisFormatter()
-                $0.labelCount = 3
+            
+            $0.leftAxis.drawLabelsEnabled = false
+            $0.rightAxis.run {
+                $0.drawLabelsEnabled = false
+                $0.drawAxisLineEnabled = false
             }
+            $0.xAxis.run {
+                $0.drawLabelsEnabled = false
+                $0.drawAxisLineEnabled = false
+                $0.labelCount = 5
+            }
+            
+            $0.minOffset = 3
         }
     }
     
@@ -163,9 +175,9 @@ class UserAccountPerformanceView: UIView {
         }
         
         let dataSet = LineChartDataSet(entries: dataEntries).apply {
-            $0.lineWidth = 1.3
-            $0.circleRadius = 3.5
-            $0.circleHoleRadius = 2
+            $0.lineWidth = 1.5
+            $0.circleRadius = 2.5
+            $0.circleHoleRadius = 1.5
             $0.circleHoleColor = Palette.white
         }
         
