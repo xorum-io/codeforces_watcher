@@ -114,3 +114,5 @@
 "verify_change_it_back" = "Right after successful login you can change it back.";
 
 "rating_updated_on" = "Updated on %@";
+"rating" = "Rating: %@";
+"max_rating" = "Max rating: %@";

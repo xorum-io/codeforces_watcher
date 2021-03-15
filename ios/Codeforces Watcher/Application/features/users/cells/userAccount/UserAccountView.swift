@@ -66,7 +66,7 @@ class UserAccountView: UIView {
         initPerformance()
     }
     
-    func initCommonInfo() {
+    private func initCommonInfo() {
         guard let user = user else { fatalError() }
     
         let uiModel = UserAccountCommonInfoView.UIModel(
@@ -81,12 +81,16 @@ class UserAccountView: UIView {
         commonInfoView.bind(uiModel)
     }
     
-    func initPerformance() {
+    private func initPerformance() {
         guard let user = user else { fatalError() }
     
         let uiModel = UserAccountPerformanceView.UIModel(
             rating: user.rating,
-            maxRating: user.maxRating
+            maxRating: user.maxRating,
+            contribution: user.contribution,
+            ratingChanges: user.ratingChanges,
+            rank: user.rank,
+            maxRank: user.maxRank
         )
         
         performanceView.bind(uiModel)
