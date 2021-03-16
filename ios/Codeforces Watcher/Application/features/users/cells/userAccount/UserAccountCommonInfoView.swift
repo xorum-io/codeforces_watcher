@@ -13,10 +13,7 @@ class UserAccountCommonInfoView: UIView {
     
     private let contentView = UIView()
 
-    private let avatarImage = CircleImageView().apply {
-        $0.width(48)
-        $0.height(48)
-    }
+    private let avatarImage = CircleImageView()
     private let rankLabel = UILabel().apply {
         $0.textColor = Palette.colorPrimary
         $0.font = Font.textSubheadingBig
@@ -69,6 +66,8 @@ class UserAccountCommonInfoView: UIView {
         contentView.edgesToSuperview()
         
         avatarImage.run {
+            $0.width(48)
+            $0.height(48)
             $0.topToSuperview(offset: 16)
             $0.centerXToSuperview()
         }
@@ -98,9 +97,8 @@ class UserAccountCommonInfoView: UIView {
     func bind(_ uiModel: UserAccountCommonInfoView.UIModel) {
         self.uiModel = uiModel
         
-        let avatar = LinkValidatorKt.avatar(avatarLink: uiModel.avatar)
         avatarImage.run {
-            $0.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
+            $0.sd_setImage(with: URL(string: uiModel.avatar), placeholderImage: noImage)
             $0.layer.borderColor = getColorByUserRank(uiModel.rank).cgColor
         }
         

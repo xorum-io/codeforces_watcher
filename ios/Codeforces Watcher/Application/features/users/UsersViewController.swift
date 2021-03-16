@@ -273,8 +273,8 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         case .signedIn:
             tableAdapter.users = [.verifyItem] + sortedUsers.mapToItems()
         case .verified:
-            guard let userAccount = userState.userAccount?.codeforcesUser else { fatalError() }
-            tableAdapter.users = [.userAccount(UserItem.UserAccountItem(userAccount))] + sortedUsers.mapToItems()
+            guard let codeforcesUser = userState.userAccount?.codeforcesUser else { fatalError() }
+            tableAdapter.users = [.userAccount(UserItem.UserAccountItem(codeforcesUser))] + sortedUsers.mapToItems()
         default:
             break
         }

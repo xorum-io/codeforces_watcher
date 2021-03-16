@@ -160,10 +160,10 @@ class UserAccountPerformanceView: UIView {
         maxRatingLabel.attributedText = uiModel.maxRatingText
         contributionLabel.attributedText = uiModel.contributionText
         
-        displayChart()
+        setChartData()
     }
     
-    private func displayChart() {
+    private func setChartData() {
         guard let ratingChanges = uiModel?.ratingChanges else { return }
         
         let dataEntries = ratingChanges.map {
