@@ -19,7 +19,6 @@ internal object DatabaseQueries {
         fun insert(user: User) {
             val serializer = Json(from = Json.Default) { ignoreUnknownKeys = true }
             val ratingChangesJson = serializer.encodeToString(ListSerializer(RatingChange.serializer()), user.ratingChanges)
-
             database.userQueries.insert(
                     user.id,
                     user.avatar,

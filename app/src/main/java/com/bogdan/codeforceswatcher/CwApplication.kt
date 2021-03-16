@@ -2,6 +2,7 @@ package com.bogdan.codeforceswatcher
 
 import android.app.Application
 import android.content.Intent
+import com.bogdan.codeforceswatcher.features.users.FirebaseController
 import com.bogdan.codeforceswatcher.handlers.AndroidMessageHandler
 import com.bogdan.codeforceswatcher.handlers.AndroidNotificationHandler
 import com.bogdan.codeforceswatcher.receiver.StartAlarm
@@ -10,11 +11,10 @@ import com.bogdan.codeforceswatcher.util.Prefs
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import io.xorum.codeforceswatcher.CWDatabase
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.news.redux.requests.NewsRequests
 import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
-import io.xorum.codeforceswatcher.features.users.redux.requests.Source
-import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_PROD_LINK
 import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_STAGING_LINK
 import io.xorum.codeforceswatcher.network.responses.backend.backendLink
@@ -38,6 +38,7 @@ class CwApp : Application() {
         initToastHandler()
         initNotificationHandler()
         initAnalyticsController()
+        initFirebaseController()
 
         databaseController.onAppCreated()
         persistenceController.onAppCreated()
@@ -47,6 +48,7 @@ class CwApp : Application() {
         setBackendLink()
         fetchData()
         initGetLang()
+        fetchUserToken()
 
         if (Prefs.get().readAlarm().isEmpty()) {
             startAlarm()
@@ -74,6 +76,10 @@ class CwApp : Application() {
         analyticsController = AnalyticsController()
     }
 
+    private fun initFirebaseController() {
+        firebaseController = FirebaseController()
+    }
+
     private fun setBackendLink() = if (BuildConfig.DEBUG) {
         backendLink = BACKEND_STAGING_LINK
     } else {
@@ -83,7 +89,6 @@ class CwApp : Application() {
     private fun fetchData() {
         store.dispatch(NewsRequests.FetchNews(false, Locale.getDefault().language))
         store.dispatch(ContestsRequests.FetchContests(false, Locale.getDefault().language))
-        store.dispatch(UsersRequests.FetchUsers(Source.BACKGROUND))
         store.dispatch(ProblemsRequests.FetchProblems(false))
     }
 
@@ -92,6 +97,8 @@ class CwApp : Application() {
             (Locale.getDefault().language).defineLang()
         }
     }
+
+    private fun fetchUserToken() = store.dispatch(AuthRequests.FetchUserToken())
 
     private fun startAlarm() {
         val intent = Intent(this, StartAlarm::class.java)

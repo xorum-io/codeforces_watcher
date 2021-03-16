@@ -6,11 +6,12 @@ import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.verification.VerificationCodeResponse
 import io.xorum.codeforceswatcher.network.responses.backend.KtorResponseClient
 import io.xorum.codeforceswatcher.network.responses.backend.NewsResponse
+import io.xorum.codeforceswatcher.redux.store
 
 internal class BackendRepository {
 
     private val ktorResponseClient
-        get() = KtorResponseClient()
+        get() = KtorResponseClient(token)
 
     suspend fun getNews(lang: String) =
             ktorResponseClient.get<NewsResponse>(path = "news") {
@@ -18,27 +19,12 @@ internal class BackendRepository {
                 parameter("version", "v2")
             }
 
-    suspend fun signIn(email: String, password: String) =
-            ktorResponseClient.post<UserAccount>("user/sign-in") {
-                parameter("email", email)
-                parameter("password", password)
-            }
-
-    suspend fun signUp(email: String, password: String) =
-            ktorResponseClient.post<UserAccount>("user/sign-up") {
-                parameter("email", email)
-                parameter("password", password)
-            }
-
-    suspend fun fetchCodeforcesVerificationCode() = ktorResponseClient.put<VerificationCodeResponse>("user/generate-verify-code/codeforces")
-
-    suspend fun verifyCodeforcesAccount(handle: String) = ktorResponseClient.post<UserAccount>("user/verify/codeforces") {
-        parameter("handle", handle)
-    }
-
     suspend fun fetchUsers(handles: String, isAllRatingChangesNeeded: Boolean) =
             ktorResponseClient.get<List<User>>("users") {
                 parameter("handles", handles)
                 parameter("isAllRatingChangesNeeded", isAllRatingChangesNeeded.toString())
             }
+
+    private val token: String
+        get() = store.state.auth.token.orEmpty()
 }

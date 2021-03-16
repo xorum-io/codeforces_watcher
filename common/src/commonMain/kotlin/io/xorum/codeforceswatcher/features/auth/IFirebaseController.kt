@@ -7,4 +7,6 @@ interface IFirebaseController {
     fun signUp(email: String, password: String, callback: (String?, Exception?) -> Unit)
 
     fun fetchToken(callback: (String?, Exception?) -> Unit)
+
+    fun logOut()
 }

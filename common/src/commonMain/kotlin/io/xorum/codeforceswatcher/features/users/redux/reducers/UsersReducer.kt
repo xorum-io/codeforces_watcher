@@ -59,14 +59,36 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         is UsersActions.ClearAddUserState -> {
             newState = newState.copy(addUserStatus = UsersState.Status.IDLE)
         }
-        is AuthRequests.SignIn.Success -> {
+        is AuthRequests.FetchUserToken -> {
             newState = newState.copy(
-                    userAccount = action.userAccount
+                    status = UsersState.Status.PENDING
             )
         }
-        is AuthRequests.SignUp.Success -> {
+        is AuthRequests.FetchUserToken.Success -> {
             newState = newState.copy(
-                    userAccount = action.userAccount
+                    status = UsersState.Status.IDLE
+            )
+        }
+        is AuthRequests.FetchUserToken.Failure -> {
+            newState = newState.copy(
+                    status = UsersState.Status.IDLE
+            )
+        }
+        is AuthRequests.FetchUserData -> {
+            newState = newState.copy(
+                    status = UsersState.Status.PENDING
+            )
+        }
+        is AuthRequests.FetchUserData.Success -> {
+            newState = newState.copy(
+                    userAccount = action.userAccount,
+                    users = action.users,
+                    status = UsersState.Status.IDLE
+            )
+        }
+        is AuthRequests.FetchUserData.Failure -> {
+            newState = newState.copy(
+                    status = UsersState.Status.IDLE
             )
         }
         is VerificationRequests.Verify.Success -> {

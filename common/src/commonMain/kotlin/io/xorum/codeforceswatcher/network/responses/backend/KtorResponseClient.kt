@@ -11,7 +11,6 @@ import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.readUTF8Line
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.getLang
-import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.stringify
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -21,7 +20,9 @@ const val BACKEND_STAGING_LINK = "algoris-me-backend-staging.herokuapp.com"
 
 lateinit var backendLink: String
 
-internal class KtorResponseClient {
+internal class KtorResponseClient(
+        private val token: String
+) {
 
     val backendApiClient = makeBackendApiClient()
 
@@ -50,7 +51,6 @@ internal class KtorResponseClient {
             Response.Failure(getError(clientRequestException.response.content)?.error)
         } catch (e: Throwable) {
             analyticsController.logError(e.stringify())
-
             Response.Failure(null)
         }
     }
@@ -83,7 +83,7 @@ internal class KtorResponseClient {
             url {
                 host = backendLink
                 protocol = URLProtocol.HTTPS
-                header("token", userToken)
+                header("Authorization", "Bearer $token")
                 header("lang", getLang())
             }
         }
@@ -104,6 +104,3 @@ internal class KtorResponseClient {
         }
     }
 }
-
-private val userToken: String?
-    get() = store.state.users.userAccount?.token
