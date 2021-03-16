@@ -18,21 +18,14 @@ class UsersRequests {
 
         override suspend fun execute() {
             val users = store.state.users.users
-            val allUsersResponse = backendRepository.fetchUsers(getHandles(users), isAllRatingChangesNeeded = false)
-            val userAccountCfUserResponse = backendRepository.fetchUsers(
-                    getHandles(listOfNotNull(store.state.users.userAccount?.codeforcesUser)),
-                    isAllRatingChangesNeeded = true
-            )
 
-            val result = when {
-                allUsersResponse is Response.Failure -> Failure(allUsersResponse.error.toMessage())
-                userAccountCfUserResponse is Response.Failure -> Failure(userAccountCfUserResponse.error.toMessage())
-                allUsersResponse is Response.Success && userAccountCfUserResponse is Response.Success -> {
-                    saveUsers(allUsersResponse.result)
+            val result = when (val response = backendRepository.fetchUsers(getHandles(users), isAllRatingChangesNeeded = false)) {
+                is Response.Success -> {
+                    saveUsers(response.result)
                     val newUsers = DatabaseQueries.Users.getAll()
-                    Success(newUsers, userAccountCfUserResponse.result.firstOrNull(), source)
+                    Success(newUsers, source)
                 }
-                else -> throw IllegalStateException()
+                is Response.Failure -> Failure(response.error.toMessage())
             }
             store.dispatch(result)
         }
@@ -49,16 +42,15 @@ class UsersRequests {
 
         data class Success(
                 val users: List<User>,
-                val userAccountCfUser: User?,
                 val source: Source
         ) : Action
 
         data class Failure(override val message: Message) : ToastAction
     }
 
-    class FetchUser(val handle: String): Request() {
+    class FetchUser(val handle: String) : Request() {
         override suspend fun execute() {
-            val result = when(val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = true)) {
+            val result = when (val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = true)) {
                 is Response.Success -> {
                     val user = response.result.first()
                     DatabaseQueries.Users.update(user)
@@ -83,7 +75,8 @@ class UsersRequests {
 
         override suspend fun execute() {
             when (val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = false)) {
-                is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) } ?: store.dispatch(Failure(null.toMessage()))
+                is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) }
+                        ?: store.dispatch(Failure(null.toMessage()))
                 is Response.Failure -> store.dispatch(Failure(response.error.toMessage()))
             }
         }
@@ -106,7 +99,7 @@ class UsersRequests {
         data class Failure(override val message: Message) : ToastAction
     }
 
-    object ClearCurrentUser: Action
+    object ClearCurrentUser : Action
 
     class Destroy : Request() {
 
