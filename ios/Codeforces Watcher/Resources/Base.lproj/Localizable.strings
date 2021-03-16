@@ -112,3 +112,7 @@
 
 "verify_instruction" = "To verify that account belongs to you, please, change your English\n”Last name” in your <bold>Profile - Settings - Social</bold> to this value:";
 "verify_change_it_back" = "Right after successful login you can change it back.";
+
+"rating_updated_on" = "Updated on %@";
+"rating" = "Rating: %@";
+"max_rating" = "Max rating: %@";
