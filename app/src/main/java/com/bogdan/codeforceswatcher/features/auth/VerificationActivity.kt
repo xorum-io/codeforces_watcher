@@ -79,7 +79,7 @@ class VerificationActivity : AppCompatActivity(), StoreSubscriber<VerificationSt
             return
         }
 
-        if (state.status == VerificationState.Status.PENDING || state.verificationCode.isNullOrEmpty()) {
+        if (state.status == VerificationState.Status.PENDING) {
             spinner.visibility = View.VISIBLE
             btnVerify.disable()
         } else {
