@@ -34,7 +34,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
     private val epoxyController by lazy { EpoxyController() }
 
     override fun onRefresh() {
-        store.dispatch(AuthRequests.FetchUserToken())
+        store.dispatch(AuthRequests.FetchFirebaseUserToken())
         analyticsController.logEvent(AnalyticsEvents.USERS_REFRESH)
     }
 

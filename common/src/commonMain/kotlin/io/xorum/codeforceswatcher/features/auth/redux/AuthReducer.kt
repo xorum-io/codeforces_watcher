@@ -38,7 +38,7 @@ fun authReducer(action: Action, state: AppState): AuthState {
                     signUpStatus = AuthState.Status.IDLE
             )
         }
-        is AuthRequests.FetchUserToken.Success -> {
+        is AuthRequests.FetchFirebaseUserToken.Success -> {
             newState = newState.copy(token = action.token)
         }
         is AuthRequests.UpdateAuthStage -> {

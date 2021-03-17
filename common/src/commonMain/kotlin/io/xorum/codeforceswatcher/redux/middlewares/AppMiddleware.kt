@@ -42,8 +42,8 @@ private fun fetchUsersData(action: Action) = scope.launch {
     val request = when (action) {
         is AuthRequests.SignIn.Success -> UsersRequests.FetchUsersData(action.token, emptyList(), Source.BACKGROUND)
         is AuthRequests.SignUp.Success -> UsersRequests.FetchUsersData(action.token, store.state.users.users, Source.BACKGROUND)
-        is AuthRequests.FetchUserToken.Success -> UsersRequests.FetchUsersData(action.token, emptyList(), Source.BACKGROUND)
-        is AuthRequests.FetchUserToken.Failure -> UsersRequests.FetchUsersData(token = null, store.state.users.users, Source.BACKGROUND)
+        is AuthRequests.FetchFirebaseUserToken.Success -> UsersRequests.FetchUsersData(action.token, emptyList(), Source.BACKGROUND)
+        is AuthRequests.FetchFirebaseUserToken.Failure -> UsersRequests.FetchUsersData(token = null, store.state.users.users, Source.BACKGROUND)
         else -> return@launch
     }
     store.dispatch(request)

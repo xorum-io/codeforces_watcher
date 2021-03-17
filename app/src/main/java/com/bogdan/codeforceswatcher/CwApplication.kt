@@ -98,7 +98,7 @@ class CwApp : Application() {
         }
     }
 
-    private fun fetchUserToken() = store.dispatch(AuthRequests.FetchUserToken())
+    private fun fetchUserToken() = store.dispatch(AuthRequests.FetchFirebaseUserToken())
 
     private fun startAlarm() {
         val intent = Intent(this, StartAlarm::class.java)

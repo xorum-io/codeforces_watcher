@@ -5,7 +5,7 @@ import tw.geothings.rekotlin.Action
 
 class AuthRequests {
 
-    class FetchUserToken : Request() {
+    class FetchFirebaseUserToken : Request() {
 
         override suspend fun execute() = firebaseController.fetchToken { token, e ->
             token?.let {
