@@ -1,7 +1,7 @@
 package io.xorum.codeforceswatcher.features.users.redux.requests
 
 import io.xorum.codeforceswatcher.db.DatabaseQueries
-import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.users.UsersRepository
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.network.responses.backend.Response
@@ -56,7 +56,7 @@ class UsersRequests {
 
     class FetchUser(val handle: String) : Request() {
         override suspend fun execute() {
-            val result = when (val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = true)) {
+            val result = when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = true)) {
                 is Response.Success -> {
                     val user = response.result.first()
                     DatabaseQueries.Users.update(user)
@@ -80,7 +80,7 @@ class UsersRequests {
     class AddUser(private val handle: String) : Request() {
 
         override suspend fun execute() {
-            when (val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = false)) {
+            when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = false)) {
                 is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) }
                         ?: store.dispatch(Failure(null.toMessage()))
                 is Response.Failure -> store.dispatch(Failure(response.error.toMessage()))

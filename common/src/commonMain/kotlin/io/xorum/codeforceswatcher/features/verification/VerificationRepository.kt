@@ -1,8 +1,8 @@
-package io.xorum.codeforceswatcher.network
+package io.xorum.codeforceswatcher.features.verification
 
 import io.ktor.client.request.*
-import io.xorum.codeforceswatcher.features.auth.UserAccount
-import io.xorum.codeforceswatcher.features.verification.VerificationCodeResponse
+import io.xorum.codeforceswatcher.features.auth.models.UserAccount
+import io.xorum.codeforceswatcher.features.verification.response.VerificationCodeResponse
 import io.xorum.codeforceswatcher.network.responses.backend.KtorResponseClient
 
 internal class VerificationRepository(

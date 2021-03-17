@@ -5,7 +5,7 @@ import io.xorum.codeforceswatcher.features.news.redux.states.NewsState
 import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
-import io.xorum.codeforceswatcher.features.verification.VerificationState
+import io.xorum.codeforceswatcher.features.verification.redux.VerificationState
 import tw.geothings.rekotlin.StateType
 
 data class AppState(

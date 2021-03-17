@@ -1,11 +1,11 @@
 package io.xorum.codeforceswatcher.redux.middlewares
 
-import io.xorum.codeforceswatcher.features.auth.getAuthStage
+import io.xorum.codeforceswatcher.features.auth.models.getAuthStage
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
-import io.xorum.codeforceswatcher.features.verification.VerificationRequests
+import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
 import io.xorum.codeforceswatcher.redux.Request
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.coroutines.MainScope

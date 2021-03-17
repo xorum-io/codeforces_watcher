@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.bogdan.codeforceswatcher.CwApp
 import com.google.gson.Gson
-import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.util.Settings
 

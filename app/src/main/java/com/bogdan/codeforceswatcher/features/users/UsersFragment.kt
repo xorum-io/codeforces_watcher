@@ -14,7 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyController
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
-import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
