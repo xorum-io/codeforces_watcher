@@ -44,6 +44,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
         switch (state.signInStatus) {
         case .done:
             hideLoading()
+            store.dispatch(action: AuthRequests.DestroyStatus())
             closeViewController()
         case .pending:
             showLoading()

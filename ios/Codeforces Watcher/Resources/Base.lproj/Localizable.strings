@@ -116,3 +116,7 @@
 "rating_updated_on" = "Updated on %@";
 "rating" = "Rating: %@";
 "max_rating" = "Max rating: %@";
+
+"log_out" = "Log out";
+"log_out_ask" = "Do you want to log out?";
+"stay_logged_in" = "Stay logged in";

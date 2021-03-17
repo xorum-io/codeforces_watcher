@@ -13,11 +13,14 @@ import common
 class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
 
     var users: [UserItem] = []
+    
     var onUserTap: ((String) -> ()) = {_ in }
     var onUserAccountTap: ((String) -> ()) = {_ in }
     
     var onLoginTap: () -> () = {}
+    
     var onVerifyTap: () -> () = {}
+    var onVerifyCellTap: () -> () = {}
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -61,7 +64,7 @@ class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSourc
         case .loginItem:
             break
         case .verifyItem:
-            break
+            onVerifyCellTap()
         case .userItem(let item):
             onUserTap(item.handle)
         case .userAccount(let item):

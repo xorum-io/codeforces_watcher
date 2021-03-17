@@ -181,6 +181,9 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.onVerifyTap = {
                 self.presentModal(VerifyViewController())
             }
+            $0.onVerifyCellTap = {
+                self.showLogOutAlert()
+            }
         }
 
         [LoginTableViewCell.self, VerifyTableViewCell.self, UserTableViewCell.self, UserAccountTableViewCell.self, NoItemsTableViewCell.self].forEach(tableView.registerForReuse(cellType:))
@@ -189,6 +192,24 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.addTarget(self, action: #selector(refreshUsers), for: .valueChanged)
             $0.tintColor = Palette.colorPrimaryDark
         }
+    }
+    
+    private func showLogOutAlert() {
+        let alertController = UIAlertController(
+            title: "log_out".localized,
+            message: "log_out_ask".localized,
+            preferredStyle: .alert
+        )
+        
+        let logOutButton = UIAlertAction(title: "log_out".localized.uppercased(), style: .destructive) {_ in
+            store.dispatch(action: AuthRequests.LogOut())
+        }
+        let stayLoggedInButton = UIAlertAction(title: "stay_logged_in".localized.uppercased(), style: .cancel)
+        
+        alertController.addAction(logOutButton)
+        alertController.addAction(stayLoggedInButton)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func refreshUsers() {
