@@ -54,15 +54,26 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
     private func setupView() {
         view.backgroundColor = Palette.white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "removeIcon"),
-            style: .plain,
-            target: self,
-            action: #selector(showDeleteUserAlert)
-        )
+        setupRightBarButton()
         
         buildViewTree()
         setConstraints()
+    }
+    
+    private func setupRightBarButton() {
+        let isUserAccount = (store.state.users.userAccount?.codeforcesUser?.handle == handle)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: isUserAccount ? "logOutIcon" : "removeIcon"),
+            style: .plain,
+            target: self,
+            action: isUserAccount ? #selector(doLogOut) :  #selector(showDeleteUserAlert)
+        )
+    }
+    
+    @objc private func doLogOut() {
+        store.dispatch(action: AuthRequests.LogOut())
+        presentingViewController?.dismiss(animated: true)
     }
     
     @objc private func showDeleteUserAlert() {
