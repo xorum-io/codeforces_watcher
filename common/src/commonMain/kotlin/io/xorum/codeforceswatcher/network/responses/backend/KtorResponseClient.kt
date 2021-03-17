@@ -21,7 +21,7 @@ const val BACKEND_STAGING_LINK = "algoris-me-backend-staging.herokuapp.com"
 lateinit var backendLink: String
 
 internal class KtorResponseClient(
-        private val token: String
+        private val token: String?
 ) {
 
     val backendApiClient = makeBackendApiClient()

@@ -1,6 +1,8 @@
 package io.xorum.codeforceswatcher.features.users.redux.requests
 
 import io.xorum.codeforceswatcher.db.DatabaseQueries
+import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.users.UsersRepository
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
@@ -14,16 +16,16 @@ enum class Source(val isToastNeeded: Boolean) {
 
 class UsersRequests {
 
-    class FetchUsers(private val source: Source) : Request() {
+    class FetchUsersData(token: String?, private val users: List<User>, private val source: Source) : Request() {
+
+        private val usersRepository = UsersRepository(token)
 
         override suspend fun execute() {
-            val users = store.state.users.users
-
-            val result = when (val response = backendRepository.fetchUsers(getHandles(users), isAllRatingChangesNeeded = false)) {
+            val result = when (val response = usersRepository.fetchUsersData(getHandles(users))) {
                 is Response.Success -> {
-                    saveUsers(response.result)
+                    saveUsers(response.result.users)
                     val newUsers = DatabaseQueries.Users.getAll()
-                    Success(newUsers, source)
+                    Success(newUsers, response.result.userAccount, source)
                 }
                 is Response.Failure -> Failure(response.error.toMessage())
             }
@@ -34,6 +36,9 @@ class UsersRequests {
             val allUsers = DatabaseQueries.Users.getAll()
             val (diff, toUpdateDiff) = UsersDiff(allUsers, newUsers).getDiff()
 
+            val (toDeleteDiff, _) = UsersDiff(newUsers, allUsers).getDiff()
+
+            DatabaseQueries.Users.delete(toDeleteDiff)
             DatabaseQueries.Users.update(toUpdateDiff)
             DatabaseQueries.Users.insert(diff)
         }
@@ -42,6 +47,7 @@ class UsersRequests {
 
         data class Success(
                 val users: List<User>,
+                val userAccount: UserAccount,
                 val source: Source
         ) : Action
 

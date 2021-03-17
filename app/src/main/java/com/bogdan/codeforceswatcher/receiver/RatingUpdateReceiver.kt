@@ -11,6 +11,8 @@ import java.util.*
 class RatingUpdateReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
-        store.dispatch(UsersRequests.FetchUsers(Source.BROADCAST))
+        val token = store.state.auth.token
+        val users = if (token.isNullOrBlank()) store.state.users.users else emptyList()
+        store.dispatch(UsersRequests.FetchUsersData(token, users, Source.BROADCAST))
     }
 }

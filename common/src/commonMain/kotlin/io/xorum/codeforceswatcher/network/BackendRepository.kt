@@ -6,6 +6,7 @@ import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.verification.VerificationCodeResponse
 import io.xorum.codeforceswatcher.network.responses.backend.KtorResponseClient
 import io.xorum.codeforceswatcher.network.responses.backend.NewsResponse
+import io.xorum.codeforceswatcher.network.responses.backend.UserData
 import io.xorum.codeforceswatcher.redux.store
 
 internal class BackendRepository {

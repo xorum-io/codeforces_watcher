@@ -1,12 +1,6 @@
 package io.xorum.codeforceswatcher.features.auth.redux
 
-import io.xorum.codeforceswatcher.features.auth.UserAccount
-import io.xorum.codeforceswatcher.features.users.models.User
-import io.xorum.codeforceswatcher.network.UserAccountRepository
-import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import tw.geothings.rekotlin.Action
 
 class AuthRequests {
@@ -20,29 +14,6 @@ class AuthRequests {
         }
 
         data class Success(val token: String) : Action
-        data class Failure(override val message: Message) : ToastAction
-    }
-
-    class FetchUserData(token: String, private val isSignUp: Boolean) : Request() {
-
-        private val userAccountRepository = UserAccountRepository(token)
-
-        override suspend fun execute() {
-            val users = if (isSignUp) store.state.users.users else emptyList()
-            when (val response = userAccountRepository.fetchUserData(users)) {
-                is Response.Success -> {
-                    // TODO: put to db
-                    store.dispatch(Success(response.result.users, response.result.userAccount))
-                }
-                is Response.Failure -> store.dispatch(Failure(response.error.toMessage()))
-            }
-        }
-
-        data class Success(
-                val users: List<User>,
-                val userAccount: UserAccount
-        ) : Action
-
         data class Failure(override val message: Message) : ToastAction
     }
 

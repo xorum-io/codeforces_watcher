@@ -12,19 +12,20 @@ fun usersReducer(action: Action, state: AppState): UsersState {
     var newState = state.users
 
     when (action) {
-        is UsersRequests.FetchUsers -> {
+        is UsersRequests.FetchUsersData -> {
             newState = newState.copy(status = UsersState.Status.PENDING)
         }
-        is UsersRequests.FetchUsers.Success -> {
+        is UsersRequests.FetchUsersData.Success -> {
             // Looks like it's needed for saving same order as were before fetching
             val mapUsers = action.users.associateBy { it.handle }
             val newUsers = state.users.users.map { mapUsers[it.handle] ?: it }
             newState = newState.copy(
                     status = UsersState.Status.IDLE,
-                    users = newUsers
+                    users = newUsers,
+                    userAccount = action.userAccount
             )
         }
-        is UsersRequests.FetchUsers.Failure -> {
+        is UsersRequests.FetchUsersData.Failure -> {
             newState = newState.copy(status = UsersState.Status.IDLE)
         }
         is UsersRequests.FetchUser -> {
@@ -69,23 +70,6 @@ fun usersReducer(action: Action, state: AppState): UsersState {
             )
         }
         is AuthRequests.FetchUserToken.Failure -> {
-            newState = newState.copy(
-                    status = UsersState.Status.IDLE
-            )
-        }
-        is AuthRequests.FetchUserData -> {
-            newState = newState.copy(
-                    status = UsersState.Status.PENDING
-            )
-        }
-        is AuthRequests.FetchUserData.Success -> {
-            newState = newState.copy(
-                    userAccount = action.userAccount,
-                    users = action.users,
-                    status = UsersState.Status.IDLE
-            )
-        }
-        is AuthRequests.FetchUserData.Failure -> {
             newState = newState.copy(
                     status = UsersState.Status.IDLE
             )

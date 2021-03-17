@@ -22,8 +22,7 @@ val appMiddleware: Middleware<StateType> = { _, _ ->
             if (action is Request) executeRequest(action)
 
             doActionsOnLogOut(action)
-            fetchUserData(action)
-            fetchUsers(action)
+            fetchUsersData(action)
             updateAuthStage(action)
 
             next(action)
@@ -39,25 +38,20 @@ private fun doActionsOnLogOut(action: Action) = scope.launch {
     }
 }
 
-private fun fetchUserData(action: Action) = scope.launch {
+private fun fetchUsersData(action: Action) = scope.launch {
     val request = when (action) {
-        is AuthRequests.SignIn.Success -> AuthRequests.FetchUserData(action.token, isSignUp = false)
-        is AuthRequests.SignUp.Success -> AuthRequests.FetchUserData(action.token, isSignUp = true)
-        is AuthRequests.FetchUserToken.Success -> AuthRequests.FetchUserData(action.token, isSignUp = false)
+        is AuthRequests.SignIn.Success -> UsersRequests.FetchUsersData(action.token, emptyList(), Source.BACKGROUND)
+        is AuthRequests.SignUp.Success -> UsersRequests.FetchUsersData(action.token, store.state.users.users, Source.BACKGROUND)
+        is AuthRequests.FetchUserToken.Success -> UsersRequests.FetchUsersData(action.token, emptyList(), Source.BACKGROUND)
+        is AuthRequests.FetchUserToken.Failure -> UsersRequests.FetchUsersData(token = null, store.state.users.users, Source.BACKGROUND)
         else -> return@launch
     }
     store.dispatch(request)
 }
 
-private fun fetchUsers(action: Action) = scope.launch {
-    if (action is AuthRequests.FetchUserToken.Failure) {
-        store.dispatch(UsersRequests.FetchUsers(Source.BACKGROUND))
-    }
-}
-
 private fun updateAuthStage(action: Action) = scope.launch {
     val authStage = when (action) {
-        is AuthRequests.FetchUserData.Success -> action.userAccount.getAuthStage()
+        is UsersRequests.FetchUsersData.Success -> action.userAccount.getAuthStage()
         is VerificationRequests.Verify.Success -> AuthState.Stage.VERIFIED
         is AuthRequests.LogOut -> AuthState.Stage.NOT_SIGNED_IN
         else -> return@launch

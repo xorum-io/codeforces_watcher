@@ -42,7 +42,7 @@ internal object DatabaseQueries {
         fun update(user: User) {
             val oldUser = get(user.handle)
             val mergedUser = merge(oldUser, user)
-            
+
             val serializer = Json(from = Json.Default) { ignoreUnknownKeys = true }
             val ratingChangesJson = serializer.encodeToString(ListSerializer(RatingChange.serializer()), mergedUser.ratingChanges)
 
@@ -68,15 +68,20 @@ internal object DatabaseQueries {
             }
         }
 
-        fun insert(users: List<User>) {
-            database.userQueries.transaction {
-                users.forEach { user ->
-                    insert(user)
-                }
+        fun insert(users: List<User>) = database.userQueries.transaction {
+            users.forEach { user ->
+                insert(user)
             }
         }
 
+
         fun delete(handle: String) = database.userQueries.delete(handle)
+        fun delete(users: List<User>) = database.userQueries.transaction {
+            users.forEach {
+                delete(it.handle)
+            }
+        }
+
         fun deleteAll() = database.userQueries.deleteAll()
     }
 
