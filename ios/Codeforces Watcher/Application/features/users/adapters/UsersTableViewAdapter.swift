@@ -13,7 +13,8 @@ import common
 class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
 
     var users: [UserItem] = []
-    var onUserTap: ((String) -> ())?
+    var onUserTap: ((String) -> ()) = {_ in }
+    var onUserAccountTap: ((String) -> ()) = {_ in }
     
     var onLoginTap: () -> () = {}
     var onVerifyTap: () -> () = {}
@@ -62,10 +63,9 @@ class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSourc
         case .verifyItem:
             break
         case .userItem(let item):
-            onUserTap?(item.handle)
-            break
-        case .userAccount(_):
-            break
+            onUserTap(item.handle)
+        case .userAccount(let item):
+            onUserAccountTap(item.handle)
         }
     }
 

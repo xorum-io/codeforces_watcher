@@ -172,6 +172,9 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.onUserTap = { handle in
                 self.presentModal(UserViewController(handle))
             }
+            $0.onUserAccountTap = { handle in
+                self.presentModal(UserViewController(handle))
+            }
             $0.onLoginTap = {
                 self.presentModal(SignInViewController())
             }
