@@ -715,9 +715,9 @@
 		63EAA0F72445EAB700C234A8 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				6AA344E125D6AFBF00C899D9 /* verify */,
 				6A8BDACF25C2B5EF00C63878 /* login */,
-				63EAA0F82445EC9100C234A8 /* UserTableViewCell.swift */,
+				6AA344E125D6AFBF00C899D9 /* verify */,
+				6ACDE8DA2602073500995F8A /* user */,
 				6AA2EBEF25F8B49E00AD4846 /* userAccount */,
 				6A616C2B25DA78D8007F95E0 /* models */,
 			);
@@ -829,6 +829,14 @@
 				6A69B26425C403D9001D19A9 /* SignInViewController.swift */,
 			);
 			path = signIn;
+			sourceTree = "<group>";
+		};
+		6ACDE8DA2602073500995F8A /* user */ = {
+			isa = PBXGroup;
+			children = (
+				63EAA0F82445EC9100C234A8 /* UserTableViewCell.swift */,
+			);
+			path = user;
 			sourceTree = "<group>";
 		};
 		6AE798E825DA969600B956B4 /* verify */ = {

@@ -39,7 +39,7 @@
 
 "Add user" = "Ajouter utilisateur";
 "Enter user handle" = "Entrez un pseudo";
-"No rating update" = "Pas de mise à jour de classement";
+"no_rating_update" = "Pas de mise à jour de classement";
 "Done" = "Fait";
 "Rating changes" = "Changements de classement";
 
@@ -57,7 +57,7 @@
 "update_up" = "↑mise à jour";
 "update_down" = "↓mise à jour";
 
-"Last rating update" = "Dernière mise à jour: %@";
+"last_rating_update" = "Dernière mise à jour: %@";
 
 "share_text" = "%@ - %@\n\nPartagé avec Codeforces WatchR. Téléchargeable sur App Store.";
 "upcoming_contests" = "concours à venir";

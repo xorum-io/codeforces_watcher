@@ -39,7 +39,7 @@
 
 "Add user" = "Add user";
 "Enter user handle" = "Enter user handle";
-"No rating update" = "No rating update";
+"no_rating_update" = "No rating update";
 "Done" = "Done";
 "Rating changes" = "Rating changes";
 
@@ -57,7 +57,7 @@
 "update_up" = "↑update";
 "update_down" = "↓update";
 
-"Last rating update" = "Last rating update: %@";
+"last_rating_update" = "Last rating update: %@";
 
 "share_text" = "%@ - %@\n\nShared through Codeforces Watcher. Find it on App Store.";
 "upcoming_contests" = "Upcoming contests";

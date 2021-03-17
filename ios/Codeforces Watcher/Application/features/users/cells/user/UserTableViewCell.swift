@@ -17,12 +17,12 @@ class UserTableViewCell: UITableViewCell {
         $0.image = noImage
     }
     private let handleLabel = HeadingLabel()
-    private let ratingUpdateDateLabel = SubheadingBigLabel().apply {
+    private let dateOfLastRatingUpdateLabel = SubheadingBigLabel().apply {
         $0.lineBreakMode = .byTruncatingHead
     }
 
     private let ratingLabel = HeadingLabel()
-    private let ratingUpdateLabel = SubheadingBigLabel()
+    private let valueOfLastRatingUpdateLabel = SubheadingBigLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,7 +44,7 @@ class UserTableViewCell: UITableViewCell {
     private func buildViewTree() {
         addSubview(cardView)
 
-        [userImage, handleLabel, ratingUpdateDateLabel, ratingLabel, ratingUpdateLabel].forEach(cardView.addSubview)
+        [userImage, handleLabel, dateOfLastRatingUpdateLabel, ratingLabel, valueOfLastRatingUpdateLabel].forEach(cardView.addSubview)
     }
 
     private func setConstraints() {
@@ -63,11 +63,11 @@ class UserTableViewCell: UITableViewCell {
             $0.trailingToLeading(of: ratingLabel, relation: .equalOrLess)
         }
 
-        ratingUpdateDateLabel.run {
+        dateOfLastRatingUpdateLabel.run {
             $0.topToBottom(of: handleLabel, offset: 4)
             $0.leading(to: handleLabel)
             $0.bottomToSuperview(offset: -8)
-            $0.trailingToLeading(of: ratingUpdateLabel, offset: -8)
+            $0.trailingToLeading(of: valueOfLastRatingUpdateLabel, offset: -8)
         }
 
         ratingLabel.run {
@@ -75,7 +75,7 @@ class UserTableViewCell: UITableViewCell {
             $0.trailingToSuperview(offset: 8)
         }
 
-        ratingUpdateLabel.run {
+        valueOfLastRatingUpdateLabel.run {
             $0.topToBottom(of: ratingLabel, offset: 4)
             $0.trailing(to: ratingLabel)
             $0.bottomToSuperview(offset: -8)
@@ -83,27 +83,53 @@ class UserTableViewCell: UITableViewCell {
     }
 
     func bind(_ user: UserItem.UserItem) {
-        ratingLabel.text = ""
-        ratingUpdateLabel.text = ""
-
-        let avatar = LinkValidatorKt.avatar(avatarLink: user.avatar)
-        userImage.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
-        userImage.layer.borderColor = getColorByUserRank(user.rank).cgColor
-
-        handleLabel.attributedText = colorTextByUserRank(text: user.handle, rank: user.rank)
-        if let rating = user.rating {
-            ratingLabel.attributedText = colorTextByUserRank(text: String(rating), rank: user.rank)
+        userImage.run {
+            $0.sd_setImage(with: URL(string: user.avatar), placeholderImage: noImage)
+            $0.layer.borderColor = getColorByUserRank(user.rank).cgColor
         }
+        
+        handleLabel.attributedText = user.handleText
+        ratingLabel.attributedText = user.ratingText
+        dateOfLastRatingUpdateLabel.text = user.ratingUpdateDateText
+        valueOfLastRatingUpdateLabel.attributedText = user.ratingUpdateValueText
+    }
+}
 
-        if let ratingChange = user.ratingChanges.last {
+fileprivate extension UserItem.UserItem {
+    
+    private var blank: NSAttributedString {
+        return NSAttributedString(string: "".localized)
+    }
+    
+    var handleText: NSAttributedString {
+        return colorTextByUserRank(text: handle, rank: rank)
+    }
+    
+    var ratingText: NSAttributedString {
+        if let rating = rating {
+            return colorTextByUserRank(text: "\(rating)", rank: rank)
+        } else {
+            return blank
+        }
+    }
+    
+    var ratingUpdateDateText: String {
+        if let ratingChange = ratingChanges.last {
+            return "last_rating_update".localizedFormat(args: Double(ratingChange.ratingUpdateTimeSeconds).secondsToUserUpdateDateString())
+        } else {
+            return "no_rating_update".localized
+        }
+    }
+    
+    var ratingUpdateValueText: NSAttributedString {
+        if let ratingChange = ratingChanges.last {
             let delta = ratingChange.newRating - ratingChange.oldRating
             let isRatingIncreased = delta >= 0
             let ratingUpdateString = (isRatingIncreased ? "▲" : "▼") + " \(abs(delta))"
 
-            ratingUpdateLabel.attributedText = ratingUpdateString.colorString(color: isRatingIncreased ? Palette.brightGreen : Palette.red)
-            ratingUpdateDateLabel.text = "Last rating update".localizedFormat(args: Double(ratingChange.ratingUpdateTimeSeconds).secondsToUserUpdateDateString())
+            return ratingUpdateString.colorString(color: isRatingIncreased ? Palette.brightGreen : Palette.red)
         } else {
-            ratingUpdateDateLabel.text = "No rating update".localized
+            return blank
         }
     }
 }
