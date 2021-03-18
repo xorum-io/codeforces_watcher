@@ -31,8 +31,7 @@ class AndroidNotificationHandler : NotificationHandler {
     private fun stringifyRatingChangeValue(ratingChange: Int) = if (ratingChange < 0) ratingChange else "+$ratingChange"
 
     private fun showNotification(context: Context, text: String) {
-        val notificationManager =
-                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         val intentReceiver = Intent(context, MainActivity::class.java)
         intentReceiver.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -62,7 +61,7 @@ class AndroidNotificationHandler : NotificationHandler {
     @RequiresApi(android.os.Build.VERSION_CODES.O)
     private fun createNotificationChannel(
             context: Context,
-            notificationManager: NotificationManager
+            notificationManager: NotificationManager,
     ) {
 
         val channel = NotificationChannel(

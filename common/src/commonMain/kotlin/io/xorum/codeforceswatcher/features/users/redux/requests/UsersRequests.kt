@@ -60,15 +60,21 @@ class UsersRequests {
         private val backendRepository = BackendRepository()
 
         override suspend fun execute() {
-            val result = when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = true)) {
-                is Response.Success -> {
-                    val user = response.result.first()
-                    DatabaseQueries.Users.update(user)
-                    Success(user)
+            val profileUser = store.state.users.userAccount?.codeforcesUser
+
+            if (handle == profileUser?.handle) {
+                store.dispatch(Success(profileUser))
+            } else {
+                val result = when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = true)) {
+                    is Response.Success -> {
+                        val user = response.result.first()
+                        DatabaseQueries.Users.update(user)
+                        Success(user)
+                    }
+                    is Response.Failure -> Success(DatabaseQueries.Users.get(handle))
                 }
-                is Response.Failure -> Success(DatabaseQueries.Users.get(handle))
+                store.dispatch(result)
             }
-            store.dispatch(result)
         }
 
         data class Success(val user: User) : Action

@@ -13,100 +13,101 @@
     android:paddingBottom="2dp"
     card_view:cardUseCompatPadding="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="8dp"
+      android:paddingBottom="8dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@color/black"
+        app:civ_border_width="1dp"
+        app:layout_constraintEnd_toEndOf="@id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRank"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:layout_marginTop="8dp"
+        android:textSize="12sp"
+        card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
+        card_view:layout_constraintStart_toStartOf="@id/ivProfile"
+        card_view:layout_constraintTop_toBottomOf="@id/ivProfile"
+        tools:text="Expert" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/divider"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvHandle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="14sp"
+        card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
+        card_view:layout_constraintStart_toStartOf="@id/ivProfile"
+        card_view:layout_constraintTop_toBottomOf="@id/tvRank"
+        tools:text="yevhenii_kanivets" />
 
-        <TextView
-            android:id="@+id/tvRank"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="12sp"
-            card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
-            card_view:layout_constraintStart_toStartOf="@id/ivProfile"
-            card_view:layout_constraintTop_toBottomOf="@id/ivProfile"
-            tools:text="Expert" />
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
+        card_view:layout_constraintStart_toStartOf="@id/ivProfile"
+        card_view:layout_constraintTop_toBottomOf="@id/tvHandle"
+        tools:text="Yevhenii Kanivets" />
 
-        <TextView
-            android:id="@+id/tvHandle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp"
-            card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
-            card_view:layout_constraintStart_toStartOf="@id/ivProfile"
-            card_view:layout_constraintTop_toBottomOf="@id/tvRank"
-            tools:text="yevhenii_kanivets" />
+    <TextView
+        android:id="@+id/tvLastUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
+        card_view:layout_constraintStart_toStartOf="@id/ivProfile"
+        card_view:layout_constraintTop_toBottomOf="@id/tvName"
+        tools:text="Updated on April 16, 2020" />
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
-            card_view:layout_constraintStart_toStartOf="@id/ivProfile"
-            card_view:layout_constraintTop_toBottomOf="@id/tvHandle"
-            tools:text="Yevhenii Kanivets" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="5dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/dotted_line"
+        android:layerType="software"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvLastUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/gray"
-            android:textSize="10sp"
-            card_view:layout_constraintEnd_toEndOf="@id/ivProfile"
-            card_view:layout_constraintStart_toStartOf="@id/ivProfile"
-            card_view:layout_constraintTop_toBottomOf="@id/tvName"
-            tools:text="Updated on April 16, 2020" />
+    <include
+        android:id="@+id/noUserLayout"
+        layout="@layout/no_user_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/divider"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="5dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/dotted_line"
-            android:layerType="software"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/profileLayout"
+        layout="@layout/user_profile_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/divider"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <include
-            android:id="@+id/noUserLayout"
-            layout="@layout/no_user_card_layout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/divider"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <include
-            android:id="@+id/profileLayout"
-            layout="@layout/user_profile_layout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/divider"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

@@ -31,7 +31,7 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         is UsersRequests.FetchUser -> {
             newState = newState.copy(
                     status = UsersState.Status.PENDING,
-                    currentUser = state.users.users.find { it.handle == action.handle }
+                    currentUser = (state.users.users + state.users.userAccount?.codeforcesUser).find { it?.handle == action.handle }
             )
         }
         is UsersRequests.FetchUser.Success -> {

@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
 data class User(
         val id: Long,
         val avatar: String,
-        val rank: String?,
-        val maxRank: String?,
+        val rank: String? = null,
+        val maxRank: String? = null,
         val handle: String,
-        val rating: Int?,
-        val maxRating: Int?,
-        val firstName: String?,
-        val lastName: String?,
+        val rating: Int? = null,
+        val maxRating: Int? = null,
+        val firstName: String? = null,
+        val lastName: String? = null,
         val ratingChanges: List<RatingChange> = listOf(),
-        val contribution: Long?
+        val contribution: Long? = null
 ) {
 
     companion object {

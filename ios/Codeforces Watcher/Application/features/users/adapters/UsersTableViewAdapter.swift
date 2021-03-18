@@ -47,6 +47,10 @@ class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSourc
             return tableView.dequeueReusableCell(cellType: UserTableViewCell.self).apply {
                 $0.bind(item)
             }
+        case .userAccount(let item):
+            return tableView.dequeueReusableCell(cellType: UserAccountTableViewCell.self).apply {
+                $0.bind(item)
+            }
         }
     }
 
@@ -59,6 +63,8 @@ class UsersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSourc
             break
         case .userItem(let item):
             onUserTap?(item.handle)
+            break
+        case .userAccount(_):
             break
         }
     }

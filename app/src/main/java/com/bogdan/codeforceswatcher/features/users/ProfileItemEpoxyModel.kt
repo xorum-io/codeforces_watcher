@@ -11,13 +11,21 @@ import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyModel
 import com.bogdan.codeforceswatcher.features.auth.SignInActivity
 import com.bogdan.codeforceswatcher.features.auth.VerificationActivity
 import com.bogdan.codeforceswatcher.util.colorSubstring
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.squareup.picasso.Picasso
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
+import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.no_user_card_layout.view.*
+import kotlinx.android.synthetic.main.user_profile_layout.view.*
 import kotlinx.android.synthetic.main.view_profile_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProfileItemEpoxyModel(
         private val userAccount: UserAccount?,
@@ -35,7 +43,7 @@ class ProfileItemEpoxyModel(
             AuthState.Stage.NOT_SIGNED_IN -> {
                 showNoUserData(view)
                 profileLayout.visibility = View.GONE
-                setOnClickListener {  }
+                setOnClickListener { }
                 showLoginPart(view)
             }
             AuthState.Stage.SIGNED_IN -> {
@@ -50,7 +58,7 @@ class ProfileItemEpoxyModel(
                 noUserLayout.visibility = View.GONE
                 showUserData(view)
                 setOnClickListener {
-                    showLogout(context)
+                    context.startActivity(UserActivity.newIntent(context, userAccount?.codeforcesUser?.handle!!))
                 }
             }
         }
@@ -64,9 +72,77 @@ class ProfileItemEpoxyModel(
             tvRank.text = buildRank()
             tvHandle.text = buildHandle()
             tvName.text = buildFullName()
+
+            tvRating.text = buildRating(context)
+            tvMaxRating.text = buildMaxRating(context)
+            tvContribution.text = buildContribution()
+            tvLastUpdate.text = buildLastUpdate(context)
+
+            ivProfile.borderColor = ContextCompat.getColor(context, getColorByUserRank(rank))
+            displayChart(view)
+        }
+    }
+
+    private fun buildLastUpdate(context: Context) = userAccount?.codeforcesUser?.ratingChanges?.lastOrNull()?.let { ratingChange ->
+        context.getString(
+                R.string.updated_on,
+                SimpleDateFormat(context.getString(R.string.user_date_format), Locale.getDefault()).format(
+                        Date(ratingChange.ratingUpdateTimeSeconds * 1000)
+                )
+        )
+    } ?: context.getString(R.string.no_rating_update)
+
+    private fun displayChart(view: View) = with(view.chart) {
+        setTouchEnabled(false)
+        isDragEnabled = false
+        setViewPortOffsets(0f, 0f, 0f, 0f)
+
+        axisLeft.setDrawLabels(false)
+        axisRight.setDrawLabels(false)
+
+        xAxis.setDrawLabels(false)
+        xAxis.setDrawAxisLine(true)
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+
+        description.isEnabled = false
+        legend.isEnabled = false
+
+        val entries = userAccount?.codeforcesUser?.ratingChanges?.map {
+            Entry(it.ratingUpdateTimeSeconds.toFloat(), it.newRating.toFloat(), it.toChartItem())
         }
 
-        // TODO add remain UI components
+        val lineDataSet = LineDataSet(entries, userAccount?.codeforcesUser?.handle).apply {
+            setDrawCircles(false)
+            setDrawValues(false)
+        }
+
+        chart.data = LineData(lineDataSet)
+    }
+
+    private fun User.buildRating(context: Context) = SpannableString(
+            context.getString(
+                    R.string.rating_only,
+                    rating?.toString() ?: context.getString(R.string.none)
+            )
+    ).apply {
+        rating?.let {
+            val startIndex = indexOf(it.toString())
+            val color = getColorByUserRank(rank)
+            colorSubstring(startIndex, startIndex + it.toString().length, color)
+        }
+    }
+
+    private fun User.buildMaxRating(context: Context) = SpannableString(
+            context.getString(
+                    R.string.max_rating_only,
+                    maxRating?.toString() ?: context.getString(R.string.none)
+            )
+    ).apply {
+        maxRating?.let {
+            val startIndex = indexOf(it.toString())
+            val color = getColorByUserRank(maxRank)
+            colorSubstring(startIndex, startIndex + it.toString().length, color)
+        }
     }
 
     private fun showLogout(context: Context) = AlertDialog.Builder(context)
