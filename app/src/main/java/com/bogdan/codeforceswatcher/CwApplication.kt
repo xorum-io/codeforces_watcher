@@ -88,7 +88,7 @@ class CwApp : Application() {
     }
 
     private fun fetchData() {
-        store.dispatch(NewsRequests.FetchNews(false, Locale.getDefault().language))
+        store.dispatch(NewsRequests.FetchNews(false))
         store.dispatch(ContestsRequests.FetchContests(false, Locale.getDefault().language))
         store.dispatch(ProblemsRequests.FetchProblems(false))
     }

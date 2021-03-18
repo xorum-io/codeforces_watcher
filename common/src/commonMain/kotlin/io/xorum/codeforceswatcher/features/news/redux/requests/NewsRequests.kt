@@ -11,17 +11,14 @@ import tw.geothings.rekotlin.Action
 
 class NewsRequests {
 
-    class FetchNews(
-            private val isInitializedByUser: Boolean,
-            private val language: String
-    ) : Request() {
+    class FetchNews(private val isInitializedByUser: Boolean) : Request() {
 
         private val backendRepository = BackendRepository()
 
         override suspend fun execute() {
             analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH)
 
-            when (val response = backendRepository.getNews(lang = language.defineLang())) {
+            when (val response = backendRepository.getNews()) {
                 is Response.Success -> {
                     analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_SUCCESS)
                     store.dispatch(Success(response.result.news))

@@ -11,9 +11,8 @@ internal class BackendRepository {
 
     private val ktorResponseClient = HttpClientFactory().create(store.state.auth.token)
 
-    suspend fun getNews(lang: String) = request {
+    suspend fun getNews() = request {
         ktorResponseClient.get<NewsResponse>(path = "news") {
-            parameter("lang", lang)
             parameter("version", "v2")
         }
     }

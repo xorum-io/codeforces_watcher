@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func fetchData() {
-        store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: false, language: "locale".localized))
+        store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: false))
         store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: false, language: "locale".localized))
         store.dispatch(action: ProblemsRequests.FetchProblems(isInitializedByUser: false))
     }
