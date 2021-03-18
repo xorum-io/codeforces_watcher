@@ -32,10 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppStoreKt.persistenceController.onAppCreated()
 
         FirebaseApp.configure()
+        initFirebaseController()
 
         initAppStyle()
-        fetchData()
         initGetLang()
+        
+        fetchUserToken()
+        fetchData()
 
         return true
     }
@@ -56,23 +59,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppStoreKt.analyticsController = AnalyticsController()
     }
     
+    private func initFirebaseController() {
+        AppStoreKt.firebaseController = FirebaseController()
+    }
+    
     private func setBackendLink() {
         #if DEBUG
-        KtorResponseClientKt.backendLink = KtorResponseClientKt.BACKEND_STAGING_LINK
+        HttpClientFactoryKt.backendLink = HttpClientFactoryKt.BACKEND_STAGING_LINK
         #else
-        KtorResponseClientKt.backendLink = KtorResponseClientKt.BACKEND_PROD_LINK
+        HttpClientFactoryKt.backendLink = HttpClientFactoryKt.BACKEND_PROD_LINK
         #endif
     }
 
     private func fetchData() {
         store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: false, language: "locale".localized))
         store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: false, language: "locale".localized))
-        store.dispatch(action: UsersRequests.FetchUsers(source: Source.background))
         store.dispatch(action: ProblemsRequests.FetchProblems(isInitializedByUser: false))
     }
     
     private func initGetLang() {
         AppStoreKt.getLang = { "locale".localized }
+    }
+    
+    private func fetchUserToken() {
+        store.dispatch(action: AuthRequests.FetchFirebaseUserToken())
     }
 
     private func initAppStyle() {
