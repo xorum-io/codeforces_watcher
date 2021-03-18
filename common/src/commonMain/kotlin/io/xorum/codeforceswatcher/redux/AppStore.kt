@@ -23,7 +23,6 @@ lateinit var firebaseController: IFirebaseController
 
 internal val codeforcesRepository = CodeforcesRepository()
 internal val kontestsRepository = KontestsRepository()
-internal val backendRepository = BackendRepository()
 
 lateinit var getLang: () -> String
 

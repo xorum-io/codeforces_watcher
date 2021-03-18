@@ -8,5 +8,5 @@ interface IFirebaseController {
 
     fun fetchToken(callback: (String?, Exception?) -> Unit)
 
-    fun logOut()
+    fun logOut(callback: (Exception?) -> Unit)
 }

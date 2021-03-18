@@ -8,8 +8,7 @@ import io.xorum.codeforceswatcher.redux.store
 
 internal class BackendRepository {
 
-    private val ktorResponseClient
-        get() = KtorResponseClient(token)
+    private val ktorResponseClient = KtorResponseClient(store.state.auth.token)
 
     suspend fun getNews(lang: String) =
             ktorResponseClient.get<NewsResponse>(path = "news") {
@@ -22,7 +21,4 @@ internal class BackendRepository {
                 parameter("handles", handle)
                 parameter("isAllRatingChangesNeeded", isAllRatingChangesNeeded.toString())
             }
-
-    private val token: String
-        get() = store.state.auth.token.orEmpty()
 }

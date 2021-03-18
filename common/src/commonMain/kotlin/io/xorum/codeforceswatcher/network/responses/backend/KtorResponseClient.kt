@@ -83,9 +83,10 @@ internal class KtorResponseClient(
             url {
                 host = backendLink
                 protocol = URLProtocol.HTTPS
-                header("Authorization", "Bearer $token")
-                header("lang", getLang())
             }
+
+            header("Authorization", "Bearer $token")
+            header("lang", getLang())
         }
         Json {
             serializer = KotlinxSerializer(

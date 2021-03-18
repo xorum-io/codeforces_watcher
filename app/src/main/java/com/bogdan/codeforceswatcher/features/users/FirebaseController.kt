@@ -39,5 +39,8 @@ class FirebaseController : IFirebaseController {
         }
     }
 
-    override fun logOut() = auth.signOut()
+    override fun logOut(callback: (Exception?) -> Unit) {
+        auth.signOut()
+        callback(null)
+    }
 }

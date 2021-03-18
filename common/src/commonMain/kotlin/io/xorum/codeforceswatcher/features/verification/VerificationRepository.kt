@@ -5,12 +5,9 @@ import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.verification.response.VerificationCodeResponse
 import io.xorum.codeforceswatcher.network.responses.backend.KtorResponseClient
 
-internal class VerificationRepository(
-        private val token: String
-) {
+internal class VerificationRepository(token: String) {
 
-    private val ktorResponseClient
-        get() = KtorResponseClient(token)
+    private val ktorResponseClient = KtorResponseClient(token)
 
     suspend fun fetchCodeforcesVerificationCode() = ktorResponseClient.put<VerificationCodeResponse>("user/generate-verify-code/codeforces")
 

@@ -46,9 +46,10 @@ class CwApp : Application() {
         FirebaseAnalytics.getInstance(this)
 
         setBackendLink()
-        fetchData()
         initGetLang()
+
         fetchUserToken()
+        fetchData()
 
         if (Prefs.get().readAlarm().isEmpty()) {
             startAlarm()

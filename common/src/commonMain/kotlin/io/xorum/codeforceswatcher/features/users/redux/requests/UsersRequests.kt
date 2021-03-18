@@ -4,6 +4,7 @@ import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.users.UsersRepository
 import io.xorum.codeforceswatcher.features.users.models.User
+import io.xorum.codeforceswatcher.network.BackendRepository
 import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
@@ -47,7 +48,7 @@ class UsersRequests {
 
         data class Success(
                 val users: List<User>,
-                val userAccount: UserAccount,
+                val userAccount: UserAccount?,
                 val source: Source
         ) : Action
 
@@ -55,6 +56,9 @@ class UsersRequests {
     }
 
     class FetchUser(val handle: String) : Request() {
+
+        private val backendRepository = BackendRepository()
+
         override suspend fun execute() {
             val result = when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = true)) {
                 is Response.Success -> {
@@ -78,6 +82,8 @@ class UsersRequests {
     }
 
     class AddUser(private val handle: String) : Request() {
+
+        private val backendRepository = BackendRepository()
 
         override suspend fun execute() {
             when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = false)) {

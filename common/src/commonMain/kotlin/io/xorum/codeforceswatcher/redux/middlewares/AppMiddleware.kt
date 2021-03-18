@@ -33,7 +33,7 @@ val appMiddleware: Middleware<StateType> = { _, _ ->
 private fun executeRequest(action: Request) = scope.launch { action.execute() }
 
 private fun doActionsOnLogOut(action: Action) = scope.launch {
-    if (action is AuthRequests.LogOut) {
+    if (action is AuthRequests.LogOut.Success) {
         store.dispatch(UsersRequests.Destroy())
     }
 }
@@ -53,7 +53,7 @@ private fun updateAuthStage(action: Action) = scope.launch {
     val authStage = when (action) {
         is UsersRequests.FetchUsersData.Success -> action.userAccount.getAuthStage()
         is VerificationRequests.Verify.Success -> AuthState.Stage.VERIFIED
-        is AuthRequests.LogOut -> AuthState.Stage.NOT_SIGNED_IN
+        is AuthRequests.LogOut.Success -> AuthState.Stage.NOT_SIGNED_IN
         else -> return@launch
     }
 

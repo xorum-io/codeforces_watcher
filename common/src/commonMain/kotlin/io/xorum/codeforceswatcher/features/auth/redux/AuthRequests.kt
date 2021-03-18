@@ -52,6 +52,13 @@ class AuthRequests {
 
     object LogOut : Request() {
 
-        override suspend fun execute() = firebaseController.logOut()
+        override suspend fun execute() = firebaseController.logOut { e ->
+            e?.let {
+                store.dispatch(Failure(e.message.toMessage()))
+            } ?: store.dispatch(Success)
+        }
+
+        object Success : Action
+        data class Failure(override val message: Message) : ToastAction
     }
 }
