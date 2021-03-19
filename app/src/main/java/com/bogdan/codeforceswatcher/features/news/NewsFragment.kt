@@ -76,7 +76,7 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
     }
 
     override fun onRefresh() {
-        store.dispatch(NewsRequests.FetchNews(true, Locale.getDefault().language))
+        store.dispatch(NewsRequests.FetchNews(true))
         analyticsController.logEvent(AnalyticsEvents.ACTIONS_REFRESH)
     }
 

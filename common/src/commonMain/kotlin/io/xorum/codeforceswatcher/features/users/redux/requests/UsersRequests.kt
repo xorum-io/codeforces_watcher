@@ -1,7 +1,10 @@
 package io.xorum.codeforceswatcher.features.users.redux.requests
 
 import io.xorum.codeforceswatcher.db.DatabaseQueries
+import io.xorum.codeforceswatcher.features.auth.models.UserAccount
+import io.xorum.codeforceswatcher.features.users.UsersRepository
 import io.xorum.codeforceswatcher.features.users.models.User
+import io.xorum.codeforceswatcher.network.BackendRepository
 import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
@@ -14,42 +17,51 @@ enum class Source(val isToastNeeded: Boolean) {
 
 class UsersRequests {
 
-    class FetchUsers(private val source: Source) : Request() {
+    class FetchUserData(
+            token: String?,
+            private val users: List<User>,
+            private val source: Source
+    ) : Request() {
+
+        private val usersRepository = UsersRepository(token)
 
         override suspend fun execute() {
-            val users = store.state.users.users
-            val allUsersResponse = backendRepository.fetchUsers(getHandles(users), isAllRatingChangesNeeded = false)
-            val userAccountCfUserResponse = backendRepository.fetchUsers(
-                    getHandles(listOfNotNull(store.state.users.userAccount?.codeforcesUser)),
-                    isAllRatingChangesNeeded = true
-            )
-
-            val result = when {
-                allUsersResponse is Response.Failure -> Failure(allUsersResponse.error.toMessage())
-                userAccountCfUserResponse is Response.Failure -> Failure(userAccountCfUserResponse.error.toMessage())
-                allUsersResponse is Response.Success && userAccountCfUserResponse is Response.Success -> {
-                    saveUsers(allUsersResponse.result)
-                    val newUsers = DatabaseQueries.Users.getAll()
-                    Success(newUsers, userAccountCfUserResponse.result.firstOrNull(), source)
+            val result = when (val response = usersRepository.fetchUserData(getHandles(users))) {
+                is Response.Success -> {
+                    val (toAddDiff, toUpdateDiff, toDeleteDiff) = getDiff(response.result.users)
+                    updateDatabaseUsers(toAddDiff, toUpdateDiff, toDeleteDiff)
+                    val users = getOrderedUsers(toAddDiff, toDeleteDiff)
+                    Success(users, response.result.userAccount, source)
                 }
-                else -> throw IllegalStateException()
+                is Response.Failure -> Failure(response.error.toMessage())
             }
             store.dispatch(result)
         }
 
-        private fun saveUsers(newUsers: List<User>) {
+        private fun getDiff(newUsers: List<User>): Triple<List<User>, List<User>, List<User>> {
             val allUsers = DatabaseQueries.Users.getAll()
-            val (diff, toUpdateDiff) = UsersDiff(allUsers, newUsers).getDiff()
+            val (toAddDiff, toUpdateDiff) = UsersDiff(allUsers, newUsers).getDiff()
+            val (toDeleteDiff, _) = UsersDiff(newUsers, allUsers).getDiff()
 
+            return Triple(toAddDiff, toUpdateDiff, toDeleteDiff)
+        }
+
+        private fun updateDatabaseUsers(toAddDiff: List<User>, toUpdateDiff: List<User>, toDeleteDiff: List<User>) {
+            DatabaseQueries.Users.delete(toDeleteDiff)
             DatabaseQueries.Users.update(toUpdateDiff)
-            DatabaseQueries.Users.insert(diff)
+            DatabaseQueries.Users.insert(toAddDiff)
+        }
+
+        private fun getOrderedUsers(toAddDiff: List<User>, toDeleteDiff: List<User>): List<User> {
+            val usersMap = DatabaseQueries.Users.getAll().associateBy { it.handle }
+            return store.state.users.users.map { usersMap[it.handle] ?: it }.minus(toDeleteDiff).plus(toAddDiff)
         }
 
         private fun getHandles(users: List<User>) = users.joinToString(separator = ",") { it.handle }
 
         data class Success(
                 val users: List<User>,
-                val userAccountCfUser: User?,
+                val userAccount: UserAccount?,
                 val source: Source
         ) : Action
 
@@ -57,13 +69,16 @@ class UsersRequests {
     }
 
     class FetchUser(val handle: String) : Request() {
+
+        private val backendRepository = BackendRepository()
+
         override suspend fun execute() {
             val profileUser = store.state.users.userAccount?.codeforcesUser
 
             if (handle == profileUser?.handle) {
                 store.dispatch(Success(profileUser))
             } else {
-                val result = when (val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = true)) {
+                val result = when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = true)) {
                     is Response.Success -> {
                         val user = response.result.first()
                         DatabaseQueries.Users.update(user)
@@ -87,8 +102,10 @@ class UsersRequests {
 
     class AddUser(private val handle: String) : Request() {
 
+        private val backendRepository = BackendRepository()
+
         override suspend fun execute() {
-            when (val response = backendRepository.fetchUsers(handle, isAllRatingChangesNeeded = false)) {
+            when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = false)) {
                 is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) }
                         ?: store.dispatch(Failure(null.toMessage()))
                 is Response.Failure -> store.dispatch(Failure(response.error.toMessage()))

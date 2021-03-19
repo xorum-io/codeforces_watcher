@@ -1,6 +1,7 @@
 package io.xorum.codeforceswatcher.features.news.redux.requests
 
 import io.xorum.codeforceswatcher.features.news.News
+import io.xorum.codeforceswatcher.network.BackendRepository
 import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
@@ -10,15 +11,14 @@ import tw.geothings.rekotlin.Action
 
 class NewsRequests {
 
-    class FetchNews(
-            private val isInitializedByUser: Boolean,
-            private val language: String
-    ) : Request() {
+    class FetchNews(private val isInitializedByUser: Boolean) : Request() {
+
+        private val backendRepository = BackendRepository()
 
         override suspend fun execute() {
             analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH)
 
-            when (val response = backendRepository.getNews(lang = language.defineLang())) {
+            when (val response = backendRepository.getNews()) {
                 is Response.Success -> {
                     analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_SUCCESS)
                     store.dispatch(Success(response.result.news))

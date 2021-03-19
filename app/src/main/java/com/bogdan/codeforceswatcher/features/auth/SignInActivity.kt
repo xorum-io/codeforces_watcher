@@ -10,8 +10,8 @@ import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
 import com.bogdan.codeforceswatcher.util.AnalyticsController
 import com.bogdan.codeforceswatcher.util.linked
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
-import io.xorum.codeforceswatcher.features.auth.AuthState
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
+import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.activity_sign_in.*

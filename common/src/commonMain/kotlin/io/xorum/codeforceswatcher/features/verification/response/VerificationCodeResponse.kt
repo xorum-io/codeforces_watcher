@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.verification
+package io.xorum.codeforceswatcher.features.verification.response
 
 import kotlinx.serialization.Serializable
 

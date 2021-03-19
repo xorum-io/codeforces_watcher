@@ -12,8 +12,8 @@ import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
 import com.bogdan.codeforceswatcher.util.disable
 import com.bogdan.codeforceswatcher.util.enable
-import io.xorum.codeforceswatcher.features.verification.VerificationRequests
-import io.xorum.codeforceswatcher.features.verification.VerificationState
+import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
+import io.xorum.codeforceswatcher.features.verification.redux.VerificationState
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.activity_verification.*
 import kotlinx.android.synthetic.main.input_field.view.*
@@ -79,7 +79,7 @@ class VerificationActivity : AppCompatActivity(), StoreSubscriber<VerificationSt
             return
         }
 
-        if (state.status == VerificationState.Status.PENDING || state.verificationCode.isNullOrEmpty()) {
+        if (state.status == VerificationState.Status.PENDING) {
             spinner.visibility = View.VISIBLE
             btnVerify.disable()
         } else {

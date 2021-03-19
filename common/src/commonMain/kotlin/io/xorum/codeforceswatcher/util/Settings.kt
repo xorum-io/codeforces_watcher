@@ -1,6 +1,6 @@
 package io.xorum.codeforceswatcher.util
 
-import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 
 lateinit var settings: Settings
 

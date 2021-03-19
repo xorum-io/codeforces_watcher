@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.verification
+package io.xorum.codeforceswatcher.features.verification.redux
 
 import tw.geothings.rekotlin.StateType
 

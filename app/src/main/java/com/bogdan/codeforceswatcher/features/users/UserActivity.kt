@@ -21,7 +21,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState

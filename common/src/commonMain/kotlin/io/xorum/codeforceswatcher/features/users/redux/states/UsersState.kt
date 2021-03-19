@@ -1,6 +1,6 @@
 package io.xorum.codeforceswatcher.features.users.redux.states
 
-import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.users.models.User
 import tw.geothings.rekotlin.StateType
 

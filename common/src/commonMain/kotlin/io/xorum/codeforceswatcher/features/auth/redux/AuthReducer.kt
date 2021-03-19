@@ -1,6 +1,5 @@
-package io.xorum.codeforceswatcher.features.auth
+package io.xorum.codeforceswatcher.features.auth.redux
 
-import io.xorum.codeforceswatcher.features.verification.VerificationRequests
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
 
@@ -8,15 +7,14 @@ fun authReducer(action: Action, state: AppState): AuthState {
     var newState = state.auth
 
     when (action) {
-        is AuthRequests.SignIn.Success -> {
-            newState = newState.copy(
-                    signInStatus = AuthState.Status.DONE,
-                    authStage = action.authStage
-            )
-        }
         is AuthRequests.SignIn -> {
             newState = newState.copy(
                     signInStatus = AuthState.Status.PENDING
+            )
+        }
+        is AuthRequests.SignIn.Success -> {
+            newState = newState.copy(
+                    signInStatus = AuthState.Status.DONE
             )
         }
         is AuthRequests.SignIn.Failure -> {
@@ -24,17 +22,15 @@ fun authReducer(action: Action, state: AppState): AuthState {
                     signInStatus = AuthState.Status.IDLE
             )
         }
-
-        is AuthRequests.SignUp.Success -> {
-            newState = newState.copy(
-                    signUpStatus = AuthState.Status.DONE,
-                    signInStatus = AuthState.Status.DONE,
-                    authStage = AuthState.Stage.SIGNED_IN
-            )
-        }
         is AuthRequests.SignUp -> {
             newState = newState.copy(
                     signUpStatus = AuthState.Status.PENDING
+            )
+        }
+        is AuthRequests.SignUp.Success -> {
+            newState = newState.copy(
+                    signUpStatus = AuthState.Status.DONE,
+                    signInStatus = AuthState.Status.DONE
             )
         }
         is AuthRequests.SignUp.Failure -> {
@@ -42,13 +38,11 @@ fun authReducer(action: Action, state: AppState): AuthState {
                     signUpStatus = AuthState.Status.IDLE
             )
         }
-        is VerificationRequests.Verify.Success -> {
-            newState = newState.copy(
-                    authStage = AuthState.Stage.VERIFIED
-            )
+        is AuthRequests.FetchFirebaseUserToken.Success -> {
+            newState = newState.copy(token = action.token)
         }
-        is AuthRequests.LogOut -> {
-            newState = newState.copy(authStage = AuthState.Stage.NOT_SIGNED_IN)
+        is AuthRequests.UpdateAuthStage -> {
+            newState = newState.copy(authStage = action.authStage)
         }
         is AuthRequests.DestroyStatus -> {
             newState = newState.copy(

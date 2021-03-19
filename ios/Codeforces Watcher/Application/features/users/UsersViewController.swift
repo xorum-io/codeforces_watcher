@@ -186,10 +186,12 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             $0.addTarget(self, action: #selector(refreshUsers), for: .valueChanged)
             $0.tintColor = Palette.colorPrimaryDark
         }
+        
+        tableView.refreshControl = refreshControl
     }
     
-    @objc func refreshUsers() {
-        store.dispatch(action: UsersRequests.FetchUsers(source: Source.user))
+    @objc private func refreshUsers() {
+        store.dispatch(action: AuthRequests.FetchFirebaseUserToken())
         analyticsControler.logEvent(eventName: AnalyticsEvents().USERS_REFRESH, params: [:])
     }
     
@@ -261,8 +263,6 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         if (userState.status == .idle) {
             refreshControl.endRefreshing()
         }
-        
-        tableView.refreshControl = !userState.users.isEmpty || authState.authStage == .verified ? refreshControl : nil
         
         users = userState.users
         let sortedUsers = sortUsers(userState.sortType)

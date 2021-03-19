@@ -6,11 +6,12 @@ import android.content.Intent
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.redux.store
-import java.util.*
 
 class RatingUpdateReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
-        store.dispatch(UsersRequests.FetchUsers(Source.BROADCAST))
+        val token = store.state.auth.token
+        val users = if (token.isNullOrBlank()) store.state.users.users else emptyList()
+        store.dispatch(UsersRequests.FetchUserData(token, users, Source.BROADCAST))
     }
 }

@@ -2,6 +2,7 @@ package io.xorum.codeforceswatcher.redux
 
 import com.squareup.sqldelight.db.SqlDriver
 import io.xorum.codeforceswatcher.db.DatabaseController
+import io.xorum.codeforceswatcher.features.auth.IFirebaseController
 import io.xorum.codeforceswatcher.network.BackendRepository
 import io.xorum.codeforceswatcher.network.CodeforcesRepository
 import io.xorum.codeforceswatcher.network.KontestsRepository
@@ -18,10 +19,10 @@ lateinit var sqlDriver: SqlDriver
 val persistenceController = PersistenceController()
 val databaseController = DatabaseController()
 lateinit var analyticsController: IAnalyticsController
+lateinit var firebaseController: IFirebaseController
 
 internal val codeforcesRepository = CodeforcesRepository()
 internal val kontestsRepository = KontestsRepository()
-internal val backendRepository = BackendRepository()
 
 lateinit var getLang: () -> String
 

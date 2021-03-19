@@ -17,6 +17,7 @@ def shared_pods
     pod 'MaterialComponents/Buttons'
     pod 'Toast-Swift', '~> 5.0.1'
     pod 'Charts'
+    pod 'Firebase/Auth'
     
 end
 
