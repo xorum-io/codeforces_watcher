@@ -16,12 +16,9 @@ fun usersReducer(action: Action, state: AppState): UsersState {
             newState = newState.copy(status = UsersState.Status.PENDING)
         }
         is UsersRequests.FetchUsersData.Success -> {
-            // Looks like it's needed for saving same order as were before fetching
-            val mapUsers = action.users.associateBy { it.handle }
-            val newUsers = state.users.users.map { mapUsers[it.handle] ?: it }
             newState = newState.copy(
                     status = UsersState.Status.IDLE,
-                    users = newUsers,
+                    users = action.users,
                     userAccount = action.userAccount
             )
         }

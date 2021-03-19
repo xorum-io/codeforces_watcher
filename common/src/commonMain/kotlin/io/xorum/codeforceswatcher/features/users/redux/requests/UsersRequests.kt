@@ -24,24 +24,33 @@ class UsersRequests {
         override suspend fun execute() {
             val result = when (val response = usersRepository.fetchUsersData(getHandles(users))) {
                 is Response.Success -> {
-                    saveUsers(response.result.users)
-                    val newUsers = DatabaseQueries.Users.getAll()
-                    Success(newUsers, response.result.userAccount, source)
+                    val (toAddDiff, toUpdateDiff, toDeleteDiff) = getDiff(response.result.users)
+                    updateDatabaseUsers(toAddDiff, toUpdateDiff, toDeleteDiff)
+                    val users = getOrderedUsers(toAddDiff, toDeleteDiff)
+                    Success(users, response.result.userAccount, source)
                 }
                 is Response.Failure -> Failure(response.error.toMessage())
             }
             store.dispatch(result)
         }
 
-        private fun saveUsers(newUsers: List<User>) {
+        private fun getDiff(newUsers: List<User>): Triple<List<User>, List<User>, List<User>> {
             val allUsers = DatabaseQueries.Users.getAll()
-            val (diff, toUpdateDiff) = UsersDiff(allUsers, newUsers).getDiff()
-
+            val (toAddDiff, toUpdateDiff) = UsersDiff(allUsers, newUsers).getDiff()
             val (toDeleteDiff, _) = UsersDiff(newUsers, allUsers).getDiff()
 
+            return Triple(toAddDiff, toUpdateDiff, toDeleteDiff)
+        }
+
+        private fun updateDatabaseUsers(toAddDiff: List<User>, toUpdateDiff: List<User>, toDeleteDiff: List<User>) {
             DatabaseQueries.Users.delete(toDeleteDiff)
             DatabaseQueries.Users.update(toUpdateDiff)
-            DatabaseQueries.Users.insert(diff)
+            DatabaseQueries.Users.insert(toAddDiff)
+        }
+
+        private fun getOrderedUsers(toAddDiff: List<User>, toDeleteDiff: List<User>): List<User> {
+            val usersMap = DatabaseQueries.Users.getAll().associateBy { it.handle }
+            return store.state.users.users.map { usersMap[it.handle] ?: it }.minus(toDeleteDiff).plus(toAddDiff)
         }
 
         private fun getHandles(users: List<User>) = users.joinToString(separator = ",") { it.handle }
