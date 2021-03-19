@@ -12,17 +12,17 @@ fun usersReducer(action: Action, state: AppState): UsersState {
     var newState = state.users
 
     when (action) {
-        is UsersRequests.FetchUsersData -> {
+        is UsersRequests.FetchUserData -> {
             newState = newState.copy(status = UsersState.Status.PENDING)
         }
-        is UsersRequests.FetchUsersData.Success -> {
+        is UsersRequests.FetchUserData.Success -> {
             newState = newState.copy(
                     status = UsersState.Status.IDLE,
                     users = action.users,
                     userAccount = action.userAccount
             )
         }
-        is UsersRequests.FetchUsersData.Failure -> {
+        is UsersRequests.FetchUserData.Failure -> {
             newState = newState.copy(status = UsersState.Status.IDLE)
         }
         is UsersRequests.FetchUser -> {

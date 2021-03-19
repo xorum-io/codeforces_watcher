@@ -9,8 +9,8 @@ internal class UsersRepository(token: String?) {
 
     private val ktorResponseClient = HttpClientFactory().create(token)
 
-    suspend fun fetchUsersData(handles: String) = request {
-        ktorResponseClient.get<UserData>("user/fetch-user-data") {
+    suspend fun fetchUserData(handles: String) = request {
+        ktorResponseClient.get<UserData>("user/data") {
             parameter("handles", handles)
         }
     }

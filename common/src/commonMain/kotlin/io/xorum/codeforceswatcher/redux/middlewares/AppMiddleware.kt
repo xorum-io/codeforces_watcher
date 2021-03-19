@@ -40,10 +40,10 @@ private fun doActionsOnLogOut(action: Action) = scope.launch {
 
 private fun fetchUsersData(action: Action) = scope.launch {
     val request = when (action) {
-        is AuthRequests.SignIn.Success -> UsersRequests.FetchUsersData(action.token, emptyList(), Source.BACKGROUND)
-        is AuthRequests.SignUp.Success -> UsersRequests.FetchUsersData(action.token, store.state.users.users, Source.BACKGROUND)
-        is AuthRequests.FetchFirebaseUserToken.Success -> UsersRequests.FetchUsersData(action.token, emptyList(), Source.BACKGROUND)
-        is AuthRequests.FetchFirebaseUserToken.Failure -> UsersRequests.FetchUsersData(token = null, store.state.users.users, Source.BACKGROUND)
+        is AuthRequests.SignIn.Success -> UsersRequests.FetchUserData(action.token, emptyList(), Source.BACKGROUND)
+        is AuthRequests.SignUp.Success -> UsersRequests.FetchUserData(action.token, store.state.users.users, Source.BACKGROUND)
+        is AuthRequests.FetchFirebaseUserToken.Success -> UsersRequests.FetchUserData(action.token, emptyList(), Source.BACKGROUND)
+        is AuthRequests.FetchFirebaseUserToken.Failure -> UsersRequests.FetchUserData(token = null, store.state.users.users, Source.BACKGROUND)
         else -> return@launch
     }
     store.dispatch(request)
@@ -51,7 +51,7 @@ private fun fetchUsersData(action: Action) = scope.launch {
 
 private fun updateAuthStage(action: Action) = scope.launch {
     val authStage = when (action) {
-        is UsersRequests.FetchUsersData.Success -> action.userAccount.getAuthStage()
+        is UsersRequests.FetchUserData.Success -> action.userAccount.getAuthStage()
         is VerificationRequests.Verify.Success -> AuthState.Stage.VERIFIED
         is AuthRequests.LogOut.Success -> AuthState.Stage.NOT_SIGNED_IN
         else -> return@launch

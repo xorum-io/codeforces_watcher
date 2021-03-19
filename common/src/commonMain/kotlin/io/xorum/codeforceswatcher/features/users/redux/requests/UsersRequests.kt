@@ -17,7 +17,7 @@ enum class Source(val isToastNeeded: Boolean) {
 
 class UsersRequests {
 
-    class FetchUsersData(
+    class FetchUserData(
             token: String?,
             private val users: List<User>,
             private val source: Source
@@ -26,7 +26,7 @@ class UsersRequests {
         private val usersRepository = UsersRepository(token)
 
         override suspend fun execute() {
-            val result = when (val response = usersRepository.fetchUsersData(getHandles(users))) {
+            val result = when (val response = usersRepository.fetchUserData(getHandles(users))) {
                 is Response.Success -> {
                     val (toAddDiff, toUpdateDiff, toDeleteDiff) = getDiff(response.result.users)
                     updateDatabaseUsers(toAddDiff, toUpdateDiff, toDeleteDiff)
