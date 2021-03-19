@@ -17,7 +17,11 @@ enum class Source(val isToastNeeded: Boolean) {
 
 class UsersRequests {
 
-    class FetchUsersData(token: String?, private val users: List<User>, private val source: Source) : Request() {
+    class FetchUsersData(
+            token: String?,
+            private val users: List<User>,
+            private val source: Source
+    ) : Request() {
 
         private val usersRepository = UsersRepository(token)
 

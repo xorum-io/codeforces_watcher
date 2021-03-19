@@ -10,10 +10,10 @@ class VerificationRequests {
 
     class Verify(private val handle: String) : Request() {
 
-        private val userAccountRepository = VerificationRepository(store.state.auth.token!!)
+        private val verificationRepository = VerificationRepository(store.state.auth.token!!)
 
         override suspend fun execute() {
-            when (val response = userAccountRepository.verifyCodeforcesAccount(handle)) {
+            when (val response = verificationRepository.verifyCodeforcesAccount(handle)) {
                 is Response.Success -> {
                     store.dispatch(Success(response.result))
                 }
@@ -27,10 +27,10 @@ class VerificationRequests {
 
     class FetchVerificationCode : Request() {
 
-        private val userAccountRepository = VerificationRepository(store.state.auth.token!!)
+        private val verificationRepository = VerificationRepository(store.state.auth.token!!)
 
         override suspend fun execute() {
-            val response = userAccountRepository.fetchCodeforcesVerificationCode()
+            val response = verificationRepository.fetchCodeforcesVerificationCode()
             if (response is Response.Success) store.dispatch(Success(response.result.code))
         }
 
