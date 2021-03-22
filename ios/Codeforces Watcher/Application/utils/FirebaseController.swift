@@ -17,7 +17,7 @@ class FirebaseController: IFirebaseController {
     func signIn(email: String, password: String, callback: @escaping (String?, KotlinException?) -> Void) {
         auth.signIn(withEmail: email, password: password) { authResult, e in
             if let e = e {
-                callback(nil, KotlinException(message: e.localizedDescription))
+                callback(nil, e.toKotlinException())
                 return
             }
             self.fetchToken { token, e in
@@ -33,7 +33,7 @@ class FirebaseController: IFirebaseController {
     func signUp(email: String, password: String, callback: @escaping (String?, KotlinException?) -> Void) {
         auth.createUser(withEmail: email, password: password) { authResult, e in
             if let e = e {
-                callback(nil, KotlinException(message: e.localizedDescription))
+                callback(nil, e.toKotlinException())
                 return
             }
             self.fetchToken { token, e in
@@ -56,7 +56,7 @@ class FirebaseController: IFirebaseController {
             if let token = token {
                 callback(token, nil)
             } else {
-                callback(nil, KotlinException(message: e?.localizedDescription))
+                callback(nil, e?.toKotlinException())
             }
         }
     }
@@ -65,8 +65,25 @@ class FirebaseController: IFirebaseController {
         do {
             try auth.signOut()
             callback(nil)
-        } catch let error as NSError {
-            callback(KotlinException(message: error.localizedDescription))
+        } catch let e as NSError {
+            callback(e.toKotlinException())
         }
+    }
+    
+    func sendPasswordReset(email: String, callback: @escaping (KotlinException?) -> Void) {
+        auth.sendPasswordReset(withEmail: email) { e in
+            if let e = e {
+                callback(e.toKotlinException())
+            } else {
+                callback(nil)
+            }
+        }
+    }
+}
+
+extension Error {
+    
+    func toKotlinException() -> KotlinException {
+        KotlinException(message: self.localizedDescription)
     }
 }

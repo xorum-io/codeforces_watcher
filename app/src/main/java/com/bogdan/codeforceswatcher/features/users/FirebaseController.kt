@@ -43,4 +43,12 @@ class FirebaseController : IFirebaseController {
         auth.signOut()
         callback(null)
     }
+
+    override fun sendPasswordReset(email: String, callback: (Exception?) -> Unit) {
+        auth.sendPasswordResetEmail(email).addOnCompleteListener {
+            callback(null)
+        }.addOnFailureListener { e ->
+            callback(e)
+        }
+    }
 }

@@ -61,4 +61,16 @@ class AuthRequests {
         object Success : Action
         data class Failure(override val message: Message) : ToastAction
     }
+
+    class SendPasswordReset(private val email: String) : Request() {
+
+        override suspend fun execute() = firebaseController.sendPasswordReset(email) { e ->
+            e?.let {
+                store.dispatch(Failure(e.message.toMessage()))
+            } ?: store.dispatch(Success("Email with further instructions was sent to you! Please check!".toMessage()))
+        }
+
+        data class Success(override val message: Message) : ToastAction
+        data class Failure(override val message: Message) : ToastAction
+    }
 }
