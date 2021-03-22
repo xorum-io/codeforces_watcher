@@ -81,7 +81,7 @@ class FirebaseController: IFirebaseController {
     }
 }
 
-extension Error {
+fileprivate extension Error {
     
     func toKotlinException() -> KotlinException {
         KotlinException(message: self.localizedDescription)
