@@ -39,7 +39,16 @@ fun usersReducer(action: Action, state: AppState): UsersState {
             )
         }
         is UsersRequests.DeleteUser -> {
-            newState = newState.copy(users = state.users.users.minus(action.user))
+            newState = newState.copy(status = UsersState.Status.PENDING)
+        }
+        is UsersRequests.DeleteUser.Success -> {
+            newState = newState.copy(
+                    users = state.users.users.minus(action.user),
+                    status = UsersState.Status.DONE
+            )
+        }
+        is UsersRequests.DeleteUser.Failure -> {
+            newState = newState.copy(status = UsersState.Status.IDLE)
         }
         is UsersActions.Sort -> {
             newState = newState.copy(sortType = action.sortType)
@@ -73,9 +82,6 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         }
         is VerificationRequests.Verify.Success -> {
             newState = newState.copy(userAccount = action.userAccount)
-        }
-        is UsersRequests.ClearCurrentUser -> {
-            newState = newState.copy(currentUser = null)
         }
         is UsersRequests.Destroy -> {
             newState = newState.copy(

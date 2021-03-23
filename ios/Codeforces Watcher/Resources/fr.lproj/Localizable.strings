@@ -19,7 +19,7 @@
 
 "OK" = "OK";
 "Cancel" = "Annuler";
-"No connection" = "Pas de connexion";
+"check_connection" = "Vérifiez votre connexion ou réessayez plus tard";
 
 "Search for problems..." = "Chercher des problèmes...";
 
@@ -29,7 +29,6 @@
 "Filter" = "Filtrer";
 
 "User already added" = "Utilisateur déjà ajouté";
-"failed_to_fetch_users" = "La récupération des utilisateurs a échoué! Attendez ou vérifiez les pseudos…";
 
 "Click to see details" = "Cliquez pour voir les détails";
 "Users" = "Utilisateurs";

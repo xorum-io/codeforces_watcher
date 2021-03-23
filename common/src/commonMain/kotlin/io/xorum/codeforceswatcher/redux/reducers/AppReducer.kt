@@ -1,7 +1,7 @@
 package io.xorum.codeforceswatcher.redux.reducers
 
 import io.xorum.codeforceswatcher.features.auth.redux.authReducer
-import io.xorum.codeforceswatcher.features.news.redux.reducers.newsReducer
+import io.xorum.codeforceswatcher.features.news.redux.newsReducer
 import io.xorum.codeforceswatcher.features.users.redux.reducers.usersReducer
 import io.xorum.codeforceswatcher.features.problems.redux.reducers.problemsReducer
 import io.xorum.codeforceswatcher.features.contests.redux.reducers.contestsReducer

@@ -85,7 +85,6 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private func removeTapped() {
         store.dispatch(action: UsersRequests.DeleteUser(user: user))
-        dismiss(animated: true)
     }
     
     private func setupChart() {
@@ -212,8 +211,13 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
         switch(state.status) {
         case .pending:
             showLoading()
-        default:
+        case .idle:
             hideLoading()
+        case .done:
+            hideLoading()
+            dismiss(animated: true)
+        default:
+            break
         }
         
         guard let user = state.currentUser else { return }

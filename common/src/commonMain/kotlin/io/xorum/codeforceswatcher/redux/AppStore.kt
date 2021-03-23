@@ -3,7 +3,6 @@ package io.xorum.codeforceswatcher.redux
 import com.squareup.sqldelight.db.SqlDriver
 import io.xorum.codeforceswatcher.db.DatabaseController
 import io.xorum.codeforceswatcher.features.auth.IFirebaseController
-import io.xorum.codeforceswatcher.network.BackendRepository
 import io.xorum.codeforceswatcher.network.CodeforcesRepository
 import io.xorum.codeforceswatcher.network.KontestsRepository
 import io.xorum.codeforceswatcher.redux.middlewares.appMiddleware

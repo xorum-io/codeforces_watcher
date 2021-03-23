@@ -1,7 +1,7 @@
 package io.xorum.codeforceswatcher.redux.states
 
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
-import io.xorum.codeforceswatcher.features.news.redux.states.NewsState
+import io.xorum.codeforceswatcher.features.news.redux.NewsState
 import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState

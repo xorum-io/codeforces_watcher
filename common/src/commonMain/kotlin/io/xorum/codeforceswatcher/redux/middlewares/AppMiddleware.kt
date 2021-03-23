@@ -35,6 +35,7 @@ private fun executeRequest(action: Request) = scope.launch { action.execute() }
 private fun doActionsOnLogOut(action: Action) = scope.launch {
     if (action is AuthRequests.LogOut.Success) {
         store.dispatch(UsersRequests.Destroy())
+        store.dispatch(AuthRequests.DestroyStatus)
     }
 }
 

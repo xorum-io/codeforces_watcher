@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.news
+package io.xorum.codeforceswatcher.features.news.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

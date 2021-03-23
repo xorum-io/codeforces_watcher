@@ -19,7 +19,7 @@
 
 "OK" = "ओके";
 "Cancel" = "रद्द करना";
-"No connection" = "ऑफ़लाइन";
+"check_connection" = "अपना कनेक्शन जांचें या बाद में पुन: प्रयास करें";
 
 "Search for problems..." = "सवाल खोजे...";
 
@@ -29,7 +29,6 @@
 "Filter" = "छाँटे";
 
 "User already added" = "यूजर पहले से मौजूद है";
-"failed_to_fetch_users" = "यूजरनेम मौजूद नहीं! एक बार यूजरनेम जाँच करले…";
 
 "Click to see details" = "विवरण देखने के लिए क्लिक करें";
 "Users" = "यूजर्स";

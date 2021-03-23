@@ -19,7 +19,7 @@
 
 "OK" = "OK";
 "Cancel" = "Cancel";
-"No connection" = "No connection";
+"check_connection" = "Check your connection or try again later";
 
 "Search for problems..." = "Search for problems...";
 
@@ -29,7 +29,6 @@
 "Filter" = "Filter";
 
 "User already added" = "User already added";
-"failed_to_fetch_users" = "Failed to fetch user(s)! Wait or check handle(s)…";
 
 "Click to see details" = "Click to see details";
 "Users" = "Users";

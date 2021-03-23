@@ -2,12 +2,11 @@
     <string name="last_rating_update">अंतिम रेटिंग बदलाव: %1$s</string>
     <string name="no_rating_update">कोई रेटिंग परिवर्तन नहीं</string>
     <string name="none">कोई परिणाम नहीं</string>
-    <string name="no_connection">ऑफ़लाइन</string>
+    <string name="check_connection_or_try_again_later">अपना कनेक्शन जांचें या बाद में पुन: प्रयास करें</string>
     <string name="rating_changes">रेटिंग में बदलाव</string>
     <string name="ratings_have_been_updated">रेटिंग अपडेट हो चुकी है</string>
     <string name="ratings_update">रेटिंग अपडेट</string>
     <string name="user_already_added">यूजर पहले से मौजूद है</string>
-    <string name="failed_to_fetch_users">यूजरनेम मौजूद नहीं! एक बार यूजरनेम जाँच करले…</string>
     <string name="sort_by">सॉर्ट करें</string>
     <string name="by_default">डिफ़ॉल्ट</string>
     <string name="by_descending_rating">↓ रेटिंग</string>

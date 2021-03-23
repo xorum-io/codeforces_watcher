@@ -4,7 +4,6 @@ import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.users.UsersRepository
 import io.xorum.codeforceswatcher.features.users.models.User
-import io.xorum.codeforceswatcher.network.BackendRepository
 import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
@@ -70,7 +69,7 @@ class UsersRequests {
 
     class FetchUser(val handle: String) : Request() {
 
-        private val backendRepository = BackendRepository()
+        private val usersRepository = UsersRepository(store.state.auth.token)
 
         override suspend fun execute() {
             val profileUser = store.state.users.userAccount?.codeforcesUser
@@ -78,7 +77,7 @@ class UsersRequests {
             if (handle == profileUser?.handle) {
                 store.dispatch(Success(profileUser))
             } else {
-                val result = when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = true)) {
+                val result = when (val response = usersRepository.fetchUser(handle, isAllRatingChangesNeeded = true)) {
                     is Response.Success -> {
                         val user = response.result.first()
                         DatabaseQueries.Users.update(user)
@@ -95,42 +94,48 @@ class UsersRequests {
 
     class DeleteUser(val user: User) : Request() {
 
+        private val usersRepository = UsersRepository(store.state.auth.token)
+
         override suspend fun execute() {
-            DatabaseQueries.Users.delete(user.handle)
+            val result = when (val response = usersRepository.deleteUser(user.handle)) {
+                is Response.Success -> {
+                    DatabaseQueries.Users.delete(user.handle)
+                    Success(user)
+                }
+                is Response.Failure -> Failure(response.error.toMessage())
+            }
+            store.dispatch(result)
         }
+
+        data class Success(val user: User) : Action
+        data class Failure(override val message: Message) : ToastAction
     }
 
     class AddUser(private val handle: String) : Request() {
 
-        private val backendRepository = BackendRepository()
+        private val usersRepository = UsersRepository(store.state.auth.token)
 
         override suspend fun execute() {
-            when (val response = backendRepository.fetchUser(handle, isAllRatingChangesNeeded = false)) {
-                is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) }
-                        ?: store.dispatch(Failure(null.toMessage()))
-                is Response.Failure -> store.dispatch(Failure(response.error.toMessage()))
-            }
-        }
-
-        private fun addUser(user: User) {
-            val foundUser = DatabaseQueries.Users.getAll()
-                    .find { currentUser -> currentUser.handle == user.handle }
-
-            if (foundUser == null) {
-                DatabaseQueries.Users.insert(user)
-                store.dispatch(Success(user))
-                analyticsController.logEvent(AnalyticsEvents.USER_ADDED)
-            } else {
+            if (DatabaseQueries.Users.getAll().find { it.handle.equals(handle, ignoreCase = true) } != null) {
                 store.dispatch(Failure(Message.UserAlreadyAdded))
+                return
             }
+            val result = when (val response = usersRepository.addUser(handle)) {
+                is Response.Success -> {
+                    val user = response.result
+                    DatabaseQueries.Users.insert(user)
+                    analyticsController.logEvent(AnalyticsEvents.USER_ADDED)
+                    Success(user)
+                }
+                is Response.Failure -> Failure(response.error.toMessage())
+            }
+            store.dispatch(result)
         }
 
         data class Success(val user: User) : Action
 
         data class Failure(override val message: Message) : ToastAction
     }
-
-    object ClearCurrentUser : Action
 
     class Destroy : Request() {
 
