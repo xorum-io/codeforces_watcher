@@ -48,7 +48,6 @@ class AuthRequests {
     }
 
     data class UpdateAuthStage(val authStage: AuthState.Stage) : Action
-    object DestroyStatus : Action
 
     object LogOut : Request() {
 

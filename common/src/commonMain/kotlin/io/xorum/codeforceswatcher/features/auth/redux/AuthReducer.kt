@@ -14,7 +14,8 @@ fun authReducer(action: Action, state: AppState): AuthState {
         }
         is AuthRequests.SignIn.Success -> {
             newState = newState.copy(
-                    signInStatus = AuthState.Status.DONE
+                    signInStatus = AuthState.Status.DONE,
+                    token = action.token
             )
         }
         is AuthRequests.SignIn.Failure -> {
@@ -30,7 +31,8 @@ fun authReducer(action: Action, state: AppState): AuthState {
         is AuthRequests.SignUp.Success -> {
             newState = newState.copy(
                     signUpStatus = AuthState.Status.DONE,
-                    signInStatus = AuthState.Status.DONE
+                    signInStatus = AuthState.Status.DONE,
+                    token = action.token
             )
         }
         is AuthRequests.SignUp.Failure -> {
@@ -44,8 +46,9 @@ fun authReducer(action: Action, state: AppState): AuthState {
         is AuthRequests.UpdateAuthStage -> {
             newState = newState.copy(authStage = action.authStage)
         }
-        is AuthRequests.DestroyStatus -> {
+        is AuthRequests.LogOut -> {
             newState = newState.copy(
+                    token = null,
                     signInStatus = AuthState.Status.IDLE,
                     signUpStatus = AuthState.Status.IDLE
             )
