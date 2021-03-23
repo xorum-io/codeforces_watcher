@@ -9,4 +9,6 @@ interface IFirebaseController {
     fun fetchToken(callback: (String?, Exception?) -> Unit)
 
     fun logOut(callback: (Exception?) -> Unit)
+
+    fun sendPasswordReset(email: String, callback: (Exception?) -> Unit)
 }

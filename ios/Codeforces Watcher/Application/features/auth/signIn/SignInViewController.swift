@@ -131,15 +131,21 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     private func setInteractions() {
         signInButton.onTap(target: self, action: #selector(didSignInClick))
         signUpLabel.onTap(target: self, action: #selector(didSignUpClick))
+        forgotPasswordLabel.onTap(target: self, action: #selector(onForgotPasswordTap))
     }
     
-    @objc func didSignInClick() {
+    @objc private func onForgotPasswordTap() {
+        let email = emailInput.textField.text ?? ""
+        store.dispatch(action: AuthRequests.SendPasswordReset(email: email))
+    }
+    
+    @objc private func didSignInClick() {
         let email = emailInput.textField.text ?? ""
         let password = passwordInput.textField.text ?? ""
         store.dispatch(action: AuthRequests.SignIn(email: email, password: password))
     }
     
-    @objc func didSignUpClick() {
+    @objc private func didSignUpClick() {
         presentModal(SignUpViewController())
     }
     
