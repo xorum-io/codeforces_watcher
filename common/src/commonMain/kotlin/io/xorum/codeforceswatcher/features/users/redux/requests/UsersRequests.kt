@@ -94,9 +94,21 @@ class UsersRequests {
 
     class DeleteUser(val user: User) : Request() {
 
+        private val usersRepository = UsersRepository(store.state.auth.token)
+
         override suspend fun execute() {
-            DatabaseQueries.Users.delete(user.handle)
+            val result = when (val response = usersRepository.deleteUser(user.handle)) {
+                is Response.Success -> {
+                    DatabaseQueries.Users.delete(user.handle)
+                    Success(user)
+                }
+                is Response.Failure -> Failure(response.error.toMessage())
+            }
+            store.dispatch(result)
         }
+
+        data class Success(val user: User) : Action
+        data class Failure(override val message: Message) : ToastAction
     }
 
     class AddUser(private val handle: String) : Request() {
@@ -124,8 +136,6 @@ class UsersRequests {
 
         data class Failure(override val message: Message) : ToastAction
     }
-
-    object ClearCurrentUser : Action
 
     class Destroy : Request() {
 

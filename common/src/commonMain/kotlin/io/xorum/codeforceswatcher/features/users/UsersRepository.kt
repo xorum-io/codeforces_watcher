@@ -28,4 +28,10 @@ internal class UsersRepository(token: String?) {
             parameter("handle", handle)
         }
     }
+
+    suspend fun deleteUser(handle: String) = request {
+        ktorResponseClient.post<Unit>("user/delete") {
+            parameter("handle", handle)
+        }
+    }
 }

@@ -65,7 +65,6 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        store.dispatch(UsersRequests.ClearCurrentUser)
     }
 
     private fun displayUser() {
@@ -157,7 +156,6 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
     private fun deleteUser() {
         store.dispatch(UsersRequests.DeleteUser(user))
-        finish()
     }
 
     companion object {
@@ -186,6 +184,7 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
     }
 
     override fun onNewState(state: UsersState) {
+        if (state.status == UsersState.Status.DONE) finish()
         user = state.currentUser ?: return
 
         displayUser()
