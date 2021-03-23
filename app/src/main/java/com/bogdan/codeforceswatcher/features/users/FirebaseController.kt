@@ -8,7 +8,7 @@ class FirebaseController : IFirebaseController {
     private val auth = FirebaseAuth.getInstance()
 
     override fun signIn(email: String, password: String, callback: (String?, Exception?) -> Unit) {
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             fetchToken { token, e ->
                 token?.let { callback(it, null) } ?: callback(null, e)
             }
@@ -18,7 +18,7 @@ class FirebaseController : IFirebaseController {
     }
 
     override fun signUp(email: String, password: String, callback: (String?, Exception?) -> Unit) {
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
             fetchToken { token, e ->
                 token?.let { callback(it, null) } ?: callback(null, e)
             }
@@ -32,8 +32,8 @@ class FirebaseController : IFirebaseController {
             callback(null, null)
             return@fetchToken
         }
-        firebaseUser.getIdToken(false).addOnCompleteListener { task ->
-            callback(task.result?.token, null)
+        firebaseUser.getIdToken(false).addOnSuccessListener { task ->
+            callback(task.token, null)
         }.addOnFailureListener { e ->
             callback(null, e)
         }
@@ -42,5 +42,13 @@ class FirebaseController : IFirebaseController {
     override fun logOut(callback: (Exception?) -> Unit) {
         auth.signOut()
         callback(null)
+    }
+
+    override fun sendPasswordReset(email: String, callback: (Exception?) -> Unit) {
+        auth.sendPasswordResetEmail(email).addOnSuccessListener {
+            callback(null)
+        }.addOnFailureListener { e ->
+            callback(e)
+        }
     }
 }

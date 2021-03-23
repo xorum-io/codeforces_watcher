@@ -23,6 +23,7 @@ class NewsRequests {
                     store.dispatch(Success(response.result.news))
                 }
                 is Response.Failure -> {
+                    analyticsController.logEvent(AnalyticsEvents.NEWS_FETCH_FAILURE)
                     dispatchFailure()
                 }
             }

@@ -8,12 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.InputField
-import com.bogdan.codeforceswatcher.util.AnalyticsController
 import com.bogdan.codeforceswatcher.util.linked
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.redux.store
-import io.xorum.codeforceswatcher.util.AnalyticsEvents
+import io.xorum.codeforceswatcher.redux.toMessage
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.input_field.view.*
 import tw.geothings.rekotlin.StoreSubscriber
@@ -76,13 +75,18 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
 
     private fun forgotPassword() {
         val email = ifEmail.editText.text.trim().toString()
-        AnalyticsController().logEvent(AnalyticsEvents.FORGOT_PASSWORD_PRESSED, mapOf("email" to email))
+        if (email.isEmpty()) store.dispatch(AuthRequests.SendPasswordReset.Failure(getString(R.string.forgot_password_empty_email).toMessage()))
+        else store.dispatch(AuthRequests.SendPasswordReset(email))
     }
 
     private fun signInWithEmailAndPassword() {
         val email = ifEmail.editText.text.trim().toString()
         val password = ifPassword.editText.text.toString()
-        store.dispatch(AuthRequests.SignIn(email, password))
+        if (email.isEmpty() || password.isEmpty()) {
+            store.dispatch(AuthRequests.SignIn.Failure(getString(R.string.fields_can_not_be_empty).toMessage()))
+        } else {
+            store.dispatch(AuthRequests.SignIn(email, password))
+        }
     }
 
     override fun onNewState(state: AuthState) {

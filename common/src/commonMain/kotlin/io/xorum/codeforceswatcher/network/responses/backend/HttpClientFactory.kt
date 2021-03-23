@@ -48,15 +48,15 @@ internal class HttpClientFactory {
     }
 }
 
-suspend fun getError(responseContent: ByteReadChannel) =
+internal suspend fun getError(responseContent: ByteReadChannel) =
         responseContent.readUTF8Line()?.let {
             Json(from = Json.Default) {}.decodeFromString(Error.serializer(), it)
         }
 
 @Serializable
-data class Error(val error: String?)
+internal data class Error(val error: String?)
 
-sealed class Response<T> {
+internal sealed class Response<T> {
 
     data class Success<T>(
             val result: T
@@ -67,7 +67,7 @@ sealed class Response<T> {
     ) : Response<T>()
 }
 
-suspend inline fun <T> request(block: () -> T) = try {
+internal suspend inline fun <T> request(block: () -> T) = try {
     Response.Success(block())
 } catch (clientRequestException: ClientRequestException) {
     println(clientRequestException)
