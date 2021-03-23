@@ -19,7 +19,7 @@
 
 "OK" = "OK";
 "Cancel" = "Cancel";
-"No connection" = "No connection";
+"check_connection" = "Check your connection or try again later";
 
 "Search for problems..." = "Search for problems...";
 

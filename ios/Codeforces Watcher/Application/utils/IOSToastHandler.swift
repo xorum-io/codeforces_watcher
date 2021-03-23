@@ -16,7 +16,7 @@ class IOSToastHandler: ToastHandler {
 
         switch (message) {
         case _ as Message.NoConnection:
-            text = "No connection".localized
+            text = "check_connection".localized
         case _ as Message.UserAlreadyAdded:
             text = "User already added".localized
         case _ as Message.FailedToFetchUser:

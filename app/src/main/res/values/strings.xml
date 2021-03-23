@@ -4,7 +4,7 @@
   <string name="updated_on">Updated on %1$s</string>
   <string name="no_rating_update">No rating update</string>
   <string name="none">None</string>
-  <string name="no_connection">No connection</string>
+  <string name="check_connection_or_try_again_later">Check your connection or try again later</string>
   <string name="rating_changes">Rating Changes</string>
   <string name="ratings_have_been_updated">Ratings have been updated</string>
   <string name="ratings_update">Rating updates</string>

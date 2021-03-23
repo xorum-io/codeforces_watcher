@@ -19,7 +19,7 @@
 
 "OK" = "ओके";
 "Cancel" = "रद्द करना";
-"No connection" = "ऑफ़लाइन";
+"check_connection" = "अपना कनेक्शन जांचें या बाद में पुन: प्रयास करें";
 
 "Search for problems..." = "सवाल खोजे...";
 

@@ -19,7 +19,7 @@
 
 "OK" = "Oк";
 "Cancel" = "Скасувати";
-"No connection" = "Немає зв\'язку";
+"check_connection" = "Перевірте з’єднання або спробуйте пізніше";
 
 "Search for problems..." = "Пошук задач…";
 

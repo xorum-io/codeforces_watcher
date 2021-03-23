@@ -12,7 +12,7 @@ class AndroidMessageHandler : ToastHandler {
 
     override fun handle(message: Message) {
         val string = when (message) {
-            is Message.NoConnection -> getString(R.string.no_connection)
+            is Message.NoConnection -> getString(R.string.check_connection_or_try_again_later)
             is Message.UserAlreadyAdded -> getString(R.string.user_already_added)
             is Message.FailedToFetchUser -> getString(R.string.failed_to_fetch_users)
             is Message.None -> null

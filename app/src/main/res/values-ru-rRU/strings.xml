@@ -3,7 +3,7 @@
     <string name="last_rating_update">Последнее обновление рейтинга: %1$s</string>
     <string name="no_rating_update">Нет обновления рейтинга</string>
     <string name="none">Нет</string>
-    <string name="no_connection">Нет соединения</string>
+    <string name="check_connection_or_try_again_later">Проверьте ваше соединение или попробуйте позже</string>
     <string name="rating_changes">Изменения рейтинга</string>
     <string name="ratings_have_been_updated">Рейтинги обновлены</string>
     <string name="ratings_update">Обновление рейтинга</string>

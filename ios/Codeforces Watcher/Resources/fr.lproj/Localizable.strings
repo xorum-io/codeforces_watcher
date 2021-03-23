@@ -19,7 +19,7 @@
 
 "OK" = "OK";
 "Cancel" = "Annuler";
-"No connection" = "Pas de connexion";
+"check_connection" = "Vérifiez votre connexion ou réessayez plus tard";
 
 "Search for problems..." = "Chercher des problèmes...";
 
