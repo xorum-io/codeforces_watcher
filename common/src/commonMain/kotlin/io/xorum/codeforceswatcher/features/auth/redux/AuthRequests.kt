@@ -7,10 +7,10 @@ class AuthRequests {
 
     class FetchFirebaseUserToken : Request() {
 
-        override suspend fun execute() = firebaseController.fetchToken { token, e ->
+        override suspend fun execute() = firebaseController.fetchToken { token, exception ->
             token?.let {
                 store.dispatch(Success(token))
-            } ?: store.dispatch(Failure(e?.message.toMessage()))
+            } ?: store.dispatch(Failure(exception?.message.toMessage()))
         }
 
         data class Success(val token: String) : Action
@@ -22,10 +22,10 @@ class AuthRequests {
             private val password: String
     ) : Request() {
 
-        override suspend fun execute() = firebaseController.signIn(email, password) { token, e ->
+        override suspend fun execute() = firebaseController.signIn(email, password) { token, exception ->
             token?.let {
                 store.dispatch(Success(token))
-            } ?: store.dispatch(Failure(e?.message.toMessage()))
+            } ?: store.dispatch(Failure(exception?.message.toMessage()))
         }
 
         data class Success(val token: String) : Action
@@ -37,10 +37,10 @@ class AuthRequests {
             private val password: String
     ) : Request() {
 
-        override suspend fun execute() = firebaseController.signUp(email, password) { token, e ->
+        override suspend fun execute() = firebaseController.signUp(email, password) { token, exception ->
             token?.let {
                 store.dispatch(Success(token))
-            } ?: store.dispatch(Failure(e?.message.toMessage()))
+            } ?: store.dispatch(Failure(exception?.message.toMessage()))
         }
 
         data class Success(val token: String) : Action
@@ -52,9 +52,9 @@ class AuthRequests {
 
     object LogOut : Request() {
 
-        override suspend fun execute() = firebaseController.logOut { e ->
-            e?.let {
-                store.dispatch(Failure(e.message.toMessage()))
+        override suspend fun execute() = firebaseController.logOut { exception ->
+            exception?.let {
+                store.dispatch(Failure(it.message.toMessage()))
             } ?: store.dispatch(Success)
         }
 
@@ -64,10 +64,10 @@ class AuthRequests {
 
     class SendPasswordReset(private val email: String) : Request() {
 
-        override suspend fun execute() = firebaseController.sendPasswordReset(email) { e ->
-            e?.let {
-                store.dispatch(Failure(e.message.toMessage()))
-            } ?: store.dispatch(Success("Email with further instructions was sent to you! Please check!".toMessage()))
+        override suspend fun execute() = firebaseController.sendPasswordReset(email) { exception ->
+            exception?.let {
+                store.dispatch(Failure(it.message.toMessage()))
+            } ?: store.dispatch(Success("Email with further instructions has been sent to you! Please check!".toMessage()))
         }
 
         data class Success(override val message: Message) : ToastAction
