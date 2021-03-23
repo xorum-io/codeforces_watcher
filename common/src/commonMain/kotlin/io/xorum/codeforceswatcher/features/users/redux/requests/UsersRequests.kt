@@ -104,24 +104,20 @@ class UsersRequests {
         private val usersRepository = UsersRepository(store.state.auth.token)
 
         override suspend fun execute() {
-            when (val response = usersRepository.fetchUser(handle, isAllRatingChangesNeeded = false)) {
-                is Response.Success -> response.result.firstOrNull()?.let { user -> addUser(user) }
-                        ?: store.dispatch(Failure(null.toMessage()))
-                is Response.Failure -> store.dispatch(Failure(response.error.toMessage()))
-            }
-        }
-
-        private fun addUser(user: User) {
-            val foundUser = DatabaseQueries.Users.getAll()
-                    .find { currentUser -> currentUser.handle == user.handle }
-
-            if (foundUser == null) {
-                DatabaseQueries.Users.insert(user)
-                store.dispatch(Success(user))
-                analyticsController.logEvent(AnalyticsEvents.USER_ADDED)
-            } else {
+            if (DatabaseQueries.Users.getAll().find { it.handle.equals(handle, ignoreCase = true) } != null) {
                 store.dispatch(Failure(Message.UserAlreadyAdded))
+                return
             }
+            val result = when (val response = usersRepository.addUser(handle)) {
+                is Response.Success -> {
+                    val user = response.result
+                    DatabaseQueries.Users.insert(user)
+                    analyticsController.logEvent(AnalyticsEvents.USER_ADDED)
+                    Success(user)
+                }
+                is Response.Failure -> Failure(response.error.toMessage())
+            }
+            store.dispatch(result)
         }
 
         data class Success(val user: User) : Action

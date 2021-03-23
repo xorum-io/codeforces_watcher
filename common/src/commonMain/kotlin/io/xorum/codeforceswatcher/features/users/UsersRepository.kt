@@ -22,4 +22,10 @@ internal class UsersRepository(token: String?) {
             parameter("isAllRatingChangesNeeded", isAllRatingChangesNeeded.toString())
         }
     }
+
+    suspend fun addUser(handle: String) = request {
+        ktorResponseClient.post<User>("user/add") {
+            parameter("handle", handle)
+        }
+    }
 }

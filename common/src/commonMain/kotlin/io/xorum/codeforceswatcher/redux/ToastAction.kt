@@ -21,5 +21,5 @@ sealed class Message {
 }
 
 fun String?.toMessage() =
-        if (this == null) Message.None
+        if (this.isNullOrEmpty()) Message.None
         else Message.Custom(this)
