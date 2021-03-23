@@ -85,11 +85,6 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
         store.dispatch(AuthRequests.SignIn(email, password))
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        store.dispatch(AuthRequests.DestroyStatus)
-    }
-
     override fun onNewState(state: AuthState) {
         when (state.signInStatus) {
             AuthState.Status.PENDING -> spinner.visibility = View.VISIBLE
