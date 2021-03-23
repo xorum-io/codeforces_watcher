@@ -1,6 +1,6 @@
 package io.xorum.codeforceswatcher.features.news.redux
 
-import io.xorum.codeforceswatcher.features.news.News
+import io.xorum.codeforceswatcher.features.news.models.News
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
 

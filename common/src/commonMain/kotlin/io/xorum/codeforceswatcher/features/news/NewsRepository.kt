@@ -2,7 +2,7 @@ package io.xorum.codeforceswatcher.features.news
 
 import io.ktor.client.request.*
 import io.xorum.codeforceswatcher.network.responses.backend.HttpClientFactory
-import io.xorum.codeforceswatcher.network.responses.backend.NewsResponse
+import io.xorum.codeforceswatcher.features.news.models.NewsResponse
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.network.responses.backend.request
 

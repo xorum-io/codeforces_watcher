@@ -1,6 +1,5 @@
-package io.xorum.codeforceswatcher.network.responses.backend
+package io.xorum.codeforceswatcher.features.news.models
 
-import io.xorum.codeforceswatcher.features.news.News
 import kotlinx.serialization.Serializable
 
 @Serializable
