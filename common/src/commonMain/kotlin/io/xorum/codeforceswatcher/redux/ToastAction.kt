@@ -13,8 +13,6 @@ sealed class Message {
 
     object UserAlreadyAdded : Message()
 
-    object FailedToFetchUser : Message()
-
     object None : Message()
 
     data class Custom(val message: String) : Message()

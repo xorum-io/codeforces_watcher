@@ -8,7 +8,6 @@
     <string name="ratings_have_been_updated">Рейтинги оновлені</string>
     <string name="ratings_update">Оновлення рейтингу</string>
     <string name="user_already_added">Користувача вже додано</string>
-    <string name="failed_to_fetch_users">Не вдалося завантажити користувача(iв)! Зачекайте або перевiрте хендл(и)…</string>
     <string name="sort_by">Сорт. за</string>
     <string name="by_default">замовчуванням</string>
     <string name="by_descending_rating">↓ рейтингу</string>

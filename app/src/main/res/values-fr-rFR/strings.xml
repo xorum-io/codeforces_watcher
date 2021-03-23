@@ -7,7 +7,6 @@
     <string name="ratings_have_been_updated">Les classements ont été mis à jour</string>
     <string name="ratings_update">Mise à jour de classements</string>
     <string name="user_already_added">Utilisateur déjà ajouté</string>
-    <string name="failed_to_fetch_users">La récupération des utilisateurs a échoué! Attendez ou vérifiez les pseudos…</string>
     <string name="sort_by">Trier par</string>
     <string name="by_default">défaut</string>
     <string name="by_descending_rating">↓ classement</string>

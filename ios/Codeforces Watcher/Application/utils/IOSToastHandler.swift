@@ -19,8 +19,6 @@ class IOSToastHandler: ToastHandler {
             text = "check_connection".localized
         case _ as Message.UserAlreadyAdded:
             text = "User already added".localized
-        case _ as Message.FailedToFetchUser:
-            text = "failed_to_fetch_users".localized
         case _ as Message.None:
             text = nil
         case let message as Message.Custom:

@@ -9,7 +9,6 @@
   <string name="ratings_have_been_updated">Ratings have been updated</string>
   <string name="ratings_update">Rating updates</string>
   <string name="user_already_added">User already added</string>
-  <string name="failed_to_fetch_users">Failed to fetch user(s)! Wait or check handle(s)…</string>
   <string name="sort_by">Sort by</string>
   <string name="by_default">default</string>
   <string name="by_descending_rating">↓ rating</string>
