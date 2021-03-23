@@ -58,7 +58,7 @@ class ProfileItemEpoxyModel(
                 noUserLayout.visibility = View.GONE
                 showUserData(view)
                 setOnClickListener {
-                    context.startActivity(UserActivity.newIntent(context, userAccount?.codeforcesUser?.handle!!))
+                    context.startActivity(UserActivity.newIntent(context, userAccount?.codeforcesUser?.handle!!, isUserAccount = true))
                 }
             }
         }
