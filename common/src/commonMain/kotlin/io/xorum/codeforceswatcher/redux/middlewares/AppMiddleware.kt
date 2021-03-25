@@ -51,6 +51,8 @@ private fun fetchUsersData(action: Action) = scope.launch {
 
 private fun updateAuthStage(action: Action) = scope.launch {
     val authStage = when (action) {
+        is AuthRequests.SignIn.Success -> AuthState.Stage.SIGNED_IN
+        is AuthRequests.SignUp.Success -> AuthState.Stage.SIGNED_IN
         is UsersRequests.FetchUserData.Success -> action.userAccount.getAuthStage()
         is VerificationRequests.Verify.Success -> AuthState.Stage.VERIFIED
         is AuthRequests.LogOut.Success -> AuthState.Stage.NOT_SIGNED_IN
