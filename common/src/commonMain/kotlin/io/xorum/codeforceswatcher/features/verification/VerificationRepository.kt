@@ -11,12 +11,12 @@ internal class VerificationRepository(token: String) {
     private val ktorResponseClient = HttpClientFactory().create(token)
 
     suspend fun fetchCodeforcesVerificationCode() = request {
-        ktorResponseClient.put<VerificationCodeResponse>("user/generate-verify-code/codeforces")
+        ktorResponseClient.put<VerificationCodeResponse>("verify/generate-code/codeforces")
     }
 
     suspend fun verifyCodeforcesAccount(handle: String) = request {
-        ktorResponseClient.post<UserAccount>("user/verify/codeforces") {
-            parameter("handle", handle)
+        ktorResponseClient.post<UserAccount>("verify/codeforces") {
+            parameter("platform_account", handle)
         }
     }
 }
