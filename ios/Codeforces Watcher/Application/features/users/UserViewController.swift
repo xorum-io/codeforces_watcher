@@ -67,13 +67,27 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
             image: UIImage(named: isUserAccount ? "logOutIcon" : "removeIcon"),
             style: .plain,
             target: self,
-            action: isUserAccount ? #selector(doLogOut) :  #selector(showDeleteUserAlert)
+            action: isUserAccount ? #selector(showLogOutAlert) :  #selector(showDeleteUserAlert)
         )
     }
     
-    @objc private func doLogOut() {
-        store.dispatch(action: AuthRequests.LogOut())
-        presentingViewController?.dismiss(animated: true)
+    @objc private func showLogOutAlert() {
+        let alertController = UIAlertController(
+            title: "log_out".localized,
+            message: "log_out_ask".localized,
+            preferredStyle: .alert
+        )
+        
+        let logOutButton = UIAlertAction(title: "log_out".localized.uppercased(), style: .destructive) {_ in
+            store.dispatch(action: AuthRequests.LogOut())
+            self.presentingViewController?.dismiss(animated: true)
+        }
+        let stayLoggedInButton = UIAlertAction(title: "stay_logged_in".localized.uppercased(), style: .cancel)
+        
+        alertController.addAction(logOutButton)
+        alertController.addAction(stayLoggedInButton)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc private func showDeleteUserAlert() {
