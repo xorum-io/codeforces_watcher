@@ -77,9 +77,9 @@ class UsersRequests {
             if (handle == profileUser?.handle) {
                 store.dispatch(Success(profileUser))
             } else {
-                val result = when (val response = usersRepository.fetchUser(handle, isAllRatingChangesNeeded = true)) {
+                val result = when (val response = usersRepository.fetchUser(handle)) {
                     is Response.Success -> {
-                        val user = response.result.first()
+                        val user = response.result
                         DatabaseQueries.Users.update(user)
                         Success(user)
                     }

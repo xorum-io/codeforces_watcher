@@ -16,10 +16,9 @@ internal class UsersRepository(token: String?) {
         }
     }
 
-    suspend fun fetchUser(handle: String, isAllRatingChangesNeeded: Boolean) = request {
-        ktorResponseClient.get<List<User>>("users") {
-            parameter("handles", handle)
-            parameter("isAllRatingChangesNeeded", isAllRatingChangesNeeded.toString())
+    suspend fun fetchUser(handle: String) = request {
+        ktorResponseClient.get<User>("user") {
+            parameter("handle", handle)
         }
     }
 
