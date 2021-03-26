@@ -34,8 +34,12 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
     private var handle: String
     private var user: User!
     
-    init(_ handle: String) {
+    private let isUserAccount: Bool
+    
+    init(_ handle: String, isUserAccount: Bool) {
         self.handle = handle
+        self.isUserAccount = isUserAccount
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -61,8 +65,6 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
     }
     
     private func setupRightBarButton() {
-        let isUserAccount = (store.state.users.userAccount?.codeforcesUser?.handle == handle)
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(named: isUserAccount ? "logOutIcon" : "removeIcon"),
             style: .plain,
