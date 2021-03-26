@@ -80,14 +80,14 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
             preferredStyle: .alert
         )
         
-        let logOutButton = UIAlertAction(title: "log_out".localized.uppercased(), style: .destructive) {_ in
+        let okButton = UIAlertAction(title: "OK".localized, style: .cancel) { _ in
             store.dispatch(action: AuthRequests.LogOut())
             self.presentingViewController?.dismiss(animated: true)
         }
-        let stayLoggedInButton = UIAlertAction(title: "stay_logged_in".localized.uppercased(), style: .cancel)
+        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .destructive)
         
-        alertController.addAction(logOutButton)
-        alertController.addAction(stayLoggedInButton)
+        alertController.addAction(okButton)
+        alertController.addAction(cancelButton)
         
         present(alertController, animated: true, completion: nil)
     }
