@@ -84,7 +84,11 @@ class WebViewActivity : AppCompatActivity() {
 
         val webChromeClient = object : VideoEnabledWebChromeClient(swipeRefreshLayout, videoLayout, null, webView) {
 
-            override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?): Boolean {
+            override fun onShowFileChooser(
+                    webView: WebView?,
+                    filePathCallback: ValueCallback<Array<Uri>>?,
+                    fileChooserParams: FileChooserParams?
+            ): Boolean {
                 onFileGotCallback = filePathCallback
                 val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
                     addCategory(Intent.CATEGORY_OPENABLE)
