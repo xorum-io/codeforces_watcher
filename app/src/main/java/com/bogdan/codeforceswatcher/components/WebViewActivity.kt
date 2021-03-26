@@ -111,6 +111,12 @@ class WebViewActivity : AppCompatActivity() {
             useWideViewPort = true
             builtInZoomControls = true
             displayZoomControls = false
+            loadWithOverviewMode = true
+            allowFileAccess = true
+            allowContentAccess = true
+            allowFileAccessFromFileURLs = true
+            allowUniversalAccessFromFileURLs = true
+            domStorageEnabled = true
         }
         webViewClient = object : WebViewClient() {
 
