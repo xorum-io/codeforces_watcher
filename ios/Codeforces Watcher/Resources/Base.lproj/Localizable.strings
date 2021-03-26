@@ -38,7 +38,7 @@
 
 "Add user" = "Add user";
 "Enter user handle" = "Enter user handle";
-"No rating update" = "No rating update";
+"no_rating_update" = "No rating update";
 "Done" = "Done";
 "Rating changes" = "Rating changes";
 
@@ -56,7 +56,7 @@
 "update_up" = "↑update";
 "update_down" = "↓update";
 
-"Last rating update" = "Last rating update: %@";
+"last_rating_update" = "Last rating update: %@";
 
 "share_text" = "%@ - %@\n\nShared through Codeforces Watcher. Find it on App Store.";
 "upcoming_contests" = "Upcoming contests";
@@ -115,3 +115,9 @@
 "rating_updated_on" = "Updated on %@";
 "rating" = "Rating: %@";
 "max_rating" = "Max rating: %@";
+
+"log_out" = "Log out";
+"log_out_ask" = "Do you want to log out?";
+"stay_logged_in" = "Stay logged in";
+
+"passwords_do_not_match" = "Passwords don\'t match";

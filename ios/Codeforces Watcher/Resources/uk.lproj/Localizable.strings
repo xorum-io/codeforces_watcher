@@ -38,7 +38,7 @@
 
 "Add user" = "Додати користувача";
 "Enter user handle" = "Введiть хендл користувача";
-"No rating update" = "Немає оновлення рейтингу";
+"no_rating_update" = "Немає оновлення рейтингу";
 "Done" = "Готово";
 "Rating changes" = "Змiни рейтингу";
 
@@ -56,7 +56,7 @@
 "update_up" = "↑оновлення";
 "update_down" = "↓оновлення";
 
-"Last rating update" = "Останнє оновлення рейтингу: %@";
+"last_rating_update" = "Останнє оновлення рейтингу: %@";
 
 "share_text" = "%@ - %@\n\nВідправлено через Codeforces WatchR. Знайдiть його в App Store.";
 "upcoming_contests" = "Майбутні контести";

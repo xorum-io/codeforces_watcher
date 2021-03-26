@@ -170,13 +170,19 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         
         tableAdapter.run {
             $0.onUserTap = { handle in
-                self.presentModal(UserViewController(handle))
+                self.presentModal(UserViewController(handle, isUserAccount: false))
+            }
+            $0.onUserAccountTap = { handle in
+                self.presentModal(UserViewController(handle, isUserAccount: true))
             }
             $0.onLoginTap = {
                 self.presentModal(SignInViewController())
             }
             $0.onVerifyTap = {
                 self.presentModal(VerifyViewController())
+            }
+            $0.onVerifyCellTap = {
+                self.showLogOutAlert()
             }
         }
 
@@ -190,8 +196,28 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         tableView.refreshControl = refreshControl
     }
     
+    private func showLogOutAlert() {
+        let alertController = UIAlertController(
+            title: "log_out".localized,
+            message: "log_out_ask".localized,
+            preferredStyle: .alert
+        )
+        
+        let okButton = UIAlertAction(title: "OK".localized, style: .cancel) { _ in
+            store.dispatch(action: AuthRequests.LogOut())
+            self.presentingViewController?.dismiss(animated: true)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .destructive)
+        
+        alertController.addAction(okButton)
+        alertController.addAction(cancelButton)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
     @objc private func refreshUsers() {
         store.dispatch(action: AuthRequests.FetchFirebaseUserToken())
+
         analyticsControler.logEvent(eventName: AnalyticsEvents().USERS_REFRESH, params: [:])
     }
     

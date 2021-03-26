@@ -38,7 +38,7 @@
 
 "Add user" = "यूज़र जोड़ें";
 "Enter user handle" = "यूज़र हैंडल डाले";
-"No rating update" = "कोई रेटिंग परिवर्तन नहीं";
+"no_rating_update" = "कोई रेटिंग परिवर्तन नहीं";
 "Done" = "Done";
 "Rating changes" = "रेटिंग में बदलाव";
 
@@ -56,7 +56,7 @@
 "update_up" = "↑अपडेट";
 "update_down" = "↓अपडेट";
 
-"Last rating update" = "अंतिम रेटिंग बदलाव: %@";
+"last_rating_update" = "अंतिम रेटिंग बदलाव: %@";
 
 "share_text" = "%@ - %@\n\n यह कोडफ़ोर्सेज़ वॉचर के द्वारा शेयर किया गया है । इसे ऐप स्टोर पे प्राप्त करें ।";
 "upcoming_contests" = "आगामी प्रतियोगिताएं";

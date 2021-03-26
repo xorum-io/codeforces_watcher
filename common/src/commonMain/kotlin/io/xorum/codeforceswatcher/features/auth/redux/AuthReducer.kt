@@ -47,11 +47,7 @@ fun authReducer(action: Action, state: AppState): AuthState {
             newState = newState.copy(authStage = action.authStage)
         }
         is AuthRequests.LogOut.Success -> {
-            newState = newState.copy(
-                    token = null,
-                    signInStatus = AuthState.Status.IDLE,
-                    signUpStatus = AuthState.Status.IDLE
-            )
+            newState = AuthState()
         }
     }
 

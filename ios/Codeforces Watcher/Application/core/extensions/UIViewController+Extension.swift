@@ -6,7 +6,6 @@
 //  Copyright © 2020 xorum.io. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension UIViewController {

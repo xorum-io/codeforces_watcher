@@ -34,8 +34,12 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
     private var handle: String
     private var user: User!
     
-    init(_ handle: String) {
+    private let isUserAccount: Bool
+    
+    init(_ handle: String, isUserAccount: Bool) {
         self.handle = handle
+        self.isUserAccount = isUserAccount
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -54,15 +58,38 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
     private func setupView() {
         view.backgroundColor = Palette.white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "removeIcon"),
-            style: .plain,
-            target: self,
-            action: #selector(showDeleteUserAlert)
-        )
+        setupRightBarButton()
         
         buildViewTree()
         setConstraints()
+    }
+    
+    private func setupRightBarButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: isUserAccount ? "logOutIcon" : "removeIcon"),
+            style: .plain,
+            target: self,
+            action: isUserAccount ? #selector(showLogOutAlert) :  #selector(showDeleteUserAlert)
+        )
+    }
+    
+    @objc private func showLogOutAlert() {
+        let alertController = UIAlertController(
+            title: "log_out".localized,
+            message: "log_out_ask".localized,
+            preferredStyle: .alert
+        )
+        
+        let okButton = UIAlertAction(title: "OK".localized, style: .cancel) { _ in
+            store.dispatch(action: AuthRequests.LogOut())
+            self.presentingViewController?.dismiss(animated: true)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .destructive)
+        
+        alertController.addAction(okButton)
+        alertController.addAction(cancelButton)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc private func showDeleteUserAlert() {

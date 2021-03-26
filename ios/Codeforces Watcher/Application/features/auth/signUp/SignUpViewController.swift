@@ -155,6 +155,8 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
         
         if (password == confirmPassword) {
             store.dispatch(action: AuthRequests.SignUp(email: email, password: password))
+        } else {
+            store.dispatch(action: AuthRequests.SignUpFailure(message: ToastActionKt.toMessage("passwords_do_not_match".localized)))
         }
     }
     

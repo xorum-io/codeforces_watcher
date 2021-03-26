@@ -143,8 +143,17 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
                         .show()
             }
             R.id.action_log_out -> {
-                store.dispatch(AuthRequests.LogOut)
-                finish()
+                AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.log_out))
+                        .setMessage(getString(R.string.do_you_want_to_log_out))
+                        .setCancelable(false)
+                        .setPositiveButton(getString(R.string.stay_logged_in), null)
+                        .setNegativeButton(getString(R.string.log_out)) { _, _ ->
+                            store.dispatch(AuthRequests.LogOut)
+                            finish()
+                        }
+                        .create()
+                        .show()
             }
         }
 

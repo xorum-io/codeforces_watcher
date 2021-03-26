@@ -13,7 +13,9 @@ class UserAccountCommonInfoView: UIView {
     
     private let contentView = UIView()
 
-    private let avatarImage = CircleImageView()
+    private let avatarImage = CircleImageView().apply {
+        $0.image = noImage
+    }
     private let rankLabel = UILabel().apply {
         $0.textColor = Palette.colorPrimary
         $0.font = Font.textSubheadingBig
