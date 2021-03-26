@@ -1,10 +1,10 @@
 package io.xorum.codeforceswatcher.features.users.redux.reducers
 
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
-import io.xorum.codeforceswatcher.features.verification.VerificationRequests
+import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
 
@@ -12,20 +12,17 @@ fun usersReducer(action: Action, state: AppState): UsersState {
     var newState = state.users
 
     when (action) {
-        is UsersRequests.FetchUsers -> {
+        is UsersRequests.FetchUserData -> {
             newState = newState.copy(status = UsersState.Status.PENDING)
         }
-        is UsersRequests.FetchUsers.Success -> {
-            // Looks like it's needed for saving same order as were before fetching
-            val mapUsers = action.users.associateBy { it.handle }
-            val newUsers = state.users.users.map { mapUsers[it.handle] ?: it }
+        is UsersRequests.FetchUserData.Success -> {
             newState = newState.copy(
                     status = UsersState.Status.IDLE,
-                    users = newUsers,
-                    userAccount = state.users.userAccount?.copy(codeforcesUser = action.userAccountCfUser)
+                    users = action.users,
+                    userAccount = action.userAccount
             )
         }
-        is UsersRequests.FetchUsers.Failure -> {
+        is UsersRequests.FetchUserData.Failure -> {
             newState = newState.copy(status = UsersState.Status.IDLE)
         }
         is UsersRequests.FetchUser -> {
@@ -42,7 +39,16 @@ fun usersReducer(action: Action, state: AppState): UsersState {
             )
         }
         is UsersRequests.DeleteUser -> {
-            newState = newState.copy(users = state.users.users.minus(action.user))
+            newState = newState.copy(status = UsersState.Status.PENDING)
+        }
+        is UsersRequests.DeleteUser.Success -> {
+            newState = newState.copy(
+                    users = state.users.users.minus(action.user),
+                    status = UsersState.Status.DONE
+            )
+        }
+        is UsersRequests.DeleteUser.Failure -> {
+            newState = newState.copy(status = UsersState.Status.IDLE)
         }
         is UsersActions.Sort -> {
             newState = newState.copy(sortType = action.sortType)
@@ -59,21 +65,23 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         is UsersActions.ClearAddUserState -> {
             newState = newState.copy(addUserStatus = UsersState.Status.IDLE)
         }
-        is AuthRequests.SignIn.Success -> {
+        is AuthRequests.FetchFirebaseUserToken -> {
             newState = newState.copy(
-                    userAccount = action.userAccount
+                    status = UsersState.Status.PENDING
             )
         }
-        is AuthRequests.SignUp.Success -> {
+        is AuthRequests.FetchFirebaseUserToken.Success -> {
             newState = newState.copy(
-                    userAccount = action.userAccount
+                    status = UsersState.Status.IDLE
+            )
+        }
+        is AuthRequests.FetchFirebaseUserToken.Failure -> {
+            newState = newState.copy(
+                    status = UsersState.Status.IDLE
             )
         }
         is VerificationRequests.Verify.Success -> {
             newState = newState.copy(userAccount = action.userAccount)
-        }
-        is UsersRequests.ClearCurrentUser -> {
-            newState = newState.copy(currentUser = null)
         }
         is UsersRequests.Destroy -> {
             newState = newState.copy(

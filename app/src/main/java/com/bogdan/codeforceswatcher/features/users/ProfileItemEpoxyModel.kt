@@ -16,9 +16,9 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.squareup.picasso.Picasso
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
-import io.xorum.codeforceswatcher.features.auth.AuthState
-import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
+import io.xorum.codeforceswatcher.features.auth.redux.AuthState
+import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.no_user_card_layout.view.*
@@ -58,7 +58,7 @@ class ProfileItemEpoxyModel(
                 noUserLayout.visibility = View.GONE
                 showUserData(view)
                 setOnClickListener {
-                    context.startActivity(UserActivity.newIntent(context, userAccount?.codeforcesUser?.handle!!))
+                    context.startActivity(UserActivity.newIntent(context, userAccount?.codeforcesUser?.handle!!, isUserAccount = true))
                 }
             }
         }

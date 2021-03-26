@@ -3,12 +3,11 @@
     <string name="last_rating_update">Последнее обновление рейтинга: %1$s</string>
     <string name="no_rating_update">Нет обновления рейтинга</string>
     <string name="none">Нет</string>
-    <string name="no_connection">Нет соединения</string>
+    <string name="check_connection_or_try_again_later">Проверьте ваше соединение или попробуйте позже</string>
     <string name="rating_changes">Изменения рейтинга</string>
     <string name="ratings_have_been_updated">Рейтинги обновлены</string>
     <string name="ratings_update">Обновление рейтинга</string>
     <string name="user_already_added">Пользователь уже добавлен</string>
-    <string name="failed_to_fetch_users">Не получилось загрузить пользователя(ей)! Подождите или проверьте хэндл(ы)…</string>
     <string name="sort_by">Сорт. по</string>
     <string name="by_default">умолчанию</string>
     <string name="by_descending_rating">↓ рейтинга</string>

@@ -6,6 +6,9 @@ PODS:
   - common (0.0.1-SNAPSHOT)
   - Firebase/Analytics (6.31.1):
     - Firebase/Core
+  - Firebase/Auth (6.31.1):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 6.9.0)
   - Firebase/Core (6.31.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.8.0)
@@ -23,6 +26,11 @@ PODS:
     - GoogleUtilities/Network (~> 6.7)
     - "GoogleUtilities/NSData+zlib (~> 6.7)"
     - nanopb (~> 1.30906.0)
+  - FirebaseAuth (6.9.2):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (6.10.1):
     - FirebaseCoreDiagnostics (~> 1.6)
     - GoogleUtilities/Environment (~> 6.7)
@@ -70,6 +78,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.5.0)
   - MaterialComponents/AnimationTiming (114.0.0)
   - MaterialComponents/Availability (114.0.0)
   - MaterialComponents/Buttons (114.0.0):
@@ -135,6 +144,7 @@ DEPENDENCIES:
   - Charts
   - common (from `../common`)
   - Firebase/Analytics
+  - Firebase/Auth
   - Firebase/Crashlytics
   - MaterialComponents/Buttons
   - PKHUD (~> 5.0)
@@ -148,6 +158,7 @@ SPEC REPOS:
     - Charts
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCrashlytics
@@ -155,6 +166,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - GTMSessionFetcher
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -175,6 +187,7 @@ SPEC CHECKSUMS:
   common: f8e23265a08e4f981e7f58fa4cec653e63160419
   Firebase: 658370fa0181826a74b7cfca8d68c5856ca749ae
   FirebaseAnalytics: 0ca9aa2af7cc4dc92392b7a78bfc49feaa2eb60f
+  FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
   FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c
   FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
   FirebaseCrashlytics: d2a350ec7fd4a332031b906b0802a7a73697630b
@@ -182,6 +195,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: ecc30d0ab5b66d7d18e85ce1b8e2b345db60626d
   GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   MaterialComponents: 82c900f70f609710c47a9872bc2d59ce08ca0b18
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
@@ -192,6 +206,6 @@ SPEC CHECKSUMS:
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 174751ce9ad3d927ddfa5def15558ad3432493ab
+PODFILE CHECKSUM: a9d59340fa421d2cc922d734f44f11c3e748223e
 
 COCOAPODS: 1.10.1

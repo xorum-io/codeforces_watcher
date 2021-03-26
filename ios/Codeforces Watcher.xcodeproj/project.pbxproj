@@ -81,6 +81,8 @@
 		63FB270923E1AA50005F19F1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB270823E1AA50005F19F1 /* WebViewController.swift */; };
 		677BE8E325597C01008691C8 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677BE8E225597C01008691C8 /* VideoTableViewCell.swift */; };
 		677BE8E825597F19008691C8 /* video_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 677BE8E725597F19008691C8 /* video_placeholder.jpg */; };
+		67F482F426023734004D9529 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F482F326023734004D9529 /* FirebaseController.swift */; };
+		67F482F526023734004D9529 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F482F326023734004D9529 /* FirebaseController.swift */; };
 		6A07788925CAC97B00CED3E0 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07788825CAC97B00CED3E0 /* PrimaryButton.swift */; };
 		6A07788E25CACBBF00CED3E0 /* ActionableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */; };
 		6A19E69625F8BE5100DECF5E /* UserAccountCommonInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A19E69525F8BE5100DECF5E /* UserAccountCommonInfoView.swift */; };
@@ -301,6 +303,7 @@
 		63FB270823E1AA50005F19F1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		677BE8E225597C01008691C8 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		677BE8E725597F19008691C8 /* video_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = video_placeholder.jpg; sourceTree = "<group>"; };
+		67F482F326023734004D9529 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		6A07788825CAC97B00CED3E0 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		6A07788D25CACBBF00CED3E0 /* ActionableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionableLabel.swift; sourceTree = "<group>"; };
 		6A19E69525F8BE5100DECF5E /* UserAccountCommonInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountCommonInfoView.swift; sourceTree = "<group>"; };
@@ -677,6 +680,7 @@
 				638C39272437277F00DB33A3 /* Prefs.swift */,
 				63D51144250651290031660B /* AnalyticsController.swift */,
 				6387BD1325078A5B0048C9E8 /* CrashlyticsError.swift */,
+				67F482F326023734004D9529 /* FirebaseController.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1206,6 +1210,7 @@
 				63F02C042462F0B000B1CD2C /* SmallButton.swift in Sources */,
 				33524EA5619D62409125FD81 /* AppDelegate.swift in Sources */,
 				63EB130123CF3F830013A974 /* MainViewController.swift in Sources */,
+				67F482F426023734004D9529 /* FirebaseController.swift in Sources */,
 				335240BE358E7469D97B1472 /* String+Extension.swift in Sources */,
 				6A8BDAD125C2B60200C63878 /* LoginView.swift in Sources */,
 				6A9B5CB625D2957A001FC2CA /* CheckboxView.swift in Sources */,
@@ -1319,6 +1324,7 @@
 				B14B601C25E836200073D091 /* SmallButton.swift in Sources */,
 				B14B601D25E836200073D091 /* AppDelegate.swift in Sources */,
 				B14B601E25E836200073D091 /* MainViewController.swift in Sources */,
+				67F482F526023734004D9529 /* FirebaseController.swift in Sources */,
 				B14B601F25E836200073D091 /* String+Extension.swift in Sources */,
 				B14B602025E836200073D091 /* LoginView.swift in Sources */,
 				B14B602125E836200073D091 /* CheckboxView.swift in Sources */,

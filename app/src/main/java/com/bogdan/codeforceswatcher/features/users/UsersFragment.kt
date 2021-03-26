@@ -13,12 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyController
-import io.xorum.codeforceswatcher.features.auth.AuthState
-import io.xorum.codeforceswatcher.features.auth.UserAccount
+import io.xorum.codeforceswatcher.features.auth.redux.AuthState
+import io.xorum.codeforceswatcher.features.auth.models.UserAccount
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
-import io.xorum.codeforceswatcher.features.users.redux.requests.Source
-import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState.SortType.Companion.getSortType
 import io.xorum.codeforceswatcher.redux.analyticsController
@@ -27,7 +26,6 @@ import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.fragment_users.*
 import tw.geothings.rekotlin.StoreSubscriber
-import java.util.*
 
 class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubscriber<AppState> {
 
@@ -36,7 +34,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
     private val epoxyController by lazy { EpoxyController() }
 
     override fun onRefresh() {
-        store.dispatch(UsersRequests.FetchUsers(Source.USER))
+        store.dispatch(AuthRequests.FetchFirebaseUserToken())
         analyticsController.logEvent(AnalyticsEvents.USERS_REFRESH)
     }
 
@@ -62,7 +60,6 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
         epoxyController.data = state.users.users.sort(state.users.sortType).map { UserItem(it) }
 
         adjustSpinnerSortVisibility(state.users.users.isEmpty())
-        swipeRefreshLayout.isEnabled = state.users.users.isNotEmpty() || state.auth.authStage == AuthState.Stage.VERIFIED
 
         if (state.users.addUserStatus == UsersState.Status.DONE) {
             store.dispatch(UsersActions.ClearAddUserState())

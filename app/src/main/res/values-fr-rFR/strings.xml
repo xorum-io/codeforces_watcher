@@ -2,12 +2,11 @@
     <string name="last_rating_update">Dernière mise à jour: %1$s</string>
     <string name="no_rating_update">Pas de mise à jour de classement</string>
     <string name="none">Aucun</string>
-    <string name="no_connection">Pas de connexion</string>
+    <string name="check_connection_or_try_again_later">Vérifiez votre connexion ou réessayez plus tard</string>
     <string name="rating_changes">Changements de classement</string>
     <string name="ratings_have_been_updated">Les classements ont été mis à jour</string>
     <string name="ratings_update">Mise à jour de classements</string>
     <string name="user_already_added">Utilisateur déjà ajouté</string>
-    <string name="failed_to_fetch_users">La récupération des utilisateurs a échoué! Attendez ou vérifiez les pseudos…</string>
     <string name="sort_by">Trier par</string>
     <string name="by_default">défaut</string>
     <string name="by_descending_rating">↓ classement</string>

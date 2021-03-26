@@ -21,7 +21,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
@@ -37,7 +37,12 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
     private val handle
         get() = intent.getStringExtra(HANDLE)
+
+    private val isUserAccount
+        get() = intent.getBooleanExtra(IS_USER_ACCOUNT, false)
+
     private lateinit var user: User
+
     private var menuItemId by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +54,7 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
         setupChart()
 
-        menuItemId = if (handle == store.state.users.userAccount?.codeforcesUser?.handle) {
-            R.menu.menu_user_activity_log_out
-        } else {
-            R.menu.menu_user_activity_delete
-        }
+        menuItemId = if (isUserAccount) R.menu.menu_user_activity_log_out else R.menu.menu_user_activity_delete
 
         store.dispatch(UsersRequests.FetchUser(handle))
     }
@@ -61,11 +62,6 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        store.dispatch(UsersRequests.ClearCurrentUser)
     }
 
     private fun displayUser() {
@@ -157,17 +153,16 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
 
     private fun deleteUser() {
         store.dispatch(UsersRequests.DeleteUser(user))
-        finish()
     }
 
     companion object {
 
         private const val HANDLE = "handle"
+        private const val IS_USER_ACCOUNT = "is_user_account"
 
-        fun newIntent(context: Context, handle: String): Intent {
-            val intent = Intent(context, UserActivity::class.java)
-            intent.putExtra(HANDLE, handle)
-            return intent
+        fun newIntent(context: Context, handle: String, isUserAccount: Boolean) = Intent(context, UserActivity::class.java).apply {
+            putExtra(HANDLE, handle)
+            putExtra(IS_USER_ACCOUNT, isUserAccount)
         }
     }
 
@@ -186,6 +181,7 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
     }
 
     override fun onNewState(state: UsersState) {
+        if (state.status == UsersState.Status.DONE) finish()
         user = state.currentUser ?: return
 
         displayUser()

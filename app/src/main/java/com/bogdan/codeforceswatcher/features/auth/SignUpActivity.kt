@@ -15,8 +15,8 @@ import com.bogdan.codeforceswatcher.components.WebViewActivity
 import com.bogdan.codeforceswatcher.util.disable
 import com.bogdan.codeforceswatcher.util.enable
 import com.bogdan.codeforceswatcher.util.linked
-import io.xorum.codeforceswatcher.features.auth.AuthRequests
-import io.xorum.codeforceswatcher.features.auth.AuthState
+import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
+import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.redux.toMessage
 import io.xorum.codeforceswatcher.util.Constants.PRIVACY_POLICY_LINK
@@ -109,6 +109,9 @@ class SignUpActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
         val password = ifPassword.editText.text.toString()
         val confirmedPassword = ifConfirmPassword.editText.text.toString()
         when {
+            password.isEmpty() || email.isEmpty() || confirmedPassword.isEmpty() -> {
+                store.dispatch(AuthRequests.SignUp.Failure(getString(R.string.fields_can_not_be_empty).toMessage()))
+            }
             password != confirmedPassword -> store.dispatch(AuthRequests.SignUp.Failure(getString(R.string.passwords_do_not_match).toMessage()))
             !checkbox.isChecked -> store.dispatch(AuthRequests.SignUp.Failure(getString(R.string.agree_to_the_privacy_policy).toMessage()))
             else -> store.dispatch(AuthRequests.SignUp(email, password))

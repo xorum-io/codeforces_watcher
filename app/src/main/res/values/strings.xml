@@ -4,12 +4,11 @@
   <string name="updated_on">Updated on %1$s</string>
   <string name="no_rating_update">No rating update</string>
   <string name="none">None</string>
-  <string name="no_connection">No connection</string>
+  <string name="check_connection_or_try_again_later">Check your connection or try again later</string>
   <string name="rating_changes">Rating Changes</string>
   <string name="ratings_have_been_updated">Ratings have been updated</string>
   <string name="ratings_update">Rating updates</string>
   <string name="user_already_added">User already added</string>
-  <string name="failed_to_fetch_users">Failed to fetch user(s)! Wait or check handle(s)…</string>
   <string name="sort_by">Sort by</string>
   <string name="by_default">default</string>
   <string name="by_descending_rating">↓ rating</string>
@@ -116,4 +115,6 @@ Download it now on Google Play - https://play.google.com/store/apps/details?id=c
   <string name="log_out">Log out</string>
   <string name="do_you_want_to_log_out">Do you want to log out?</string>
   <string name="stay_logged_in">Stay logged in</string>
+  <string name="forgot_password_empty_email">Enter a valid email and click \"Forgot Password\"!</string>
+  <string name="fields_can_not_be_empty">Fields can\'t be empty</string>
 </resources>
