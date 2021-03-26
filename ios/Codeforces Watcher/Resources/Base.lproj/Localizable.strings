@@ -119,3 +119,5 @@
 "log_out" = "Log out";
 "log_out_ask" = "Do you want to log out?";
 "stay_logged_in" = "Stay logged in";
+
+"passwords_do_not_match" = "Passwords don\'t match";
