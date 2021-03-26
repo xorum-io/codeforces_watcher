@@ -3,9 +3,11 @@ package com.bogdan.codeforceswatcher.components
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.view.KeyEvent.KEYCODE_BACK
+import android.webkit.ValueCallback
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -28,6 +30,8 @@ class WebViewActivity : AppCompatActivity() {
 
     private val shareEvent: String?
         get() = intent.getStringExtra(PAGE_SHARE_EVENT_ID)
+
+    private var onFileGotCallback: ValueCallback<Array<Uri>>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +82,18 @@ class WebViewActivity : AppCompatActivity() {
     private fun setupWebView() = with(webView) {
         loadUrl(link)
 
-        val webChromeClient = object : VideoEnabledWebChromeClient(swipeRefreshLayout, videoLayout, null, webView)  {}
+        val webChromeClient = object : VideoEnabledWebChromeClient(swipeRefreshLayout, videoLayout, null, webView) {
+
+            override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?): Boolean {
+                onFileGotCallback = filePathCallback
+                val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                    addCategory(Intent.CATEGORY_OPENABLE)
+                    type = "*/*"
+                }
+                startActivityForResult(intent, FILECHOOSER_RESULTCODE)
+                return true
+            }
+        }
 
         webChromeClient.setOnToggledFullscreen(object : ToggledFullscreenCallback {
             override fun toggledFullscreen(fullscreen: Boolean) {
@@ -152,11 +167,23 @@ class WebViewActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == FILECHOOSER_RESULTCODE && resultCode == RESULT_OK) {
+            data?.data?.let {
+                onFileGotCallback?.onReceiveValue(arrayOf(it))
+                onFileGotCallback = null
+            }
+        }
+    }
+
     companion object {
         private const val PAGE_TITLE_ID = "page_title_id"
         private const val PAGE_LINK_ID = "page_link_id"
         private const val PAGE_OPEN_EVENT_ID = "page_open_event_id"
         private const val PAGE_SHARE_EVENT_ID = "page_share_event_id"
+
+        private const val FILECHOOSER_RESULTCODE = 1
 
         fun newIntent(
                 context: Context,
