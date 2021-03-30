@@ -20,7 +20,9 @@ import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.users.models.User
+import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.no_user_card_layout.view.*
 import kotlinx.android.synthetic.main.user_profile_layout.view.*
 import kotlinx.android.synthetic.main.view_profile_item.view.*
@@ -174,6 +176,7 @@ class ProfileItemEpoxyModel(
 
         btnAction.setOnClickListener {
             context.startActivity(Intent(context, SignInActivity::class.java))
+            analyticsController.logEvent(AnalyticsEvents.SIGN_IN_OPENED)
         }
     }
 
@@ -185,6 +188,7 @@ class ProfileItemEpoxyModel(
 
         btnAction.setOnClickListener {
             context.startActivity(Intent(context, VerificationActivity::class.java))
+            analyticsController.logEvent(AnalyticsEvents.VERIFY_OPENED)
         }
     }
 }

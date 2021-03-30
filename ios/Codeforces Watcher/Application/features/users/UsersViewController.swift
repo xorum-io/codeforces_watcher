@@ -174,9 +174,11 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
             }
             $0.onLoginTap = {
                 self.presentModal(SignInViewController())
+                analyticsControler.logEvent(eventName: AnalyticsEvents().SIGN_IN_OPENED, params: [:])
             }
             $0.onVerifyTap = {
                 self.presentModal(VerifyViewController())
+                analyticsControler.logEvent(eventName: AnalyticsEvents().VERIFY_OPENED, params: [:])
             }
         }
 
