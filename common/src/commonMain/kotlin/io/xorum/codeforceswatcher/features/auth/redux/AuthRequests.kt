@@ -8,12 +8,12 @@ class AuthRequests {
     class FetchFirebaseUserToken : Request() {
 
         override suspend fun execute() = firebaseController.fetchToken { token, exception ->
-            token?.let {
-                store.dispatch(Success(token))
-            } ?: store.dispatch(Failure(exception?.message.toMessage()))
+            exception?.let {
+                store.dispatch(Failure(it.message.toMessage()))
+            } ?: store.dispatch(Success(token))
         }
 
-        data class Success(val token: String) : Action
+        data class Success(val token: String?) : Action
         data class Failure(override val message: Message) : ToastAction
     }
 
