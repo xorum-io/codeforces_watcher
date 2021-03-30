@@ -7,7 +7,9 @@ import io.xorum.codeforceswatcher.features.users.redux.requests.Source
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
 import io.xorum.codeforceswatcher.redux.Request
+import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import tw.geothings.rekotlin.Action
@@ -54,7 +56,7 @@ private fun updateAuthStage(action: Action) = scope.launch {
         is AuthRequests.SignIn.Success -> AuthState.Stage.SIGNED_IN
         is AuthRequests.SignUp.Success -> AuthState.Stage.SIGNED_IN
         is UsersRequests.FetchUserData.Success -> action.userAccount.getAuthStage()
-        is VerificationRequests.Verify.Success -> AuthState.Stage.VERIFIED
+        is VerificationRequests.VerifyCodeforces.Success -> AuthState.Stage.VERIFIED
         is AuthRequests.LogOut.Success -> AuthState.Stage.NOT_SIGNED_IN
         else -> return@launch
     }

@@ -7,8 +7,9 @@ enum class Platform {
     CODEFORCES, CODEFORCES_GYM, TOPCODER, ATCODER, CS_ACADEMY, CODECHEF, HACKERRANK, HACKEREARTH, KICK_START, LEETCODE;
 
     companion object {
+
         val defaultFilterValueToSave: Set<String>
-            get() = Platform.values().map { it.toString() }.toSet()
+            get() = values().map { it.toString() }.toSet()
     }
 }
 

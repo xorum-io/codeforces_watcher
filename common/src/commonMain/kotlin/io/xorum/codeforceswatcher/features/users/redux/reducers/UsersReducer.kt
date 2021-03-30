@@ -80,7 +80,7 @@ fun usersReducer(action: Action, state: AppState): UsersState {
                     status = UsersState.Status.IDLE
             )
         }
-        is VerificationRequests.Verify.Success -> {
+        is VerificationRequests.VerifyCodeforces.Success -> {
             newState = newState.copy(userAccount = action.userAccount)
         }
         is UsersRequests.Destroy -> {

@@ -14,13 +14,13 @@ fun verificationReducer(action: Action, state: AppState): VerificationState {
             newState = newState.copy(verificationCode = action.verificationCode)
             newState = newState.copy(status = VerificationState.Status.IDLE)
         }
-        is VerificationRequests.Verify -> {
+        is VerificationRequests.VerifyCodeforces -> {
             newState = newState.copy(status = VerificationState.Status.PENDING)
         }
-        is VerificationRequests.Verify.Success -> {
+        is VerificationRequests.VerifyCodeforces.Success -> {
             newState = newState.copy(status = VerificationState.Status.DONE)
         }
-        is VerificationRequests.Verify.Failure -> {
+        is VerificationRequests.VerifyCodeforces.Failure -> {
             newState = newState.copy(status = VerificationState.Status.IDLE)
         }
     }
