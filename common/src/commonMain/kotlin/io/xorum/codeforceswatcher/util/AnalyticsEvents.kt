@@ -4,6 +4,17 @@ object AnalyticsEvents {
 
     const val USERS_REFRESH = "users_list_refresh"
     const val USER_ADDED = "user_added"
+    const val FETCH_USERS_FAILURE = "fetch_users_failure"
+    const val FETCH_USERS_SUCCESS = "fetch_users_success"
+
+    const val SIGN_IN_OPENED = "sign_in_opened"
+    const val SIGN_IN_DONE = "sign_in_done"
+    const val SIGN_UP_OPENED = "sign_up_opened"
+    const val SIGN_UP_DONE = "sign_up_done"
+    const val VERIFY_OPENED = "verify_opened"
+    const val VERIFY_DONE = "verify_done"
+    const val LOG_OUT = "log_out"
+    const val RESTORE_PASSWORD = "restore_password"
 
     const val CONTESTS_REFRESH = "contests_list_refresh"
     const val CONTEST_OPENED = "contest_opened"

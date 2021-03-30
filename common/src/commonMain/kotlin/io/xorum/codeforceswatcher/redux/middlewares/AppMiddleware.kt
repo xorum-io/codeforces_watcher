@@ -26,6 +26,7 @@ val appMiddleware: Middleware<StateType> = { _, _ ->
             doActionsOnLogOut(action)
             fetchUsersData(action)
             updateAuthStage(action)
+            sendAnalytics(action)
 
             next(action)
         }
@@ -62,4 +63,19 @@ private fun updateAuthStage(action: Action) = scope.launch {
     }
 
     store.dispatch(AuthRequests.UpdateAuthStage(authStage))
+}
+
+private fun sendAnalytics(action: Action) = scope.launch {
+    val (event, params: Map<String, String>?) = when (action) {
+        is AuthRequests.SignIn.Success -> Pair(AnalyticsEvents.SIGN_IN_DONE, null)
+        is AuthRequests.SignUp.Success -> Pair(AnalyticsEvents.SIGN_UP_DONE, null)
+        is AuthRequests.LogOut.Success -> Pair(AnalyticsEvents.LOG_OUT, null)
+        is AuthRequests.SendPasswordReset.Success -> Pair(AnalyticsEvents.RESTORE_PASSWORD, null)
+        is VerificationRequests.VerifyCodeforces.Success -> Pair(AnalyticsEvents.VERIFY_DONE, mapOf("platform" to "codeforces"))
+        is UsersRequests.FetchUserData.Success -> Pair(AnalyticsEvents.FETCH_USERS_SUCCESS, null)
+        is UsersRequests.FetchUserData.Failure -> Pair(AnalyticsEvents.FETCH_USERS_FAILURE, null)
+        else -> return@launch
+    }
+
+    analyticsController.logEvent(event, params ?: mapOf())
 }
