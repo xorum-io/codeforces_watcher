@@ -56,6 +56,16 @@ internal suspend fun getError(responseContent: ByteReadChannel) =
 @Serializable
 internal data class Error(val error: String?)
 
+internal suspend inline fun <T> request(block: () -> T) = try {
+    Response.Success(block())
+} catch (clientRequestException: ClientRequestException) {
+    println(clientRequestException)
+    Response.Failure(getError(clientRequestException.response.content)?.error)
+} catch (e: Exception) {
+    println(e)
+    Response.Failure(null)
+}
+
 internal sealed class Response<T> {
 
     data class Success<T>(
@@ -65,14 +75,4 @@ internal sealed class Response<T> {
     data class Failure<T>(
             val error: String?
     ) : Response<T>()
-}
-
-internal suspend inline fun <T> request(block: () -> T) = try {
-    Response.Success(block())
-} catch (clientRequestException: ClientRequestException) {
-    println(clientRequestException)
-    Response.Failure(getError(clientRequestException.response.content)?.error)
-} catch (e: Exception) {
-    println(e)
-    Response.Failure(null)
 }

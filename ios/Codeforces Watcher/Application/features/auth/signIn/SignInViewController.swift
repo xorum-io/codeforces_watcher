@@ -147,6 +147,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     
     @objc private func didSignUpClick() {
         presentModal(SignUpViewController())
+        analyticsControler.logEvent(eventName: AnalyticsEvents().SIGN_UP_OPENED, params: [:])
     }
     
     private func addKeyboardListeners() {

@@ -11,8 +11,10 @@ import com.bogdan.codeforceswatcher.components.InputField
 import com.bogdan.codeforceswatcher.util.linked
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
+import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.redux.toMessage
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.input_field.view.*
 import tw.geothings.rekotlin.StoreSubscriber
@@ -51,6 +53,7 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
         )))
         tvSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
+            analyticsController.logEvent(AnalyticsEvents.SIGN_UP_OPENED)
         }
     }
 

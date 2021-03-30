@@ -130,7 +130,7 @@ class NewsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
 
     @objc private func refreshNews(_ sender: Any) {
-        analyticsControler.logEvent(eventName: AnalyticsEvents().ACTIONS_REFRESH, params: [:])
+        analyticsControler.logEvent(eventName: AnalyticsEvents().NEWS_REFRESH, params: [:])
         store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: true))
     }
 }

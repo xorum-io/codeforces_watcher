@@ -133,6 +133,6 @@ class VerifyViewController: ClosableViewController, ReKampStoreSubscriber {
     
     @objc func didVerifyClick() {
         let handle = handleInput.textField.text ?? ""
-        store.dispatch(action: VerificationRequests.Verify(handle: handle))
+        store.dispatch(action: VerificationRequests.VerifyCodeforces(handle: handle))
     }
 }

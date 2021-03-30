@@ -3,11 +3,14 @@ package io.xorum.codeforceswatcher.redux.middlewares
 import io.xorum.codeforceswatcher.features.auth.models.getAuthStage
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
+import io.xorum.codeforceswatcher.features.news.redux.NewsRequests
 import io.xorum.codeforceswatcher.features.users.redux.requests.Source
 import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
 import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
 import io.xorum.codeforceswatcher.redux.Request
+import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
+import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import tw.geothings.rekotlin.Action
@@ -24,6 +27,7 @@ val appMiddleware: Middleware<StateType> = { _, _ ->
             doActionsOnLogOut(action)
             fetchUsersData(action)
             updateAuthStage(action)
+            sendAnalytics(action)
 
             next(action)
         }
@@ -56,10 +60,34 @@ private fun updateAuthStage(action: Action) = scope.launch {
         is AuthRequests.SignIn.Success -> AuthState.Stage.SIGNED_IN
         is AuthRequests.SignUp.Success -> AuthState.Stage.SIGNED_IN
         is UsersRequests.FetchUserData.Success -> action.userAccount.getAuthStage()
-        is VerificationRequests.Verify.Success -> AuthState.Stage.VERIFIED
+        is VerificationRequests.VerifyCodeforces.Success -> AuthState.Stage.VERIFIED
         is AuthRequests.LogOut.Success -> AuthState.Stage.NOT_SIGNED_IN
         else -> return@launch
     }
 
     store.dispatch(AuthRequests.UpdateAuthStage(authStage))
+}
+
+private fun sendAnalytics(action: Action) = scope.launch {
+    val (event, params: Map<String, String>?) = when (action) {
+        is AuthRequests.SignIn.Success -> Pair(AnalyticsEvents.SIGN_IN_DONE, null)
+        is AuthRequests.SignUp.Success -> Pair(AnalyticsEvents.SIGN_UP_DONE, null)
+        is AuthRequests.LogOut.Success -> Pair(AnalyticsEvents.LOG_OUT, null)
+        is AuthRequests.SendPasswordReset.Success -> Pair(AnalyticsEvents.RESTORE_PASSWORD, null)
+
+        is VerificationRequests.VerifyCodeforces.Success -> Pair(AnalyticsEvents.VERIFY_DONE, mapOf("platform" to "codeforces"))
+
+        is UsersRequests.FetchUserData.Success -> Pair(AnalyticsEvents.FETCH_USERS_SUCCESS, null)
+        is UsersRequests.FetchUserData.Failure -> Pair(AnalyticsEvents.FETCH_USERS_FAILURE, null)
+        is UsersRequests.AddUser.Success -> Pair(AnalyticsEvents.USER_ADDED, null)
+
+        is NewsRequests.FetchNews -> Pair(AnalyticsEvents.NEWS_FETCH, null)
+        is NewsRequests.FetchNews.Success -> Pair(AnalyticsEvents.NEWS_FETCH_SUCCESS, null)
+        is NewsRequests.FetchNews.Failure -> Pair(AnalyticsEvents.NEWS_FETCH_FAILURE, null)
+        is NewsRequests.RemovePinnedPost -> Pair(AnalyticsEvents.PINNED_POST_CLOSED, null)
+
+        else -> return@launch
+    }
+
+    analyticsController.logEvent(event, params ?: mapOf())
 }

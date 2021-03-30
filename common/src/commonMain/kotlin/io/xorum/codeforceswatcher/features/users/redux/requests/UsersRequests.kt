@@ -6,7 +6,6 @@ import io.xorum.codeforceswatcher.features.users.UsersRepository
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
-import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import io.xorum.codeforceswatcher.util.UsersDiff
 import tw.geothings.rekotlin.Action
 
@@ -124,7 +123,6 @@ class UsersRequests {
                 is Response.Success -> {
                     val user = response.result
                     DatabaseQueries.Users.insert(user)
-                    analyticsController.logEvent(AnalyticsEvents.USER_ADDED)
                     Success(user)
                 }
                 is Response.Failure -> Failure(response.error.toMessage())

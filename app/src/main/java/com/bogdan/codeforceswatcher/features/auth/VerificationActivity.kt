@@ -48,7 +48,7 @@ class VerificationActivity : AppCompatActivity(), StoreSubscriber<VerificationSt
         }
 
         btnVerify.setOnClickListener {
-            store.dispatch(VerificationRequests.Verify(ifHandle.editText.text.toString()))
+            store.dispatch(VerificationRequests.VerifyCodeforces(ifHandle.editText.text.toString()))
         }
     }
 

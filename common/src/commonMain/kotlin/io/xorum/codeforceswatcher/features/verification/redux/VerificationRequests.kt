@@ -8,7 +8,7 @@ import tw.geothings.rekotlin.Action
 
 class VerificationRequests {
 
-    class Verify(private val handle: String) : Request() {
+    class VerifyCodeforces(private val handle: String) : Request() {
 
         private val verificationRepository = VerificationRepository(store.state.auth.token!!)
 

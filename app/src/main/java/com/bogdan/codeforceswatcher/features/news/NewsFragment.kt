@@ -77,7 +77,7 @@ class NewsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSubs
 
     override fun onRefresh() {
         store.dispatch(NewsRequests.FetchNews(true))
-        analyticsController.logEvent(AnalyticsEvents.ACTIONS_REFRESH)
+        analyticsController.logEvent(AnalyticsEvents.NEWS_REFRESH)
     }
 
     override fun onCreateView(

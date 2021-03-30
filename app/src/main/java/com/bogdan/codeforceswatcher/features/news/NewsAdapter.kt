@@ -93,11 +93,11 @@ class NewsAdapter(
             tvCommentContent.text = commentContent
 
             onCommentClickListener = {
-                itemClickListener(commentLink, blogTitle, AnalyticsEvents.ACTION_OPENED, AnalyticsEvents.ACTION_SHARED)
+                itemClickListener(commentLink, blogTitle, AnalyticsEvents.POST_OPENED, AnalyticsEvents.NEWS_SHARED)
             }
 
             onPostClickListener = {
-                itemClickListener(postLink, blogTitle, AnalyticsEvents.ACTION_OPENED, AnalyticsEvents.ACTION_SHARED)
+                itemClickListener(postLink, blogTitle, AnalyticsEvents.POST_OPENED, AnalyticsEvents.NEWS_SHARED)
             }
 
             (ivPostAuthorAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, postAuthorRankColor)
@@ -122,7 +122,7 @@ class NewsAdapter(
             tvHandleAndTime.text = agoText
             tvContent.text = content
             onItemClickListener = {
-                itemClickListener(link, blogTitle, AnalyticsEvents.ACTION_OPENED, AnalyticsEvents.ACTION_SHARED)
+                itemClickListener(link, blogTitle, AnalyticsEvents.POST_OPENED, AnalyticsEvents.NEWS_SHARED)
             }
             (ivAvatar as CircleImageView).borderColor = ContextCompat.getColor(context, rankColor)
         }
@@ -139,7 +139,7 @@ class NewsAdapter(
         with(viewHolder) {
             tvTitle.text = title
             onItemClickListener = {
-                itemClickListener(pinnedItem.link, pinnedItem.title, AnalyticsEvents.PINNED_POST_OPENED, AnalyticsEvents.ACTION_SHARED)
+                itemClickListener(pinnedItem.link, pinnedItem.title, AnalyticsEvents.PINNED_POST_OPENED, AnalyticsEvents.NEWS_SHARED)
             }
             onCrossClickListener = {
                 store.dispatch(NewsRequests.RemovePinnedPost(pinnedItem.link))
