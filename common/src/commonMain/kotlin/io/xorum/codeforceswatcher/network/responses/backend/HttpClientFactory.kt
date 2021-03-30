@@ -27,7 +27,7 @@ internal class HttpClientFactory {
                 protocol = URLProtocol.HTTPS
             }
 
-            header("Authorization", "Bearer $token")
+            token?.let { header("Authorization", "Bearer $token") }
             header("lang", getLang())
         }
         Json {
