@@ -57,11 +57,12 @@
 
             <Button
                 android:id="@+id/actionButton"
-                android:layout_width="128dp"
+                android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_gravity="end"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
+                android:paddingHorizontal="32dp"
                 android:text="@string/add_user"
                 android:background="@drawable/button_blue_ripple_16"
                 android:textColor="@color/white" />
