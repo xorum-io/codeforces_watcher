@@ -22,7 +22,7 @@ class CommonButton: UIButton {
     
     private func setupView() {
         titleLabel?.font = Font.textButton
-        contentEdgeInsets = UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 25)
+        contentEdgeInsets = UIEdgeInsets(top: 10, left: 32, bottom: 10, right: 32)
         layer.run {
             $0.cornerRadius = 18
             $0.masksToBounds = true
