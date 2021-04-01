@@ -92,7 +92,7 @@ class ProfileItemEpoxyModel(
                         Date(ratingChange.ratingUpdateTimeSeconds * 1000)
                 )
         )
-    } ?: context.getString(R.string.no_rating_update)
+    } ?: context.getString(R.string.never_updated)
 
     private fun displayChart(view: View) = with(view.chart) {
         setTouchEnabled(false)

@@ -97,6 +97,7 @@
         android:clickable="true"
         android:focusable="true"
         android:text="@string/already_have_an_account"
+        android:textAlignment="center"
         android:textColor="@color/dark_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

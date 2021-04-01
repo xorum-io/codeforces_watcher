@@ -67,6 +67,7 @@ class AuthRequests {
             exception?.let {
                 store.dispatch(Failure(it.message.toMessage()))
             } ?: store.dispatch(Success("Email with further instructions has been sent to you! Please check!".toMessage()))
+            // TODO: translate string
         }
 
         data class Success(override val message: Message) : ToastAction

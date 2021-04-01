@@ -1,5 +1,6 @@
 <resources>
     <string name="last_rating_update">अंतिम रेटिंग बदलाव: %1$s</string>
+    <string name="updated_on">संशोधित किया गया %1$s</string>
     <string name="no_rating_update">कोई रेटिंग परिवर्तन नहीं</string>
     <string name="none">कोई परिणाम नहीं</string>
     <string name="check_connection_or_try_again_later">अपना कनेक्शन जांचें या बाद में पुन: प्रयास करें</string>
@@ -43,8 +44,8 @@ Codeforces WatchR के साथ आप:
 इसे अब Google Play पर डाउनलोड करें - https://play.google.com/store/apps/details?id=com.bogdan.codeforceswatcher"</string>
     <string name="news_on_the_way">आपके डिवाइस पर आने वाली हाल की क्रियाएं…</string>
     <string name="no_favourite_problems">आपके पास अभी कोई पसंदीदा सवाल नहीं है ।\n अपना पहला पसंदीदा सवाल स्क्रीन में नीचे दिए गए «∞» बटन पर क्लिक करके जोड़ें ।</string>
-    <string name="problems_on_the_way">सवाल आपके डिवाइस पे लोड हो रहा है...</string>
-    <string name="search_for_problems">सवाल खोजे...</string>
+    <string name="problems_on_the_way">सवाल आपके डिवाइस पे लोड हो रहा है…</string>
+    <string name="search_for_problems">सवाल खोजे…</string>
     <string name="no_browser_has_been_found">कोई ब्राउज़र नहीं पाया गया , कृपया कोई इंस्टॉल करें।</string>
     <string name="filters">छाँटे </string>
     <string name="no_contests_found">कोई प्रतियोगिता नहीं पाया गया</string>
@@ -66,6 +67,9 @@ Codeforces WatchR के साथ आप:
     <string name="ok">ओके</string>
 
     <string name="rating">रेटिंग: %1$s (अधिकतम रेटिंग %2$s)</string>
+    <string name="rating_only">रेटिंग: %1$s</string>
+    <string name="max_rating_only">अधिकतम रेटिंग: %1$s</string>
+
     <string name="contribution">योगदान: %1$s</string>
 
     <string name="see_all_comments">सभी टिप्पणियाँ देखें</string>
@@ -76,4 +80,38 @@ Codeforces WatchR के साथ आप:
 
     <string name="watch_video">वीडियो देखेंा</string>
     <string name="upcoming_contests">आगामी प्रतियोगिताएं</string>
+
+    <string name="login_in_42_seconds">42 सेकंड में लॉगिन करें</string>
+    <string name="galactic_master">गांगेय गुरु</string>
+    <string name="unknown">अनजान</string>
+    <string name="never_updated">कभी अद्यतन नहीं किया गया</string>
+    <string name="login_to_identify">पहचान करने के लिए लॉगिन करें</string>
+    <string name="verify_account">खाता सत्यापित करें</string>
+    <string name="pass_quick_verification">अपनी प्रोफ़ाइल देखने के लिए त्वरित और सरल सत्यापन पास करें</string>
+    <string name="verify_in_42_seconds">42 सेकंड में सत्यापित करें</string>
+    <string name="get_instant_notifications">और रेटिंग अपडेट के बारे में तुरंत पुश सूचनाएं प्राप्त करें</string>
+    <string name="forgot_password">पासवर्ड भूल गए?</string>
+    <string name="email">ईमेल</string>
+    <string name="password">कुंजिका</string>
+    <string name="sign_in">दाखिल करना</string>
+    <string name="dont_have_an_account_yet"><![CDATA[अब तक कोई खाता नहीं है? <link>साइन अप करें</link>]]></string>
+    <string name="already_have_an_account"><![CDATA[क्या आपके पास पहले से एक खाता मौजूद है? <link>दाखिल करना</link>]]></string>
+    <string name="sign_up">साइन अप करें</string>
+    <string name="confirm_password">पासवर्ड की पुष्टि कीजिये</string>
+    <string name="passwords_do_not_match">पासवर्ड डॉन \'टी मैच</string>
+    <string name="agree_to_the_privacy_policy">गोपनीयता नीति से सहमत हों</string>
+    <string name="agree_with_the_conditions_and_privacy_policy"><![CDATA[मैं <लिंक> नियम और शर्तें <link>नियम और शर्तें</link> और <link>गोपनीयता नीति</link>]]></string>
+    <string name="terms_and_conditions">नियम और शर्तें</string>
+    <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="verify_codeforces_account">सत्यापित करें Codeforces लेखा</string>
+    <string name="verify">सत्यापित करें</string>
+    <string name="to_verify_please_change_your_last_name">इस खाते को सत्यापित करने के लिए, कृपया अपने <b> प्रोफ़ाइल - सेटिंग्स - सामाजिक </b> में इस मूल्य के लिए अपना अंग्रेज़ी "अंतिम नाम" बदलें:</string>
+    <string name="after_successful_login_you_can_change_it_back">सफल लॉगिन के बाद आप इसे वापस बदल सकते हैं.</string>
+    <string name="codeforces_handle">Codeforces handle</string>
+    <string name="code_copied_to_clipboard">क्लिपबोर्ड पर कोड कॉपी किया गया</string>
+    <string name="log_out">लॉग आउट</string>
+    <string name="do_you_want_to_log_out">क्या आप लॉग आउट करना चाहते हैं?</string>
+    <string name="stay_logged_in">लॉगइन रखें</string>
+    <string name="forgot_password_empty_email">एक मान्य ईमेल दर्ज करें और \ "पासवर्ड भूल गए" पर क्लिक करें!</string>
+    <string name="fields_can_not_be_empty">फ़ील्ड खाली नहीं हो सकते</string>
 </resources>

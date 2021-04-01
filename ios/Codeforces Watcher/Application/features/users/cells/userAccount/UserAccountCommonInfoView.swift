@@ -142,7 +142,7 @@ fileprivate extension UserAccountCommonInfoView.UIModel {
         if let lastUpdate = lastUpdate {
             return "rating_updated_on".localizedFormat(args: Double(lastUpdate).secondsToUserUpdateDateString())
         } else {
-            return "None".localized
+            return "never_updated".localized
         }
     }
 }

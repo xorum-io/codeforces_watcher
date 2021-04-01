@@ -18,6 +18,8 @@ class VerifyToIdentifyView: UIView {
         $0.text = "verify_account".localized
         $0.textColor = Palette.darkGray
         $0.font = Font.textBody
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
     }
     private let promptLabel = UILabel().apply {
         $0.text = "verify_account_prompt".localized
@@ -60,12 +62,12 @@ class VerifyToIdentifyView: UIView {
         
         verifyLabel.run {
             $0.topToSuperview(offset: 38)
-            $0.centerXToSuperview()
+            $0.horizontalToSuperview(insets: .horizontal(8))
         }
         
         promptLabel.run {
             $0.topToBottom(of: verifyLabel, offset: 4)
-            $0.centerXToSuperview()
+            $0.horizontalToSuperview(insets: .horizontal(8))
         }
         
         verifyButton.run {

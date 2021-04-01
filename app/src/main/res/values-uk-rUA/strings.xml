@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="last_rating_update">Останнє оновлення рейтингу: %1$s</string>
+    <string name="updated_on">Oновлено %1$s</string>
     <string name="no_rating_update">Немає оновлення рейтингу</string>
     <string name="none">Немає</string>
     <string name="check_connection_or_try_again_later">Перевірте підключення або спробуйте пізніше</string>
@@ -70,6 +71,9 @@ Codeforces WatchR дає можливiсть:
     <string name="ok">OK</string>
 
     <string name="rating">Рейтинг: %1$s (макс. %2$s)</string>
+    <string name="rating_only">Рейтинг: %1$s</string>
+    <string name="max_rating_only">Макс. рейтинг: %1$s</string>
+
     <string name="contribution">Внесок: %1$s</string>
 
     <string name="see_all_comments">Переглянути всі коментарі</string>
@@ -80,4 +84,38 @@ Codeforces WatchR дає можливiсть:
 
     <string name="watch_video">Переглянути відео</string>
     <string name="upcoming_contests">Майбутні контести</string>
+
+    <string name="login_in_42_seconds">Увійти за 42 секунди</string>
+    <string name="galactic_master">Галактичний майстер</string>
+    <string name="unknown">Невідомо</string>
+    <string name="never_updated">Ніколи не оновлювався</string>
+    <string name="login_to_identify">Увійдіть для ідентифікації</string>
+    <string name="verify_account">Підтвердити акаунт</string>
+    <string name="pass_quick_verification">Пройдіть швидку та просту перевірку, щоб побачити тут свій профіль</string>
+    <string name="verify_in_42_seconds">Підтвердити за 42 секунди</string>
+    <string name="get_instant_notifications">І отримуйте миттєві push-сповіщення про оновлення рейтингу</string>
+    <string name="forgot_password">Забули пароль?</string>
+    <string name="email">Електронна пошта</string>
+    <string name="password">Пароль</string>
+    <string name="sign_in">Увійти</string>
+    <string name="dont_have_an_account_yet"><![CDATA[У вас ще немає облікового запису? <link>Зареєструватися</link>]]></string>
+    <string name="already_have_an_account"><![CDATA[Вже є обліковий запис? <link>Увійти</link>]]></string>
+    <string name="sign_up">Зареєструватися</string>
+    <string name="confirm_password">Підтвердьте пароль</string>
+    <string name="passwords_do_not_match">Паролі не збігаються</string>
+    <string name="agree_to_the_privacy_policy">Погодьтеся з політикою конфіденційності</string>
+    <string name="agree_with_the_conditions_and_privacy_policy"><![CDATA[Я погоджуюсь з <link> Загальними положеннями та умовами </link> та <link> Політикою конфіденційності </link>]]></string>
+    <string name="terms_and_conditions">Загальні положення та умови</string>
+    <string name="privacy_policy">Політика конфіденційності</string>
+    <string name="verify_codeforces_account">Підтвердити Codeforces акаунт</string>
+    <string name="verify">Підтвердити</string>
+    <string name="to_verify_please_change_your_last_name">Щоб підтвердити, що ваш акаунт належить вам, змініть англійськe "Прізвище" у своєму <b> Профілі - Налаштування - Соціальні </b> на таке значення:</string>
+    <string name="after_successful_login_you_can_change_it_back">Відразу після успішного входу ви можете змінити його назад.</string>
+    <string name="codeforces_handle">Codeforces хендл</string>
+    <string name="code_copied_to_clipboard">Код скопійовано в буфер обміну</string>
+    <string name="log_out">Вийти</string>
+    <string name="do_you_want_to_log_out">Ви хочете вийти?</string>
+    <string name="stay_logged_in">Залишитися в системі</string>
+    <string name="forgot_password_empty_email">Введіть дійсну електронну пошту і натисніть \ "Забули пароль \"!</string>
+    <string name="fields_can_not_be_empty">Поля не можуть бути порожніми</string>
 </resources>

@@ -74,6 +74,7 @@
         android:clickable="true"
         android:focusable="true"
         android:text="@string/dont_have_an_account_yet"
+        android:textAlignment="center"
         android:textColor="@color/dark_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
