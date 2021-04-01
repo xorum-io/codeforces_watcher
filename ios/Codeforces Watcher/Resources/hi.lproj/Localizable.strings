@@ -103,10 +103,10 @@
 "sign_up" = "साइन अप करें";
 "sign_up_hint" = "अब तक कोई खाता नहीं है?";
 
-"agreement_terms_and_privacy" = "मैं <लिंक> नियम और शर्तें <terms>नियम और शर्तें</terms> और \n<privacy>गोपनीयता नीति</privacy>.";
+"agreement_terms_and_privacy" = "मैं <लिंक> नियम और शर्तें <terms>नियम और शर्तें</terms> और <privacy>गोपनीयता नीति</privacy>.";
 
 "verify_codeforces_account" = "सत्यापित करें Codeforces लेखा";
-"codeforces_handle" = "Codeforces handle";
+"codeforces_handle" = "Codeforces हैंडल";
 
 "verify_instruction" = "इस खाते को सत्यापित करने के लिए, कृपया अपने <bold> प्रोफ़ाइल - सेटिंग्स - सामाजिक </bold> में इस मूल्य के लिए अपना अंग्रेज़ी \"अंतिम नाम\" बदलें:";
 "verify_change_it_back" = "सफल लॉगिन के बाद आप इसे वापस बदल सकते हैं.";

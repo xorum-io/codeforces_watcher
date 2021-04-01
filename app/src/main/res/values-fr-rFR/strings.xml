@@ -69,7 +69,7 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
 
     <string name="rating">Classement: %1$s (max. %2$s)</string>
     <string name="rating_only">Classement: %1$s</string>
-    <string name="max_rating_only">Max Classement: %1$s</string>
+    <string name="max_rating_only">Max Class.: %1$s</string>
 
     <string name="contribution">Contribution: %1$s</string>
 
@@ -95,7 +95,7 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
     <string name="email">E-mail</string>
     <string name="password">Mot de passe</string>
     <string name="sign_in">S\'identifier</string>
-    <string name="dont_have_an_account_yet"><![CDATA[Vous n\'avez pas encore de compte? <link> S\'inscrire </link>]]></string>
+    <string name="dont_have_an_account_yet"><![CDATA[Vous n\'avez pas encore de compte? <link>S\'inscrire</link>]]></string>
     <string name="already_have_an_account"><![CDATA[Vous avez déjà un compte? <link>S\'identifier</link>]]></string>
     <string name="sign_up">S\'inscrire</string>
     <string name="confirm_password">Confirmez le mot de passe</string>

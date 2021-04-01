@@ -103,7 +103,7 @@
 "sign_up" = "S'inscrire";
 "sign_up_hint" = "Vous n'avez pas encore de compte?";
 
-"agreement_terms_and_privacy" = "J'accepte les <terms>Termes et conditions</terms> et la\n<privacy>Politique de confidentialité</privacy>.";
+"agreement_terms_and_privacy" = "J'accepte les <terms>Termes et conditions</terms> et la <privacy>Politique de confidentialité</privacy>.";
 
 "verify_codeforces_account" = "Vérifier Codeforces Compte";
 "codeforces_handle" = "Codeforces handle";
@@ -113,7 +113,7 @@
 
 "rating_updated_on" = "Mis à jour le %@";
 "rating" = "Classement: %@";
-"max_rating" = "Max Classement: %@";
+"max_rating" = "Max Class.: %@";
 
 "log_out" = "Se déconnecter";
 "log_out_ask" = "Voulez-vous vous déconnecter?";

@@ -103,7 +103,7 @@
 "sign_up" = "Зарегистрироваться";
 "sign_up_hint" = "У вас еще нет учетной записи?";
 
-"agreement_terms_and_privacy" = "Я согласен с <terms>Условиями и положениями</terms> и\n<privacy>Политикой конфиденциальности</privacy>.";
+"agreement_terms_and_privacy" = "Я согласен с <terms>Условиями и положениями</terms> и <privacy>Политикой конфиденциальности</privacy>.";
 
 "verify_codeforces_account" = "Подтвердить аккаунт Codeforces";
 "codeforces_handle" = "Codeforces хэндл";
