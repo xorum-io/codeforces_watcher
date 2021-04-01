@@ -79,3 +79,43 @@
 "modified" = "изменен";
 "created" = "создан";
 "watch_video" = "Смотреть видео";
+
+"galactic_master" = "Галактический мастер";
+"unknown" = "Неизвестно";
+"never_updated" = "Никогда не обновлялся";
+
+"login_to_identify" = "Войдите, чтобы идентифицироваться";
+"prompt_to_loginToIdentify" = "И получайте мгновенные push-уведомления об обновлениях рейтингов";
+"login_in_42_seconds" = "Войти за 42 секунды";
+
+"verify_account" = "Подтвердить учетную запись";
+"verify_account_prompt" = "Пройдите быструю и простую проверку, чтобы увидеть здесь свой профиль";
+"verify_in_42_seconds" = "Подтвердить за 42 секунды";
+
+"email" = "Эл. адрес";
+"password" = "Пароль";
+"confirm_password" = "Подтвердите пароль";
+"forgot_password" = "Забыли пароль?";
+
+"sign_in" = "Войти";
+"sign_in_hint" = "Уже есть учетная запись?";
+
+"sign_up" = "Зарегистрироваться";
+"sign_up_hint" = "У вас еще нет учетной записи?";
+
+"agreement_terms_and_privacy" = "Я согласен с <terms>Условиями и положениями</terms> и\n<privacy>Политикой конфиденциальности</privacy>.";
+
+"verify_codeforces_account" = "Подтвердить аккаунт Codeforces";
+"codeforces_handle" = "Codeforces хэндл";
+
+"verify_instruction" = "Чтобы убедиться, что учетная запись принадлежит вам, измените свою фамилию (на английском) в своем <bold> Профиле - Настройки - Социальные </bold> на это значение:";
+"verify_change_it_back" = "Сразу после успешного входа в систему вы можете вернуть его обратно.";
+
+"rating_updated_on" = "Обновление %@";
+"rating" = "Рейтинг: %@";
+"max_rating" = "Макс. рейтинг: %@";
+
+"log_out" = "Выйти";
+"log_out_ask" = "Вы хотите выйти?";
+
+"passwords_do_not_match" = "Пароли не совпадают";

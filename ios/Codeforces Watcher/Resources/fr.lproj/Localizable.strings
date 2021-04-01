@@ -79,3 +79,43 @@
 "modified" = "modifié";
 "created" = "créé";
 "watch_video" = "regarder la vidéo";
+
+"galactic_master" = "Maître galactique";
+"unknown" = "Inconnu";
+"never_updated" = "Jamais mis à jour";
+
+"login_to_identify" = "Connectez-vous pour vous identifier";
+"prompt_to_loginToIdentify" = "Et recevez des notifications push instantanées sur les mises à jour des notes";
+"login_in_42_seconds" = "Connectez-vous en 42 secondes";
+
+"verify_account" = "Vérifier le compte";
+"verify_account_prompt" = "Passez la vérification rapide et simple pour voir votre profil ici";
+"verify_in_42_seconds" = "Vérifiez en 42 secondes";
+
+"email" = "E-mail";
+"password" = "Mot de passe";
+"confirm_password" = "Confirmez le mot de passe";
+"forgot_password" = "Mot de passe oublié?";
+
+"sign_in" = "S'identifier";
+"sign_in_hint" = "Vous avez déjà un compte?";
+
+"sign_up" = "S'inscrire";
+"sign_up_hint" = "Vous n'avez pas encore de compte?";
+
+"agreement_terms_and_privacy" = "J'accepte les <terms>Termes et conditions</terms> et la\n<privacy>Politique de confidentialité</privacy>.";
+
+"verify_codeforces_account" = "Vérifier Codeforces Compte";
+"codeforces_handle" = "Codeforces handle";
+
+"verify_instruction" = "Pour vérifier que ce compte vous appartient, veuillez modifier votre \"Nom de famille\" en anglais dans votre <bold> Profil - Paramètres - Réseaux sociaux </bold> en lui attribuant cette valeur:";
+"verify_change_it_back" = "Juste après une connexion réussie, vous pouvez le modifier.";
+
+"rating_updated_on" = "Mis à jour le %@";
+"rating" = "Classement: %@";
+"max_rating" = "Max Classement: %@";
+
+"log_out" = "Se déconnecter";
+"log_out_ask" = "Voulez-vous vous déconnecter?";
+
+"passwords_do_not_match" = "Les mots de passe ne correspondent pas";

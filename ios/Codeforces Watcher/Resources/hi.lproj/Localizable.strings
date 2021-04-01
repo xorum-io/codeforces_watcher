@@ -79,3 +79,43 @@
 "modified" = "संशोधित";
 "created" = "बनाया था";
 "watch_video" = "वीडियो देखेंा";
+
+"galactic_master" = "गांगेय गुरु";
+"unknown" = "अनजान";
+"never_updated" = "कभी अद्यतन नहीं किया गया";
+
+"login_to_identify" = "पहचान करने के लिए लॉगिन करें";
+"prompt_to_loginToIdentify" = "और रेटिंग अपडेट के बारे में तुरंत पुश सूचनाएं प्राप्त करें";
+"login_in_42_seconds" = "42 सेकंड में लॉगिन करें";
+
+"verify_account" = "खाता सत्यापित करें";
+"verify_account_prompt" = "अपनी प्रोफ़ाइल देखने के लिए त्वरित और सरल सत्यापन पास करें";
+"verify_in_42_seconds" = "42 सेकंड में सत्यापित करें";
+
+"email" = "ईमेल";
+"password" = "कुंजिका";
+"confirm_password" = "पासवर्ड की पुष्टि कीजिये";
+"forgot_password" = "पासवर्ड भूल गए?";
+
+"sign_in" = "दाखिल करना";
+"sign_in_hint" = "क्या आपके पास पहले से एक खाता मौजूद है?";
+
+"sign_up" = "साइन अप करें";
+"sign_up_hint" = "अब तक कोई खाता नहीं है?";
+
+"agreement_terms_and_privacy" = "मैं <लिंक> नियम और शर्तें <terms>नियम और शर्तें</terms> और \n<privacy>गोपनीयता नीति</privacy>.";
+
+"verify_codeforces_account" = "सत्यापित करें Codeforces लेखा";
+"codeforces_handle" = "Codeforces handle";
+
+"verify_instruction" = "इस खाते को सत्यापित करने के लिए, कृपया अपने <bold> प्रोफ़ाइल - सेटिंग्स - सामाजिक </bold> में इस मूल्य के लिए अपना अंग्रेज़ी \"अंतिम नाम\" बदलें:";
+"verify_change_it_back" = "सफल लॉगिन के बाद आप इसे वापस बदल सकते हैं.";
+
+"rating_updated_on" = "संशोधित किया गया %@";
+"rating" = "रेटिंग: %@";
+"max_rating" = "अधिकतम रेटिंग: %@";
+
+"log_out" = "लॉग आउट";
+"log_out_ask" = "क्या आप लॉग आउट करना चाहते हैं?";
+
+"passwords_do_not_match" = "पासवर्ड डॉन 'टी मैच";

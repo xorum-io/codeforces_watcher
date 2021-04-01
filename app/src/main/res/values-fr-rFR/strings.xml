@@ -1,5 +1,6 @@
 <resources>
     <string name="last_rating_update">Dernière mise à jour: %1$s</string>
+    <string name="updated_on">Mis à jour le %1$s</string>
     <string name="no_rating_update">Pas de mise à jour de classement</string>
     <string name="none">Aucun</string>
     <string name="check_connection_or_try_again_later">Vérifiez votre connexion ou réessayez plus tard</string>
@@ -58,7 +59,7 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
     <string name="not_really">Pas vraiment</string>
     <string name="no_thanks">Non merci</string>
 
-    <string name="chart_info">" = %1$s (%2$s) \n Rank: %3$s \n %4$s \n %5$s "</string>
+    <string name="chart_info">" = %1$s (%2$s) \n Rang: %3$s \n %4$s \n %5$s "</string>
     <string name="contest_date_format">HH:mm MMM d, EEEE</string>
     <string name="user_date_format">d MMM, yyyy</string>
 
@@ -67,6 +68,9 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
     <string name="ok">OK</string>
 
     <string name="rating">Classement: %1$s (max. %2$s)</string>
+    <string name="rating_only">Classement: %1$s</string>
+    <string name="max_rating_only">Max Classement: %1$s</string>
+
     <string name="contribution">Contribution: %1$s</string>
 
     <string name="see_all_comments">Voir tous les commentaires</string>
@@ -77,4 +81,38 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
 
     <string name="watch_video">regarder la vidéo</string>
     <string name="upcoming_contests">concours à venir</string>
+
+    <string name="login_in_42_seconds">Connectez-vous en 42 secondes</string>
+    <string name="galactic_master">Maître galactique</string>
+    <string name="unknown">Inconnu</string>
+    <string name="never_updated">Jamais mis à jour</string>
+    <string name="login_to_identify">Connectez-vous pour vous identifier</string>
+    <string name="verify_account">Vérifier le compte</string>
+    <string name="pass_quick_verification">Passez la vérification rapide et simple pour voir votre profil ici</string>
+    <string name="verify_in_42_seconds">Vérifiez en 42 secondes</string>
+    <string name="get_instant_notifications">Et recevez des notifications push instantanées sur les mises à jour des notes</string>
+    <string name="forgot_password">Mot de passe oublié?</string>
+    <string name="email">E-mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="sign_in">S\'identifier</string>
+    <string name="dont_have_an_account_yet"><![CDATA[Vous n\'avez pas encore de compte? <link> S\'inscrire </link>]]></string>
+    <string name="already_have_an_account"><![CDATA[Vous avez déjà un compte? <link>S\'identifier</link>]]></string>
+    <string name="sign_up">S\'inscrire</string>
+    <string name="confirm_password">Confirmez le mot de passe</string>
+    <string name="passwords_do_not_match">Les mots de passe ne correspondent pas</string>
+    <string name="agree_to_the_privacy_policy">Acceptez la politique de confidentialité</string>
+    <string name="agree_with_the_conditions_and_privacy_policy"><![CDATA[J\'accepte les <link> Termes et conditions </link> et la <link> Politique de confidentialité </link>]]></string>
+    <string name="terms_and_conditions">Termes et conditions</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="verify_codeforces_account">Vérifier Codeforces Compte</string>
+    <string name="verify">Vérifier</string>
+    <string name="to_verify_please_change_your_last_name">Pour vérifier que ce compte vous appartient, veuillez modifier votre "Nom de famille" en anglais dans votre <b> Profil - Paramètres - Réseaux sociaux </b> en lui attribuant cette valeur:</string>
+    <string name="after_successful_login_you_can_change_it_back">Juste après une connexion réussie, vous pouvez le modifier.</string>
+    <string name="codeforces_handle">Codeforces handle</string>
+    <string name="code_copied_to_clipboard">Code copié dans le presse-papiers</string>
+    <string name="log_out">Se déconnecter</string>
+    <string name="do_you_want_to_log_out">Voulez-vous vous déconnecter?</string>
+    <string name="stay_logged_in">Rester connecté</string>
+    <string name="forgot_password_empty_email">Entrez un e-mail valide et cliquez sur \"Mot de passe oublié?\"!</string>
+    <string name="fields_can_not_be_empty">Les champs ne peuvent pas être vides</string>
 </resources>

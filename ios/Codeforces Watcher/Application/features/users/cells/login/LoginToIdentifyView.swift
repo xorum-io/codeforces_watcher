@@ -18,6 +18,8 @@ class LoginToIdentifyView: UIView {
         $0.text = "login_to_identify".localized
         $0.textColor = Palette.darkGray
         $0.font = Font.textBody
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
     }
     private let promptLabel = UILabel().apply {
         $0.text = "prompt_to_loginToIdentify".localized
@@ -60,12 +62,12 @@ class LoginToIdentifyView: UIView {
         
         loginLabel.run {
             $0.topToSuperview(offset: 38)
-            $0.centerXToSuperview()
+            $0.horizontalToSuperview(insets: .horizontal(8))
         }
         
         promptLabel.run {
             $0.topToBottom(of: loginLabel, offset: 4)
-            $0.centerXToSuperview()
+            $0.horizontalToSuperview(insets: .horizontal(8))
         }
         
         loginButton.run {
