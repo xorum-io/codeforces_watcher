@@ -13,11 +13,11 @@ fun SpannableString.colorSubstring(l: Int, r: Int, color: Int) {
 }
 
 fun String.linked(characterStyles: List<List<CharacterStyle>>): SpannableString {
-    val matches = Regex("<link>([\\w\\s]+)<\\/link>")
+    val matches = Regex("<link>([\\w\\s']+)</link>")
             .findAll(this)
             .map { it.destructured.toList().first() }
 
-    val textWithoutTags = replace(Regex("<link>([\\w\\s]+)<\\/link>")) {
+    val textWithoutTags = replace(Regex("<link>([\\w\\s']+)</link>")) {
         it.destructured.toList().first()
     }
 
