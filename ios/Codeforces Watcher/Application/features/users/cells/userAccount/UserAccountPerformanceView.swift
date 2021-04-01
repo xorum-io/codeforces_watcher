@@ -176,9 +176,7 @@ class UserAccountPerformanceView: UIView {
         
         let dataSet = LineChartDataSet(entries: dataEntries).apply {
             $0.lineWidth = 1.5
-            $0.circleRadius = 2.5
-            $0.circleHoleRadius = 1.5
-            $0.circleHoleColor = Palette.white
+            $0.circleRadius = 0
         }
         
         let data = LineChartData(dataSet: dataSet).apply {
