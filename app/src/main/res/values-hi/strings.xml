@@ -105,7 +105,7 @@ Codeforces WatchR के साथ आप:
     <string name="privacy_policy">गोपनीयता नीति</string>
     <string name="verify_codeforces_account">सत्यापित करें Codeforces लेखा</string>
     <string name="verify">सत्यापित करें</string>
-    <string name="to_verify_please_change_your_last_name">इस खाते को सत्यापित करने के लिए, कृपया अपने <b> प्रोफ़ाइल - सेटिंग्स - सामाजिक </ b> में इस मूल्य के लिए अपना अंग्रेज़ी "अंतिम नाम" बदलें:</string>
+    <string name="to_verify_please_change_your_last_name">इस खाते को सत्यापित करने के लिए, कृपया अपने <b> प्रोफ़ाइल - सेटिंग्स - सामाजिक </b> में इस मूल्य के लिए अपना अंग्रेज़ी "अंतिम नाम" बदलें:</string>
     <string name="after_successful_login_you_can_change_it_back">सफल लॉगिन के बाद आप इसे वापस बदल सकते हैं.</string>
     <string name="codeforces_handle">Codeforces handle</string>
     <string name="code_copied_to_clipboard">क्लिपबोर्ड पर कोड कॉपी किया गया</string>
