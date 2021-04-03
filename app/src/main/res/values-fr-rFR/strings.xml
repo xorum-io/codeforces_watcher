@@ -82,11 +82,11 @@ Téléchargez-la sur Google Play - https://play.google.com/store/apps/details?id
     <string name="watch_video">regarder la vidéo</string>
     <string name="upcoming_contests">concours à venir</string>
 
-    <string name="login_in_42_seconds">Connectez-vous en 42 secondes</string>
+    <string name="login_in_42_seconds">Connectez-vous</string>
     <string name="galactic_master">Maître galactique</string>
     <string name="unknown">Inconnu</string>
     <string name="never_updated">Jamais mis à jour</string>
-    <string name="login_to_identify">Connectez-vous pour vous identifier</string>
+    <string name="login_to_identify">Connectez-vous</string>
     <string name="verify_account">Vérifier le compte</string>
     <string name="pass_quick_verification">Passez la vérification rapide et simple pour voir votre profil ici</string>
     <string name="verify_in_42_seconds">Vérifiez en 42 secondes</string>
