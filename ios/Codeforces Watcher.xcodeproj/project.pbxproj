@@ -1541,7 +1541,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = PLQN44T543;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Codeforces Watcher/Info.plist";
@@ -1550,7 +1550,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.0;
+				MARKETING_VERSION = 1.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.xorum.codeforceswatcher.debug;
 				PRODUCT_NAME = "Codeforces WatchR Debug";
 				PROVISIONING_PROFILE_SPECIFIER = "Codeforces WatchR Development";
@@ -1566,7 +1566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = PLQN44T543;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Codeforces Watcher/Info.plist";
@@ -1575,7 +1575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.0;
+				MARKETING_VERSION = 1.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.xorum.codeforceswatcher.debug;
 				PRODUCT_NAME = "Codeforces WatchR Debug";
 				PROVISIONING_PROFILE_SPECIFIER = "Codeforces WatchR Development";
@@ -1671,7 +1671,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = PLQN44T543;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Codeforces Watcher/Info.plist";
@@ -1680,7 +1680,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.0;
+				MARKETING_VERSION = 1.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.xorum.codeforceswatcher;
 				PRODUCT_NAME = "Codeforces Watcher";
 				PROVISIONING_PROFILE_SPECIFIER = "Codeforces WatchR Development";
@@ -1696,7 +1696,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = PLQN44T543;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Codeforces Watcher/Info.plist";
@@ -1705,7 +1705,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.0;
+				MARKETING_VERSION = 1.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.xorum.codeforceswatcher;
 				PRODUCT_NAME = "Codeforces Watcher";
 				PROVISIONING_PROFILE_SPECIFIER = "Codeforces WatchR Development";
