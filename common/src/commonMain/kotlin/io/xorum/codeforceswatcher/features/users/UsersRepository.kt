@@ -2,7 +2,7 @@ package io.xorum.codeforceswatcher.features.users
 
 import io.ktor.client.request.*
 import io.xorum.codeforceswatcher.features.users.models.User
-import io.xorum.codeforceswatcher.network.responses.backend.UserData
+import io.xorum.codeforceswatcher.features.users.response.UserData
 import io.xorum.codeforceswatcher.network.responses.backend.request
 
 internal class UsersRepository {

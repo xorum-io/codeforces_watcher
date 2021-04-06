@@ -8,7 +8,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ContestResponse(
+internal data class ContestResponse(
         val name: String,
         val url: String,
         @SerialName("start_time") val startTime: String,

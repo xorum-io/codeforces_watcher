@@ -5,7 +5,7 @@ import io.xorum.codeforceswatcher.features.auth.models.getAuthStage
 import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
 import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
+import io.xorum.codeforceswatcher.features.users.redux.UsersState
 import io.xorum.codeforceswatcher.redux.states.AppState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.settings

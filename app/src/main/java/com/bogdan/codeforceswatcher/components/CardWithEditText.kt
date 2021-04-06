@@ -10,13 +10,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.bogdan.codeforceswatcher.util.showSoftKeyboard
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
+import io.xorum.codeforceswatcher.features.users.redux.UsersRequests
+import io.xorum.codeforceswatcher.features.users.redux.UsersState
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.card_with_edit_text.*
 import kotlinx.android.synthetic.main.input_field.*
 import tw.geothings.rekotlin.StoreSubscriber
-import java.util.*
 
 class AddUserBottomSheet : BottomSheetDialogFragment(), StoreSubscriber<UsersState> {
 

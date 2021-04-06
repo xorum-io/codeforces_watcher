@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.users.redux.requests
+package io.xorum.codeforceswatcher.features.users.redux
 
 import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount

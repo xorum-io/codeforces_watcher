@@ -1,7 +1,7 @@
 package io.xorum.codeforceswatcher.redux.middlewares
 
-import io.xorum.codeforceswatcher.features.users.redux.requests.Source
-import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
+import io.xorum.codeforceswatcher.features.users.redux.Source
+import io.xorum.codeforceswatcher.features.users.redux.UsersRequests
 import tw.geothings.rekotlin.Middleware
 import tw.geothings.rekotlin.StateType
 

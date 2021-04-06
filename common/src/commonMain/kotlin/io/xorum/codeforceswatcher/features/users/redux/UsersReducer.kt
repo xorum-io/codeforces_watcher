@@ -1,9 +1,6 @@
-package io.xorum.codeforceswatcher.features.users.redux.reducers
+package io.xorum.codeforceswatcher.features.users.redux
 
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
-import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
-import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
 import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action

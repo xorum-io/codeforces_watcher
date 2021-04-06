@@ -17,9 +17,9 @@ import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.users.models.User
-import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState.SortType.Companion.getSortType
+import io.xorum.codeforceswatcher.features.users.redux.UsersActions
+import io.xorum.codeforceswatcher.features.users.redux.UsersState
+import io.xorum.codeforceswatcher.features.users.redux.UsersState.SortType.Companion.getSortType
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.states.AppState
 import io.xorum.codeforceswatcher.redux.store
