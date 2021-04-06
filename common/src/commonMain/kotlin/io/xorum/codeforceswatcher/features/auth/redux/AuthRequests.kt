@@ -27,8 +27,8 @@ class AuthRequests {
 
         override suspend fun execute() = firebaseController.signUp(email, password) { exception ->
             exception?.let {
-                store.dispatch(SignIn.Failure(exception.message.toMessage()))
-            } ?: store.dispatch(SignIn.Success)
+                store.dispatch(Failure(exception.message.toMessage()))
+            } ?: store.dispatch(Success)
         }
 
         object Success : Action
