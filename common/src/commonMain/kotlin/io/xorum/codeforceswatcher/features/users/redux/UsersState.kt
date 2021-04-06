@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.users.redux.states
+package io.xorum.codeforceswatcher.features.users.redux
 
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.users.models.User

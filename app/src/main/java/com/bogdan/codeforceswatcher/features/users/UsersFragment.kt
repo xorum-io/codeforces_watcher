@@ -15,11 +15,9 @@ import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyController
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
-import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.users.models.User
-import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState.SortType.Companion.getSortType
+import io.xorum.codeforceswatcher.features.users.redux.*
+import io.xorum.codeforceswatcher.features.users.redux.UsersState.SortType.Companion.getSortType
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.states.AppState
 import io.xorum.codeforceswatcher.redux.store
@@ -34,7 +32,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
     private val epoxyController by lazy { EpoxyController() }
 
     override fun onRefresh() {
-        store.dispatch(AuthRequests.FetchFirebaseUserToken())
+        store.dispatch(UsersRequests.FetchUserData(FetchUserDataType.REFRESH, Source.USER))
         analyticsController.logEvent(AnalyticsEvents.USERS_REFRESH)
     }
 

@@ -10,7 +10,7 @@ class VerificationRequests {
 
     class VerifyCodeforces(private val handle: String) : Request() {
 
-        private val verificationRepository = VerificationRepository(store.state.auth.token!!)
+        private val verificationRepository = VerificationRepository()
 
         override suspend fun execute() {
             when (val response = verificationRepository.verifyCodeforcesAccount(handle)) {
@@ -27,7 +27,7 @@ class VerificationRequests {
 
     class FetchVerificationCode : Request() {
 
-        private val verificationRepository = VerificationRepository(store.state.auth.token!!)
+        private val verificationRepository = VerificationRepository()
 
         override suspend fun execute() {
             val response = verificationRepository.fetchCodeforcesVerificationCode()

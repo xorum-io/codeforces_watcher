@@ -8,12 +8,10 @@ import tw.geothings.rekotlin.Action
 
 class ProblemsRequests {
 
-    class FetchProblems(
-            private val isInitializedByUser: Boolean
-    ) : Request() {
+    class FetchProblems(private val isInitiatedByUser: Boolean) : Request() {
 
         override suspend fun execute() {
-            if (!isInitializedByUser) delay(1000)
+            if (!isInitiatedByUser) delay(1000)
 
             val problemsEn = codeforcesRepository.getProblems("en")?.result?.problems
             val problemsRu = codeforcesRepository.getProblems("ru")?.result?.problems
@@ -35,7 +33,7 @@ class ProblemsRequests {
         }
 
         private fun dispatchFailure() {
-            val noConnectionError = if (isInitializedByUser) Message.NoConnection else Message.None
+            val noConnectionError = if (isInitiatedByUser) Message.NoConnection else Message.None
             store.dispatch(Failure(noConnectionError))
         }
 

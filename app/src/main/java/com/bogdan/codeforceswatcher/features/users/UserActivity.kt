@@ -23,8 +23,8 @@ import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.users.models.User
-import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
+import io.xorum.codeforceswatcher.features.users.redux.UsersRequests
+import io.xorum.codeforceswatcher.features.users.redux.UsersState
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.avatar
 import kotlinx.android.synthetic.main.activity_user.*

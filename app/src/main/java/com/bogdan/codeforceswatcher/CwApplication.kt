@@ -11,10 +11,7 @@ import com.bogdan.codeforceswatcher.util.Prefs
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import io.xorum.codeforceswatcher.CWDatabase
-import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
-import io.xorum.codeforceswatcher.features.news.redux.NewsRequests
-import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
-import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
+import io.xorum.codeforceswatcher.features.FetchOnStartData
 import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_PROD_LINK
 import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_STAGING_LINK
 import io.xorum.codeforceswatcher.network.responses.backend.backendLink
@@ -47,7 +44,6 @@ class CwApp : Application() {
         setBackendLink()
         initGetLang()
 
-        fetchUserToken()
         fetchData()
 
         if (Prefs.get().readAlarm().isEmpty()) {
@@ -86,19 +82,13 @@ class CwApp : Application() {
         backendLink = BACKEND_PROD_LINK
     }
 
-    private fun fetchData() {
-        store.dispatch(NewsRequests.FetchNews(false))
-        store.dispatch(ContestsRequests.FetchContests(false, Locale.getDefault().language))
-        store.dispatch(ProblemsRequests.FetchProblems(false))
-    }
+    private fun fetchData() = store.dispatch(FetchOnStartData)
 
     private fun initGetLang() {
         getLang = {
             (Locale.getDefault().language).defineLang()
         }
     }
-
-    private fun fetchUserToken() = store.dispatch(AuthRequests.FetchFirebaseUserToken())
 
     private fun startAlarm() {
         val intent = Intent(this, StartAlarm::class.java)

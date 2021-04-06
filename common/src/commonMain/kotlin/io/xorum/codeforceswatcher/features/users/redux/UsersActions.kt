@@ -1,6 +1,5 @@
-package io.xorum.codeforceswatcher.features.users.redux.actions
+package io.xorum.codeforceswatcher.features.users.redux
 
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
 import tw.geothings.rekotlin.Action
 
 class UsersActions {

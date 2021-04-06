@@ -1,7 +1,8 @@
-package io.xorum.codeforceswatcher.features.users.redux.requests
+package io.xorum.codeforceswatcher.features.users.redux
 
 import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
+import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.users.UsersRepository
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.network.responses.backend.Response
@@ -13,28 +14,42 @@ enum class Source(val isToastNeeded: Boolean) {
     USER(true), BROADCAST(false), BACKGROUND(false)
 }
 
+enum class FetchUserDataType {
+    PERSIST, REFRESH
+}
+
 class UsersRequests {
 
     class FetchUserData(
-            token: String?,
-            private val users: List<User>,
+            private val fetchUserDataType: FetchUserDataType,
             private val source: Source
     ) : Request() {
 
-        private val usersRepository = UsersRepository(token)
+        private val usersRepository = UsersRepository()
 
         override suspend fun execute() {
-            val result = when (val response = usersRepository.fetchUserData(getHandles(users))) {
+            val handles = getHandles(getUsers())
+            val result = when (val response = usersRepository.fetchUserData(handles)) {
                 is Response.Success -> {
                     val (toAddDiff, toUpdateDiff, toDeleteDiff) = getDiff(response.result.users)
                     updateDatabaseUsers(toAddDiff, toUpdateDiff, toDeleteDiff)
                     val users = getOrderedUsers(toAddDiff, toDeleteDiff)
                     Success(users, response.result.userAccount, source)
                 }
-                is Response.Failure -> Failure(response.error.toMessage())
+                is Response.Failure -> Failure(if (source == Source.USER) response.error.toMessage() else Message.None)
             }
             store.dispatch(result)
         }
+
+        private fun getUsers() = when (fetchUserDataType) {
+            FetchUserDataType.PERSIST -> store.state.users.users
+            FetchUserDataType.REFRESH -> {
+                val isSignedIn = store.state.auth.authStage != AuthState.Stage.NOT_SIGNED_IN
+                store.state.users.users.takeUnless { isSignedIn }.orEmpty()
+            }
+        }
+
+        private fun getHandles(users: List<User>) = users.joinToString(separator = ",") { it.handle }
 
         private fun getDiff(newUsers: List<User>): Triple<List<User>, List<User>, List<User>> {
             val allUsers = DatabaseQueries.Users.getAll()
@@ -55,8 +70,6 @@ class UsersRequests {
             return store.state.users.users.map { usersMap[it.handle] ?: it }.minus(toDeleteDiff).plus(toAddDiff)
         }
 
-        private fun getHandles(users: List<User>) = users.joinToString(separator = ",") { it.handle }
-
         data class Success(
                 val users: List<User>,
                 val userAccount: UserAccount?,
@@ -68,7 +81,7 @@ class UsersRequests {
 
     class FetchUser(val handle: String) : Request() {
 
-        private val usersRepository = UsersRepository(store.state.auth.token)
+        private val usersRepository = UsersRepository()
 
         override suspend fun execute() {
             val profileUser = store.state.users.userAccount?.codeforcesUser
@@ -93,7 +106,7 @@ class UsersRequests {
 
     class DeleteUser(val user: User) : Request() {
 
-        private val usersRepository = UsersRepository(store.state.auth.token)
+        private val usersRepository = UsersRepository()
 
         override suspend fun execute() {
             val result = when (val response = usersRepository.deleteUser(user.handle)) {
@@ -112,7 +125,7 @@ class UsersRequests {
 
     class AddUser(private val handle: String) : Request() {
 
-        private val usersRepository = UsersRepository(store.state.auth.token)
+        private val usersRepository = UsersRepository()
 
         override suspend fun execute() {
             if (DatabaseQueries.Users.getAll().find { it.handle.equals(handle, ignoreCase = true) } != null) {

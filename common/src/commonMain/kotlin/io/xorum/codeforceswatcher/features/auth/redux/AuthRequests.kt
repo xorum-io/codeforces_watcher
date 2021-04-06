@@ -5,30 +5,18 @@ import tw.geothings.rekotlin.Action
 
 class AuthRequests {
 
-    class FetchFirebaseUserToken : Request() {
-
-        override suspend fun execute() = firebaseController.fetchToken { token, exception ->
-            exception?.let {
-                store.dispatch(Failure(it.message.toMessage()))
-            } ?: store.dispatch(Success(token))
-        }
-
-        data class Success(val token: String?) : Action
-        data class Failure(override val message: Message) : ToastAction
-    }
-
     class SignIn(
             private val email: String,
             private val password: String
     ) : Request() {
 
-        override suspend fun execute() = firebaseController.signIn(email, password) { token, exception ->
-            token?.let {
-                store.dispatch(Success(token))
-            } ?: store.dispatch(Failure(exception?.message.toMessage()))
+        override suspend fun execute() = firebaseController.signIn(email, password) { exception ->
+            exception?.let {
+                store.dispatch(Failure(exception.message.toMessage()))
+            } ?: store.dispatch(Success)
         }
 
-        data class Success(val token: String) : Action
+        object Success : Action
         data class Failure(override val message: Message) : ToastAction
     }
 
@@ -37,13 +25,13 @@ class AuthRequests {
             private val password: String
     ) : Request() {
 
-        override suspend fun execute() = firebaseController.signUp(email, password) { token, exception ->
-            token?.let {
-                store.dispatch(Success(token))
-            } ?: store.dispatch(Failure(exception?.message.toMessage()))
+        override suspend fun execute() = firebaseController.signUp(email, password) { exception ->
+            exception?.let {
+                store.dispatch(SignIn.Failure(exception.message.toMessage()))
+            } ?: store.dispatch(SignIn.Success)
         }
 
-        data class Success(val token: String) : Action
+        object Success : Action
         data class Failure(override val message: Message) : ToastAction
     }
 

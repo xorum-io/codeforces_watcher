@@ -14,8 +14,7 @@ fun authReducer(action: Action, state: AppState): AuthState {
         }
         is AuthRequests.SignIn.Success -> {
             newState = newState.copy(
-                    signInStatus = AuthState.Status.DONE,
-                    token = action.token
+                    signInStatus = AuthState.Status.DONE
             )
         }
         is AuthRequests.SignIn.Failure -> {
@@ -31,17 +30,13 @@ fun authReducer(action: Action, state: AppState): AuthState {
         is AuthRequests.SignUp.Success -> {
             newState = newState.copy(
                     signUpStatus = AuthState.Status.DONE,
-                    signInStatus = AuthState.Status.DONE,
-                    token = action.token
+                    signInStatus = AuthState.Status.DONE
             )
         }
         is AuthRequests.SignUp.Failure -> {
             newState = newState.copy(
                     signUpStatus = AuthState.Status.IDLE
             )
-        }
-        is AuthRequests.FetchFirebaseUserToken.Success -> {
-            newState = newState.copy(token = action.token)
         }
         is AuthRequests.UpdateAuthStage -> {
             newState = newState.copy(authStage = action.authStage)

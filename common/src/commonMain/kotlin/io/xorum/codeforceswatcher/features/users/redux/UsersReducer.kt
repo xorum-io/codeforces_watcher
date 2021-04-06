@@ -1,9 +1,6 @@
-package io.xorum.codeforceswatcher.features.users.redux.reducers
+package io.xorum.codeforceswatcher.features.users.redux
 
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
-import io.xorum.codeforceswatcher.features.users.redux.actions.UsersActions
-import io.xorum.codeforceswatcher.features.users.redux.requests.UsersRequests
-import io.xorum.codeforceswatcher.features.users.redux.states.UsersState
 import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
@@ -64,21 +61,6 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         }
         is UsersActions.ClearAddUserState -> {
             newState = newState.copy(addUserStatus = UsersState.Status.IDLE)
-        }
-        is AuthRequests.FetchFirebaseUserToken -> {
-            newState = newState.copy(
-                    status = UsersState.Status.PENDING
-            )
-        }
-        is AuthRequests.FetchFirebaseUserToken.Success -> {
-            newState = newState.copy(
-                    status = UsersState.Status.IDLE
-            )
-        }
-        is AuthRequests.FetchFirebaseUserToken.Failure -> {
-            newState = newState.copy(
-                    status = UsersState.Status.IDLE
-            )
         }
         is VerificationRequests.VerifyCodeforces.Success -> {
             newState = newState.copy(userAccount = action.userAccount)

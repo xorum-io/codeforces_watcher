@@ -161,7 +161,7 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
     }
 
     private func fetchProblems() {
-        store.dispatch(action: ProblemsRequests.FetchProblems(isInitializedByUser: true))
+        store.dispatch(action: ProblemsRequests.FetchProblems(isInitiatedByUser: true))
     }
 }
 

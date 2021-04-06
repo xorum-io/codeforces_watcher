@@ -14,34 +14,22 @@ class FirebaseController: IFirebaseController {
     
     private var auth: Auth { Auth.auth() }
     
-    func signIn(email: String, password: String, callback: @escaping (String?, KotlinException?) -> Void) {
+    func signIn(email: String, password: String, callback: @escaping (KotlinException?) -> Void) {
         auth.signIn(withEmail: email, password: password) { authResult, e in
             if let e = e {
-                callback(nil, e.toKotlinException())
-                return
-            }
-            self.fetchToken { token, e in
-                if let token = token {
-                    callback(token, nil)
-                } else {
-                    callback(nil, e)
-                }
+                callback(e.toKotlinException())
+            } else {
+                callback(nil)
             }
         }
     }
     
-    func signUp(email: String, password: String, callback: @escaping (String?, KotlinException?) -> Void) {
+    func signUp(email: String, password: String, callback: @escaping (KotlinException?) -> Void) {
         auth.createUser(withEmail: email, password: password) { authResult, e in
             if let e = e {
-                callback(nil, e.toKotlinException())
-                return
-            }
-            self.fetchToken { token, e in
-                if let token = token {
-                    callback(token, nil)
-                } else {
-                    callback(nil, e)
-                }
+                callback(e.toKotlinException())
+            } else {
+                callback(nil)
             }
         }
     }
