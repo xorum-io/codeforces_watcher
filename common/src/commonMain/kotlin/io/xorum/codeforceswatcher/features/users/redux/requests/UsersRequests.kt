@@ -21,7 +21,7 @@ class UsersRequests {
             private val source: Source
     ) : Request() {
 
-        private val usersRepository = UsersRepository(token)
+        private val usersRepository = UsersRepository()
 
         override suspend fun execute() {
             val result = when (val response = usersRepository.fetchUserData(getHandles(users))) {
@@ -68,7 +68,7 @@ class UsersRequests {
 
     class FetchUser(val handle: String) : Request() {
 
-        private val usersRepository = UsersRepository(store.state.auth.token)
+        private val usersRepository = UsersRepository()
 
         override suspend fun execute() {
             val profileUser = store.state.users.userAccount?.codeforcesUser
@@ -93,7 +93,7 @@ class UsersRequests {
 
     class DeleteUser(val user: User) : Request() {
 
-        private val usersRepository = UsersRepository(store.state.auth.token)
+        private val usersRepository = UsersRepository()
 
         override suspend fun execute() {
             val result = when (val response = usersRepository.deleteUser(user.handle)) {
@@ -112,7 +112,7 @@ class UsersRequests {
 
     class AddUser(private val handle: String) : Request() {
 
-        private val usersRepository = UsersRepository(store.state.auth.token)
+        private val usersRepository = UsersRepository()
 
         override suspend fun execute() {
             if (DatabaseQueries.Users.getAll().find { it.handle.equals(handle, ignoreCase = true) } != null) {

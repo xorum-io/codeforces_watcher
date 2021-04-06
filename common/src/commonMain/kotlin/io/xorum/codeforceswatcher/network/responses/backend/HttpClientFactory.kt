@@ -9,9 +9,12 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.readUTF8Line
+import io.xorum.codeforceswatcher.redux.firebaseController
 import io.xorum.codeforceswatcher.redux.getLang
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 const val BACKEND_PROD_LINK = "algoris-me-backend.herokuapp.com"
 const val BACKEND_STAGING_LINK = "algoris-me-backend-staging.herokuapp.com"
@@ -56,8 +59,15 @@ internal suspend fun getError(responseContent: ByteReadChannel) =
 @Serializable
 internal data class Error(val error: String?)
 
-internal suspend inline fun <T> request(block: () -> T) = try {
-    Response.Success(block())
+internal suspend inline fun <T> request(block: (httpClient: HttpClient) -> T) = try {
+    val token = suspendCoroutine<String?> { continuation ->
+        firebaseController.fetchToken { token, exception ->
+            exception?.let { throw it }
+            continuation.resume(token)
+        }
+    }
+    val httpClient = HttpClientFactory().create(token)
+    Response.Success(block(httpClient))
 } catch (clientRequestException: ClientRequestException) {
     println(clientRequestException)
     Response.Failure(getError(clientRequestException.response.content)?.error)
