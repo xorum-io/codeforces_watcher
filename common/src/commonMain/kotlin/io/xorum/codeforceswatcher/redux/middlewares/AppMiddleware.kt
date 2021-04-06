@@ -97,8 +97,8 @@ private fun sendAnalytics(action: Action) = scope.launch {
 private fun fetchOnStartData(action: Action) = scope.launch {
     if (action is FetchOnStartData) {
         store.dispatch(UsersRequests.FetchUserData(FetchUserDataType.REFRESH, Source.BACKGROUND))
-        store.dispatch(NewsRequests.FetchNews(isInitializedByUser = false))
-        store.dispatch(ContestsRequests.FetchContests(isInitializedByUser = false, getLang()))
-        store.dispatch(ProblemsRequests.FetchProblems(isInitializedByUser = false))
+        store.dispatch(NewsRequests.FetchNews(isInitiatedByUser = false))
+        store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = false, getLang()))
+        store.dispatch(ProblemsRequests.FetchProblems(isInitiatedByUser = false))
     }
 }

@@ -71,7 +71,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
     }
 
     override fun onRefresh() {
-        store.dispatch(ContestsRequests.FetchContests(isInitializedByUser = true, language = Locale.getDefault().language))
+        store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = true, language = Locale.getDefault().language))
         analyticsController.logEvent(AnalyticsEvents.CONTESTS_REFRESH)
     }
 
