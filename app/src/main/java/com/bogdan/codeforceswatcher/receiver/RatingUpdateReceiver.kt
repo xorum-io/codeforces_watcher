@@ -10,8 +10,6 @@ import io.xorum.codeforceswatcher.redux.store
 class RatingUpdateReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
-        val token = store.state.auth.token
-        val users = if (token.isNullOrBlank()) store.state.users.users else emptyList()
-        store.dispatch(UsersRequests.FetchUserData(token, users, Source.BROADCAST))
+        store.dispatch(UsersRequests.FetchUserData(store.state.users.users, Source.BROADCAST))
     }
 }

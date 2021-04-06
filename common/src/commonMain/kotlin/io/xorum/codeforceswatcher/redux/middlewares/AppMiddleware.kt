@@ -44,11 +44,11 @@ private fun doActionsOnLogOut(action: Action) = scope.launch {
 
 private fun fetchUsersData(action: Action) = scope.launch {
     val request = when (action) {
-        is AuthRequests.SignIn.Success -> UsersRequests.FetchUserData(action.token, emptyList(), Source.BACKGROUND)
-        is AuthRequests.SignUp.Success -> UsersRequests.FetchUserData(action.token, store.state.users.users, Source.BACKGROUND)
+        is AuthRequests.SignIn.Success -> UsersRequests.FetchUserData(emptyList(), Source.BACKGROUND)
+        is AuthRequests.SignUp.Success -> UsersRequests.FetchUserData(store.state.users.users, Source.BACKGROUND)
         is AuthRequests.FetchFirebaseUserToken.Success -> {
             val users = store.state.users.users.takeIf { action.token == null }.orEmpty()
-            UsersRequests.FetchUserData(action.token, users, Source.BACKGROUND)
+            UsersRequests.FetchUserData(users, Source.BACKGROUND)
         }
         else -> return@launch
     }
