@@ -36,7 +36,7 @@ class UsersRequests {
                     val users = getOrderedUsers(toAddDiff, toDeleteDiff)
                     Success(users, response.result.userAccount, source)
                 }
-                is Response.Failure -> Failure(response.error.toMessage())
+                is Response.Failure -> Failure(if (source == Source.USER) response.error.toMessage() else Message.None)
             }
             store.dispatch(result)
         }
