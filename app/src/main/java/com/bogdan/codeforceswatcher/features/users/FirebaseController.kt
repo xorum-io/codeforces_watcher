@@ -7,23 +7,19 @@ import kotlin.Exception
 class FirebaseController : IFirebaseController {
     private val auth = FirebaseAuth.getInstance()
 
-    override fun signIn(email: String, password: String, callback: (String?, Exception?) -> Unit) {
+    override fun signIn(email: String, password: String, callback: (Exception?) -> Unit) {
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
-            fetchToken { token, e ->
-                token?.let { callback(it, null) } ?: callback(null, e)
-            }
+            callback(null)
         }.addOnFailureListener { e ->
-            callback(null, e)
+            callback(e)
         }
     }
 
-    override fun signUp(email: String, password: String, callback: (String?, Exception?) -> Unit) {
+    override fun signUp(email: String, password: String, callback: (Exception?) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-            fetchToken { token, e ->
-                token?.let { callback(it, null) } ?: callback(null, e)
-            }
+            callback(null)
         }.addOnFailureListener { e ->
-            callback(null, e)
+            callback(e)
         }
     }
 
