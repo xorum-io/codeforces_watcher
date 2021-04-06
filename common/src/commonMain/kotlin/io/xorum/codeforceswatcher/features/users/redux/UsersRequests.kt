@@ -14,14 +14,14 @@ enum class Source(val isToastNeeded: Boolean) {
     USER(true), BROADCAST(false), BACKGROUND(false)
 }
 
-enum class FetchUserDataSource {
-    SIGN_IN, SIGN_UP, PULL_TO_REFRESH
+enum class FetchUserDataType {
+    PERSIST, REFRESH
 }
 
 class UsersRequests {
 
     class FetchUserData(
-            private val fetchUserDataSource: FetchUserDataSource,
+            private val fetchUserDataType: FetchUserDataType,
             private val source: Source
     ) : Request() {
 
@@ -41,12 +41,11 @@ class UsersRequests {
             store.dispatch(result)
         }
 
-        private fun getUsers(): List<User> {
-            val isSignedIn = store.state.auth.authStage != AuthState.Stage.NOT_SIGNED_IN
-            return when (fetchUserDataSource) {
-                FetchUserDataSource.SIGN_IN -> emptyList()
-                FetchUserDataSource.SIGN_UP -> store.state.users.users
-                FetchUserDataSource.PULL_TO_REFRESH -> store.state.users.users.takeUnless { isSignedIn }.orEmpty()
+        private fun getUsers() = when (fetchUserDataType) {
+            FetchUserDataType.PERSIST -> store.state.users.users
+            FetchUserDataType.REFRESH -> {
+                val isSignedIn = store.state.auth.authStage != AuthState.Stage.NOT_SIGNED_IN
+                store.state.users.users.takeUnless { isSignedIn }.orEmpty()
             }
         }
 

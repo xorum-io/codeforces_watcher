@@ -7,7 +7,7 @@ import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
 import io.xorum.codeforceswatcher.features.news.redux.NewsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
-import io.xorum.codeforceswatcher.features.users.redux.FetchUserDataSource
+import io.xorum.codeforceswatcher.features.users.redux.FetchUserDataType
 import io.xorum.codeforceswatcher.features.users.redux.Source
 import io.xorum.codeforceswatcher.features.users.redux.UsersRequests
 import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
@@ -50,8 +50,8 @@ private fun doActionsOnLogOut(action: Action) = scope.launch {
 
 private fun fetchUsersData(action: Action) = scope.launch {
     val request = when (action) {
-        is AuthRequests.SignIn.Success -> UsersRequests.FetchUserData(FetchUserDataSource.SIGN_IN, Source.BACKGROUND)
-        is AuthRequests.SignUp.Success -> UsersRequests.FetchUserData(FetchUserDataSource.SIGN_UP, Source.BACKGROUND)
+        is AuthRequests.SignIn.Success -> UsersRequests.FetchUserData(FetchUserDataType.REFRESH, Source.BACKGROUND)
+        is AuthRequests.SignUp.Success -> UsersRequests.FetchUserData(FetchUserDataType.PERSIST, Source.BACKGROUND)
         else -> return@launch
     }
     store.dispatch(request)
@@ -96,7 +96,7 @@ private fun sendAnalytics(action: Action) = scope.launch {
 
 private fun fetchOnStartData(action: Action) = scope.launch {
     if (action is FetchOnStartData) {
-        store.dispatch(UsersRequests.FetchUserData(FetchUserDataSource.PULL_TO_REFRESH, Source.BACKGROUND))
+        store.dispatch(UsersRequests.FetchUserData(FetchUserDataType.REFRESH, Source.BACKGROUND))
         store.dispatch(NewsRequests.FetchNews(isInitializedByUser = false))
         store.dispatch(ContestsRequests.FetchContests(isInitializedByUser = false, getLang()))
         store.dispatch(ProblemsRequests.FetchProblems(isInitializedByUser = false))
