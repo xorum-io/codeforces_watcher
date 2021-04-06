@@ -11,7 +11,7 @@ import tw.geothings.rekotlin.Action
 class ContestsRequests {
 
     class FetchContests(
-            private val isInitiatedByUser: Boolean,
+            private val isInitializedByUser: Boolean,
             private val language: String
     ) : Request() {
 
@@ -36,7 +36,7 @@ class ContestsRequests {
         }?.map { it.toContest() }.orEmpty()
 
         private fun dispatchFailure() {
-            store.dispatch(Failure(if (isInitiatedByUser) Message.NoConnection else Message.None))
+            store.dispatch(Failure(if (isInitializedByUser) Message.NoConnection else Message.None))
         }
 
         data class Success(val contests: List<Contest>) : Action

@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initAppStyle()
         initGetLang()
         
-        fetchUserToken()
         fetchData()
 
         return true
@@ -72,17 +71,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func fetchData() {
-        store.dispatch(action: NewsRequests.FetchNews(isInitializedByUser: false))
-        store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: false, language: "locale".localized))
-        store.dispatch(action: ProblemsRequests.FetchProblems(isInitializedByUser: false))
+        store.dispatch(action: FetchOnStartData())
     }
     
     private func initGetLang() {
         AppStoreKt.getLang = { "locale".localized }
-    }
-    
-    private func fetchUserToken() {
-        store.dispatch(action: AuthRequests.FetchFirebaseUserToken())
     }
 
     private func initAppStyle() {

@@ -218,7 +218,7 @@ class UsersViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
     
     @objc private func refreshUsers() {
-        store.dispatch(action: AuthRequests.FetchFirebaseUserToken())
+        store.dispatch(action: UsersRequests.FetchUserData(fetchUserDataSource: FetchUserDataSource.pullToRefresh, source: Source.user))
 
         analyticsControler.logEvent(eventName: AnalyticsEvents().USERS_REFRESH, params: [:])
     }

@@ -2,6 +2,7 @@ package io.xorum.codeforceswatcher.features.users.redux
 
 import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
+import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.users.UsersRepository
 import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.network.responses.backend.Response
@@ -13,17 +14,22 @@ enum class Source(val isToastNeeded: Boolean) {
     USER(true), BROADCAST(false), BACKGROUND(false)
 }
 
+enum class FetchUserDataSource {
+    SIGN_IN, SIGN_UP, PULL_TO_REFRESH
+}
+
 class UsersRequests {
 
     class FetchUserData(
-            private val users: List<User>,
+            private val fetchUserDataSource: FetchUserDataSource,
             private val source: Source
     ) : Request() {
 
         private val usersRepository = UsersRepository()
 
         override suspend fun execute() {
-            val result = when (val response = usersRepository.fetchUserData(getHandles(users))) {
+            val handles = getHandles(getUsers())
+            val result = when (val response = usersRepository.fetchUserData(handles)) {
                 is Response.Success -> {
                     val (toAddDiff, toUpdateDiff, toDeleteDiff) = getDiff(response.result.users)
                     updateDatabaseUsers(toAddDiff, toUpdateDiff, toDeleteDiff)
@@ -34,6 +40,17 @@ class UsersRequests {
             }
             store.dispatch(result)
         }
+
+        private fun getUsers(): List<User> {
+            val isSignedIn = store.state.auth.authStage != AuthState.Stage.NOT_SIGNED_IN
+            return when (fetchUserDataSource) {
+                FetchUserDataSource.SIGN_IN -> emptyList()
+                FetchUserDataSource.SIGN_UP -> store.state.users.users
+                FetchUserDataSource.PULL_TO_REFRESH -> store.state.users.users.takeUnless { isSignedIn }.orEmpty()
+            }
+        }
+
+        private fun getHandles(users: List<User>) = users.joinToString(separator = ",") { it.handle }
 
         private fun getDiff(newUsers: List<User>): Triple<List<User>, List<User>, List<User>> {
             val allUsers = DatabaseQueries.Users.getAll()
@@ -53,8 +70,6 @@ class UsersRequests {
             val usersMap = DatabaseQueries.Users.getAll().associateBy { it.handle }
             return store.state.users.users.map { usersMap[it.handle] ?: it }.minus(toDeleteDiff).plus(toAddDiff)
         }
-
-        private fun getHandles(users: List<User>) = users.joinToString(separator = ",") { it.handle }
 
         data class Success(
                 val users: List<User>,

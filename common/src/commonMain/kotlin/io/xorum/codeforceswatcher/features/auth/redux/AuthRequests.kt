@@ -5,18 +5,6 @@ import tw.geothings.rekotlin.Action
 
 class AuthRequests {
 
-    class FetchFirebaseUserToken : Request() {
-
-        override suspend fun execute() = firebaseController.fetchToken { token, exception ->
-            exception?.let {
-                store.dispatch(Failure(it.message.toMessage()))
-            } ?: store.dispatch(Success(token))
-        }
-
-        data class Success(val token: String?) : Action
-        data class Failure(override val message: Message) : ToastAction
-    }
-
     class SignIn(
             private val email: String,
             private val password: String

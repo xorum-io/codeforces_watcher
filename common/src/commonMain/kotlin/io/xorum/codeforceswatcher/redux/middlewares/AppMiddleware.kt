@@ -1,14 +1,19 @@
 package io.xorum.codeforceswatcher.redux.middlewares
 
+import io.xorum.codeforceswatcher.features.FetchOnStartData
 import io.xorum.codeforceswatcher.features.auth.models.getAuthStage
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
+import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
 import io.xorum.codeforceswatcher.features.news.redux.NewsRequests
+import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
+import io.xorum.codeforceswatcher.features.users.redux.FetchUserDataSource
 import io.xorum.codeforceswatcher.features.users.redux.Source
 import io.xorum.codeforceswatcher.features.users.redux.UsersRequests
 import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
 import io.xorum.codeforceswatcher.redux.Request
 import io.xorum.codeforceswatcher.redux.analyticsController
+import io.xorum.codeforceswatcher.redux.getLang
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.coroutines.MainScope
@@ -28,6 +33,7 @@ val appMiddleware: Middleware<StateType> = { _, _ ->
             fetchUsersData(action)
             updateAuthStage(action)
             sendAnalytics(action)
+            fetchOnStartData(action)
 
             next(action)
         }
@@ -44,12 +50,8 @@ private fun doActionsOnLogOut(action: Action) = scope.launch {
 
 private fun fetchUsersData(action: Action) = scope.launch {
     val request = when (action) {
-        is AuthRequests.SignIn.Success -> UsersRequests.FetchUserData(emptyList(), Source.BACKGROUND)
-        is AuthRequests.SignUp.Success -> UsersRequests.FetchUserData(store.state.users.users, Source.BACKGROUND)
-        is AuthRequests.FetchFirebaseUserToken.Success -> {
-            val users = store.state.users.users.takeIf { action.token == null }.orEmpty()
-            UsersRequests.FetchUserData(users, Source.BACKGROUND)
-        }
+        is AuthRequests.SignIn.Success -> UsersRequests.FetchUserData(FetchUserDataSource.SIGN_IN, Source.BACKGROUND)
+        is AuthRequests.SignUp.Success -> UsersRequests.FetchUserData(FetchUserDataSource.SIGN_UP, Source.BACKGROUND)
         else -> return@launch
     }
     store.dispatch(request)
@@ -90,4 +92,13 @@ private fun sendAnalytics(action: Action) = scope.launch {
     }
 
     analyticsController.logEvent(event, params ?: mapOf())
+}
+
+private fun fetchOnStartData(action: Action) = scope.launch {
+    if (action is FetchOnStartData) {
+        store.dispatch(UsersRequests.FetchUserData(FetchUserDataSource.PULL_TO_REFRESH, Source.BACKGROUND))
+        store.dispatch(NewsRequests.FetchNews(isInitializedByUser = false))
+        store.dispatch(ContestsRequests.FetchContests(isInitializedByUser = false, getLang()))
+        store.dispatch(ProblemsRequests.FetchProblems(isInitializedByUser = false))
+    }
 }

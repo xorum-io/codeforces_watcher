@@ -62,21 +62,6 @@ fun usersReducer(action: Action, state: AppState): UsersState {
         is UsersActions.ClearAddUserState -> {
             newState = newState.copy(addUserStatus = UsersState.Status.IDLE)
         }
-        is AuthRequests.FetchFirebaseUserToken -> {
-            newState = newState.copy(
-                    status = UsersState.Status.PENDING
-            )
-        }
-        is AuthRequests.FetchFirebaseUserToken.Success -> {
-            newState = newState.copy(
-                    status = UsersState.Status.IDLE
-            )
-        }
-        is AuthRequests.FetchFirebaseUserToken.Failure -> {
-            newState = newState.copy(
-                    status = UsersState.Status.IDLE
-            )
-        }
         is VerificationRequests.VerifyCodeforces.Success -> {
             newState = newState.copy(userAccount = action.userAccount)
         }
