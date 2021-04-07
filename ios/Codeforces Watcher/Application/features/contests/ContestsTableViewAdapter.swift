@@ -44,6 +44,7 @@ class ContestsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if contests.isEmpty { return }
         onContestClick?(contests[indexPath.row])
     }
 

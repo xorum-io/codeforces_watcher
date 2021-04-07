@@ -26,9 +26,9 @@ internal class CodeforcesRepository {
         codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list") {
             parameter("lang", lang)
         }
-    } catch (e: Throwable) {
-        analyticsController.logError(e.stringify())
-        e.printStackTrace()
+    } catch (t: Throwable) {
+        analyticsController.logError(t.stringify())
+        t.printStackTrace()
 
         null
     }
@@ -37,15 +37,15 @@ internal class CodeforcesRepository {
         codeforcesApiClient.get<ProblemsResponse>(path = "problemset.problems") {
             parameter("lang", lang)
         }
-    } catch (e: Throwable) {
-        analyticsController.logError(e.stringify())
-        e.printStackTrace()
+    } catch (t: Throwable) {
+        analyticsController.logError(t.stringify())
+        t.printStackTrace()
 
         null
     }
 
     private fun makeCodeforcesApiClient(): HttpClient = HttpClient {
-        expectSuccess = false
+        expectSuccess = true
         defaultRequest {
             url {
                 host = CODEFORCES_API_LINK

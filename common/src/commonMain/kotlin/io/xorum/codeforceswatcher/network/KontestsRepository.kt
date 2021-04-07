@@ -22,15 +22,15 @@ internal class KontestsRepository {
 
     suspend fun getAllContests() = try {
         kontestsApiClient.get<List<ContestResponse>>(path = "all")
-    } catch (e: Throwable) {
-        analyticsController.logError(e.stringify())
-        e.printStackTrace()
+    } catch (t: Throwable) {
+        analyticsController.logError(t.stringify())
+        t.printStackTrace()
 
         null
     }
 
     private fun makeKontestsApiClient(): HttpClient = HttpClient {
-        expectSuccess = false
+        expectSuccess = true
         defaultRequest {
             url {
                 host = KONTESTS_API_LINK
