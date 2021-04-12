@@ -28,10 +28,14 @@ class FirebaseController : IFirebaseController {
             callback(null, null)
             return@fetchToken
         }
-        firebaseUser.getIdToken(false).addOnSuccessListener { task ->
-            callback(task.token, null)
-        }.addOnFailureListener { e ->
-            callback(null, e)
+        try {
+            firebaseUser.getIdToken(true).addOnSuccessListener { task ->
+                callback(task.token, null)
+            }.addOnFailureListener { e ->
+                callback(null, e)
+            }
+        } catch(t: Throwable) {
+            callback(null, java.lang.Exception(t.message))
         }
     }
 
