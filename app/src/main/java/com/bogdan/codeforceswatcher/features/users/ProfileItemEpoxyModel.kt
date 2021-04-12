@@ -118,7 +118,7 @@ class ProfileItemEpoxyModel(
             setDrawValues(false)
         }
 
-        chart.data = LineData(lineDataSet)
+        chart.data = if (entries.isNullOrEmpty()) null else LineData(lineDataSet)
     }
 
     private fun User.buildRating(context: Context) = SpannableString(
