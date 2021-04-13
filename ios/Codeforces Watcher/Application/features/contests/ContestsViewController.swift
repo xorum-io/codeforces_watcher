@@ -80,16 +80,12 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         }
 
         tableAdapter.onCalendarTap = { contest in
-            self.addEventToCalendar(contest) { success, NSError in
+            self.addEventToCalendar(contest) { success, _ in
                 if (success) {
-                    DispatchQueue.main.async {
-                        analyticsControler.logEvent(eventName: AnalyticsEvents().ADD_CONTEST_TO_CALENDAR, params: ["contest_name": contest.name, "contest_platform": contest.platform.name])
-                        self.showAlertWithOK(title: contest.name, message: "Has been added to your calendar".localized)
-                    }
+                    analyticsControler.logEvent(eventName: AnalyticsEvents().ADD_CONTEST_TO_CALENDAR, params: ["contest_name": contest.name, "contest_platform": contest.platform.name])
+                    self.showAlertWithOK(title: contest.name, message: "Has been added to your calendar".localized)
                 } else {
-                    DispatchQueue.main.async {
-                        self.showAlertWithOK(title: "Can't add contest to Calendar without permission".localized, message: "Enable it in Settings, please".localized)
-                    }
+                    self.showAlertWithOK(title: "Can't add contest to Calendar without permission".localized, message: "Enable it in Settings, please".localized)
                 }
             }
         }

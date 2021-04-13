@@ -183,7 +183,7 @@ class UserAccountPerformanceView: UIView {
             $0.setDrawValues(false)
         }
         
-        lineChartView.data = data
+        lineChartView.data = dataEntries.isEmpty ? nil : data
     }
 }
 
