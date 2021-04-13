@@ -40,7 +40,7 @@ data class UserItem(private val user: io.xorum.codeforceswatcher.features.users.
     }
 
     // Needed for disable flicking of epoxy model when all ratingChanges fetched
-    override fun toString() = "$avatarLink$update$handle$rating$lastRatingUpdate$dateOfLastRatingUpdate$rankColor"
+    override fun toString() = "$id$avatarLink$update$handle$rating$lastRatingUpdate$dateOfLastRatingUpdate$rankColor"
 }
 
 fun getColorByUserRank(rank: String?) = when (rank) {
