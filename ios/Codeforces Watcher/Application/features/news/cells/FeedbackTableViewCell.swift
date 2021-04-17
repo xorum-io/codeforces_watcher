@@ -49,7 +49,7 @@ class FeedbackTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        addSubview(cardView)
+        contentView.addSubview(cardView)
 
         let stackView = UIStackView().apply {
             $0.axis = .horizontal

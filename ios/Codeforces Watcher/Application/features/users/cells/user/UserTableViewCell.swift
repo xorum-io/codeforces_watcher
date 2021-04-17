@@ -42,7 +42,7 @@ class UserTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        addSubview(cardView)
+        contentView.addSubview(cardView)
 
         [userImage, handleLabel, dateOfLastRatingUpdateLabel, ratingLabel, valueOfLastRatingUpdateLabel].forEach(cardView.addSubview)
     }

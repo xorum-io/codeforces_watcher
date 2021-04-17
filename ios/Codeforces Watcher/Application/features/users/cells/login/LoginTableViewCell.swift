@@ -30,7 +30,7 @@ class LoginTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        addSubview(loginView)
+        contentView.addSubview(loginView)
     }
 
     private func setConstraints() {

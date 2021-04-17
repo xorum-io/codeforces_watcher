@@ -30,7 +30,7 @@ class VerifyTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        addSubview(verifyView)
+        contentView.addSubview(verifyView)
     }
 
     private func setConstraints() {

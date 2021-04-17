@@ -51,7 +51,7 @@ class PinnedPostTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        addSubview(cardView)
+        contentView.addSubview(cardView)
 
         [infoImage, headingLabel, subheadingLabel, crossImage].forEach(cardView.addSubview)
     }

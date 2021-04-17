@@ -40,7 +40,7 @@ class FilterTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        [logoView, nameLabel, switchView].forEach(self.addSubview)
+        [logoView, nameLabel, switchView].forEach(contentView.addSubview)
     }
 
     private func setConstraints() {

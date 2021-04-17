@@ -31,7 +31,7 @@ class UserAccountTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        addSubview(userAccountView)
+        contentView.addSubview(userAccountView)
     }
 
     private func setConstraints() {

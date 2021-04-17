@@ -33,7 +33,7 @@ class NoItemsTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        [noItemsImage, explanationLabel].forEach(addSubview)
+        [noItemsImage, explanationLabel].forEach(contentView.addSubview)
     }
 
     private func setConstraints() {
