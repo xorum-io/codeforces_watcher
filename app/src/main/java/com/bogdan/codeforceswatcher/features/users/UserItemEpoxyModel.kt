@@ -6,7 +6,6 @@ import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.epoxy.BaseEpoxyModel
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import io.xorum.codeforceswatcher.util.avatar
 import kotlinx.android.synthetic.main.view_user_item.view.*
 
 data class UserItemEpoxyModel(
@@ -19,7 +18,7 @@ data class UserItemEpoxyModel(
 
     override fun bind(view: View): Unit = with(view) {
         super.bind(view)
-        Picasso.get().load(avatar(userItem.avatarLink))
+        Picasso.get().load(userItem.avatarLink)
                 .placeholder(R.drawable.no_avatar)
                 .into(ivAvatar)
 

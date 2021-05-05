@@ -60,12 +60,12 @@ internal suspend fun getError(responseContent: ByteReadChannel) =
 internal data class Error(val error: String?)
 
 internal suspend inline fun <T> request(block: (httpClient: HttpClient) -> T) = try {
-    val token = suspendCoroutine<String?> { continuation ->
+    val (token, exception) = suspendCoroutine<Pair<String?, Exception?>> { continuation ->
         firebaseController.fetchToken { token, exception ->
-            exception?.let { throw it }
-            continuation.resume(token)
+            continuation.resume(Pair(token, exception))
         }
     }
+    exception?.let { throw it }
     val httpClient = HttpClientFactory().create(token)
     Response.Success(block(httpClient))
 } catch (clientRequestException: ClientRequestException) {

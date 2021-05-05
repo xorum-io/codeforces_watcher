@@ -194,9 +194,8 @@ class UserViewController: ClosableViewController, ReKampStoreSubscriber {
     private func bind() {
         title = user.titleText
         
-        let avatar = LinkValidatorKt.avatar(avatarLink: user.avatar)
         userImage.run {
-            $0.sd_setImage(with: URL(string: avatar), placeholderImage: noImage)
+            $0.sd_setImage(with: URL(string: user.avatar), placeholderImage: noImage)
             $0.layer.borderColor = getColorByUserRank(user.rank).cgColor
         }
 

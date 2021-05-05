@@ -26,7 +26,6 @@ import io.xorum.codeforceswatcher.features.users.models.User
 import io.xorum.codeforceswatcher.features.users.redux.UsersRequests
 import io.xorum.codeforceswatcher.features.users.redux.UsersState
 import io.xorum.codeforceswatcher.redux.store
-import io.xorum.codeforceswatcher.util.avatar
 import kotlinx.android.synthetic.main.activity_user.*
 import tw.geothings.rekotlin.StoreSubscriber
 import java.text.SimpleDateFormat
@@ -71,7 +70,7 @@ class UserActivity : AppCompatActivity(), StoreSubscriber<UsersState> {
         tvContribution.text = user.buildContribution()
         (ivUserAvatar as CircleImageView).borderColor = ContextCompat.getColor(this, getColorByUserRank(user.rank))
 
-        Picasso.get().load(avatar(user.avatar)).into(ivUserAvatar)
+        Picasso.get().load(user.avatar).into(ivUserAvatar)
         title = user.buildFullName()
     }
 
