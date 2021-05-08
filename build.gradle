@@ -6,15 +6,15 @@ buildscript {
     ext.sqlDelight_version = '1.4.4'
     ext.ktor_version = '1.4.1'
     ext.klock_version = '2.0.3'
-    ext.reKamp_version = '1.0.5'
+    ext.reKamp_version = '1.0.6'
 
     repositories {
+        mavenCentral()
         google()
         jcenter()
         maven { url "https://dl.bintray.com/soywiz/soywiz" }
         maven { url "https://kotlin.bintray.com/kotlinx" }
         maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
-        maven { url "https://dl.bintray.com/xorum-io/ReKamp" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.2'
@@ -29,10 +29,10 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         google()
         jcenter()
         maven { url 'https://maven.google.com/' }
-        maven { url "https://dl.bintray.com/xorum-io/ReKamp" }
     }
 }
 

@@ -18,7 +18,7 @@ kotlin {
                 implementation "io.ktor:ktor-client-core:$ktor_version"
                 implementation "io.ktor:ktor-client-serialization:$ktor_version"
                 implementation "io.ktor:ktor-client-logging:$ktor_version"
-                api "io.xorum:ReKamp:$reKamp_version"
+                api "io.xorum:ReKamp-kotlinMultiplatform:$reKamp_version"
             }
         }
 
@@ -40,7 +40,6 @@ kotlin {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
                 implementation "com.squareup.sqldelight:sqlite-driver:$sqlDelight_version"
                 implementation "com.squareup.sqldelight:runtime-jvm:$sqlDelight_version"
-                api "io.xorum:ReKamp-jvm:$reKamp_version"
             }
         }
 
@@ -56,19 +55,14 @@ kotlin {
     targets {
         def buildForDevice = project.findProperty("kotlin.native.cocoapods.target") == "ios_arm"
         if (buildForDevice) {
-            iosArm64("iOS64")
             iosArm32("iOS32")
-
-            sourceSets["iOS64Main"].dependsOn(sourceSets.iOSMain)
-            sourceSets["iOS64Main"].dependencies { api "io.xorum:ReKamp-iosArm64:$reKamp_version" }
-
             sourceSets["iOS32Main"].dependsOn(sourceSets.iOSMain)
-            sourceSets["iOS32Main"].dependencies { api "io.xorum:ReKamp-iosArm32:$reKamp_version" }
+
+            iosArm64("iOS64")
+            sourceSets["iOS64Main"].dependsOn(sourceSets.iOSMain)
         } else {
             iosX64('iosX')
-
             sourceSets["iosXMain"].dependsOn(sourceSets.iOSMain)
-            sourceSets["iosXMain"].dependencies { api "io.xorum:ReKamp-iosX64:$reKamp_version" }
         }
     }
 
