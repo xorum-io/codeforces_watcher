@@ -1,0 +1,63 @@
+name: Codeforces Watcher
+options:
+  createIntermediateGroups: true
+  indentWidth: 4
+  tabWidth: 4
+settings:
+  base:
+    MARKETING_VERSION: 1.9.4
+    CURRENT_PROJECT_VERSION: 17
+configs:
+  Debug: debug
+  integ: debug
+  test: debug
+  Release: release
+targets:
+  "Codeforces Watcher Release":
+    type: application
+    platform: iOS
+    deploymentTarget: "11.0"
+    sources:  
+      - path: "Codeforces Watcher"
+    scheme: 
+      testTargets:
+        - "Codeforces Watcher Tests"
+        - "Codeforces Watcher UITests"
+      gatherCoverageData: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: "io.xorum.codeforceswatcher"
+  "Codeforces Watcher Debug":
+    type: application
+    platform: iOS
+    deploymentTarget: "11.0"
+    sources:
+      - path: "Codeforces Watcher"
+    scheme:
+      testTargets:
+        - "Codeforces Watcher Tests"
+        - "Codeforces Watcher UITests"
+      gatherCoverageData: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: "io.xorum.codeforceswatcher.debug"
+  "Codeforces Watcher Tests":
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "11.0"
+    sources:
+      - path: "Codeforces Watcher Tests"
+    dependencies:
+      - target: "Codeforces Watcher Debug"
+    scheme: 
+      testTargets:
+        - "Codeforces Watcher Debug"
+        - "Codeforces Watcher Tests"
+      gatherCoverageData: true
+  "Codeforces Watcher UITests":
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: "Codeforces Watcher UITests"
+    dependencies:
+      - target: "Codeforces Watcher Debug"
