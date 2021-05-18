@@ -31,6 +31,12 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: "io.xorum.codeforceswatcher"
         PRODUCT_NAME: "Codeforces WatchR"
+    postBuildScripts:
+      - name: "[Firebase Crashlytics] Run"
+        script: '"${PODS_ROOT}/FirebaseCrashlytics/run"'
+        inputFiles:
+          - "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}"
+          - "$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)"
   "Codeforces Watcher Debug":
     type: application
     platform: iOS
@@ -49,6 +55,12 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: "io.xorum.codeforceswatcher.debug"
         PRODUCT_NAME: "Codeforces WatchR Debug"
+    postBuildScripts:
+      - name: "[Firebase Crashlytics] Run"
+        script: '"${PODS_ROOT}/FirebaseCrashlytics/run"'
+        inputFiles:
+          - "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}"
+          - "$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)"
   "Codeforces Watcher Tests":
     type: bundle.unit-test
     platform: iOS
