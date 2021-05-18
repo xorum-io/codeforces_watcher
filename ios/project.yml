@@ -30,6 +30,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: "io.xorum.codeforceswatcher"
+        PRODUCT_NAME: "Codeforces WatchR"
   "Codeforces Watcher Debug":
     type: application
     platform: iOS
@@ -47,6 +48,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: "io.xorum.codeforceswatcher.debug"
+        PRODUCT_NAME: "Codeforces WatchR Debug"
   "Codeforces Watcher Tests":
     type: bundle.unit-test
     platform: iOS
