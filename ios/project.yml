@@ -1,0 +1,82 @@
+name: Codeforces Watcher
+options:
+  createIntermediateGroups: true
+  indentWidth: 4
+  tabWidth: 4
+settings:
+  base:
+    MARKETING_VERSION: 1.9.4
+    CURRENT_PROJECT_VERSION: 17
+configs:
+  Debug: debug
+  integ: debug
+  test: debug
+  Release: release
+targets:
+  "Codeforces Watcher Release":
+    type: application
+    platform: iOS
+    deploymentTarget: "11.0"
+    sources:  
+      - path: "Codeforces Watcher"
+        excludes:
+          - "Firebase"
+      - path: "Codeforces Watcher/Firebase/Release"
+    scheme: 
+      testTargets:
+        - "Codeforces Watcher Tests"
+        - "Codeforces Watcher UITests"
+      gatherCoverageData: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: "io.xorum.codeforceswatcher"
+        PRODUCT_NAME: "Codeforces WatchR"
+    postBuildScripts:
+      - name: "[Firebase Crashlytics] Run"
+        script: '"${PODS_ROOT}/FirebaseCrashlytics/run"'
+        inputFiles:
+          - "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}"
+          - "$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)"
+  "Codeforces Watcher Debug":
+    type: application
+    platform: iOS
+    deploymentTarget: "11.0"
+    sources:
+      - path: "Codeforces Watcher"
+        excludes:
+          - "Firebase"
+      - path: "Codeforces Watcher/Firebase/Debug"
+    scheme:
+      testTargets:
+        - "Codeforces Watcher Tests"
+        - "Codeforces Watcher UITests"
+      gatherCoverageData: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: "io.xorum.codeforceswatcher.debug"
+        PRODUCT_NAME: "Codeforces WatchR Debug"
+    postBuildScripts:
+      - name: "[Firebase Crashlytics] Run"
+        script: '"${PODS_ROOT}/FirebaseCrashlytics/run"'
+        inputFiles:
+          - "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}"
+          - "$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)"
+  "Codeforces Watcher Tests":
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "11.0"
+    sources:
+      - path: "Codeforces Watcher Tests"
+    dependencies:
+      - target: "Codeforces Watcher Debug"
+    scheme:
+      gatherCoverageData: true
+  "Codeforces Watcher UITests":
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: "Codeforces Watcher UITests"
+    dependencies:
+      - target: "Codeforces Watcher Debug"
+    scheme:
+      gatherCoverageData: true
