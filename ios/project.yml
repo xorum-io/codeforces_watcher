@@ -69,6 +69,8 @@ targets:
       - path: "Codeforces Watcher Tests"
     dependencies:
       - target: "Codeforces Watcher Debug"
+    scheme:
+      gatherCoverageData: true
   "Codeforces Watcher UITests":
     type: bundle.ui-testing
     platform: iOS
@@ -76,3 +78,5 @@ targets:
       - path: "Codeforces Watcher UITests"
     dependencies:
       - target: "Codeforces Watcher Debug"
+    scheme:
+      gatherCoverageData: true
