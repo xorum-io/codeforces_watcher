@@ -19,6 +19,9 @@ targets:
     deploymentTarget: "11.0"
     sources:  
       - path: "Codeforces Watcher"
+        excludes:
+          - "Firebase"
+      - path: "Codeforces Watcher/Firebase/Release"
     scheme: 
       testTargets:
         - "Codeforces Watcher Tests"
@@ -33,6 +36,9 @@ targets:
     deploymentTarget: "11.0"
     sources:
       - path: "Codeforces Watcher"
+        excludes:
+          - "Firebase"
+      - path: "Codeforces Watcher/Firebase/Debug"
     scheme:
       testTargets:
         - "Codeforces Watcher Tests"
@@ -49,11 +55,6 @@ targets:
       - path: "Codeforces Watcher Tests"
     dependencies:
       - target: "Codeforces Watcher Debug"
-    scheme: 
-      testTargets:
-        - "Codeforces Watcher Debug"
-        - "Codeforces Watcher Tests"
-      gatherCoverageData: true
   "Codeforces Watcher UITests":
     type: bundle.ui-testing
     platform: iOS
