@@ -6,6 +6,7 @@ import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
 import io.xorum.codeforceswatcher.features.news.redux.NewsRequests
+import io.xorum.codeforceswatcher.features.notifications.redux.NotificationsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
 import io.xorum.codeforceswatcher.features.users.redux.FetchUserDataType
 import io.xorum.codeforceswatcher.features.users.redux.Source
@@ -34,6 +35,8 @@ val appMiddleware: Middleware<StateType> = { _, _ ->
             updateAuthStage(action)
             sendAnalytics(action)
             fetchOnStartData(action)
+            addPushTokenIfNeeded(action)
+            deletePushTokenIfNeeded(action)
 
             next(action)
         }
@@ -100,5 +103,17 @@ private fun fetchOnStartData(action: Action) = scope.launch {
         store.dispatch(NewsRequests.FetchNews(isInitiatedByUser = false))
         store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = false, getLang()))
         store.dispatch(ProblemsRequests.FetchProblems(isInitiatedByUser = false))
+    }
+}
+
+private fun addPushTokenIfNeeded(action: Action) = scope.launch {
+    if (action is AuthRequests.SignIn.Success || action is AuthRequests.SignUp.Success) {
+        store.dispatch(NotificationsRequests.AddPushToken)
+    }
+}
+
+private fun deletePushTokenIfNeeded(action: Action) = scope.launch {
+    if (action is AuthRequests.LogOut.Success) {
+        store.dispatch(NotificationsRequests.DeletePushToken)
     }
 }

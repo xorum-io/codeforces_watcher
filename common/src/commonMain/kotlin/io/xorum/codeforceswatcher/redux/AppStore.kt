@@ -18,6 +18,7 @@ val persistenceController = PersistenceController()
 val databaseController = DatabaseController()
 lateinit var analyticsController: IAnalyticsController
 lateinit var firebaseController: IFirebaseController
+lateinit var pushToken: String
 
 internal val codeforcesRepository = CodeforcesRepository()
 internal val kontestsRepository = KontestsRepository()
