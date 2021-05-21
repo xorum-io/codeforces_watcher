@@ -1,11 +1,8 @@
 package com.bogdan.codeforceswatcher
 
 import android.app.Application
-import android.content.Intent
 import com.bogdan.codeforceswatcher.features.users.FirebaseController
 import com.bogdan.codeforceswatcher.handlers.AndroidMessageHandler
-import com.bogdan.codeforceswatcher.handlers.AndroidNotificationHandler
-import com.bogdan.codeforceswatcher.receiver.StartAlarm
 import com.bogdan.codeforceswatcher.util.AnalyticsController
 import com.bogdan.codeforceswatcher.util.Prefs
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -16,7 +13,6 @@ import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_PROD_LINK
 import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_STAGING_LINK
 import io.xorum.codeforceswatcher.network.responses.backend.backendLink
 import io.xorum.codeforceswatcher.redux.*
-import io.xorum.codeforceswatcher.redux.middlewares.notificationHandler
 import io.xorum.codeforceswatcher.redux.middlewares.toastHandlers
 import io.xorum.codeforceswatcher.util.defineLang
 import io.xorum.codeforceswatcher.util.settings
@@ -32,7 +28,6 @@ class CwApp : Application() {
         initDatabase()
         initSettings()
         initToastHandler()
-        initNotificationHandler()
         initAnalyticsController()
         initFirebaseController()
 
@@ -45,11 +40,6 @@ class CwApp : Application() {
         initGetLang()
 
         fetchData()
-
-        if (Prefs.get().readAlarm().isEmpty()) {
-            startAlarm()
-            Prefs.get().writeAlarm()
-        }
     }
 
     private fun initDatabase() {
@@ -62,10 +52,6 @@ class CwApp : Application() {
 
     private fun initToastHandler() {
         toastHandlers.add(AndroidMessageHandler())
-    }
-
-    private fun initNotificationHandler() {
-        notificationHandler = AndroidNotificationHandler()
     }
 
     private fun initAnalyticsController() {
@@ -88,11 +74,6 @@ class CwApp : Application() {
         getLang = {
             (Locale.getDefault().language).defineLang()
         }
-    }
-
-    private fun startAlarm() {
-        val intent = Intent(this, StartAlarm::class.java)
-        sendBroadcast(intent)
     }
 
     companion object {
