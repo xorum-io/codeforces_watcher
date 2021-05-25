@@ -116,16 +116,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
-        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler( [.alert, .badge, .sound])
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.alert, .badge, .sound])
     }
-    
+
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        completionHandler()
+        guard let data = response.notification.request.content.userInfo as? [String: Any] else { return }
+        guard let notificationTypeString = data["notificationType"] as? String else { return }
+        guard let notificationType = NotificationType.init(rawValue: notificationTypeString) else { return }
+        
+        switch(notificationType) {
+        case .ratingUpdates:
+            completionHandler()
+        }
     }
 }
 
@@ -151,4 +159,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
             store.dispatch(action: NotificationsRequests.AddPushToken())
         }
     }
+}
+
+private enum NotificationType: String {
+    case ratingUpdates = "RATING_UPDATES"
 }
