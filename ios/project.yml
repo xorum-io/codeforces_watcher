@@ -37,6 +37,10 @@ targets:
         inputFiles:
           - "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}"
           - "$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)"
+    entitlements:
+      path: "Codeforces Watcher/MyEntitlements.entitlements"
+      properties:
+        aps-environment: development
   "Codeforces Watcher Debug":
     type: application
     platform: iOS
@@ -61,6 +65,10 @@ targets:
         inputFiles:
           - "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}"
           - "$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)"
+    entitlements:
+      path: "Codeforces Watcher/MyEntitlements.entitlements"
+      properties:
+        aps-environment: development
   "Codeforces Watcher Tests":
     type: bundle.unit-test
     platform: iOS
