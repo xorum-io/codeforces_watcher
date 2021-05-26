@@ -36,7 +36,6 @@ val appMiddleware: Middleware<StateType> = { _, _ ->
             sendAnalytics(action)
             fetchOnStartData(action)
             addPushTokenIfNeeded(action)
-            deletePushTokenIfNeeded(action)
 
             next(action)
         }
@@ -109,11 +108,5 @@ private fun fetchOnStartData(action: Action) = scope.launch {
 private fun addPushTokenIfNeeded(action: Action) = scope.launch {
     if (action is AuthRequests.SignIn.Success || action is AuthRequests.SignUp.Success) {
         store.dispatch(NotificationsRequests.AddPushToken)
-    }
-}
-
-private fun deletePushTokenIfNeeded(action: Action) = scope.launch {
-    if (action is AuthRequests.LogOut.Success) {
-        store.dispatch(NotificationsRequests.DeletePushToken)
     }
 }

@@ -11,16 +11,9 @@ class NotificationsRequests {
         private val notificationsRepository = NotificationsRepository()
 
         override suspend fun execute() {
-            notificationsRepository.addPushToken(pushToken)
-        }
-    }
-
-    object DeletePushToken : Request() {
-
-        private val notificationsRepository = NotificationsRepository()
-
-        override suspend fun execute() {
-            notificationsRepository.deletePushToken(pushToken)
+            pushToken?.let {
+                notificationsRepository.addPushToken(it)
+            }
         }
     }
 }
