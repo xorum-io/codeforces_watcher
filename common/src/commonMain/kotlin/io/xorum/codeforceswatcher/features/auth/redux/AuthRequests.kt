@@ -1,5 +1,6 @@
 package io.xorum.codeforceswatcher.features.auth.redux
 
+import io.xorum.codeforceswatcher.features.notifications.NotificationsRepository
 import io.xorum.codeforceswatcher.redux.*
 import tw.geothings.rekotlin.Action
 
@@ -39,10 +40,17 @@ class AuthRequests {
 
     object LogOut : Request() {
 
-        override suspend fun execute() = firebaseController.logOut { exception ->
-            exception?.let {
-                store.dispatch(Failure(it.message.toMessage()))
-            } ?: store.dispatch(Success)
+        private val notificationsRepository = NotificationsRepository()
+
+        override suspend fun execute() {
+            pushToken?.let {
+                notificationsRepository.deletePushToken(it)
+            }
+            firebaseController.logOut { exception ->
+                exception?.let {
+                    store.dispatch(Failure(it.message.toMessage()))
+                } ?: store.dispatch(Success)
+            }
         }
 
         object Success : Action

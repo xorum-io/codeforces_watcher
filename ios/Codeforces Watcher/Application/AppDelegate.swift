@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import common
+import FirebaseMessaging
 
 let store = AppStoreKt.store
 
@@ -31,8 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppStoreKt.databaseController.onAppCreated()
         AppStoreKt.persistenceController.onAppCreated()
 
-        FirebaseApp.configure()
+        initFirebase()
         initFirebaseController()
+        registerForPushNotifications(application)
 
         initAppStyle()
         initGetLang()
@@ -56,6 +58,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func initAnalyticsController() {
         AppStoreKt.analyticsController = AnalyticsController()
+    }
+    
+    private func initFirebase() {
+        FirebaseApp.configure()
     }
     
     private func initFirebaseController() {
@@ -102,4 +108,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.overrideUserInterfaceStyle = .light
         }
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.alert, .badge, .sound])
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        guard let data = response.notification.request.content.userInfo as? [String: Any] else { return }
+        guard let notificationTypeString = data["notificationType"] as? String else { return }
+        guard let notificationType = NotificationType.init(rawValue: notificationTypeString) else { return }
+        
+        switch(notificationType) {
+        case .ratingUpdates:
+            completionHandler()
+        }
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
+
+    private func registerForPushNotifications(_ application: UIApplication) {
+        UNUserNotificationCenter.current().delegate = self
+
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: { _, _ in })
+
+        application.registerForRemoteNotifications()
+
+        Messaging.messaging().delegate = self
+    }
+
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let fcmToken = fcmToken else { return }
+        AppStoreKt.pushToken = fcmToken
+        if store.state.users.userAccount != nil {
+            store.dispatch(action: NotificationsRequests.AddPushToken())
+        }
+    }
+}
+
+private enum NotificationType: String {
+    case ratingUpdates = "RATING_UPDATES"
 }

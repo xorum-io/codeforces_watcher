@@ -4,3 +4,5 @@ Pods/
 .idea/
 *.DS_Store
 GoogleService-Info.plist 
+*.apns
+*.entitlements

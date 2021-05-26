@@ -1,22 +1,21 @@
 package com.bogdan.codeforceswatcher
 
 import android.app.Application
-import android.content.Intent
 import com.bogdan.codeforceswatcher.features.users.FirebaseController
 import com.bogdan.codeforceswatcher.handlers.AndroidMessageHandler
-import com.bogdan.codeforceswatcher.handlers.AndroidNotificationHandler
-import com.bogdan.codeforceswatcher.receiver.StartAlarm
 import com.bogdan.codeforceswatcher.util.AnalyticsController
 import com.bogdan.codeforceswatcher.util.Prefs
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.messaging.FirebaseMessaging
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import io.xorum.codeforceswatcher.CWDatabase
 import io.xorum.codeforceswatcher.features.FetchOnStartData
+import io.xorum.codeforceswatcher.features.notifications.redux.NotificationsRequests
 import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_PROD_LINK
 import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_STAGING_LINK
 import io.xorum.codeforceswatcher.network.responses.backend.backendLink
 import io.xorum.codeforceswatcher.redux.*
-import io.xorum.codeforceswatcher.redux.middlewares.notificationHandler
 import io.xorum.codeforceswatcher.redux.middlewares.toastHandlers
 import io.xorum.codeforceswatcher.util.defineLang
 import io.xorum.codeforceswatcher.util.settings
@@ -32,7 +31,6 @@ class CwApp : Application() {
         initDatabase()
         initSettings()
         initToastHandler()
-        initNotificationHandler()
         initAnalyticsController()
         initFirebaseController()
 
@@ -43,13 +41,9 @@ class CwApp : Application() {
 
         setBackendLink()
         initGetLang()
+        initNotificationToken()
 
         fetchData()
-
-        if (Prefs.get().readAlarm().isEmpty()) {
-            startAlarm()
-            Prefs.get().writeAlarm()
-        }
     }
 
     private fun initDatabase() {
@@ -62,10 +56,6 @@ class CwApp : Application() {
 
     private fun initToastHandler() {
         toastHandlers.add(AndroidMessageHandler())
-    }
-
-    private fun initNotificationHandler() {
-        notificationHandler = AndroidNotificationHandler()
     }
 
     private fun initAnalyticsController() {
@@ -82,18 +72,23 @@ class CwApp : Application() {
         backendLink = BACKEND_PROD_LINK
     }
 
-    private fun fetchData() = store.dispatch(FetchOnStartData)
-
     private fun initGetLang() {
         getLang = {
             (Locale.getDefault().language).defineLang()
         }
     }
 
-    private fun startAlarm() {
-        val intent = Intent(this, StartAlarm::class.java)
-        sendBroadcast(intent)
+    private fun initNotificationToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) return@OnCompleteListener
+            pushToken = task.result ?: return@OnCompleteListener
+            store.state.users.userAccount?.let {
+                store.dispatch(NotificationsRequests.AddPushToken)
+            }
+        })
     }
+
+    private fun fetchData() = store.dispatch(FetchOnStartData)
 
     companion object {
         lateinit var app: CwApp

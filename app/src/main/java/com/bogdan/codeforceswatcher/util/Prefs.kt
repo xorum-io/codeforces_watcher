@@ -73,17 +73,6 @@ class Prefs(private val context: Context) : Settings {
         editor.apply()
     }
 
-    fun readAlarm(): String {
-        val defaultPrefs = getDefaultPrefs()
-        return defaultPrefs.getString(KEY_SPINNER_SORT_POSITION, "") ?: ""
-    }
-
-    fun writeAlarm() {
-        val editor = getDefaultPrefs().edit()
-        editor.putString(KEY_ALARM, "alarm")
-        editor.apply()
-    }
-
     private fun getDefaultPrefs(): SharedPreferences {
         return context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
     }
@@ -92,7 +81,6 @@ class Prefs(private val context: Context) : Settings {
 
         private const val KEY_SPINNER_SORT_POSITION = "key_counter"
         private const val KEY_PROBLEMS_IS_FAVOURITE = "key_problems_is_favourite"
-        private const val KEY_ALARM = "key_alarm"
         private const val KEY_CONTESTS_FILTERS = "key_contests_filters"
         private const val KEY_PINNED_POST = "key_pinned_post"
         private const val KEY_USER_ACCOUNT = "key_user_account"

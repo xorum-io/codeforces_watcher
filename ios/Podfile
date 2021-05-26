@@ -18,6 +18,7 @@ def shared_pods
     pod 'Toast-Swift', '~> 5.0.1'
     pod 'Charts'
     pod 'Firebase/Auth'
+    pod 'Firebase/Messaging'
     
 end
 
