@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import com.bogdan.codeforceswatcher.CwApp
-import com.google.gson.Gson
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.util.Settings
@@ -15,18 +14,16 @@ class Prefs(private val context: Context) : Settings {
         val editor = getDefaultPrefs().edit()
 
         userAccount?.let {
-            editor.putString(KEY_USER_ACCOUNT, Gson().toJson(it))
+            editor.putString(KEY_USER_ACCOUNT, it.toJson())
         } ?: editor.remove(KEY_USER_ACCOUNT)
 
         editor.apply()
     }
 
     override fun readUserAccount(): UserAccount? {
-        val defaultPrefs = getDefaultPrefs()
-        return Gson().fromJson(
-                defaultPrefs.getString(KEY_USER_ACCOUNT, null),
-                UserAccount::class.java
-        )
+        return getDefaultPrefs().getString(KEY_USER_ACCOUNT, null)?.let {
+            UserAccount.fromJson(it)
+        }
     }
 
     override fun writeLastPinnedPostLink(pinnedPostLink: String) {
