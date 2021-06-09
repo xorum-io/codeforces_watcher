@@ -26,6 +26,7 @@ class CommonTextField: UITextField {
         tintColor = Palette.colorPrimary
         autocorrectionType = .no
         spellCheckingType = .no
+        autocapitalizationType = .none
         
         layer.run {
             $0.backgroundColor = Palette.white.cgColor
