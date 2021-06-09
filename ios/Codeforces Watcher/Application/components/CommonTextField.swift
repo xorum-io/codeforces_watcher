@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CommonTextField: UITextField {
+class CommonTextField: UITextField, UITextFieldDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,6 +21,7 @@ class CommonTextField: UITextField {
     }
     
     private func setupView() {
+        delegate = self
         font = Font.textBody
         borderStyle = .none
         tintColor = Palette.colorPrimary
@@ -36,5 +37,15 @@ class CommonTextField: UITextField {
             $0.shadowOpacity = 1.0
             $0.shadowRadius = 0.0
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = textField.superview?.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return false
     }
 }

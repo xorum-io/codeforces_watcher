@@ -14,9 +14,15 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private let contentView = UIView()
     
-    private let emailInput = TextInputLayout(hint: "email".localized, type: .email)
-    private let passwordInput = TextInputLayout(hint: "password".localized, type: .password)
-    private let confirmInput = TextInputLayout(hint: "confirm_password".localized, type: .password)
+    private let emailInput = TextInputLayout(hint: "email".localized, type: .email).apply {
+        $0.tag = 0
+    }
+    private let passwordInput = TextInputLayout(hint: "password".localized, type: .password).apply {
+        $0.tag = 1
+    }
+    private let confirmInput = TextInputLayout(hint: "confirm_password".localized, type: .password).apply {
+        $0.tag = 2
+    }
     private let signUpAgreement = SignUpAgreementView()
     private let signUpButton = PrimaryButton().apply {
         $0.setTitle("sign_up".localized.uppercased(), for: .normal)

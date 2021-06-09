@@ -22,6 +22,11 @@ class TextInputLayout: UIView {
         case text
     }
     
+    override var tag: Int {
+        get { textField.tag }
+        set(value) { textField.tag = value }
+    }
+    
     init(hint: String, type: TypeOfField = .text) {
         hintLabel.text = hint
         
