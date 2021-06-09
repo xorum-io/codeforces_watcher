@@ -89,10 +89,15 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     }
     
     private func setupSignUpAgreement() {
-        signUpAgreement.onCheckboxTap = { isSelected in
-            self.signUpButton.run {
-                $0.isEnabled = isSelected
-                $0.alpha = (isSelected ? 1.0 : 0.5)
+        signUpAgreement.run {
+            $0.onCheckboxTap = { isSelected in
+                self.signUpButton.run {
+                    $0.isEnabled = isSelected
+                    $0.alpha = (isSelected ? 1.0 : 0.5)
+                }
+            }
+            $0.onLinkTap = { link in
+                self.presentModal(WebViewController(link, ""))
             }
         }
     }

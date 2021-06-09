@@ -13,6 +13,8 @@ class AgreementTextView: UITextView, UITextViewDelegate {
     
     private let agreementText = "agreement_terms_and_privacy".localized.attributed
     
+    var onLinkTap: (String) -> () = { _ in }
+    
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: CGRect.zero, textContainer: nil)
         setupView()
@@ -26,6 +28,7 @@ class AgreementTextView: UITextView, UITextViewDelegate {
     private func setupView() {
         isEditable = false
         isScrollEnabled = false
+        delegate = self
         
         addTermsProperty()
         addPrivacyProperty()
@@ -63,7 +66,7 @@ class AgreementTextView: UITextView, UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        UIApplication.shared.open(URL)
+        onLinkTap(URL.absoluteString)
         return false
     }
 }

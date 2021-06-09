@@ -11,6 +11,7 @@ import UIKit
 class SignUpAgreementView: UIView {
     
     var onCheckboxTap: (Bool) -> () = { _ in }
+    var onLinkTap: (String) -> () = { _ in }
     
     private let checkbox = CheckboxView()
     private let agreementLabel = AgreementTextView()
@@ -30,6 +31,9 @@ class SignUpAgreementView: UIView {
         
         checkbox.onTap = { isSelected in
             self.onCheckboxTap(isSelected)
+        }
+        agreementLabel.onLinkTap = { link in
+            self.onLinkTap(link)
         }
         
         buildViewTree()
