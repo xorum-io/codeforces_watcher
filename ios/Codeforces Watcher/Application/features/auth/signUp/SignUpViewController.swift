@@ -161,7 +161,7 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     }
     
     @objc func didSignInClick() {
-        presentModal(SignInViewController())
+        dismiss(animated: true)
     }
     
     private func addKeyboardListeners() {
