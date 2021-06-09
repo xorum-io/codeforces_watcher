@@ -20,7 +20,7 @@ public class Font {
     public static let textBody =
         UIFont(name: "Roboto-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)
     public static let textPageTitle =
-        UIFont(name: "Roboto-Regular", size: 20) ?? UIFont.systemFont(ofSize: 20)
+        UIFont(name: "Roboto-Bold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20)
     public static let textButton =
         UIFont(name: "Roboto-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14)
     public static let textHint =
