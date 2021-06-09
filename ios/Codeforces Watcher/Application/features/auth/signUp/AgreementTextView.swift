@@ -11,7 +11,7 @@ import common
 
 class AgreementTextView: UITextView, UITextViewDelegate {
     
-    private var agreementText =  "agreement_terms_and_privacy".localized.attributed
+    private let agreementText = "agreement_terms_and_privacy".localized.attributed
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: CGRect.zero, textContainer: nil)
@@ -25,6 +25,7 @@ class AgreementTextView: UITextView, UITextViewDelegate {
     
     private func setupView() {
         isEditable = false
+        isScrollEnabled = false
         
         addTermsProperty()
         addPrivacyProperty()
@@ -34,6 +35,7 @@ class AgreementTextView: UITextView, UITextViewDelegate {
         
         textAlignment = .left
         attributedText = agreementText
+        sizeToFit()
     }
     
     private func addTermsProperty() {
