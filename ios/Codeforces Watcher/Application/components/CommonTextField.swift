@@ -37,6 +37,7 @@ class CommonTextField: UITextField, UITextFieldDelegate {
             $0.shadowOpacity = 1.0
             $0.shadowRadius = 0.0
         }
+        height(20)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
