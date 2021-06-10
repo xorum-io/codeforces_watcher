@@ -13,7 +13,7 @@ class VerifyView: UIView {
     private let contentView = CardView()
 
     private let galacticMasterView = GalacticMasterView()
-    private let verifyToIdentifyView = VerifyToIdentifyView()
+    private let verifyToIdentifyView = DoActionToIdentifyView()
     
     private let dashedLineView = UIView()
     
@@ -57,7 +57,14 @@ class VerifyView: UIView {
     }
     
     func bind(onClick: @escaping () -> ()) {
-        verifyToIdentifyView.bind(onClick: onClick)
+        verifyToIdentifyView.bind(
+            .init(
+                title: "verify_account".localized,
+                subtitle: "verify_account_prompt".localized,
+                buttonText: "verify_in_42_seconds".localized,
+                onButtonTap: onClick
+            )
+        )
     }
 
     override func layoutSubviews() {

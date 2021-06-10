@@ -13,7 +13,7 @@ class LoginView: UIView {
     private let contentView = CardView()
 
     private let galacticMasterView = GalacticMasterView()
-    private let loginToIdentifyView = LoginToIdentifyView()
+    private let loginToIdentifyView = DoActionToIdentifyView()
     
     private let dashedLineView = UIView()
     
@@ -57,7 +57,14 @@ class LoginView: UIView {
     }
     
     func bind(onClick: @escaping () -> ()) {
-        loginToIdentifyView.bind(onClick: onClick)
+        loginToIdentifyView.bind(
+            .init(
+                title: "login_to_identify".localized,
+                subtitle: "prompt_to_loginToIdentify".localized,
+                buttonText: "login_in_42_seconds".localized,
+                onButtonTap: onClick
+            )
+        )
     }
 
     override func layoutSubviews() {
