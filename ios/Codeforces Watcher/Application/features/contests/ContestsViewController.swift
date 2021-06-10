@@ -122,14 +122,15 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         presentModal(webViewController)
     }
 
-    private func saveContestEvent(eventStore: EKEventStore, contest: Contest, completion: ((Bool, NSError?) -> Void)?) {
-        let event = EKEvent(eventStore: eventStore)
-        event.title = contest.name
-
+    private func saveContestEvent(
+        eventStore: EKEventStore,
+        contest: Contest,
+        completion: ((Bool, NSError?) -> Void)?
+    ) {
         let startDate = Date(timeIntervalSince1970: Double(contest.startTimeSeconds / 1000))
         let endDate = Date(timeIntervalSince1970: Double(contest.startTimeSeconds / 1000 + contest.durationSeconds))
-
-        event.run {
+        
+        let event = EKEvent(eventStore: eventStore).apply {
             $0.title = contest.name
             $0.startDate = startDate
             $0.endDate = endDate
@@ -150,12 +151,14 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
 
         if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
             eventStore.requestAccess(to: .event, completion: { (granted, error) in
-                if (granted) && (error == nil) {
-                    self.saveContestEvent(eventStore: eventStore, contest: contest, completion: { success, NSError in
-                        completion?(success, NSError)
-                    })
-                } else {
-                    completion?(false, error as NSError?)
+                DispatchQueue.main.async {
+                    if (granted) && (error == nil) {
+                        self.saveContestEvent(eventStore: eventStore, contest: contest, completion: { success, NSError in
+                            completion?(success, NSError)
+                        })
+                    } else {
+                        completion?(false, error as NSError?)
+                    }
                 }
             })
         } else {
