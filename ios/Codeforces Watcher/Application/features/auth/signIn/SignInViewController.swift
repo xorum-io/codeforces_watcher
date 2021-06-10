@@ -45,7 +45,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     func onNewState(state: Any) {
         let state = state as! AuthState
         
-        switch (state.signInStatus) {
+        switch (state.status) {
         case .done:
             hideLoading()
             closeViewController()

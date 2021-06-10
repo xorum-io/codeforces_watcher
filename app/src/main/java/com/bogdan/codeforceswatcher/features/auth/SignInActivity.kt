@@ -66,7 +66,7 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
         super.onStart()
         store.subscribe(this) { state ->
             state.skipRepeats { oldState, newState ->
-                oldState.auth.signInStatus == newState.auth.signInStatus
+                oldState.auth.status == newState.auth.status
             }.select { it.auth }
         }
     }
@@ -93,7 +93,7 @@ class SignInActivity : AppCompatActivity(), StoreSubscriber<AuthState> {
     }
 
     override fun onNewState(state: AuthState) {
-        when (state.signInStatus) {
+        when (state.status) {
             AuthState.Status.PENDING -> spinner.visibility = View.VISIBLE
             AuthState.Status.DONE -> finish()
             AuthState.Status.IDLE -> spinner.visibility = View.GONE
