@@ -45,7 +45,7 @@
             android:layout_marginStart="8dp"
             android:ellipsize="start"
             android:singleLine="true"
-            android:textSize="10sp"
+            android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@id/ivAuthorAvatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivAuthorAvatar"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="@string/be_first_to_comment"
-            android:textSize="10sp"
+            android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@id/arrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/arrow" />

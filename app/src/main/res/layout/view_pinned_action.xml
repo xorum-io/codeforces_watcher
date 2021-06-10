@@ -56,7 +56,7 @@
             android:layout_marginStart="8dp"
             android:singleLine="true"
             android:text="@string/click_to_see_details"
-            android:textSize="10sp"
+            android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@id/ivInfo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivInfo" />

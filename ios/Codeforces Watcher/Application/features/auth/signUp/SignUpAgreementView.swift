@@ -10,17 +10,11 @@ import UIKit
 
 class SignUpAgreementView: UIView {
     
-    var onCheckboxTap: (Bool) -> () = {_ in }
+    var onCheckboxTap: (Bool) -> () = { _ in }
+    var onLinkTap: (String) -> () = { _ in }
     
-    private let contentView = UIView()
-    
-    private let checkbox = CheckboxView().apply {
-        $0.height(18)
-        $0.width(18)
-    }
-    private let agreementLabel = AgreementTextView().apply {
-        $0.height(40)
-    }
+    private let checkbox = CheckboxView()
+    private let agreementLabel = AgreementTextView()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,20 +32,22 @@ class SignUpAgreementView: UIView {
         checkbox.onTap = { isSelected in
             self.onCheckboxTap(isSelected)
         }
+        agreementLabel.onLinkTap = { link in
+            self.onLinkTap(link)
+        }
         
         buildViewTree()
         setConstraints()
     }
 
     private func buildViewTree() {
-        addSubview(contentView)
-        [checkbox, agreementLabel].forEach(contentView.addSubview)
+        [checkbox, agreementLabel].forEach(addSubview)
     }
 
     private func setConstraints() {
-        contentView.edgesToSuperview()
-        
         checkbox.run {
+            $0.height(18)
+            $0.width(18)
             $0.leadingToSuperview()
             $0.centerYToSuperview()
         }

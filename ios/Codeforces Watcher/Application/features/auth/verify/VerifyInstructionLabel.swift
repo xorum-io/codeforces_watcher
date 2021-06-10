@@ -10,7 +10,7 @@ import UIKit
 
 class VerifyInstructionLabel: UILabel {
     
-    private var instructionText = NSMutableAttributedString()
+    private let instructionText: NSMutableAttributedString
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

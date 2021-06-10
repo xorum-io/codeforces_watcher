@@ -14,9 +14,15 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private let contentView = UIView()
     
-    private let emailInput = TextInputLayout(hint: "email".localized, type: .email)
-    private let passwordInput = TextInputLayout(hint: "password".localized, type: .password)
-    private let confirmInput = TextInputLayout(hint: "confirm_password".localized, type: .password)
+    private let emailInput = TextInputLayout(hint: "email".localized, type: .email).apply {
+        $0.tag = 0
+    }
+    private let passwordInput = TextInputLayout(hint: "password".localized, type: .password).apply {
+        $0.tag = 1
+    }
+    private let confirmInput = TextInputLayout(hint: "confirm_password".localized, type: .password).apply {
+        $0.tag = 2
+    }
     private let signUpAgreement = SignUpAgreementView()
     private let signUpButton = PrimaryButton().apply {
         $0.setTitle("sign_up".localized.uppercased(), for: .normal)
@@ -40,7 +46,7 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     func onNewState(state: Any) {
         let state = state as! AuthState
         
-        switch (state.signUpStatus) {
+        switch (state.status) {
         case .done:
             hideLoading()
             closeViewController()
@@ -83,10 +89,15 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     }
     
     private func setupSignUpAgreement() {
-        signUpAgreement.onCheckboxTap = { isSelected in
-            self.signUpButton.run {
-                $0.isEnabled = isSelected
-                $0.alpha = (isSelected ? 1.0 : 0.5)
+        signUpAgreement.run {
+            $0.onCheckboxTap = { isSelected in
+                self.signUpButton.run {
+                    $0.isEnabled = isSelected
+                    $0.alpha = (isSelected ? 1.0 : 0.5)
+                }
+            }
+            $0.onLinkTap = { link in
+                self.presentModal(WebViewController(link, ""))
             }
         }
     }
@@ -161,7 +172,7 @@ class SignUpViewController: ClosableViewController, ReKampStoreSubscriber {
     }
     
     @objc func didSignInClick() {
-        presentModal(SignInViewController())
+        dismiss(animated: true)
     }
     
     private func addKeyboardListeners() {

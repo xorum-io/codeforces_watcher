@@ -3,8 +3,7 @@ package io.xorum.codeforceswatcher.features.auth.redux
 import tw.geothings.rekotlin.StateType
 
 data class AuthState(
-        val signInStatus: Status = Status.IDLE,
-        val signUpStatus: Status = Status.IDLE,
+        val status: Status = Status.IDLE,
         val authStage: Stage = Stage.NOT_SIGNED_IN
 ) : StateType {
 

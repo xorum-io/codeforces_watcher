@@ -14,8 +14,12 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     
     private let contentView = UIView()
     
-    private let emailInput = TextInputLayout(hint: "email".localized, type: .email)
-    private let passwordInput = TextInputLayout(hint: "password".localized, type: .password)
+    private let emailInput = TextInputLayout(hint: "email".localized, type: .email).apply {
+        $0.tag = 0
+    }
+    private let passwordInput = TextInputLayout(hint: "password".localized, type: .password).apply {
+        $0.tag = 1
+    }
     private let forgotPasswordLabel = UILabel().apply {
         $0.text = "forgot_password".localized
         $0.textColor = Palette.colorPrimary
@@ -41,7 +45,7 @@ class SignInViewController: ClosableViewController, ReKampStoreSubscriber {
     func onNewState(state: Any) {
         let state = state as! AuthState
         
-        switch (state.signInStatus) {
+        switch (state.status) {
         case .done:
             hideLoading()
             closeViewController()

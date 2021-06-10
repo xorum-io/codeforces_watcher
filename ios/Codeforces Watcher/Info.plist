@@ -30,6 +30,7 @@
 	<string>Need permission to add contests directly to your calendar</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Roboto-Bold.ttf</string>
 		<string>Roboto-Medium.ttf</string>
 		<string>Roboto-Regular.ttf</string>
 	</array>

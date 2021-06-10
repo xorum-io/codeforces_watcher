@@ -9,33 +9,32 @@ fun authReducer(action: Action, state: AppState): AuthState {
     when (action) {
         is AuthRequests.SignIn -> {
             newState = newState.copy(
-                    signInStatus = AuthState.Status.PENDING
+                    status = AuthState.Status.PENDING
             )
         }
         is AuthRequests.SignIn.Success -> {
             newState = newState.copy(
-                    signInStatus = AuthState.Status.DONE
+                    status = AuthState.Status.DONE
             )
         }
         is AuthRequests.SignIn.Failure -> {
             newState = newState.copy(
-                    signInStatus = AuthState.Status.IDLE
+                    status = AuthState.Status.IDLE
             )
         }
         is AuthRequests.SignUp -> {
             newState = newState.copy(
-                    signUpStatus = AuthState.Status.PENDING
+                    status = AuthState.Status.PENDING
             )
         }
         is AuthRequests.SignUp.Success -> {
             newState = newState.copy(
-                    signUpStatus = AuthState.Status.DONE,
-                    signInStatus = AuthState.Status.DONE
+                    status = AuthState.Status.DONE
             )
         }
         is AuthRequests.SignUp.Failure -> {
             newState = newState.copy(
-                    signUpStatus = AuthState.Status.IDLE
+                    status = AuthState.Status.IDLE
             )
         }
         is AuthRequests.UpdateAuthStage -> {
