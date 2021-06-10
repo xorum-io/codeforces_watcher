@@ -14,7 +14,7 @@ public class Font {
     public static let textHeading =
         UIFont(name: "Roboto-Regular", size: 18) ?? UIFont.systemFont(ofSize: 18)
     public static let textSubheading =
-        UIFont(name: "Roboto-Regular", size: 10) ?? UIFont.systemFont(ofSize: 10)
+        UIFont(name: "Roboto-Regular", size: 11) ?? UIFont.systemFont(ofSize: 11)
     public static let textSubheadingBig =
         UIFont(name: "Roboto-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12)
     public static let textBody =
