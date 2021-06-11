@@ -17,7 +17,7 @@ data class User(
         val firstName: String? = null,
         val lastName: String? = null,
         val ratingChanges: List<RatingChange> = listOf(),
-        val contribution: Long? = null
+        val contribution: Long
 ) {
 
     companion object {
@@ -35,7 +35,7 @@ data class User(
                     firstName = dbUser.firstName,
                     lastName = dbUser.lastName,
                     ratingChanges = serializer.decodeFromString(ListSerializer(RatingChange.serializer()), dbUser.ratingChanges),
-                    contribution = dbUser.contribution
+                    contribution = dbUser.contribution ?: 0L
             )
         }
     }
