@@ -318,19 +318,15 @@ fileprivate extension User {
     }
     
     var contributionText: NSAttributedString {
-        if let contribution = contribution {
-            let contributionSubstring = (contribution.intValue <= 0 ? contribution.stringValue : "+\(contribution)")
-            return colorContribution(text: "Contribution".localizedFormat(args: contributionSubstring), contributionSubstring)
-        } else {
-            return none
-        }
+        let contributionSubstring = (contribution <= 0 ? "\(contribution)" : "+\(contribution)")
+        return colorContribution(text: "Contribution".localizedFormat(args: contributionSubstring), contributionSubstring)
     }
     
     private func colorContribution(text: String, _ contributionSubstring: String) -> NSAttributedString {
         let attributedText = NSMutableAttributedString(string: text)
        
-        if let contributionRange = text.firstOccurrence(string: contributionSubstring), let contribution = contribution {
-            let colorOfContribution = (contribution.intValue >= 0 ? Palette.brightGreen : Palette.red)
+        if let contributionRange = text.firstOccurrence(string: contributionSubstring) {
+            let colorOfContribution = (contribution >= 0 ? Palette.brightGreen : Palette.red)
             
             attributedText.colored(with: colorOfContribution, range: contributionRange)
         }

@@ -217,13 +217,13 @@ fun User.buildFullName() = when {
     else -> "$firstName $lastName"
 }
 
-fun User.buildContribution() = contribution?.let { contribution ->
+fun User.buildContribution(): SpannableString {
     val contributionString = if (contribution > 0) "+$contribution" else contribution.toString()
-    SpannableString(
+    return SpannableString(
             CwApp.app.getString(R.string.contribution, contributionString)
     ).apply {
         val startIndex = indexOf(contributionString)
         val color = if (contribution >= 0) R.color.bright_green else R.color.red
         colorSubstring(startIndex, startIndex + contributionString.length, color)
     }
-} ?: CwApp.app.getString(R.string.none)
+}
