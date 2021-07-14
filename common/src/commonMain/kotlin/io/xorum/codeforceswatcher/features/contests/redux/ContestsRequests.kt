@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.contests.redux.requests
+package io.xorum.codeforceswatcher.features.contests.redux
 
 import io.xorum.codeforceswatcher.features.contests.ContestsRepository
 import io.xorum.codeforceswatcher.features.contests.models.Contest

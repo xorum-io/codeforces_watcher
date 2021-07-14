@@ -4,7 +4,7 @@ import io.xorum.codeforceswatcher.features.FetchOnStartData
 import io.xorum.codeforceswatcher.features.auth.models.getAuthStage
 import io.xorum.codeforceswatcher.features.auth.redux.AuthRequests
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
-import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
+import io.xorum.codeforceswatcher.features.contests.redux.ContestsRequests
 import io.xorum.codeforceswatcher.features.news.redux.NewsRequests
 import io.xorum.codeforceswatcher.features.notifications.redux.NotificationsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests

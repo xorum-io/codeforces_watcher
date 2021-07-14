@@ -14,8 +14,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.WebViewActivity
 import io.xorum.codeforceswatcher.features.contests.models.Contest
-import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
-import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
+import io.xorum.codeforceswatcher.features.contests.redux.ContestsRequests
+import io.xorum.codeforceswatcher.features.contests.redux.ContestsState
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents

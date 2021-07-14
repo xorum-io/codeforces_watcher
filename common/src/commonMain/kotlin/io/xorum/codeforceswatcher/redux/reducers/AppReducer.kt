@@ -4,7 +4,7 @@ import io.xorum.codeforceswatcher.features.auth.redux.authReducer
 import io.xorum.codeforceswatcher.features.news.redux.newsReducer
 import io.xorum.codeforceswatcher.features.users.redux.usersReducer
 import io.xorum.codeforceswatcher.features.problems.redux.reducers.problemsReducer
-import io.xorum.codeforceswatcher.features.contests.redux.reducers.contestsReducer
+import io.xorum.codeforceswatcher.features.contests.redux.contestsReducer
 import io.xorum.codeforceswatcher.features.verification.redux.verificationReducer
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
