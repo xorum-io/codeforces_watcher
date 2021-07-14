@@ -1,7 +1,5 @@
 package io.xorum.codeforceswatcher.db
 
-import io.xorum.codeforceswatcher.features.contests.models.Contest
-import io.xorum.codeforceswatcher.features.contests.models.Platform
 import io.xorum.codeforceswatcher.features.problems.models.Problem
 import io.xorum.codeforceswatcher.features.users.models.RatingChange
 import io.xorum.codeforceswatcher.features.users.models.User
@@ -83,21 +81,6 @@ internal object DatabaseQueries {
         }
 
         fun deleteAll() = database.userQueries.deleteAll()
-    }
-
-    internal object Contests {
-
-        fun getAll() = database.contestQueries.getAll().executeAsList().map { Contest.fromDB(it) }
-
-        fun insert(contests: List<Contest>) {
-            database.contestQueries.transaction {
-                contests.filter { it.platform == Platform.CODEFORCES }.forEach { contest ->
-                    database.contestQueries.insert(contest.id, contest.name, contest.startTimeSeconds, contest.durationSeconds, contest.phase)
-                }
-            }
-        }
-
-        fun deleteAll() = database.contestQueries.deleteAll()
     }
 
     internal object Problems {

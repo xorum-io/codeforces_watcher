@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.bogdan.codeforceswatcher.CwApp
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
-import io.xorum.codeforceswatcher.features.contests.models.Platform
+import io.xorum.codeforceswatcher.features.contests.models.Contest
 import io.xorum.codeforceswatcher.util.Settings
 
 class Prefs(private val context: Context) : Settings {
@@ -61,7 +61,7 @@ class Prefs(private val context: Context) : Settings {
 
     override fun readContestsFilters(): Set<String> {
         val defaultPrefs = getDefaultPrefs()
-        return defaultPrefs.getStringSet(KEY_CONTESTS_FILTERS, Platform.defaultFilterValueToSave).orEmpty()
+        return defaultPrefs.getStringSet(KEY_CONTESTS_FILTERS, Contest.Platform.defaultFilterValueToSave).orEmpty()
     }
 
     override fun writeContestsFilters(filters: Set<String>) {

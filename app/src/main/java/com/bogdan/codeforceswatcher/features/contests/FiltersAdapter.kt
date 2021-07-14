@@ -9,13 +9,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bogdan.codeforceswatcher.R
-import io.xorum.codeforceswatcher.features.contests.models.Platform
+import io.xorum.codeforceswatcher.features.contests.models.Contest
 import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
 import io.xorum.codeforceswatcher.redux.store
 import kotlinx.android.synthetic.main.view_contest_item.view.ivContest
 import kotlinx.android.synthetic.main.view_filter_item.view.*
 
-data class FilterItem(val imageId: Int, val title: String, val platform: Platform, val isChecked: Boolean)
+data class FilterItem(
+        val imageId: Int,
+        val title: String,
+        val platform: Contest.Platform,
+        val isChecked: Boolean
+)
 
 class FiltersAdapter(
         private val context: Context,

@@ -34,7 +34,6 @@ class CwApp : Application() {
         initAnalyticsController()
         initFirebaseController()
 
-        databaseController.onAppCreated()
         persistenceController.onAppCreated()
 
         FirebaseAnalytics.getInstance(this)

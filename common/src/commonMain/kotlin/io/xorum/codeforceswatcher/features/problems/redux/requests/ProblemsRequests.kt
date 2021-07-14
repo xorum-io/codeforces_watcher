@@ -22,7 +22,6 @@ class ProblemsRequests {
                 if (isProblemsMatching(problemsEn, problemsRu)) {
                     val problems = mergeProblems(problemsEn, problemsRu)
 
-                    boundProblemsToContests(problems)
                     updateDatabase(problems)
 
                     store.dispatch(Success(problems))
@@ -45,15 +44,6 @@ class ProblemsRequests {
                 problems.add(problem)
             }
             return problems
-        }
-
-        private fun boundProblemsToContests(problems: List<Problem>) {
-            val contests = store.state.contests.contests
-            val mapContests = contests.associateBy { contest -> contest.id }
-            problems.forEach { problem ->
-                problem.contestName = mapContests[problem.contestId]?.name.orEmpty()
-                problem.contestTime = mapContests[problem.contestId]?.startTimeSeconds ?: 0
-            }
         }
 
         private fun isProblemsMatching(problemsEn: List<Problem>, problemsRu: List<Problem>): Boolean {
