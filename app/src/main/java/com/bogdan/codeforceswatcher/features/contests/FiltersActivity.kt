@@ -33,7 +33,8 @@ class FiltersActivity : AppCompatActivity() {
                 FilterItem(R.drawable.codechef, "CodeChef", Contest.Platform.CODECHEF, filters.contains(Contest.Platform.CODECHEF)),
                 FilterItem(R.drawable.hackerrank, "HackerRank", Contest.Platform.HACKERRANK, filters.contains(Contest.Platform.HACKERRANK)),
                 FilterItem(R.drawable.hackerearth, "HackerEarth", Contest.Platform.HACKEREARTH, filters.contains(Contest.Platform.HACKEREARTH)),
-                FilterItem(R.drawable.kickstart, "Kick Start", Contest.Platform.KICK_START, filters.contains(Contest.Platform.KICK_START))
+                FilterItem(R.drawable.kickstart, "Kick Start", Contest.Platform.KICK_START, filters.contains(Contest.Platform.KICK_START)),
+                FilterItem(R.drawable.toph, "Toph", Contest.Platform.TOPH, filters.contains(Contest.Platform.TOPH))
         )
     }
 

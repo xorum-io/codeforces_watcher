@@ -1,5 +1,5 @@
 //
-//  Platform+Extension.swift
+//  Contest.Platform+Extension.swift
 //  Codeforces Watcher
 //
 //  Created by Den Matyash on 4/10/20.
@@ -31,6 +31,8 @@ extension Contest.Platform {
             return "LeetCode"
         case .topcoder:
             return "TopCoder"
+        case .toph:
+            return "Toph"
         default:
             return ""
         }

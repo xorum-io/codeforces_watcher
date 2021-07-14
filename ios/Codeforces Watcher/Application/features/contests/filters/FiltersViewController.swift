@@ -82,7 +82,8 @@ class FiltersViewController: ClosableViewController, ReKampStoreSubscriber {
             FilterItem(title: "CodeChef", platform: .codechef, isOn: filters.contains(.codechef)),
             FilterItem(title: "HackerRank", platform: .hackerrank, isOn: filters.contains(.hackerrank)),
             FilterItem(title: "HackerEarth", platform: .hackerearth, isOn: filters.contains(.hackerearth)),
-            FilterItem(title: "Kick Start", platform: .kickStart, isOn: filters.contains(.kickStart))
+            FilterItem(title: "Kick Start", platform: .kickStart, isOn: filters.contains(.kickStart)),
+            FilterItem(title: "Toph", platform: .toph, isOn: filters.contains(.toph))
         ]
 
         tableView.reloadData()

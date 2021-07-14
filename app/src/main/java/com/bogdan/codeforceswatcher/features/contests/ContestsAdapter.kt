@@ -44,7 +44,7 @@ class ContestsAdapter(
                 Contest.Platform.HACKEREARTH -> R.drawable.hackerearth
                 Contest.Platform.HACKERRANK -> R.drawable.hackerrank
                 Contest.Platform.CS_ACADEMY -> R.drawable.csacademy
-                Contest.Platform.TOPH -> R.drawable.atcoder // TODO
+                Contest.Platform.TOPH -> R.drawable.toph
             })
 
             onAddToCalendarClickListener = { addToCalendarClickListener(contest) }
