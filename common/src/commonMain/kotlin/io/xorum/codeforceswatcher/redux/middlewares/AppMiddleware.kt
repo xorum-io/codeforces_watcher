@@ -9,12 +9,10 @@ import io.xorum.codeforceswatcher.features.news.redux.NewsRequests
 import io.xorum.codeforceswatcher.features.notifications.redux.NotificationsRequests
 import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
 import io.xorum.codeforceswatcher.features.users.redux.FetchUserDataType
-import io.xorum.codeforceswatcher.features.users.redux.Source
 import io.xorum.codeforceswatcher.features.users.redux.UsersRequests
 import io.xorum.codeforceswatcher.features.verification.redux.VerificationRequests
 import io.xorum.codeforceswatcher.redux.Request
 import io.xorum.codeforceswatcher.redux.analyticsController
-import io.xorum.codeforceswatcher.redux.getLang
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
 import kotlinx.coroutines.MainScope
@@ -52,8 +50,8 @@ private fun doActionsOnLogOut(action: Action) = scope.launch {
 
 private fun fetchUsersData(action: Action) = scope.launch {
     val request = when (action) {
-        is AuthRequests.SignIn.Success -> UsersRequests.FetchUserData(FetchUserDataType.REFRESH, Source.BACKGROUND)
-        is AuthRequests.SignUp.Success -> UsersRequests.FetchUserData(FetchUserDataType.PERSIST, Source.BACKGROUND)
+        is AuthRequests.SignIn.Success -> UsersRequests.FetchUserData(FetchUserDataType.REFRESH, isInitiatedByUser = false)
+        is AuthRequests.SignUp.Success -> UsersRequests.FetchUserData(FetchUserDataType.PERSIST, isInitiatedByUser = false)
         else -> return@launch
     }
     store.dispatch(request)
@@ -98,7 +96,7 @@ private fun sendAnalytics(action: Action) = scope.launch {
 
 private fun fetchOnStartData(action: Action) = scope.launch {
     if (action is FetchOnStartData) {
-        store.dispatch(UsersRequests.FetchUserData(FetchUserDataType.REFRESH, Source.BACKGROUND))
+        store.dispatch(UsersRequests.FetchUserData(FetchUserDataType.REFRESH, isInitiatedByUser = false))
         store.dispatch(NewsRequests.FetchNews(isInitiatedByUser = false))
         store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = false))
         store.dispatch(ProblemsRequests.FetchProblems(isInitiatedByUser = false))

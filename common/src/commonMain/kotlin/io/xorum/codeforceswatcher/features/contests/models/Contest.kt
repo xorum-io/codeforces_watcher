@@ -12,7 +12,6 @@ data class Contest(
         val phase: Phase
 ) {
 
-    @Serializable
     enum class Platform {
         CODEFORCES, CODEFORCES_GYM, TOPCODER, ATCODER, CS_ACADEMY,
         CODECHEF, HACKERRANK, HACKEREARTH, KICK_START, LEETCODE, TOPH;
@@ -24,7 +23,6 @@ data class Contest(
         }
     }
 
-    @Serializable
     enum class Phase {
         PENDING, RUNNING, FINISHED
     }

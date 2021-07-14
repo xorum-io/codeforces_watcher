@@ -10,10 +10,6 @@ import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.UsersDiff
 import tw.geothings.rekotlin.Action
 
-enum class Source(val isToastNeeded: Boolean) {
-    USER(true), BROADCAST(false), BACKGROUND(false)
-}
-
 enum class FetchUserDataType {
     PERSIST, REFRESH
 }
@@ -22,7 +18,7 @@ class UsersRequests {
 
     class FetchUserData(
             private val fetchUserDataType: FetchUserDataType,
-            private val source: Source
+            private val isInitiatedByUser: Boolean
     ) : Request() {
 
         private val usersRepository = UsersRepository()
@@ -34,9 +30,9 @@ class UsersRequests {
                     val (toAddDiff, toUpdateDiff, toDeleteDiff) = getDiff(response.result.users)
                     updateDatabaseUsers(toAddDiff, toUpdateDiff, toDeleteDiff)
                     val users = getOrderedUsers(toAddDiff, toDeleteDiff)
-                    Success(users, response.result.userAccount, source)
+                    Success(users, response.result.userAccount)
                 }
-                is Response.Failure -> Failure(if (source == Source.USER) response.error.toMessage() else Message.None)
+                is Response.Failure -> Failure(if (isInitiatedByUser) response.error.toMessage() else Message.None)
             }
             store.dispatch(result)
         }
@@ -72,8 +68,7 @@ class UsersRequests {
 
         data class Success(
                 val users: List<User>,
-                val userAccount: UserAccount?,
-                val source: Source
+                val userAccount: UserAccount?
         ) : Action
 
         data class Failure(override val message: Message) : ToastAction
