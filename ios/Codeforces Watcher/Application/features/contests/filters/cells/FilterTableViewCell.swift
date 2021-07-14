@@ -19,7 +19,7 @@ class FilterTableViewCell: UITableViewCell {
         $0.onTintColor = Palette.colorPrimary
     }
 
-    private var platform: Platform!
+    private var platform: Contest.Platform!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -71,7 +71,7 @@ class FilterTableViewCell: UITableViewCell {
     }
 
     func bind(_ filterItem: FilterItem) {
-        logoView.image = UIImage(named: Platform.getImageNameByPlatform(filterItem.platform))
+        logoView.image = UIImage(named: Contest.Platform.getImageNameByPlatform(filterItem.platform))
         nameLabel.text = filterItem.title
         switchView.isOn = filterItem.isOn
         platform = filterItem.platform

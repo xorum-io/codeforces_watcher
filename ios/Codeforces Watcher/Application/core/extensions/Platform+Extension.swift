@@ -9,9 +9,9 @@
 import Foundation
 import common
 
-extension Platform {
+extension Contest.Platform {
     
-    static func getImageNameByPlatform(_ platform: Platform) -> String {
+    static func getImageNameByPlatform(_ platform: Contest.Platform) -> String {
         switch (platform) {
         case .codeforces, .codeforcesGym:
             return "Codeforces"

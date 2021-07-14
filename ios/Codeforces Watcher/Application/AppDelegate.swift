@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initAnalyticsController()
         setBackendLink()
 
-        AppStoreKt.databaseController.onAppCreated()
         AppStoreKt.persistenceController.onAppCreated()
 
         initFirebase()

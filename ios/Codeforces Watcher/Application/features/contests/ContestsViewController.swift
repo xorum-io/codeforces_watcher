@@ -82,8 +82,11 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         tableAdapter.onCalendarTap = { contest in
             self.addEventToCalendar(contest) { success, _ in
                 if (success) {
-                    analyticsControler.logEvent(eventName: AnalyticsEvents().ADD_CONTEST_TO_CALENDAR, params: ["contest_name": contest.name, "contest_platform": contest.platform.name])
-                    self.showAlertWithOK(title: contest.name, message: "Has been added to your calendar".localized)
+                    analyticsControler.logEvent(
+                        eventName: AnalyticsEvents().ADD_CONTEST_TO_CALENDAR,
+                        params: ["contest_name": contest.title, "contest_platform": contest.platform.name]
+                    )
+                    self.showAlertWithOK(title: contest.title, message: "Has been added to your calendar".localized)
                 } else {
                     self.showAlertWithOK(title: "Can't add contest to Calendar without permission".localized, message: "Enable it in Settings, please".localized)
                 }
@@ -95,7 +98,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         tableAdapter.onContestClick = { (contest) in
             let webViewController = WebViewController(
                 contest.link,
-                contest.name,
+                contest.title,
                 AnalyticsEvents().CONTEST_OPENED,
                 AnalyticsEvents().CONTEST_SHARED
             )
@@ -127,11 +130,11 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         contest: Contest,
         completion: ((Bool, NSError?) -> Void)?
     ) {
-        let startDate = Date(timeIntervalSince1970: Double(contest.startTimeSeconds / 1000))
-        let endDate = Date(timeIntervalSince1970: Double(contest.startTimeSeconds / 1000 + contest.durationSeconds))
+        let startDate = Date(timeIntervalSince1970: Double(contest.startDateInMillis / 1000))
+        let endDate = Date(timeIntervalSince1970: Double(contest.startDateInMillis / 1000 + contest.durationInMillis / 1000))
         
         let event = EKEvent(eventStore: eventStore).apply {
-            $0.title = contest.name
+            $0.title = contest.title
             $0.startDate = startDate
             $0.endDate = endDate
             $0.calendar = eventStore.defaultCalendarForNewEvents
@@ -170,7 +173,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
 
     private func showAlertWithOK(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .cancel)
+        let okButton = UIAlertAction(title: "OK".localized, style: .cancel)
         alertController.addAction(okButton)
 
         present(alertController, animated: true, completion: nil)
@@ -196,15 +199,15 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         }
 
         tableAdapter.contests = state.contests
-            .filter { $0.phase == "BEFORE" && state.filters.contains($0.platform) }
+            .filter { $0.phase == .pending && state.filters.contains($0.platform) }
             .sorted(by: {
-                $0.startTimeSeconds < $1.startTimeSeconds
+                $0.startDateInMillis < $1.startDateInMillis
             })
 
         tableView.reloadData()
     }
 
     private func fetchContests() {
-        store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: true, language: "locale".localized))
+        store.dispatch(action: ContestsRequests.FetchContests(isInitiatedByUser: true))
     }
 }

@@ -73,16 +73,16 @@ class FiltersViewController: ClosableViewController, ReKampStoreSubscriber {
         let filters = state.filters
 
         tableAdapter.filterItems = [
-            FilterItem(title: "Codeforces", platform: Platform.codeforces, isOn: filters.contains(Platform.codeforces)),
-            FilterItem(title: "Codeforces Gym", platform: Platform.codeforcesGym, isOn: filters.contains(Platform.codeforcesGym)),
-            FilterItem(title: "AtCoder", platform: Platform.atcoder, isOn: filters.contains(Platform.atcoder)),
-            FilterItem(title: "LeetCode", platform: Platform.leetcode, isOn: filters.contains(Platform.leetcode)),
-            FilterItem(title: "TopCoder", platform: Platform.topcoder, isOn: filters.contains(Platform.topcoder)),
-            FilterItem(title: "CS Academy", platform: Platform.csAcademy, isOn: filters.contains(Platform.csAcademy)),
-            FilterItem(title: "CodeChef", platform: Platform.codechef, isOn: filters.contains(Platform.codechef)),
-            FilterItem(title: "HackerRank", platform: Platform.hackerrank, isOn: filters.contains(Platform.hackerrank)),
-            FilterItem(title: "HackerEarth", platform: Platform.hackerearth, isOn: filters.contains(Platform.hackerearth)),
-            FilterItem(title: "Kick Start", platform: Platform.kickStart, isOn: filters.contains(Platform.kickStart))
+            FilterItem(title: "Codeforces", platform: .codeforces, isOn: filters.contains(.codeforces)),
+            FilterItem(title: "Codeforces Gym", platform: .codeforcesGym, isOn: filters.contains(.codeforcesGym)),
+            FilterItem(title: "AtCoder", platform: .atcoder, isOn: filters.contains(.atcoder)),
+            FilterItem(title: "LeetCode", platform: .leetcode, isOn: filters.contains(.leetcode)),
+            FilterItem(title: "TopCoder", platform: .topcoder, isOn: filters.contains(.topcoder)),
+            FilterItem(title: "CS Academy", platform: .csAcademy, isOn: filters.contains(.csAcademy)),
+            FilterItem(title: "CodeChef", platform: .codechef, isOn: filters.contains(.codechef)),
+            FilterItem(title: "HackerRank", platform: .hackerrank, isOn: filters.contains(.hackerrank)),
+            FilterItem(title: "HackerEarth", platform: .hackerearth, isOn: filters.contains(.hackerearth)),
+            FilterItem(title: "Kick Start", platform: .kickStart, isOn: filters.contains(.kickStart))
         ]
 
         tableView.reloadData()
