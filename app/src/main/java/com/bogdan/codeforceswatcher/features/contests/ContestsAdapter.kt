@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bogdan.codeforceswatcher.R
 import io.xorum.codeforceswatcher.features.contests.models.Contest
-import io.xorum.codeforceswatcher.features.contests.models.Platform
 import kotlinx.android.synthetic.main.view_contest_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,19 +31,20 @@ class ContestsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contest = items[position]
         with(holder) {
-            tvContestName.text = contest.name
-            tvContestTime.text = getDateTime(contest.startTimeSeconds)
+            tvContestName.text = contest.title
+            tvContestTime.text = getDateTime(contest.startDateInMillis)
             ivContest.setImageResource(when (contest.platform) {
-                Platform.ATCODER -> R.drawable.atcoder
-                Platform.TOPCODER -> R.drawable.topcoder
-                Platform.CODEFORCES -> R.drawable.codeforces
-                Platform.CODECHEF -> R.drawable.codechef
-                Platform.CODEFORCES_GYM -> R.drawable.codeforces
-                Platform.LEETCODE -> R.drawable.leetcode
-                Platform.KICK_START -> R.drawable.kickstart
-                Platform.HACKEREARTH -> R.drawable.hackerearth
-                Platform.HACKERRANK -> R.drawable.hackerrank
-                Platform.CS_ACADEMY -> R.drawable.csacademy
+                Contest.Platform.ATCODER -> R.drawable.atcoder
+                Contest.Platform.TOPCODER -> R.drawable.topcoder
+                Contest.Platform.CODEFORCES -> R.drawable.codeforces
+                Contest.Platform.CODECHEF -> R.drawable.codechef
+                Contest.Platform.CODEFORCES_GYM -> R.drawable.codeforces
+                Contest.Platform.LEETCODE -> R.drawable.leetcode
+                Contest.Platform.KICK_START -> R.drawable.kickstart
+                Contest.Platform.HACKEREARTH -> R.drawable.hackerearth
+                Contest.Platform.HACKERRANK -> R.drawable.hackerrank
+                Contest.Platform.CS_ACADEMY -> R.drawable.csacademy
+                Contest.Platform.TOPH -> R.drawable.toph
             })
 
             onAddToCalendarClickListener = { addToCalendarClickListener(contest) }

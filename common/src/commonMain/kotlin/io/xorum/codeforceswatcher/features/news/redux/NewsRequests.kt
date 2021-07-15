@@ -14,19 +14,11 @@ class NewsRequests {
         private val newsRepository = NewsRepository()
 
         override suspend fun execute() {
-            when (val response = newsRepository.getNews()) {
-                is Response.Success -> {
-                    store.dispatch(Success(response.result.news))
-                }
-                is Response.Failure -> {
-                    dispatchFailure()
-                }
+            val result = when (val response = newsRepository.getNews()) {
+                is Response.Success -> Success(response.result.news)
+                is Response.Failure -> Failure(if (isInitiatedByUser) response.error.toMessage() else Message.None)
             }
-        }
-
-        private fun dispatchFailure() {
-            val noConnectionError = if (isInitiatedByUser) Message.NoConnection else Message.None
-            store.dispatch(Failure(noConnectionError))
+            store.dispatch(result)
         }
 
         data class Success(val news: List<News>) : Action

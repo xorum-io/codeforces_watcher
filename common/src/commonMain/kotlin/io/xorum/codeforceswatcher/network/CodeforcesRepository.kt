@@ -11,7 +11,6 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.http.URLProtocol
-import io.xorum.codeforceswatcher.network.responses.codeforces.CodeforcesContestsResponse
 import io.xorum.codeforceswatcher.network.responses.codeforces.ProblemsResponse
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.util.stringify
@@ -21,17 +20,6 @@ private const val CODEFORCES_API_LINK = "www.codeforces.com/api"
 internal class CodeforcesRepository {
 
     private val codeforcesApiClient = makeCodeforcesApiClient()
-
-    suspend fun getCodeforcesContests(lang: String) = try {
-        codeforcesApiClient.get<CodeforcesContestsResponse>(path = "contest.list") {
-            parameter("lang", lang)
-        }
-    } catch (t: Throwable) {
-        analyticsController.logError(t.stringify())
-        t.printStackTrace()
-
-        null
-    }
 
     suspend fun getProblems(lang: String) = try {
         codeforcesApiClient.get<ProblemsResponse>(path = "problemset.problems") {

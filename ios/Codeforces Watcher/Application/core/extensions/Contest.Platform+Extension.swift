@@ -1,5 +1,5 @@
 //
-//  Platform+Extension.swift
+//  Contest.Platform+Extension.swift
 //  Codeforces Watcher
 //
 //  Created by Den Matyash on 4/10/20.
@@ -9,9 +9,9 @@
 import Foundation
 import common
 
-extension Platform {
+extension Contest.Platform {
     
-    static func getImageNameByPlatform(_ platform: Platform) -> String {
+    static func getImageNameByPlatform(_ platform: Contest.Platform) -> String {
         switch (platform) {
         case .codeforces, .codeforcesGym:
             return "Codeforces"
@@ -31,6 +31,8 @@ extension Platform {
             return "LeetCode"
         case .topcoder:
             return "TopCoder"
+        case .toph:
+            return "Toph"
         default:
             return ""
         }

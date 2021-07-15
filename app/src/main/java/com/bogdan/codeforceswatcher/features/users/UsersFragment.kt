@@ -32,7 +32,7 @@ class UsersFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, StoreSub
     private val epoxyController by lazy { EpoxyController() }
 
     override fun onRefresh() {
-        store.dispatch(UsersRequests.FetchUserData(FetchUserDataType.REFRESH, Source.USER))
+        store.dispatch(UsersRequests.FetchUserData(FetchUserDataType.REFRESH, isInitiatedByUser = true))
         analyticsController.logEvent(AnalyticsEvents.USERS_REFRESH)
     }
 

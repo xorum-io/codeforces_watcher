@@ -14,8 +14,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.WebViewActivity
 import io.xorum.codeforceswatcher.features.contests.models.Contest
-import io.xorum.codeforceswatcher.features.contests.redux.requests.ContestsRequests
-import io.xorum.codeforceswatcher.features.contests.redux.states.ContestsState
+import io.xorum.codeforceswatcher.features.contests.redux.ContestsRequests
+import io.xorum.codeforceswatcher.features.contests.redux.ContestsState
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents
@@ -30,13 +30,13 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
     private val contestsAdapter by lazy {
         ContestsAdapter(
                 requireContext(),
-                addToCalendarClickListener = { addContestToCalendar(it) },
+                addToCalendarClickListener = ::addContestToCalendar,
                 itemClickListener = { contest ->
                     startActivity(
                             WebViewActivity.newIntent(
                                     requireContext(),
                                     contest.link,
-                                    contest.name,
+                                    contest.title,
                                     AnalyticsEvents.CONTEST_OPENED,
                                     AnalyticsEvents.CONTEST_SHARED
                             )
@@ -61,7 +61,9 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
 
     override fun onNewState(state: ContestsState) {
         swipeRefreshLayout.isRefreshing = (state.status == ContestsState.Status.PENDING)
-        val showingContests = state.contests.filter { it.phase == "BEFORE" }.sortedBy(Contest::startTimeSeconds).filter { state.filters.contains(it.platform) }
+        val showingContests = state.contests.filter { it.phase == Contest.Phase.PENDING }
+                .sortedBy(Contest::startDateInMillis)
+                .filter { state.filters.contains(it.platform) }
         contestsAdapter.setItems(showingContests)
         if (showingContests.isEmpty()) {
             tvNoContest.visibility = View.VISIBLE
@@ -71,7 +73,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
     }
 
     override fun onRefresh() {
-        store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = true, language = Locale.getDefault().language))
+        store.dispatch(ContestsRequests.FetchContests(isInitiatedByUser = true))
         analyticsController.logEvent(AnalyticsEvents.CONTESTS_REFRESH)
     }
 
@@ -94,9 +96,9 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
     }
 
     private fun addContestToCalendar(contest: Contest) {
-        val timeStart = getCalendarTime(contest.startTimeSeconds)
-        val timeEnd = getCalendarTime(contest.startTimeSeconds + contest.durationSeconds)
-        val encodeName = URLEncoder.encode(contest.name)
+        val timeStart = getCalendarTime(contest.startDateInMillis)
+        val timeEnd = getCalendarTime(contest.startDateInMillis + contest.durationInMillis)
+        val encodeName = URLEncoder.encode(contest.title)
         val calendarEventLink =
                 "${CALENDAR_LINK}?action=TEMPLATE&text=$encodeName&dates=$timeStart/$timeEnd&details=${contest.link}"
         val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(calendarEventLink))
@@ -113,7 +115,7 @@ class ContestsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Store
                 AnalyticsEvents.ADD_CONTEST_TO_CALENDAR,
                 mapOf(
                         "contest_platform" to contest.platform.toString(),
-                        "contest_name" to contest.name
+                        "contest_name" to contest.title
                 )
         )
     }

@@ -4,7 +4,6 @@ import com.squareup.sqldelight.db.SqlDriver
 import io.xorum.codeforceswatcher.db.DatabaseController
 import io.xorum.codeforceswatcher.features.auth.IFirebaseController
 import io.xorum.codeforceswatcher.network.CodeforcesRepository
-import io.xorum.codeforceswatcher.network.KontestsRepository
 import io.xorum.codeforceswatcher.redux.middlewares.appMiddleware
 import io.xorum.codeforceswatcher.redux.middlewares.toastMiddleware
 import io.xorum.codeforceswatcher.redux.reducers.appReducer
@@ -21,7 +20,6 @@ lateinit var firebaseController: IFirebaseController
 var pushToken: String? = null
 
 internal val codeforcesRepository = CodeforcesRepository()
-internal val kontestsRepository = KontestsRepository()
 
 lateinit var getLang: () -> String
 

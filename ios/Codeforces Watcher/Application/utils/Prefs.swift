@@ -25,7 +25,7 @@ class Prefs: Settings {
         if let savedFilters = (UserDefaults.standard.value(forKey: "contestsFilters")) as? Array<String> {
             return Set(savedFilters)
         } else {
-            return Platform.Companion().defaultFilterValueToSave
+            return Contest.PlatformCompanion().defaultFilterValueToSave
         }
     }
     

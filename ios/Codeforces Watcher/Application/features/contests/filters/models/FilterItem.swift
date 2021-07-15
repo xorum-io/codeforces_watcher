@@ -12,6 +12,6 @@ import common
 
 struct FilterItem {
     let title: String
-    let platform: Platform
+    let platform: Contest.Platform
     let isOn: Bool
 }
