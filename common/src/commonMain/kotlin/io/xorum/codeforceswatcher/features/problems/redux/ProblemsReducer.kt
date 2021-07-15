@@ -1,8 +1,5 @@
-package io.xorum.codeforceswatcher.features.problems.redux.reducers
+package io.xorum.codeforceswatcher.features.problems.redux
 
-import io.xorum.codeforceswatcher.features.problems.redux.actions.ProblemsActions
-import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
-import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
 

@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.problems.redux.states
+package io.xorum.codeforceswatcher.features.problems.redux
 
 import io.xorum.codeforceswatcher.features.problems.models.Problem
 import tw.geothings.rekotlin.StateType

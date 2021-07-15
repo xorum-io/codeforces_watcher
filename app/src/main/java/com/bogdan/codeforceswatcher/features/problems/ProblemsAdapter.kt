@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bogdan.codeforceswatcher.R
 import io.xorum.codeforceswatcher.features.problems.models.Problem
-import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
+import io.xorum.codeforceswatcher.features.problems.redux.ProblemsRequests
 import kotlinx.android.synthetic.main.view_problem_item.view.*
 import io.xorum.codeforceswatcher.redux.store
 import java.util.*

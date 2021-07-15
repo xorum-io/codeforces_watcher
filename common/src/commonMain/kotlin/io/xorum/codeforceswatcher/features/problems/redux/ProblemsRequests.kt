@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.problems.redux.requests
+package io.xorum.codeforceswatcher.features.problems.redux
 
 import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.problems.ProblemsRepository
