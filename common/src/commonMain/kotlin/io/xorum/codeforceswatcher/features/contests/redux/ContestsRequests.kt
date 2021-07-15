@@ -2,7 +2,7 @@ package io.xorum.codeforceswatcher.features.contests.redux
 
 import io.xorum.codeforceswatcher.features.contests.ContestsRepository
 import io.xorum.codeforceswatcher.features.contests.models.Contest
-import io.xorum.codeforceswatcher.network.responses.backend.Response
+import io.xorum.codeforceswatcher.util.Response
 import io.xorum.codeforceswatcher.redux.*
 import tw.geothings.rekotlin.Action
 

@@ -3,7 +3,7 @@ package io.xorum.codeforceswatcher.features.verification
 import io.ktor.client.request.*
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.verification.response.VerificationCodeResponse
-import io.xorum.codeforceswatcher.network.responses.backend.request
+import io.xorum.codeforceswatcher.util.request
 
 internal class VerificationRepository {
 

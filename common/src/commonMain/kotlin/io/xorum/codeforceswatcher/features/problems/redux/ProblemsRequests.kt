@@ -3,7 +3,7 @@ package io.xorum.codeforceswatcher.features.problems.redux
 import io.xorum.codeforceswatcher.db.DatabaseQueries
 import io.xorum.codeforceswatcher.features.problems.ProblemsRepository
 import io.xorum.codeforceswatcher.features.problems.models.Problem
-import io.xorum.codeforceswatcher.network.responses.backend.Response
+import io.xorum.codeforceswatcher.util.Response
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.ProblemsDiff
 import tw.geothings.rekotlin.Action

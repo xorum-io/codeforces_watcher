@@ -2,7 +2,7 @@ package io.xorum.codeforceswatcher.features.problems
 
 import io.ktor.client.request.*
 import io.xorum.codeforceswatcher.features.problems.response.ProblemsAndTagsResponse
-import io.xorum.codeforceswatcher.network.responses.backend.request
+import io.xorum.codeforceswatcher.util.request
 
 internal class ProblemsRepository {
 

@@ -5,7 +5,7 @@ import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.auth.redux.AuthState
 import io.xorum.codeforceswatcher.features.users.UsersRepository
 import io.xorum.codeforceswatcher.features.users.models.User
-import io.xorum.codeforceswatcher.network.responses.backend.Response
+import io.xorum.codeforceswatcher.util.Response
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.util.UsersDiff
 import tw.geothings.rekotlin.Action

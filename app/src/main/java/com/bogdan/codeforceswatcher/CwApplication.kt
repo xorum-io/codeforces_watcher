@@ -12,9 +12,9 @@ import com.squareup.sqldelight.android.AndroidSqliteDriver
 import io.xorum.codeforceswatcher.CWDatabase
 import io.xorum.codeforceswatcher.features.FetchOnStartData
 import io.xorum.codeforceswatcher.features.notifications.redux.NotificationsRequests
-import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_PROD_LINK
-import io.xorum.codeforceswatcher.network.responses.backend.BACKEND_STAGING_LINK
-import io.xorum.codeforceswatcher.network.responses.backend.backendLink
+import io.xorum.codeforceswatcher.util.BACKEND_PROD_LINK
+import io.xorum.codeforceswatcher.util.BACKEND_STAGING_LINK
+import io.xorum.codeforceswatcher.util.backendLink
 import io.xorum.codeforceswatcher.redux.*
 import io.xorum.codeforceswatcher.redux.middlewares.toastHandlers
 import io.xorum.codeforceswatcher.util.defineLang
