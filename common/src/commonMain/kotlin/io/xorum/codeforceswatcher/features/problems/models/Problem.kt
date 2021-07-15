@@ -5,34 +5,30 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Problem(
-        var id: Long = 0,
-        val name: String,
-        var enName: String = "",
-        var ruName: String = "",
-        val index: String,
-        var contestId: Long,
-        var contestName: String = "",
-        var contestTime: Long = 0,
-        var isFavourite: Boolean = false
+        val id: String,
+        val title: String,
+        val subtitle: String,
+        val platform: Platform,
+        val link: String,
+        val createdAtMillis: Long,
+        val tags: List<String>,
+        var isFavourite: Boolean = false // TODO: make val
 ) {
-    fun identify() = "$contestId$index"
 
-    val fullName
-        get() = "$contestId$index: $name"
-
-    val link: String get() = "https://codeforces.com/contest/$contestId/problem/$index"
+    enum class Platform {
+        CODEFORCES
+    }
 
     companion object {
 
         fun fromDB(dbProblem: DbProblem) = Problem(
                 id = dbProblem.id,
-                name = dbProblem.name,
-                enName = dbProblem.enName,
-                ruName = dbProblem.ruName,
-                index = dbProblem.index,
-                contestId = dbProblem.contestId,
-                contestName = dbProblem.contestName,
-                contestTime = dbProblem.contestTime,
+                title = dbProblem.title,
+                subtitle = dbProblem.subtitle,
+                platform = Platform.valueOf(dbProblem.platform),
+                link = dbProblem.link,
+                createdAtMillis = dbProblem.createdAtMillis,
+                tags = dbProblem.tags.split(","),
                 isFavourite = dbProblem.isFavourite
         )
     }

@@ -72,8 +72,8 @@ internal object DatabaseQueries {
             }
         }
 
-
         fun delete(handle: String) = database.userQueries.delete(handle)
+
         fun delete(users: List<User>) = database.userQueries.transaction {
             users.forEach {
                 delete(it.handle)
@@ -87,26 +87,44 @@ internal object DatabaseQueries {
 
         fun getAll() = database.problemQueries.getAll().executeAsList().map { Problem.fromDB(it) }
 
-        fun insert(problems: List<Problem>): List<Long> {
+        fun insert(problems: List<Problem>) {
             database.problemQueries.transaction {
                 for (problem in problems) {
                     insert(problem)
                 }
             }
-
-            val databaseProblems = getAll()
-            val identifiers = databaseProblems.associate { it.identify() to it.id }
-            val resultIds = mutableListOf<Long>()
-            problems.forEach { identifiers[it.identify()]?.let { id -> resultIds.add(id) } }
-            return resultIds
         }
 
-        fun insert(problem: Problem) = if (problem.id == 0L) {
-            database.problemQueries.insert(problem.name, problem.enName, problem.ruName, problem.index, problem.contestId, problem.contestName, problem.contestTime, problem.isFavourite)
-        } else {
-            database.problemQueries.update(problem.id, problem.name, problem.enName, problem.ruName, problem.index, problem.contestId, problem.contestName, problem.contestTime, problem.isFavourite)
+        fun insert(problem: Problem) = with(problem) {
+            database.problemQueries.insert(
+                    id = id,
+                    title = title,
+                    subtitle = subtitle,
+                    platform = platform.toString(),
+                    link = link,
+                    createdAtMillis = createdAtMillis,
+                    tags = tags.joinToString(separator = ","),
+                    isFavourite = isFavourite
+            )
         }
 
-        fun deleteAll() = database.problemQueries.deleteAll()
+        fun update(problems: List<Problem>) = database.problemQueries.transaction {
+            problems.forEach {
+                update(it)
+            }
+        }
+
+        fun update(problem: Problem) = with(problem) {
+            database.problemQueries.update(
+                    title = title,
+                    subtitle = subtitle,
+                    platform = platform.toString(),
+                    link = link,
+                    createdAtMillis = createdAtMillis,
+                    tags = tags.joinToString(separator = ","),
+                    isFavourite = isFavourite,
+                    id = id
+            )
+        }
     }
 }

@@ -1,76 +1,46 @@
 package io.xorum.codeforceswatcher.features.problems.redux.requests
 
 import io.xorum.codeforceswatcher.db.DatabaseQueries
+import io.xorum.codeforceswatcher.features.problems.ProblemsRepository
 import io.xorum.codeforceswatcher.features.problems.models.Problem
+import io.xorum.codeforceswatcher.network.responses.backend.Response
 import io.xorum.codeforceswatcher.redux.*
-import kotlinx.coroutines.delay
+import io.xorum.codeforceswatcher.util.ProblemsDiff
 import tw.geothings.rekotlin.Action
 
 class ProblemsRequests {
 
     class FetchProblems(private val isInitiatedByUser: Boolean) : Request() {
 
+        private val problemsRepository: ProblemsRepository = ProblemsRepository()
+
         override suspend fun execute() {
-            if (!isInitiatedByUser) delay(1000)
-
-            val problemsEn = codeforcesRepository.getProblems("en")?.result?.problems
-            val problemsRu = codeforcesRepository.getProblems("ru")?.result?.problems
-
-            if (problemsEn == null || problemsRu == null) {
-                dispatchFailure()
-            } else {
-                if (isProblemsMatching(problemsEn, problemsRu)) {
-                    val problems = mergeProblems(problemsEn, problemsRu)
-
-                    updateDatabase(problems)
-
-                    store.dispatch(Success(problems))
-                } else {
-                    dispatchFailure()
+            val result = when (val response = problemsRepository.getAll()) {
+                is Response.Success -> {
+                    val problems = mapProblems(response.result.problems)
+                    val (toAddDiff, toUpdateDiff) = getDiff(problems)
+                    updateDatabaseProblems(toAddDiff, toUpdateDiff)
+                    Success(problems, response.result.tags)
                 }
-            }
-        }
-
-        private fun dispatchFailure() {
-            val noConnectionError = if (isInitiatedByUser) Message.NoConnection else Message.None
-            store.dispatch(Failure(noConnectionError))
-        }
-
-        private fun mergeProblems(problemsEn: List<Problem>, problemsRu: List<Problem>): List<Problem> {
-            val problems: MutableList<Problem> = mutableListOf()
-            for ((index, problem) in problemsEn.withIndex()) {
-                problem.ruName = problemsRu[index].name
-                problem.enName = problem.name
-                problems.add(problem)
-            }
-            return problems
-        }
-
-        private fun isProblemsMatching(problemsEn: List<Problem>, problemsRu: List<Problem>): Boolean {
-            for ((index, problem) in problemsEn.withIndex()) {
-                if (problem.contestId != problemsRu[index].contestId ||
-                        problem.index != problemsRu[index].index) {
-                    return false
-                }
-            }
-            return true
-        }
-
-        private fun updateDatabase(newProblems: List<Problem>) {
-            val problems = DatabaseQueries.Problems.getAll()
-            val favouriteProblemsMap = problems.associate { problem -> problem.identify() to problem.isFavourite }
-            DatabaseQueries.Problems.deleteAll()
-
-            newProblems.forEach { problem ->
-                problem.isFavourite = favouriteProblemsMap[problem.identify()] ?: false
+                is Response.Failure -> Failure(if (isInitiatedByUser) response.error.toMessage() else Message.None)
             }
 
-            val identifiers = DatabaseQueries.Problems.insert(newProblems)
-            newProblems.forEachIndexed { index, problem -> problem.id = identifiers[index] }
+            store.dispatch(result)
         }
 
-        data class Success(val problems: List<Problem>) : Action
+        private fun mapProblems(problems: List<Problem>): List<Problem> {
+            val problemsMap = store.state.problems.problems.associateBy({ it.id }, { it.isFavourite })
+            return problems.map { it.copy(isFavourite = problemsMap[it.id] ?: false) }
+        }
 
+        private fun getDiff(newProblems: List<Problem>) = ProblemsDiff(store.state.problems.problems, newProblems).getDiff()
+
+        private fun updateDatabaseProblems(toAddDiff: List<Problem>, toUpdateDiff: List<Problem>) {
+            DatabaseQueries.Problems.update(toUpdateDiff)
+            DatabaseQueries.Problems.insert(toAddDiff)
+        }
+
+        data class Success(val problems: List<Problem>, val tags: List<String>) : Action
         data class Failure(override val message: Message) : ToastAction
     }
 
@@ -78,7 +48,7 @@ class ProblemsRequests {
 
         override suspend fun execute() {
             val newProblem = problem.copy(isFavourite = !problem.isFavourite)
-            DatabaseQueries.Problems.insert(newProblem)
+            DatabaseQueries.Problems.update(newProblem)
             store.dispatch(Success(newProblem))
         }
 

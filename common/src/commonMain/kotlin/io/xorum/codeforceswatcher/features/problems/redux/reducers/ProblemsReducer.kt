@@ -16,6 +16,7 @@ fun problemsReducer(action: Action, state: AppState): ProblemsState {
         is ProblemsRequests.FetchProblems.Success -> {
             newState = newState.copy(
                     problems = action.problems,
+                    tags = action.tags,
                     status = ProblemsState.Status.IDLE
             )
         }
@@ -27,7 +28,7 @@ fun problemsReducer(action: Action, state: AppState): ProblemsState {
         }
         is ProblemsRequests.ChangeStatusFavourite.Success -> {
             newState = newState.copy(problems = newState.problems.map {
-                if (it.contestId == action.problem.contestId && it.index == action.problem.index) action.problem else it
+                if (it.id == action.problem.id) action.problem else it
             })
         }
     }

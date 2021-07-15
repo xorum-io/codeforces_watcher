@@ -1,0 +1,26 @@
+BEGIN TRANSACTION;
+CREATE TABLE DbProblemTemp (
+    id TEXT PRIMARY KEY NOT NULL,
+    title TEXT NOT NULL,
+    subtitle TEXT NOT NULL,
+    platform TEXT NOT NULL,
+    link TEXT NOT NULL,
+    createdAtMillis INTEGER NOT NULL,
+    tags TEXT NOT NULL,
+    isFavourite INTEGER AS Boolean NOT NULL
+);
+
+INSERT INTO DbProblemTemp(id, title, subtitle, platform, link, createdAtMillis, tags, isFavourite)
+SELECT
+    "codeforces_" || contestId || [index],
+    contestId || [index] || ": " || name,
+    contestName,
+    "CODEFORCES",
+    "https://codeforces.com/contest/" || contestId || "/problem/" || [index],
+    contestTime,
+    "",
+    isFavourite
+FROM DbProblem;
+DROP TABLE DbProblem;
+ALTER TABLE DbProblemTemp RENAME TO DbProblem;
+COMMIT;
