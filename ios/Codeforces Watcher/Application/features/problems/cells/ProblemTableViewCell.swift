@@ -15,7 +15,7 @@ class ProblemTableViewCell: UITableViewCell {
 
     private let nameLabel = HeadingLabel()
 
-    private let contestLabel = SubheadingBigLabel()
+    private let subtitleLabel = SubheadingBigLabel()
 
     private var problem: Problem!
 
@@ -44,7 +44,7 @@ class ProblemTableViewCell: UITableViewCell {
     private func buildViewTree() {
         contentView.addSubview(cardView)
 
-        [nameLabel, contestLabel, starIcon].forEach(cardView.addSubview)
+        [nameLabel, subtitleLabel, starIcon].forEach(cardView.addSubview)
     }
 
     private func setConstraints() {
@@ -61,7 +61,7 @@ class ProblemTableViewCell: UITableViewCell {
             $0.trailingToSuperview(offset: 48)
         }
 
-        contestLabel.run {
+        subtitleLabel.run {
             $0.topToBottom(of: nameLabel, offset: 4)
             $0.leadingToSuperview(offset: 8)
             $0.trailingToSuperview(offset: 48)
@@ -81,8 +81,8 @@ class ProblemTableViewCell: UITableViewCell {
     }
 
     func bind(_ problem: Problem) {
-        nameLabel.text = problem.fullName
-        contestLabel.text = problem.contestName
+        nameLabel.text = problem.title
+        subtitleLabel.text = problem.subtitle
         self.problem = problem
         
         starIcon.tintColor = problem.isFavourite ? Palette.colorAccent : Palette.gray
