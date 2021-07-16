@@ -49,6 +49,11 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
         buildViewTree()
         setConstraints()
         updateFabButton(store.state.problems.isFavourite)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "filterIcon"), style: .plain, target: self, action: #selector(filterTapped))
+    }
+    
+    @objc private func filterTapped() {
+        presentModal(ProblemsFiltersViewController(["tag 1", "tag 2", "tag 3", "tag 4"]))
     }
 
     private func buildViewTree() {

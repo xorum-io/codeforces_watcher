@@ -12,6 +12,7 @@ import common
 
 struct FilterItem {
     let title: String
-    let platform: Contest.Platform
+    let platform: Contest.Platform?
     let isOn: Bool
+    let onSwitchTap: (_ isOn: Bool) -> ()
 }

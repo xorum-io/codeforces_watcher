@@ -12,14 +12,19 @@ import common
 
 class FilterTableViewCell: UITableViewCell {
     
+    private let stackView = UIStackView().apply {
+        $0.axis = .horizontal
+        $0.spacing = 8
+    }
+    
     private var logoView = CircleImageView()
     private let nameLabel = HeadingLabel()
 
     private let switchView = UISwitch().apply {
         $0.onTintColor = Palette.colorPrimary
     }
-
-    private var platform: Contest.Platform!
+    
+    private var onSwitchTap: (_ isOn: Bool) -> () = { _ in }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,21 +45,23 @@ class FilterTableViewCell: UITableViewCell {
     }
 
     private func buildViewTree() {
-        [logoView, nameLabel, switchView].forEach(contentView.addSubview)
+        [stackView, switchView].forEach(contentView.addSubview)
+        [logoView, nameLabel].forEach(stackView.addArrangedSubview)
     }
 
     private func setConstraints() {
         logoView.run {
-            $0.leadingToSuperview(offset: 16)
             $0.height(40)
             $0.width(40)
             $0.centerYToSuperview()
         }
-
-        nameLabel.run {
+        
+        stackView.run {
+            $0.leadingToSuperview(offset: 16)
             $0.centerYToSuperview()
-            $0.leadingToTrailing(of: logoView, offset: 8)
         }
+
+        nameLabel.centerYToSuperview()
 
         switchView.run {
             $0.centerYToSuperview()
@@ -67,13 +74,17 @@ class FilterTableViewCell: UITableViewCell {
     }
     
     @objc func switchTrigger(mySwitch: UISwitch) {
-        store.dispatch(action: ContestsRequests.ChangeFilterCheckStatus(platform: platform, isChecked: switchView.isOn))
+        onSwitchTap(switchView.isOn)
     }
 
     func bind(_ filterItem: FilterItem) {
-        logoView.image = UIImage(named: Contest.Platform.getImageNameByPlatform(filterItem.platform))
+        if let platform = filterItem.platform {
+            logoView.image = UIImage(named: Contest.Platform.getImageNameByPlatform(platform))
+        } else {
+            logoView.isHidden = true
+        }
         nameLabel.text = filterItem.title
         switchView.isOn = filterItem.isOn
-        platform = filterItem.platform
+        onSwitchTap = filterItem.onSwitchTap
     }
 }
