@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.features.problems.redux.actions
+package io.xorum.codeforceswatcher.features.problems.redux
 
 import tw.geothings.rekotlin.Action
 

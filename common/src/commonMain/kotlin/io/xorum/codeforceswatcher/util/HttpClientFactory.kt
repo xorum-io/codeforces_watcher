@@ -1,4 +1,4 @@
-package io.xorum.codeforceswatcher.network.responses.backend
+package io.xorum.codeforceswatcher.util
 
 import io.ktor.client.*
 import io.ktor.client.features.*

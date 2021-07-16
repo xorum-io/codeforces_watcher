@@ -2,7 +2,7 @@ package io.xorum.codeforceswatcher.features.news
 
 import io.ktor.client.request.*
 import io.xorum.codeforceswatcher.features.news.response.NewsResponse
-import io.xorum.codeforceswatcher.network.responses.backend.request
+import io.xorum.codeforceswatcher.util.request
 
 internal class NewsRepository {
 

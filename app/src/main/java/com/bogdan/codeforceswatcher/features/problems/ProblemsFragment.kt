@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bogdan.codeforceswatcher.R
 import com.bogdan.codeforceswatcher.components.WebViewActivity
-import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
-import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
+import io.xorum.codeforceswatcher.features.problems.redux.ProblemsRequests
+import io.xorum.codeforceswatcher.features.problems.redux.ProblemsState
 import io.xorum.codeforceswatcher.redux.analyticsController
 import kotlinx.android.synthetic.main.fragment_problems.*
 import io.xorum.codeforceswatcher.redux.store
@@ -73,7 +73,7 @@ class ProblemsFragment : Fragment(), StoreSubscriber<ProblemsState>, SwipeRefres
                     WebViewActivity.newIntent(
                             requireContext(),
                             problem.link,
-                            problem.fullName,
+                            problem.title,
                             AnalyticsEvents.PROBLEM_OPENED,
                             AnalyticsEvents.PROBLEM_SHARED
                     )
@@ -105,8 +105,8 @@ class ProblemsFragment : Fragment(), StoreSubscriber<ProblemsState>, SwipeRefres
     override fun onNewState(state: ProblemsState) {
         swipeRefreshLayout.isRefreshing = (state.status == ProblemsState.Status.PENDING)
         problemsAdapter.setItems(
-                if (state.isFavourite) state.problems.filter { it.isFavourite }.sortedByDescending { it.contestTime }
-                else state.problems.sortedByDescending { it.contestTime },
+                if (state.isFavourite) state.problems.filter { it.isFavourite }.sortedByDescending { it.createdAtMillis }
+                else state.problems.sortedByDescending { it.createdAtMillis },
                 searchView?.query?.toString().orEmpty(),
                 state.isFavourite
         )

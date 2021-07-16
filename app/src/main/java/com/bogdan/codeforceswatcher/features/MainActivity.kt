@@ -21,7 +21,7 @@ import com.bogdan.codeforceswatcher.features.problems.ProblemsFragment
 import com.bogdan.codeforceswatcher.features.users.UsersFragment
 import com.bogdan.codeforceswatcher.util.FeedbackController
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
-import io.xorum.codeforceswatcher.features.problems.redux.actions.ProblemsActions
+import io.xorum.codeforceswatcher.features.problems.redux.ProblemsActions
 import io.xorum.codeforceswatcher.redux.analyticsController
 import io.xorum.codeforceswatcher.redux.store
 import io.xorum.codeforceswatcher.util.AnalyticsEvents

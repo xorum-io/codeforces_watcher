@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bogdan.codeforceswatcher.R
 import io.xorum.codeforceswatcher.features.problems.models.Problem
-import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
+import io.xorum.codeforceswatcher.features.problems.redux.ProblemsRequests
 import kotlinx.android.synthetic.main.view_problem_item.view.*
 import io.xorum.codeforceswatcher.redux.store
 import java.util.*
@@ -58,8 +58,8 @@ class ProblemsAdapter(
         val problemViewHolder = viewHolder as ProblemViewHolder
         with(problemViewHolder) {
             with(showingItems[adapterPosition]) {
-                tvProblemName.text = fullName
-                tvContestName.text = contestName
+                tvProblemName.text = title
+                tvContestName.text = subtitle
                 ivFavourite.setColorFilter(ContextCompat.getColor(
                         context, if (isFavourite) R.color.colorAccent else R.color.dark_gray)
                 )
@@ -113,11 +113,9 @@ class ProblemsAdapter(
         val filteredList = mutableListOf<Problem>()
 
         for (problem in items) {
-            val fullProblemNameEn = "${problem.contestId}${problem.index}: ${problem.enName.lowercase()}"
-            val fullProblemNameRu = "${problem.contestId}${problem.index}: ${problem.ruName.lowercase()}"
-            if (fullProblemNameEn.kmpContains(lowerCaseConstraint)
-                    || fullProblemNameRu.kmpContains(lowerCaseConstraint)
-                    || problem.contestName.lowercase().kmpContains(lowerCaseConstraint)) {
+            if (problem.title.lowercase().kmpContains(lowerCaseConstraint)
+                    || problem.subtitle.lowercase().kmpContains(lowerCaseConstraint)
+            ) {
                 filteredList.add(problem)
             }
         }

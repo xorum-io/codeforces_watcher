@@ -48,7 +48,7 @@ class ProblemsTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSo
         }
 
         let problem = problems[indexPath.row]
-        onProblemClick?(problem.link, problem.fullName)
+        onProblemClick?(problem.link, problem.title)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

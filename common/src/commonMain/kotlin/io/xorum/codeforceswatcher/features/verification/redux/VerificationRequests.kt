@@ -2,7 +2,7 @@ package io.xorum.codeforceswatcher.features.verification.redux
 
 import io.xorum.codeforceswatcher.features.auth.models.UserAccount
 import io.xorum.codeforceswatcher.features.verification.VerificationRepository
-import io.xorum.codeforceswatcher.network.responses.backend.Response
+import io.xorum.codeforceswatcher.util.Response
 import io.xorum.codeforceswatcher.redux.*
 import tw.geothings.rekotlin.Action
 

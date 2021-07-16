@@ -1,8 +1,5 @@
-package io.xorum.codeforceswatcher.features.problems.redux.reducers
+package io.xorum.codeforceswatcher.features.problems.redux
 
-import io.xorum.codeforceswatcher.features.problems.redux.actions.ProblemsActions
-import io.xorum.codeforceswatcher.features.problems.redux.requests.ProblemsRequests
-import io.xorum.codeforceswatcher.features.problems.redux.states.ProblemsState
 import io.xorum.codeforceswatcher.redux.states.AppState
 import tw.geothings.rekotlin.Action
 
@@ -16,6 +13,7 @@ fun problemsReducer(action: Action, state: AppState): ProblemsState {
         is ProblemsRequests.FetchProblems.Success -> {
             newState = newState.copy(
                     problems = action.problems,
+                    tags = action.tags,
                     status = ProblemsState.Status.IDLE
             )
         }
@@ -27,7 +25,7 @@ fun problemsReducer(action: Action, state: AppState): ProblemsState {
         }
         is ProblemsRequests.ChangeStatusFavourite.Success -> {
             newState = newState.copy(problems = newState.problems.map {
-                if (it.contestId == action.problem.contestId && it.index == action.problem.index) action.problem else it
+                if (it.id == action.problem.id) action.problem else it
             })
         }
     }

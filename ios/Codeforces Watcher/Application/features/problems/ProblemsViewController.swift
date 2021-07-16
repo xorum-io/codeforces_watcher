@@ -123,7 +123,7 @@ class ProblemsViewController: UIViewControllerWithFab, ReKampStoreSubscriber, UI
         let filteredProblems = problems.filter {
             var shouldAdd = false
 
-            [$0.fullName, $0.enName, $0.ruName, $0.contestName].forEach {
+            [$0.title, $0.subtitle].forEach {
                 if $0.lowercased().contains(text) {
                     shouldAdd = true
                 }
