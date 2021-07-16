@@ -10,7 +10,7 @@ import UIKit
 
 class FiltersTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    var filterItems: [FilterItem] = []
+    var filterItems: [FilterTableViewCell.UIModel] = []
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
