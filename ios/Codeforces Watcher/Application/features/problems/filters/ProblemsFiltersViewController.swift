@@ -49,7 +49,7 @@ class ProblemsFiltersViewController: ClosableViewController {
         tableView.registerForReuse(cellType: FilterTableViewCell.self)
         
         tableAdapter.filterItems = tags.map {
-            FilterItem(title: $0, platform: nil, isOn: false, onSwitchTap: {_ in })
+            FilterTableViewCell.UIModel(title: $0, image: nil, isOn: false, onSwitchTap: { _ in })
         }
     }
 }

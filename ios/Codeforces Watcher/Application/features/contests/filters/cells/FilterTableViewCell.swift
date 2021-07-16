@@ -76,15 +76,22 @@ class FilterTableViewCell: UITableViewCell {
     @objc func switchTrigger(mySwitch: UISwitch) {
         onSwitchTap(switchView.isOn)
     }
+    
+    struct UIModel {
+        let title: String
+        let image: UIImage?
+        let isOn: Bool
+        let onSwitchTap: (_ isOn: Bool) -> ()
+    }
 
-    func bind(_ filterItem: FilterItem) {
-        if let platform = filterItem.platform {
-            logoView.image = UIImage(named: Contest.Platform.getImageNameByPlatform(platform))
+    func bind(_ uiModel: UIModel) {
+        if let image = uiModel.image {
+            logoView.image = image
         } else {
             logoView.isHidden = true
         }
-        nameLabel.text = filterItem.title
-        switchView.isOn = filterItem.isOn
-        onSwitchTap = filterItem.onSwitchTap
+        nameLabel.text = uiModel.title
+        switchView.isOn = uiModel.isOn
+        onSwitchTap = uiModel.onSwitchTap
     }
 }

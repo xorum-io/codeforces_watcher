@@ -49,7 +49,12 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
         buildViewTree()
         setConstraints()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "filterIcon"), style: .plain, target: self, action: #selector(filterTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "filterIcon"),
+            style: .plain,
+            target: self,
+            action: #selector(filterTapped)
+        )
 
         contestsRulesCardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.contestsRulesTapped)))
     }
@@ -115,7 +120,7 @@ class ContestsViewController: UIViewControllerWithFab, ReKampStoreSubscriber {
     }
 
     @objc func filterTapped(sender: Any) {
-        presentModal(FiltersViewController())
+        presentModal(ContestsFiltersViewController())
     }
 
     @objc func contestsRulesTapped(sender: Any) {
